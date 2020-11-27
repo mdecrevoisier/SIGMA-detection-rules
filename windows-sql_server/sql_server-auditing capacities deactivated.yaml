@@ -1,0 +1,42 @@
+title: SQL Server auditing deactivated
+description: Detects scenarios where an attacker deactivates SQL Server auditing capacities. SQL auditing requires previous configuration on each SQL instance.
+references:
+- https://attack.mitre.org/techniques/T1070/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.xxx-Audit%20policy%20disabled
+- https://www.ultimatewindowssecurity.com/sqlserver/auditlog/sampleevent.aspx
+- https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action_id-groups-and-action_ids?view=sql-server-2017
+- https://www.sqlshack.com/various-techniques-to-audit-sql-server-databases/
+- https://sqlquantumleap.com/reference/server-audit-filter-values-for-action_id_id/
+tags:
+- attack.defenseevasion
+- attack.t1070
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: application
+detection:
+  sql_server_event:
+    EventID: 33205  
+
+  # Server audit specifications
+  server_audit_spec_disabled:
+    action_id: AL # Alter
+    class_type: SA  # Server Audit Specifications
+    statement: '*STATE = OFF*'
+  server_audit_spec_deleted:
+    action_id: DR # Drop
+    class_type: SA  # Server Audit Specifications
+
+  # Server audit object  
+  server_audit_obj_disabled:
+    action_id: AL # Alter
+    class_type: A  # Server audit
+    statement: '*STATE = OFF*'
+  server_audit_obj_deleted:
+    action_id: DR # Drop
+    class_type: A  # Server audit
+  condition: sql_server_event and (1 of server_audit_*)
+falsepositives:
+- DBA policy change
+level: high

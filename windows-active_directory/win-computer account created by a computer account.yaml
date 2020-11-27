@@ -1,0 +1,23 @@
+title: Suspicious computer account created by a computer account
+description: Detects scenarios where an attacker abuse MachineAccountQuota privilege while realying host credentials to escalate privileges on the relayed host.
+references:
+- https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4741
+tags:
+- attack.persistence
+- attack.t1136
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+    - 4741
+    SubjectUserName: '*$'
+    TargetUserName: '*$'
+  condition: selection
+falsepositives:
+- None
+level: high

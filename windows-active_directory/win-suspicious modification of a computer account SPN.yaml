@@ -1,0 +1,24 @@
+title: Suspicious modification of a computer account SPN
+description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a computer account in order to perform "Kerberos redirection" and escalate privileges.
+references:
+- https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4742
+tags:
+- attack.persistence
+- attack.t1098
+author: @mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+    - 4742
+  filter:
+    ServicePrincipalNames: '-'
+  condition: selection and not filter
+falsepositives:
+- Rare administrator modifications on computer objects
+level: high

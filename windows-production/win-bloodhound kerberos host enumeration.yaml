@@ -1,0 +1,27 @@
+title: Suspicious Bloodhound host enumeration over Kerberos
+description: Detect if a source host is requesting multiple Kerberos Service tickets for different assets in a short period of time.
+references:
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087.002-Domain%20Account%20discovery
+tags:
+- attack.discovery
+- attack.t1087.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+    - 4769
+    ServiceName: '*$'
+    Status: '0x0'
+  filter:
+    ServiceName: krbtgt
+  condition: selection and not filter | count(ServiceName) by IpAddress > 20
+  timeframe: 5m
+falsepositives:
+- Admin activity against multiple remote machines
+- Backup software
+level: medium

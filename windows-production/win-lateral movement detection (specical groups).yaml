@@ -1,0 +1,25 @@
+title: Lateral movement detection (based on "special groups" feature)
+description: Detects scenarios where a user of a predefined set of group(s) logs on a target machine. Previous auditing configuration based on monitored groups has to be pushed by GPO. See links below and Event ID 4908 for setup.
+references:
+- https://attack.mitre.org/techniques/T1078/002/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1078.002-Valid%20accounts-Domain%20accounts
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4964
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4908
+- https://docs.microsoft.com/fr-fr/archive/blogs/jepayne/tracking-lateral-movement-part-one-special-groups-and-specific-service-accounts
+- https://techcommunity.microsoft.com/t5/ask-the-directory-services-team/special-groups-auditing-via-group-policy-preferences/ba-p/395095
+- https://i.blackhat.com/us-18/Wed-August-8/us-18-Metcalf-From-Workstation-To-Domain-Admin-Why-Secure-Administration-Isnt-Secure.pdf
+tags:
+- attack.defense_evasion
+- attack.t1078
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4964
+  condition: selection
+falsepositives:
+- Normal activity of a user member of a monitored group
+level: medium
