@@ -15,6 +15,6 @@ The SIGMA rules can be used in different ways together with your SIEM:
 * Active Directory Domain Services (ADDS)
 * Active Directory Certification Services (ADCS / PKI) with online responder (OCSP)
 * SQL Server 2014
-* Windows Defender -- *in progress*
+* Windows Defender
 * SYSMON v11 -- *pending*
 
