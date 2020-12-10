@@ -1,0 +1,26 @@
+title: Microsoft Defender signatures not up to date
+description: Detects scenarios where multiple threats are detected on a single host by Microsoft Defender
+references:
+#- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
+tags:
+- malware
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: windowsdefender
+detection:
+  selection_event:
+    EventID: 1151
+    SourceName: "Microsoft-Windows-Windows Defender"
+  selection_age : 
+    - Last AS signature age: 
+    - Last AV signature age:
+    - Last AS security intelligence age:
+    - Last AV security intelligence age:
+  condition: selection | higher than 10d
+  timeframe: 30m
+falsepositives:
+- EICAR test file 
+level: high

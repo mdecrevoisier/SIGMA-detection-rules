@@ -1,0 +1,24 @@
+title: Suspicious share created
+description: Detects scenarios where an attacker creates a new file share in order to move laterally.
+references:
+- https://attack.mitre.org/techniques/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-5142
+tags:
+- attack.lateral-movement
+- attack.t1021.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+    - 5142
+  filter:
+    SubjectUserName: '*$' # Share created by the system are ignored
+  condition: selection and not filter
+falsepositives:
+- Unknown
+level: medium

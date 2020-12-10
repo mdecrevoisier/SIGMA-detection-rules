@@ -24,6 +24,7 @@ detection:
     action_id: AL # Alter
     class_type: SA  # Server Audit Specifications
     statement: '*STATE = OFF*'
+  
   server_audit_spec_deleted:
     action_id: DR # Drop
     class_type: SA  # Server Audit Specifications
@@ -33,9 +34,11 @@ detection:
     action_id: AL # Alter
     class_type: A  # Server audit
     statement: '*STATE = OFF*'
+  
   server_audit_obj_deleted:
     action_id: DR # Drop
     class_type: A  # Server audit
+  
   condition: sql_server_event and (1 of server_audit_*)
 falsepositives:
 - DBA policy change
