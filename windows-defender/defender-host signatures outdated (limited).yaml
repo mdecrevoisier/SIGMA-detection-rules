@@ -1,7 +1,7 @@
 title: Microsoft Defender signatures not up to date
 description: Detects scenarios where multiple threats are detected on a single host by Microsoft Defender
 references:
-#- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
 tags:
 - malware
@@ -22,5 +22,6 @@ detection:
   condition: selection | higher than 10d
   timeframe: 30m
 falsepositives:
-- EICAR test file 
-level: high
+- Unconnected systems to internet
+- System offline during long duration 
+level: medium

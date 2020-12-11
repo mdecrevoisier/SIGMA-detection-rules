@@ -2,6 +2,7 @@ title: Microsoft Defender massive host infection
 description: Detects scenarios where multiple suspicious threats are detected on a single host 
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
 tags:
 - malware
 author: mdecrevoisier

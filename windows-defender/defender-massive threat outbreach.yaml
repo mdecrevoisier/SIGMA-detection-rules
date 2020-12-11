@@ -2,6 +2,7 @@ title: Microsoft Defender massive virus outbreach
 description: Detects scenarios where a same threat is detected on different hosts in a short period of time
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
 tags:
 - malware
 author: mdecrevoisier
