@@ -1,0 +1,21 @@
+title: Microsoft Defender threat exception added
+description: Detects scenarios where a threat exception is added to the antivirus in order to bypass its detection capacities
+references:
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
+tags:
+- malware
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: windowsdefender
+detection:
+  selection:
+    EventID: 5007
+    SourceName: "Microsoft-Windows-Windows Defender"
+    New Value: "HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\*"
+  condition: selection
+falsepositives:
+- Unknown
+level: high
