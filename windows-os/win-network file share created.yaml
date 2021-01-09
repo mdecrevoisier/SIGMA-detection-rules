@@ -1,5 +1,5 @@
-title: Suspicious share created
-description: Detects scenarios where an attacker creates a new file share in order to move laterally.
+title: New file share created
+description: Detects scenarios when a new file share is created.
 references:
 - https://attack.mitre.org/techniques/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
@@ -20,5 +20,5 @@ detection:
     SubjectUserName: '*$' # Share created by the system are ignored
   condition: selection and not filter
 falsepositives:
-- Unknown
+- Administrator actvity
 level: medium
