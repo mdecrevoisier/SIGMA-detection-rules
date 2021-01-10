@@ -1,0 +1,26 @@
+title: Active Directory honeypot enumerated by a suspicious host (Bloodhound)
+description: Detects scenarios where an attacker is attempting to discover sensitive accounts using tools like Bloodhound.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087.002-Domain%20Account%20discovery
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4662
+- http://www.labofapenetrationtester.com/2018/10/deploy-deception.html
+- https://jblog.javelin-networks.com/blog/the-honeypot-buster/
+- Requirements: ensure that those accounts are "attractive", documented, do not create any breach and cannot be used against you.
+- Requirements for auditing: specific SACL for "Everyone" with "ReadProperties" need to be configured on each honeypot object.
+- Correlation: to find out the source of the enumeration, correlate the SubjectLogonId from ID 4662 with TargetLogonId from ID 4624.
+tags:
+- attack.discovery
+- attack.t1087 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4662 
+    ObjectName: '%honeypot_guid_list%' # GUID of pre-configured honeypot object(s). Eg: '%{259162f1-58e4-4ee9-9b9c-2baf2a03d376}'
+  condition: selection
+falsepositives:
+- LDAP explorer tools, pentest
+level: high

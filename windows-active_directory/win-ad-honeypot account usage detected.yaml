@@ -1,0 +1,29 @@
+title: Active Directory honeypot used for lateral movement
+description: Detects scenarios where an attacker is using
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087.002-Domain%20Account%20discovery
+- http://www.labofapenetrationtester.com/2018/10/deploy-deception.html
+- https://jblog.javelin-networks.com/blog/the-honeypot-buster/
+- Requirements: ensure that those accounts are "attractive", documented, do not create any breach and cannot be used against your organization.
+tags:
+- attack.lateral-movement
+- attack.t1021
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 
+      - 4624
+      - 4625
+      - 4768
+      - 4769
+      - 4770
+      - 4771
+    TargetUserName: '%honeypot_account_list%'
+  condition: selection
+falsepositives:
+- pentest
+level: high

@@ -14,18 +14,13 @@ logsource:
   product: windows
   category: application
 detection:
-  sql_server_event:
+  selection:
     EventID: 33205
-
-  selection1:
-    action_id: APRL # ADD MEMBER
+    action_id: 
+      - APRL # ADD MEMBER
+      - ADSP # SERVER_ROLE_MEMBER_CHANGE_GROUP
     class_type: SG # SERVER ROLE
-
-  selection2:
-    action_id: ADSP # SERVER_ROLE_MEMBER_CHANGE_GROUP
-    class_type: SG # SERVER ROLE
-
-  condition: selection1 or selection2
+  condition: selection
 falsepositives:
 - DBA activity
 level: medium
