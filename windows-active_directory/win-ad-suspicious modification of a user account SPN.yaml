@@ -1,0 +1,27 @@
+title: Suspicious modification of a user account SPN to enable Kerberoast attack
+description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a user account in order to enable Kerberoast attack and crack its password.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-5136
+- https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet#force-set-spn
+- In order to audit changes on AD objects, it is required to add a SACL entry for "Write all properties". More info: https://docs.microsoft.com/en-us/troubleshoot/windows-server/windows-security/use-audit-active-directory-objects-track-events
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5136 # ID 4738 doesn't report any changes about SPN changes
+    AttributeLDAPDisplayName: servicePrincipalName
+    ObjectClass: user
+    OperationType: "%%14674" # Value is added
+  filter:
+    AttributeValue: '-'
+  condition: selection and not filter
+falsepositives:
+- Rare administrator modifications on user objects
+level: high

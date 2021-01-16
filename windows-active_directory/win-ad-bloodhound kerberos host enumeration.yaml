@@ -13,8 +13,7 @@ logsource:
   service: security
 detection:
   selection:
-    EventID:
-    - 4769
+    EventID: 4769
     ServiceName: '*$'
     Status: '0x0'
   filter:

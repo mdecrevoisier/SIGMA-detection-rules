@@ -14,8 +14,7 @@ logsource:
   service: security
 detection:
   selection:
-    EventID:
-    - 5143
+    EventID: 5143
   filter:
     # OldSD == NewSD (comparing 2 fields is not possible in SIGMA language)
     # If both Scurity descriptor are the same, it means that no permission changes were done.

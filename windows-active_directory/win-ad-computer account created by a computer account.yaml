@@ -13,8 +13,7 @@ logsource:
   service: security
 detection:
   selection:
-    EventID:
-    - 4741
+    EventID: 4741
     SubjectUserName: '*$'
     TargetUserName: '*$'
   condition: selection

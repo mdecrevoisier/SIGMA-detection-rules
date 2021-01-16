@@ -1,0 +1,26 @@
+  title: Rubeus Kerberos constrained delegation abuse (S4U2Proxy)
+  description: Detects scenarios where an attacker abuse Kerberos constrained delegation in order to escalate privileges.
+  references:
+  - https://attack.mitre.org/techniques/T1558/
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
+  - https://www.alsid.com/crb_article/kerberos-delegation/
+  - https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html
+  tags:
+  - attack.credential-access
+  - attack.t1558
+  author: mdecrevoisier
+  status: experimental
+  logsource:
+    product: windows
+    service: security
+  detection:
+    selection:
+      EventID: 4769 
+      TransmittedServices: '*@*'
+    filter:
+      ServiceSid: '*-502' # Krbtgt account SID is excluded as it may be related to "Unconstrained Domain Persistence" (see other rule)
+      TargetUserName: '%allowed_S4U2Proxy_accounts%' # User accounts allowed to perform constrained delegation
+    condition: selection and not filter
+  falsepositives:
+  - Accounts with constrained delegation enabled
+  level: high

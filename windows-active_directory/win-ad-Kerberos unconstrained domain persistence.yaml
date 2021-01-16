@@ -1,0 +1,26 @@
+  title: Rubeus Kerberos unconstrained delegation abuse
+  description: Detects scenarios where an attacker abuse Kerberos unconstrained delegation for domain persistence.
+  references:
+  - https://attack.mitre.org/techniques/T1558/
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
+  - https://www.alsid.com/crb_article/kerberos-delegation/
+  - https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html
+  tags:
+  - attack.credential-access
+  - attack.t1558
+  author: mdecrevoisier
+  status: experimental
+  logsource:
+    product: windows
+    service: security
+  detection:
+    selection:
+      EventID: 4769 
+      TransmittedServices: '*@*'
+      ServiceSid: '*-502' # Krbtgt account SID
+    filter:
+      TargetUserName: '%allowed_unconstrained_accounts%' # User accounts allowed to perform unconstrained delegation
+    condition: selection and not filter
+  falsepositives:
+  - Accounts with unconstrained delegation enabled
+  level: high
