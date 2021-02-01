@@ -1,7 +1,6 @@
-title: Suspicious SPN enumeration before Kerberoasting attack (PowerShell)
+title: Suspicious SPN enumeration previous to Kerberoasting attack (PowerShell)
 description: Detects scenarios where an attacker attempts to retrieve SPN using PowerShell and native tools.
 references:
-- https://attack.mitre.org/techniques/T1558/003/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087.002-Domain%20Account%20discovery
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688
 - https://github.com/nidem/kerberoast
@@ -15,22 +14,24 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
 detection:
   selection1_powershell_native:
     EventID: 800
+    Channel: 'PowerShell'
     EventData|contains:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'
 
   selection2_powershell_modern:
     EventID: 4103
+    Channel: 'Microsoft-Windows-PowerShell/Operational'
     Payload|contains:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'
 
   selection3_powershell_block:
     EventID: 4104
+    Channel: 'Microsoft-Windows-PowerShell/Operational'
     ScriptBlockText|contains:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'
