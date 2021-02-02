@@ -1,0 +1,25 @@
+title: 
+description: Detects scenarios where a firewall rule is added using PowerShell or CMD.
+references:
+- https://attack.mitre.org/techniques/T1562/004/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
+- https://kb.eventtracker.com/evtpass/evtPages/EventId_2004_Microsoft-Windows-WindowsFirewallwithAdvancedS_65673.asp
+tags:
+- attack.defense-evasion
+- attack.t1562.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: firewall
+detection:
+  selection:
+    EventID: 2004
+    ModifyingApplication: 
+      - '*\WmiPrvSE.exe' # PowerShell
+      - '*\netsh.exe' # CMD console      - 
+  condition: selection
+falsepositives:
+- Administrator activity 
+- New application installation
+level: medium
