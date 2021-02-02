@@ -2,30 +2,43 @@ title: New member added to a sensitive Exchange administration group
 description: Detects scenarios where a new member is added to a sensitive group related to Exchange server
 references:
 - https://attack.mitre.org/techniques/T1003/006/
+- https://msexchangeguru.com/2015/12/18/rbac-2016/
+# - add evtx path
 tags:
 - attack.credential-access
-- attack.t1003.006 
+- attack.t1003.006
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
   service: security
 detection:
-  selection:
-    EventID:
-      - 4728
-      - 4732
-      - 4756
+  EventID: 4756 # Security universal group
+  selection_high_risk:
     TargetUserName:
+      #- Exchange Trusted Subsystem > See related rule for DC sync group change
+      #- Exchange Windows Permissions > See related rule for DC sync group change
+      - Exchange Organization Administrators
+      - Exchange Public Folder Administrators
+      - Exchange Recipient Administrators
+      - Security Administrator
       - Exchange Domain Servers
       - Exchange Enterprise Servers
-      - Exchange Organization Administrators
-      - Exchange Recipient Administrators
-      - Exchange Trusted Subsystem # May be abuse for DCsync attack
-      - Exchange Windows Permissions # May be abuse for DCsync attack
+      - Exchange Servers
+
+  selection_medium_risk:
+    TargetUserName:
+      - Security Reader
+      - Exchange View-Only Administrators
       - Organization Management
+      - Public Folder Management
+      - Recipient Management
+      - Records Management
       - Server Management
-  condition: selection
+      - UM Management
+      - View-only Organization Management
+
+  condition: 1 of selection*
 falsepositives:
 - Exchange administrator updating server configuration
 - Exchange upgrade or migration

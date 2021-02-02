@@ -1,28 +1,26 @@
-title: Exchange group membership change to perform DCsync attack
-description: Detects scenarios where an attacker adds its account into a sensitive Exchange group to obtain "Replicating Directory Changes /all" and perform DCsync attack.
-references:
-- https://attack.mitre.org/techniques/T1003/006/
-- https://adsecurity.org/?p=4119
-- https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/
-tags:
-- attack.credential-access
-- attack.t1003.006 
-author: mdecrevoisier
-status: experimental
-logsource:
-  product: windows
-  service: security
-detection:
-  selection:
-    EventID:
-      - 4728
-      - 4732
-      - 4756
-    TargetUserName:
-      - Exchange Trusted Subsystem
-      - Exchange Windows Permissions
-  condition: selection
-falsepositives:
-- Exchange administrator updating server configuration
-- Exchange upgrade or migration
-level: high
+  title: Exchange group membership change to perform DCsync attack
+  description: Detects scenarios where an attacker adds its account into a sensitive Exchange group to obtain "Replicating Directory Changes /all" and perform DCsync attack.
+  references:
+  - https://attack.mitre.org/techniques/T1003/006/
+  - https://adsecurity.org/?p=4119
+  - https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/
+  # - add evtx path
+  tags:
+  - attack.credential-access
+  - attack.t1003.006
+  author: mdecrevoisier
+  status: experimental
+  logsource:
+    product: windows
+    service: security
+  detection:
+    selection:
+      EventID: 4756 # Security universal group
+      TargetUserName:
+        - Exchange Trusted Subsystem
+        - Exchange Windows Permissions
+    condition: selection
+  falsepositives:
+  - Exchange administrator updating server configuration
+  - Exchange upgrade or migration
+  level: high

@@ -17,7 +17,7 @@ logsource:
 detection:
   selection1_powershell_native:
     EventID: 800
-    Channel: 'PowerShell'
+    Channel: 'Windows PowerShell'
     EventData|contains:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'
