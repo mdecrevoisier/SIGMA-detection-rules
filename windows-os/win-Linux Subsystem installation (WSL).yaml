@@ -1,0 +1,30 @@
+title: Windows Subsystem for Linux installation (WSL)
+description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
+references:
+ - https://attack.mitre.org/techniques/T1564/006/
+ - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts
+ - https://docs.microsoft.com/en-us/windows/wsl/install-win10
+ - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
+tags:
+- attack.defense-evasion
+- attack.t1564.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: process_creation
+detection:
+  selection_wsl_activation: # dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    EventID: 4688
+    CommandLine|contains|all: 
+      - dism.exe
+      - /enable-feature
+      - Microsoft-Windows-Subsystem-Linux
+  selection_wsl_configuration: # C:\WINDOWS\system32\wsl.exe" --set-default-version 2
+    EventID: 4688
+    NewProcessName: '*wsl.exe'
+    CommandLine|contains: '--set-default-version 2'
+  condition: selection_wsl_activation or selection_wsl_configuration
+falsepositives:
+- Unknown 
+level: medium
