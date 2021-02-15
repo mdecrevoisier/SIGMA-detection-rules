@@ -16,8 +16,7 @@ logsource:
   category: process_creation
 detection:
   selection1:
-    EventID: 4688
-    NewProcessName: '*\sqlcmd.exe'
+    Image: '*\sqlcmd.exe'
     CommandLine|contains: -S # parameter to specify the database\instance'
 
   selection_sql: # used in recent SQL Server versions
