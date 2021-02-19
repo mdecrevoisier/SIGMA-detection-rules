@@ -4,9 +4,8 @@ references:
 - https://attack.mitre.org/techniques/T1070/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.xxx-Audit%20policy%20disabled
 - https://www.ultimatewindowssecurity.com/sqlserver/auditlog/sampleevent.aspx
-- https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action_id-groups-and-action_ids?view=sql-server-2017
+- https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-2017
 - https://www.sqlshack.com/various-techniques-to-audit-sql-server-databases/
-- https://sqlquantumleap.com/reference/server-audit-filter-values-for-action_id_id/
 tags:
 - attack.defenseevasion
 - attack.t1070
