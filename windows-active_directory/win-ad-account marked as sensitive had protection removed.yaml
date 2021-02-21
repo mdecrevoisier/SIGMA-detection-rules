@@ -1,0 +1,22 @@
+title: Account marked as sensitive and cannot be delegated had its protection removed (weakness introduction)
+description: Detects scenarios where an attacker removes security protection from a sensitive account to escalate privileges
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://www.sans.org/blog/protecting-privileged-domain-accounts-safeguarding-access-tokens/
+- https://www.cyberark.com/resources/threat-research-blog/weakness-within-kerberos-delegation
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4738
+    UserAccountControl: '%%2062' # Account is sensitive and cannot be delegated - FALSE
+  condition: selection
+falsepositives:
+- high
+level: high

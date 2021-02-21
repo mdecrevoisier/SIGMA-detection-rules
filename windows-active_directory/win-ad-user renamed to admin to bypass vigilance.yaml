@@ -1,8 +1,8 @@
 title: Account renamed to admin account to evade defense
 description: Detects scenarios where an attacker rename a non admin account in order to evade SOC & operations vigilance
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-xxxxx
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4738
 tags:
 - attack.persistence
 - attack.t1078.002
