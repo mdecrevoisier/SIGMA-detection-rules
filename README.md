@@ -34,7 +34,10 @@ TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: Member had new
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: Member had new privileges added to an instance | 33205
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: new member added to a database role | 33205
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: new member added to server role | 33205
+TA0003-Persistence | T1098.xxx-Account manipulation | User account created and/or set with reversible encryption detected | 4738
+TA0003-Persistence | T1098.xxx-Account manipulation | User account marked as "sensitive and cannot be delegated" its had protection removed | 4738
 TA0003-Persistence | T1098.xxx-Account manipulation | User account set with new SPN | 4738/5136
+TA0003-Persistence | T1098.xxx-Account manipulation | User account with password set to not require detected | 4738
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server xp_cmdshell procedure activated | 18457
