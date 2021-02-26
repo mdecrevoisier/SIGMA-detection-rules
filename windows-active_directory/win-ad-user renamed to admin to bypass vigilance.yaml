@@ -29,6 +29,7 @@ detection:
       - 'admin'
       - 'adm-'
       - '-adm'
+    TargetSid: '*-500' # Exclude default builtin account
   condition: (1 of selection*) and not filter
 falsepositives:
 - Unknown 
