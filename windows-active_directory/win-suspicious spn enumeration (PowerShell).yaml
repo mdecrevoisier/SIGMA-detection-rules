@@ -14,6 +14,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
+  service: powershell
 detection:
   selection1_powershell_native:
     EventID: 800

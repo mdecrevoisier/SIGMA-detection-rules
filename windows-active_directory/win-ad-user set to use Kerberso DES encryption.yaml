@@ -1,0 +1,21 @@
+title: Account set with Kerberos DES encryption activated (weakness introduction)
+description: Detects scenarios where an attacker set an account with DES Kerberos encryption to perform ticket brutforce.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://docs.microsoft.com/en-us/services-hub/health/remediation-steps-ad/remove-the-highly-insecure-des-encryption-from-user-accounts
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4738
+    UserAccountControl: '%%2095' # Use only Kerberos DES encryption types - TRUE
+  condition: selection
+falsepositives:
+- None
+level: high
