@@ -4,7 +4,7 @@
   - https://attack.mitre.org/techniques/T1003/006/
   - https://adsecurity.org/?p=4119
   - https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/
-  # - add evtx path
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003.006-DCSync
   tags:
   - attack.credential-access
   - attack.t1003.006

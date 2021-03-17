@@ -1,0 +1,34 @@
+title: Suspicious Active Directory DPAPI attributes accessed (Mimikatz, DCSync, RiskySPN)
+description: Detects scenarios where an attacker attempts to extract sensitive DPAPI information from Active Directory (RiskySPN PowerShell tool, DCSync and Mimikatz may also trigger this rule).
+references:
+- Requires extended rights auditing enabled-https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1555-Credentials%20from%20Password%20Stores
+- https://docs.microsoft.com/en-us/windows/win32/adschema/extended-rights
+- https://github.com/PSGumshoe/PSGumshoe/blob/master/DirectoryService/PrivateFunctions.ps1
+- https://stealthbits.com/blog/detecting-persistence-through-active-directory-extended-rights/
+- https://cqureacademy.com/blog/extracting-roamed-private-keys
+- https://www.harmj0y.net/blog/redteaming/operational-guidance-for-offensive-user-dpapi-abuse/
+- https://www.dsinternals.com/en/retrieving-dpapi-backup-keys-from-active-directory/
+tags:
+- attack.credential-access
+- attack.t1555
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4662
+    Properties|contains:
+      - 612cb747-c0e8-4f92-9221-fdd5f15b550d # unixUserPassword
+      - 6617e4ac-a2f1-43ab-b60c-11fbd1facf05 # ms-PKI-RoamingTimeStamp / Indicates the time of the last synchronization
+      - b3f93023-9239-4f7c-b99c-6745d87adbc2 # ms-PKI-DPAPIMasterKeys / Stores the DPAPI Master Keys. These symmetric keys encrypt the private keys and are themselves encrypted.
+      - b7ff5a38-0818-42b0-8110-d3d154c97f24 # ms-PKI-Credential-Roaming-Tokens
+      - b8dfa744-31dc-4ef1-ac7c-84baf7ef9da7 # ms-PKI-AccountCredentials / Stores certificates, certificate signing requests, private keys and saved passwords.
+      - 91e647de-d96f-4b70-9557-d63ff4f3ccd8 # Private-Information
+  condition: selection | count(ObjectName) > 5 # count the amount of different AD objects reporting DPAPI accessed
+  timeframe: 30m
+falsepositives:
+- Active Directory Backup solutions
+level: high
