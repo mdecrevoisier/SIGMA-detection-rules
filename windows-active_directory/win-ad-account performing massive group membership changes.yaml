@@ -1,0 +1,22 @@
+title: Massive group membership changes detected
+description: Detects scenarios where an attacker will add a compromised account into different domain groups in order to gain access to all the assets under the control of those concerned groups. 
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+      - 4728
+      - 4756
+  condition: selection | count(TargetUserName) by SubjectUserName > 20 # Count how many different groups had a member added in a short period
+  timeframe: 5m
+falsepositives:
+- Automatic scripts, provisionning accounts
+level: medium
