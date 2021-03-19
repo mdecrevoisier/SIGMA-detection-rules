@@ -1,0 +1,31 @@
+title: Computer account modifying Active Directory permissions (PrivExchange)
+description: Detects scenarios where an attacker compromise a server with high privileges to perform permissions changes. PrivExchange attack can be detected using this rule.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
+- https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/ 
+tags:
+- attack.defense-evasion
+- attack.t1222.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_any_server:
+    EventID: 5136
+    SubjectUserName: '*$'
+    LDAPDisplayName: ntSecurityDescriptor
+    OperationType: '%%14674' # Value added
+  selection_exchange_server:
+    EventID: 5136
+    SubjectUserName:  # List of Exchange servers
+      - srvexchange01$
+      - srvexchange02$
+      - srvexchange03$
+    LDAPDisplayName: ntSecurityDescriptor
+    OperationType: '%%14674' # Value added
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high

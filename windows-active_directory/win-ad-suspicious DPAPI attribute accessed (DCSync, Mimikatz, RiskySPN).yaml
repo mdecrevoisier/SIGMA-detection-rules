@@ -27,7 +27,7 @@ detection:
       - b7ff5a38-0818-42b0-8110-d3d154c97f24 # ms-PKI-Credential-Roaming-Tokens
       - b8dfa744-31dc-4ef1-ac7c-84baf7ef9da7 # ms-PKI-AccountCredentials / Stores certificates, certificate signing requests, private keys and saved passwords.
       - 91e647de-d96f-4b70-9557-d63ff4f3ccd8 # Private-Information
-  condition: selection | count(ObjectName) > 5 # count the amount of different AD objects reporting DPAPI accessed
+  condition: 1 of selection | count(ObjectName) > 5 # count the amount of different AD objects reporting DPAPI accessed
   timeframe: 30m
 falsepositives:
 - Active Directory Backup solutions
