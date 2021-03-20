@@ -1,0 +1,24 @@
+title: Suspicious modification of a sensitive Group Policy (GPO)
+description: Detects scenarios where an attacker will attempt to take control over a group policy.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1484.001-Domain%20Policy%20Modification-Group%20Policy%20Modification
+tags:
+- attack.privilege-escalation
+- attack.t1484.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5136
+    AttributeLDAPDisplayName: versionNumber
+    ObjectClass: groupPolicyContainer
+    OperationType: "%%14674" # Value is added
+  filter:
+    AttributeValue: 0 # First time GPO creation 
+  condition: selection and not filter
+falsepositives:
+- Group policy administrator activity / AGPM activity
+level: medium

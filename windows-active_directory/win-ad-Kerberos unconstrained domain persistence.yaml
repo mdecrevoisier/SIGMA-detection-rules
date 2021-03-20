@@ -4,6 +4,7 @@
   - https://attack.mitre.org/techniques/T1558/
   - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
   - https://www.alsid.com/crb_article/kerberos-delegation/
+  - https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
   - https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html
   tags:
   - attack.credential-access

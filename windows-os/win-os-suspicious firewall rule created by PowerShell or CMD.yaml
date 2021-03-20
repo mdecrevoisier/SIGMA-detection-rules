@@ -1,4 +1,4 @@
-title: 
+title: Firewall rule added using PowerShell or CMD
 description: Detects scenarios where a firewall rule is added using PowerShell or CMD.
 references:
 - https://attack.mitre.org/techniques/T1562/004/

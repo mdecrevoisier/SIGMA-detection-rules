@@ -1,0 +1,26 @@
+title: Permissions changed on a Group Policy (GPO)
+description: Detects scenarios where an attacker will attempt to take control over a group policy.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
+tags:
+- attack.defense-evasion
+- attack.t1222.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5136
+    AttributeLDAPDisplayName: ntSecurityDescriptor
+    ObjectClass: groupPolicyContainer
+    OperationType: "%%14674" # Value is added
+  filter:
+    SubjectUserName: # AGPM servers (to customize)
+      - SRVAGPM01$
+      - SRVAGPM02$
+  condition: selection and not filter
+falsepositives:
+- Group policy administrator activity / AGPM activity
+level: medium
