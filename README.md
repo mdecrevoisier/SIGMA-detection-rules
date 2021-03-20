@@ -28,6 +28,7 @@ Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple 
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116
 TA0002-Execution | T1059.003-Windows Command Shell  | SQL Server payload injectection for reverse shell (MSF) | 4688
 TA0003-Persistence | T1078.002-Valid accounts-Domain accounts | Account renamed to "admin" (or likely) | 4738
+TA0003-Persistence | T1098.xxx-Account Manipulation  | User performing massive group membership changes on multiple differents groups | 4728/4756
 TA0003-Persistence | T1098.xxx-Account manipulation | Computer account set with new SPN | 4742/5136
 TA0003-Persistence | T1098.xxx-Account manipulation | Fake self password reset performing by Mimikatz (changeNTLM) | 4723
 TA0003-Persistence | T1098.xxx-Account manipulation | Kerberos account password reset | 4723/4724
@@ -41,6 +42,7 @@ TA0003-Persistence | T1098.xxx-Account manipulation | User account marked as "se
 TA0003-Persistence | T1098.xxx-Account manipulation | User account set to not require Kerberos pre-authentication | 4738
 TA0003-Persistence | T1098.xxx-Account manipulation | User account set to use Kerberos DES encryption | 4738
 TA0003-Persistence | T1098.xxx-Account manipulation | User account set with new SPN | 5136
+TA0003-Persistence | T1098.xxx-Account manipulation | User account with password set to never expire detected | 4738
 TA0003-Persistence | T1098.xxx-Account manipulation | User account with password set to not require detected | 4738
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741
@@ -50,6 +52,7 @@ TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server: started in s
 TA0003-Persistence | T1546-Event Triggered Execution | AdminSDHolder container permissions modified | 5136
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | User right granted to an account by a standard user | 4704
+TA0004-Privilege Escalation | T1484.001-Domain Policy Modification-Group Policy Modification | Modification of a sensitive Group Policy  | 5136
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object deleted | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object disabled | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit specifications deleted | 33205
