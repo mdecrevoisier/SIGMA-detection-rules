@@ -1,4 +1,4 @@
-title: Windows native sniffer abuse
+title: Windows native Pktmon sniffer abuse
 description: Detects scenarios where an attacker use the native Windows sniffer Pktmon in order to capture privilege and extract credentials
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1040-Traffic%20sniffing
