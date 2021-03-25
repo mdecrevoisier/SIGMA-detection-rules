@@ -1,0 +1,25 @@
+title: Windows native sniffer abuse
+description: Detects scenarios where an attacker use the native Windows sniffer Pktmon in order to capture privilege and extract credentials
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1040-Traffic%20sniffing
+- https://dev.to/qainsights/windows-network-sniffer-pktmon-2576
+- https://docs.microsoft.com/en-us/windows-server/networking/technologies/pktmon/pktmon
+tags:
+- attack.credential-access
+- attack.t1040
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: process_creation
+detection:
+  selection:
+    NewProcessName: '*\PktMon.exe' # pktmon filter add -p 80
+    CommandLine|contains|all: 
+      - PktMon
+      - filter
+      - add
+  condition: selection
+falsepositives:
+- Administrator network troubleshooting
+level: medium
