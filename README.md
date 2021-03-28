@@ -28,7 +28,7 @@ Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple 
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116
 TA0002-Execution | T1059.003-Windows Command Shell  | SQL Server payload injectection for reverse shell (MSF) | 4688
 TA0003-Persistence | T1078.002-Valid accounts-Domain accounts | Account renamed to "admin" (or likely) | 4738
-TA0003-Persistence | T1098.xxx-Account Manipulation  | User performing massive group membership changes on multiple differents groups | 4728/4756
+TA0003-Persistence | T1098.xxx-Account Manipulation  | User performing massive group membership changes on multiple differents groups | 4728, 4756
 TA0003-Persistence | T1098.xxx-Account manipulation | Computer account set with new SPN | 4742/5136
 TA0003-Persistence | T1098.xxx-Account manipulation | Fake self password reset performing by Mimikatz (changeNTLM) | 4723
 TA0003-Persistence | T1098.xxx-Account manipulation | Kerberos account password reset | 4723/4724
@@ -69,6 +69,7 @@ TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | Firewall rul
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance  | WSL for Windows installation detected | 4688
 TA0006-Credential Access | T1003.006-DCSync | Member added to a sensitive Exchange security group to perform DCsync attack | 4756
 TA0006-Credential Access | T1003.006-DCSync | Replication privileges granted to perform DCSync attack | 5136
+TA0006-Credential Access | T1040-Network sniffing | Windows native sniffing tool Pktmon usage | 4688
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with a disabled account | 33205
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 33205
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662

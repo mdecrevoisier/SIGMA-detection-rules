@@ -1,0 +1,26 @@
+title: AdminSDholder backdoor obfuscation (via localizationDisplayId attribute abuse)
+description: Detects scenarios where an attacker modifies the "configuration" partition in order to obfuscate sneaky changes that will allow him to introduce a stealthy AdminSDholder backdoor.
+requirements: auditing SACL placed on the "configuration" partition by using the ADSI console
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
+- https://adds-security.blogspot.com/2017/08/adminsdholder-backdoor-via-substitution.html
+tags:
+- attack.persistence
+- attack.t1546
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5136
+    OperationType: '%%14674' # Value added
+    AttributeLDAPDisplayName: localizationDisplayId
+    ObjectDN: 'CN=User-Force-Change-Password,*'
+  filter:
+    SubjectUserName: '*$'
+  condition: selection and not filter
+falsepositives:
+- Unknown
+level: high

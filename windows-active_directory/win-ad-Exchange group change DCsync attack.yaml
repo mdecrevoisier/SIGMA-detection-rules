@@ -1,10 +1,9 @@
   title: Exchange group membership change to perform DCsync attack
   description: Detects scenarios where an attacker adds its account into a sensitive Exchange group to obtain "Replicating Directory Changes /all" and perform DCsync attack.
   references:
-  - https://attack.mitre.org/techniques/T1003/006/
   - https://adsecurity.org/?p=4119
   - https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/
-  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003.006-DCSync
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access
   tags:
   - attack.credential-access
   - attack.t1003.006
