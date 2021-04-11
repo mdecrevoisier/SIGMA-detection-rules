@@ -1,5 +1,5 @@
-title: Suspicious modification of a computer account SPN
-description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a computer account in order to perform "Kerberos redirection" and escalate privileges.
+title: Suspicious modification of a computer account SPN (DCshadow)
+description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a computer account in order to perform "Kerberos redirection" and escalate privileges, or to perform DCshadow attack.
 references:
 - https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
