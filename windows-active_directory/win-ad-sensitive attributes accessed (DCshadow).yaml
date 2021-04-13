@@ -1,0 +1,29 @@
+title: Account accessed to attributes related to DCshadow
+description: Detects scenarios where an attacker accessed attributes related to DCshadow attack in order to create a fake domain controller.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1207-Rogue%20domain%20controller
+- https://github.com/AlsidOfficial/UncoverDCShadow/
+- https://www.labofapenetrationtester.com/2018/05/dcshadow-sacl.html
+- https://blog.stealthbits.com/creating-persistence-with-dcshadow/
+tags:
+  - attack.defense-evasion
+  - attack.t1207
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4662
+    Properties|contains:
+      - aa4e1a6d-550d-4e05-8c35-4afcb917a9fe # ms-TPM-OwnerInformation
+      - 9923a32a-3607-11d2-b9be-0000f87a36b2 # DS-Install-Replicaextendedright
+      - 1131f6ac-9c07-11d1-f79f-00c04fc2dcd2 # DS-Replication-Manage-Topology
+      - f0f8ffab-1191-11d0-a060-00aa006c33ed # NTDS-DSA
+  filter:
+    SubjectUserName: '*$'
+  condition: 1 of selection and not filter
+falsepositives:
+- new domain controller registration
+level: high

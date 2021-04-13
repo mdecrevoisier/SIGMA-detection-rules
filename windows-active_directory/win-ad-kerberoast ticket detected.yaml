@@ -1,0 +1,42 @@
+title: Kerberoast ticket request detected
+description: Detects scenarios where an attacker requests a Kerberoast ticket with low encryption to perform offline brutforce and forge a new ticket to get access to the targeted resource.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://www.hackingarticles.in/as-rep-roasting/
+- http://www.harmj0y.net/blog/redteaming/kerberoasting-revisited/
+- https://adsecurity.org/?p=2293
+- https://adsecurity.org/?p=3458
+- https://blog.stealthbits.com/extracting-service-account-passwords-with-kerberoasting/
+- https://blogs.technet.microsoft.com/motiba/2018/02/23/detecting-kerberoasting-activity-using-azure-security-center/
+- https://github.com/nidem/kerberoast
+- https://github.com/skelsec/kerberoast
+- https://posts.specterops.io/capability-abstraction-fbeaeeb26384
+- https://www.harmj0y.net/blog/powershell/kerberoasting-without-mimikatz/
+- https://www.trimarcsecurity.com/single-post/TrimarcResearch/Detecting-Kerberoasting-Activity
+- https://www.trustedsec.com/2018/05/art_of_kerberoast/
+tags:
+- attack.credential-access
+- attack.t1558.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4769
+    TicketOptions: '0x40810000'
+    TicketEncryptionType: 0x17 # RC4-HMAC
+    Status: 0x0 # Success
+  filter:
+    ServiceName: '*$' # Exclude computer account services
+    ServiceSid: '*-502' # Exclude Krbrtg service
+    TargetUserName: '$@' # Exclude computer accounts requests
+    IpAddress:
+      - '::1'
+      - '127.0.0.1'
+    #ServiceName NOT IN TargetUserName (NOT SUPPORTED BY ALL SIEM)
+  condition: selection and not filter
+falsepositives:
+- Applications using RC4 encryption (eg: SAP, Azure AD,...)
+level: high
