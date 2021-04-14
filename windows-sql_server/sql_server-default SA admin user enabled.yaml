@@ -1,8 +1,7 @@
 title: SQL SA admin user enabled
 description: Detects scenarios where an attacker enables the disabled (recommended) SA admin account on the SQL Server instance.
 references:
-- https://attack.mitre.org/techniques/T1136
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136.001-Create%20account-Local%20account
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
 - https://www.stigviewer.com/stig/microsoft_sql_server_2012_database_instance/2017-12-01/finding/V-40936
 - https://www.ultimatewindowssecurity.com/sqlserver/auditlog/sampleevent.aspx
 - https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-2017

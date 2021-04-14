@@ -3,7 +3,7 @@ description: Detects scenarios where a new member is added to a sensitive group 
 references:
 - https://attack.mitre.org/techniques/T1003/006/
 - https://msexchangeguru.com/2015/12/18/rbac-2016/
-# - add evtx path
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 tags:
 - attack.credential-access
 - attack.t1003.006

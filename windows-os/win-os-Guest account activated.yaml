@@ -1,0 +1,30 @@
+title: Guest or remote account activated
+description: Detects scenarios where an attacker enable unused builtin accounts.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://www.stigviewer.com/stig/windows_xp/2013-03-14/finding/V-3369
+tags:
+- attack.persistence
+- attack.t1136.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_username:
+    EventID: 4722
+    TargetUserName:
+      - Guest
+      - support_388945a0 # Remote assistance
+      - HelpAssistant # Managed by Remote Desktop Help Session Manager service
+  selection_usersid:
+    EventID: 4722
+    TargetUserSid:
+      - "*-501" # Guest account
+      - "*1001" # support_388945a0
+  condition: 1 of selection*
+falsepositives:
+- SYSPREP deployement
+- Usage of Remote assistance
+level: medium
