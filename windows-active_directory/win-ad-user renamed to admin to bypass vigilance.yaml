@@ -1,4 +1,4 @@
-title: Account renamed to admin account to evade defense
+title: Account renamed to admin (or likely) account to evade defense
 description: Detects scenarios where an attacker rename a non admin account in order to evade SOC & operations vigilance
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
@@ -12,14 +12,14 @@ logsource:
   product: windows
   service: security
 detection:
-  selection1:
+  selection_id:
     EventID: 4738
-    UserPrincipalName|contains: 
+  selection_upn:
+    UserPrincipalName|contains:
       - 'admin'
       - 'adm-'
       - '-adm'
-  selection2:
-    EventID: 4738
+  selection_display:
     DisplayName|contains:
       - 'admin'
       - 'adm-'
@@ -30,7 +30,7 @@ detection:
       - 'adm-'
       - '-adm'
     TargetSid: '*-500' # Exclude default builtin account
-  condition: (1 of selection*) and not filter
+  condition: selection_id and (selection_upn or selection_display) and not filter
 falsepositives:
-- Unknown 
+- Unknown
 level: medium
