@@ -1,7 +1,7 @@
 title: Encoded PowerShell payload via process execution
 description: Detects scenarios where an attacker deployed an encoded PowerShell payload via a process execution.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
 tags:
 - attack.execution  
