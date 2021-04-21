@@ -1,0 +1,23 @@
+title: Remote shell execution via SMB admin share
+description: Detects scenarios where an attacker execute a remote shell via the admin share.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+tags:
+- attack.lateral-movement
+- attack.t1021.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5145
+    ShareName: '\\*\ADMIN$'
+    RelativeTargetName|endswith:
+      - cmd.exe
+      - powershell.exe
+  condition: selection
+falsepositives:
+- Administrator activity
+level: high
