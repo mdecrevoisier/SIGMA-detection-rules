@@ -1,0 +1,28 @@
+title: PSexec service installation
+description: Detects scenarios where an attacker installs PSexec service.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+tags:
+- attack.privilege-execution
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+detection:
+  selection_service_install:
+    EventID:
+      - 4697 # SECURITY logs: new service
+      - 7045 # SYSTEM logs: new service
+    ServiceName|contains: PSEXESVC
+
+  selection_service_privilege:
+    EventID: 4674
+    ObjectServer: 'SC Manager'
+    ProcessName: 'C:\Windows\System32\services.exe'
+    ObjectName: PSEXESVC
+
+  condition: 1 of selection*
+falsepositives:
+- Administrator activity
+level: medium

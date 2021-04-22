@@ -1,0 +1,25 @@
+title: PSexec execution over SMB share
+description: Detects scenarios where an attacker execute PSexec on a remote host via SMB
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+tags:
+- attack.lateral-movement
+- attack.t1021.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5145
+    ShareName:
+      - '\\*\ADMIN$'
+      - '\\*\IPC$'
+    RelativeTargetName|contains: PSEXESVC
+  filter:
+    SubjectUserName: '%admin_account%'
+  condition: selection and not filter
+falsepositives:
+- Administrator activity
+level: medium

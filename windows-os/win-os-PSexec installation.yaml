@@ -1,0 +1,26 @@
+title: PSexec application execution
+description: Detects scenarios where an attacker installs and executes PSexec.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+tags:
+- attack.execution
+- attack.t1569.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_process_execution:
+    EventID: 4688
+    ParentProcessName: C:\Windows\System32\services.exe
+    NewProcessName: C:\Windows\PSEXESVC.exe
+
+  selection_process_execution:
+    EventID: 4688
+    ParentProcessName: C:\Windows\PSEXESVC.exe
+
+  condition: 1 of selection*
+falsepositives:
+- Administrator activity
+level: medium
