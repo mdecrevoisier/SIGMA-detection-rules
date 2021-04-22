@@ -1,0 +1,65 @@
+title: OpenSSH server firewall configuration on Windows
+description: Detects scenarios where an attacker configure the Windows firewall to allow incoming connections to perform stealthy lateral movement.
+references:
+ - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
+ - https://winaero.com/enable-openssh-server-windows-10/
+ - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+ - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+tags:
+- attack.lateral-movement
+- attack.t1021.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+detection:
+  selection1.1_firewall_ssh_cmd:
+    EventID: 4688
+    CommandLine|contains|all:
+      - netsh advfirewall
+      - localport=22
+
+  selection1.2_firewall_ssh_cmd:
+    EventID: 4688
+    CommandLine|contains|all:
+      - netsh firewall
+      - portopening TCP 22
+
+  selection2_firewall_windows_process:
+    Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
+    EventID: 2004 # New rule created
+    ApplicationPath: C:\Windows\system32\OpenSSH\sshd.exe
+
+  selection3_firewall_windows_port:
+    Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
+    EventID: 2004 # New rule created
+    LocalPorts: 22
+
+  selection4_powershell_native:
+    EventID: 800
+    Channel: 'Windows PowerShell'
+    EventData|contains|all:
+      - New-NetFirewallRule
+      - LocalPort 22
+      - Action Allow
+
+  selection5_powershell_modern:
+    EventID: 4103
+    Channel: 'Microsoft-Windows-PowerShell/Operational'
+    Payload|contains|all:
+      - New-NetFirewallRule
+      - LocalPort 22
+      - Action Allow
+
+  selection6_powershell_block:
+    EventID: 4104
+    Channel: 'Microsoft-Windows-PowerShell/Operational'
+    ScriptBlockText|contains|all:
+      - New-NetFirewallRule
+      - LocalPort 22
+      - Action Allow
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high

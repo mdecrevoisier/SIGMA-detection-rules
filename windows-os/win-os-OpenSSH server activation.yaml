@@ -1,0 +1,44 @@
+title: OpenSSH server activation on Windows
+description: Detects scenarios where an attacker enables the OpenSSH server on Windows to perform stealthy lateral movement.
+references:
+ - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
+ - https://winaero.com/enable-openssh-server-windows-10/
+ - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+ - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+tags:
+- attack.lateral-movement
+- attack.t1021.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection1_powershell_native:
+    EventID: 800
+    Channel: 'Windows PowerShell'
+    EventData|contains|all:
+      - Set-Service
+      - StartupType 'Automatic'
+      - Name sshd
+
+  selection2_powershell_modern:
+    EventID: 4103
+    Channel: 'Microsoft-Windows-PowerShell/Operational'
+    Payload|contains|all:
+      - Set-Service
+      - StartupType 'Automatic'
+      - Name sshd
+
+  selection3_powershell_block:
+    EventID: 4104
+    Channel: 'Microsoft-Windows-PowerShell/Operational'
+    ScriptBlockText|contains|all:
+      - Set-Service
+      - StartupType 'Automatic'
+      - Name sshd
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high

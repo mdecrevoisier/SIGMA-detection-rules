@@ -1,0 +1,24 @@
+title: Impacket WMIexec process execution
+description: Detects scenarios where an attacker attempts to execute WMIexec in order to escalate privileges. 
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation
+- https://riccardoancarani.github.io/2020-05-10-hunting-for-impacket/#wmiexecpy
+tags:
+- attack.execution
+- attack.t1047
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: process_execution
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName: C:\Windows\System32\cmd.exe
+    CommandLine|contains|all: # 'cmd.exe /Q /c cd \ 1> \\127.0.0.1\ADMIN$\__1619090610.0007844 2>&1'
+      - cmd.exe
+      - '127.0.0.1\ADMIN$'
+  condition: selection
+falsepositives:
+- None 
+level: high
