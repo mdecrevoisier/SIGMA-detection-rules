@@ -15,12 +15,12 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 
+    EventID:
       - 4717 # logon right changed
       - 4704 # right assigned
   filter:
     SubjectUserName: '*$'
   condition: selection and not filter
 falsepositives:
-- Specific account configuration 
+- Specific account configuration
 level: medium

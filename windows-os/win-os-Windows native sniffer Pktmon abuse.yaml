@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     NewProcessName: '*\PktMon.exe' # pktmon filter add -p 80
-    CommandLine|contains|all: 
+    CommandLine|contains|all:
       - PktMon
       - filter
       - add

@@ -16,7 +16,7 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: 
+    NewProcessName|endswith:
       - powershell.exe
       - cmd.exe
     CommandLine|contains|all:

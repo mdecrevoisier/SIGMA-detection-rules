@@ -15,11 +15,11 @@ logsource:
 detection:
   selection:
     EventID: 2004
-    ModifyingApplication: 
+    ModifyingApplication:
       - '*\WmiPrvSE.exe' # PowerShell
-      - '*\netsh.exe' # CMD console      - 
+      - '*\netsh.exe' # CMD console
   condition: selection
 falsepositives:
-- Administrator activity 
+- Administrator activity
 - New application installation
 level: medium

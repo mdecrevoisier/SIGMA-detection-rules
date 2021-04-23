@@ -11,16 +11,18 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_process_execution:
+  selection_event:
     EventID: 4688
+    Version: 2  # parent process name is available starting Windows 10 or higher
+
+  selection_service_execution:
     ParentProcessName: C:\Windows\System32\services.exe
     NewProcessName: C:\Windows\PSEXESVC.exe
 
   selection_process_execution:
-    EventID: 4688
     ParentProcessName: C:\Windows\PSEXESVC.exe
 
-  condition: 1 of selection*
+  condition: selection_event and (selection_service_execution or selection_process_execution)
 falsepositives:
 - Administrator activity
 level: medium
