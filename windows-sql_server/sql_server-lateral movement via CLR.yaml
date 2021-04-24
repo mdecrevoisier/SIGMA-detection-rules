@@ -1,0 +1,25 @@
+title: SQL Server lateral movement with CLR activation
+description: Detects scenarios where an attacker enables CLR (Common Language Runtime with .NET) to abuse store procedures in order to move lateraly.
+references:
+- https://research.nccgroup.com/2021/01/21/mssql-lateral-movement/
+- http://www.eventid.net/display-eventid-15457-source-MSSQLSERVER-eventno-9658-phase-1.htm
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505.001-SQL%20Stored%20Procedures
+tags:
+- attack.persistence
+- attack.t1505.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 15457  
+    EventData|contains|all:
+      - <Data>clr enabled</Data>
+      - <Data>0</Data> # Previous status
+      - <Data>1</Data> # New status
+  condition: selection
+falsepositives:
+- None 
+level: high

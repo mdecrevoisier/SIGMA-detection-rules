@@ -17,8 +17,9 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith:
-      - powershell.exe
-      - cmd.exe
+      - \powershell.exe
+      - \cmd.exe
+      - \pwsh.exe
     CommandLine|contains|all:
       - powershell.exe
       - FromBase64String

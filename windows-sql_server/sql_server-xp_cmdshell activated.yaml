@@ -12,14 +12,15 @@ logsource:
   product: windows
   category: application
 detection:
-  # Safest approach, not localized and not dependent on system and application language
-  selection1:
+  selection1: # Safest approach, not localized and not dependent on system and application language
     EventID: 15457  
-    EventData: "*<Data>xp_cmdshell</Data>*<Data>0</Data>*<Data>1</Data>*"
-  # Alternative method using Message. However this field may be in a different language and dropped in some cases during collection phase
-  selection2:
+    EventData|contains|all:
+      - <Data>xp_cmdshell</Data>
+      - <Data>0</Data> # Previous status
+      - <Data>1</Data> # New status
+  selection2: # Alternative method using Message. However this field may be in a different language and dropped in some cases during collection phase
     EventID: 15457  
-    Message: "*Configuration option 'xp_cmdshell' changed from 0 to 1*"
+    Message|contains: "Configuration option 'xp_cmdshell' changed from 0 to 1"
   condition: selection1 or selection2
 falsepositives:
 - None
