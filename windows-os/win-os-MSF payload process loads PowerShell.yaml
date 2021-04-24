@@ -1,4 +1,4 @@
-title: Encoded PowerShell payload via process execution
+title: Encoded PowerShell payload triggered via process execution
 description: Detects scenarios where an attacker deployed an encoded PowerShell payload via a process execution.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
@@ -17,7 +17,7 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith:
-      - \powershell.exe
+      - '\powershell.exe'
       - \cmd.exe
       - \pwsh.exe
     CommandLine|contains|all:
@@ -26,6 +26,7 @@ detection:
       - hidden
       - '-nop'
       - '-noni'
+      - 'System.IO.Compression.CompressionMode'
   condition: selection
 falsepositives:
   - none

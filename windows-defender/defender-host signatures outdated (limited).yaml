@@ -14,13 +14,12 @@ detection:
   selection_event:
     EventID: 1151
     SourceName: "Microsoft-Windows-Windows Defender"
-  selection_age : 
-    - Last AS signature age: 
-    - Last AV signature age:
-    - Last AS security intelligence age:
-    - Last AV security intelligence age:
-  condition: selection | higher than 10d
-  timeframe: 30m
+  selection_age : # Signature age in days
+    - Last AS signature age
+    - Last AV signature age
+    - Last AS security intelligence age
+    - Last AV security intelligence age
+  condition: selection_event | selection_age > 7
 falsepositives:
 - Unconnected systems to internet
 - System offline during long duration 

@@ -19,7 +19,7 @@ detection:
       - 4717 # logon right changed
       - 4704 # right assigned
   filter:
-    SubjectUserName: '*$'
+    SubjectUserName|endswith: '$'
   condition: selection and not filter
 falsepositives:
 - Specific account configuration

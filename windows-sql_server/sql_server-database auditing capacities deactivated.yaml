@@ -22,7 +22,7 @@ detection:
   database_audit_spec_disable:
     action_id: AL # Alter
     class_type: DA  # Database Audit Specification
-    statement: '*STATE = OFF*'
+    statement|contains: 'STATE = OFF'
   
   database_audit_spec_delete:
     action_id: DR # Drop

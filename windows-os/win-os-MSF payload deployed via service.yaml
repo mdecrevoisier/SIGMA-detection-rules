@@ -1,4 +1,4 @@
-title: MSF encoded payload deployed via service installation
+title: Encoded PowerShell payload triggered by service installation
 description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -19,6 +19,7 @@ detection:
       - hidden
       - '-nop'
       - '-noni'
+      - 'System.IO.Compression.CompressionMode'
   selection2:
     EventID: 7045
     ImagePath|contains|all: # same payload than previous ServiceFileName
@@ -27,7 +28,8 @@ detection:
       - hidden
       - '-nop'
       - '-noni'
-  condition: 1 of selection
+      - 'System.IO.Compression.CompressionMode'
+  condition: selection1 or selection2
 falsepositives:
 - None
 level: high

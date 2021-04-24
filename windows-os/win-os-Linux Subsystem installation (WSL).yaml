@@ -22,7 +22,7 @@ detection:
       - Microsoft-Windows-Subsystem-Linux
   selection_wsl_configuration: # C:\WINDOWS\system32\wsl.exe" --set-default-version 2
     EventID: 4688
-    NewProcessName: '*wsl.exe'
+    NewProcessName|endswith: '\wsl.exe'
     CommandLine|contains: '--set-default-version 2'
   condition: selection_wsl_activation or selection_wsl_configuration
 falsepositives:

@@ -13,7 +13,7 @@ logsource:
 detection:
   selection:
     EventID: 4720
-    TargetUserName: "*$"
+    TargetUserName|endswith: '$'
   condition: selection
 falsepositives:
 - None

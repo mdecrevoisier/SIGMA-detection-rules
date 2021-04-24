@@ -17,7 +17,7 @@ detection:
     RelativeTargetName: svcctl
     AccessList|contains: '%%4417' # WriteData
   filter:
-    SubjectUserName|ends: '$'
+    SubjectUserName|endswith: '$'
   condition: selection and not filter
 falsepositives:
 - Administrator activity, backup solutions

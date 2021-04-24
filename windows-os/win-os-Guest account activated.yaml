@@ -20,9 +20,9 @@ detection:
       - HelpAssistant # Managed by Remote Desktop Help Session Manager service
   selection_usersid:
     EventID: 4722
-    TargetUserSid:
-      - "*-501" # Guest account
-      - "*1001" # support_388945a0
+    TargetUserSid|endswith:
+      - '-501' # Guest account
+      - '1001' # support_388945a0
   condition: 1 of selection*
 falsepositives:
 - SYSPREP deployement

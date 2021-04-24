@@ -21,7 +21,7 @@ detection:
       - mimikatz
   selection_registry:
     EventID: 13 # SYSMON registry value set
-    TargetObject: 'HKLM\System\CurrentControlSet\Services\mimidrv\*'
+    TargetObject|startswith: 'HKLM\System\CurrentControlSet\Services\mimidrv\'
   condition: selection_service or selection_registry
 falsepositives:
 - None

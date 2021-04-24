@@ -1,9 +1,7 @@
 title: SQL server sqlcmd utility abuse for privilege escalation
 description: Detects scenarios where an attacker uses sqlcmd utility to escalate privileges or introduce weaknesses.
 references:
-- https://attack.mitre.org/techniques/T1505/001/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505.001-SQL%20Stored%20Procedures
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688
 - https://blog.netspi.com/when-databases-attack-hacking-with-the-osql-utility/
 - http://travisaltman.com/pen-test-and-hack-microsoft-sql-server-mssql/
 tags:
@@ -15,17 +13,13 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection1:
-    Image: '*\sqlcmd.exe'
-    CommandLine|contains: -S # parameter to specify the database\instance'
-
-  selection_sql: # used in recent SQL Server versions
-    Commandline|contains: sqlcmd
-
-  selection_osql: # used in old SQL server version
-    CommandLine|contains: osql
-
-  condition: selection1 and (selection_sql or selection_osql)
+  selection_process:
+    Image|endswith: '\sqlcmd.exe'
+    CommandLine|contains: '-S ' # parameter to specify the database\instance'
+  selection_sql: 
+    - Commandline|contains: sqlcmd  # used in recent SQL Server versions
+    - CommandLine|contains: osql # used in old SQL server version
+  condition: selection_process and selection_sql
 falsepositives:
 - Master database restore procedure
 - Maintenance operation

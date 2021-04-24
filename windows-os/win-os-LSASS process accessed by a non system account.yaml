@@ -16,9 +16,9 @@ detection:
             - 4656
             - 4663
         ObjectType: 'Process'
-        ObjectName: '*\lsass.exe'
+        ObjectName|endswith: '\lsass.exe'
     filter:
-        SubjectUserName: '*$'
+        SubjectUserName|endswith: '$'
         ProcessName:
             -  '*\AppData\Local\Google\Chrome\User Data\SwReporter\\*\software_reporter_tool.exe' # Google Chrome Security tool
     condition: selection and not filter

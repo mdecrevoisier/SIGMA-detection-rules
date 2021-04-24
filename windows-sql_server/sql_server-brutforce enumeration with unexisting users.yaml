@@ -21,8 +21,8 @@ detection:
       - LGIF # LOGIN FAILED
     class_type: LX # LOGIN
     additional_information|contains: 
-      - "*<state>2</state>*" # User ID is not valid
-      - "*<state>5</state>*" # Login not found
+      - "<state>2</state>" # User ID is not valid
+      - "<state>5</state>" # Login not found
   condition: selection | count(server_principal_name) by Computer > 15
   timeframe: 30m
 falsepositives:
