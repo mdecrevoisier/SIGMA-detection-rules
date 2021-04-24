@@ -22,11 +22,14 @@ The SIGMA rules can be used in different ways together with your SIEM:
 
 Att@ck Tactic	| Att@ck  Technique	| Description | 	Event IDs   |
 |:-------------------------|:------------------|:-------------------------|:------------------|
+Github
 Antivirus | Antivirus | Defender: antivirus not up to date | 1151
 Antivirus | Antivirus | Defender: exception added | 5007
 Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple hosts | 1116
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116
 TA0002-Execution | T1047-Windows Management Instrumentation  | Impacket WMIexec process execution | 4688
+TA0002-Execution | T1053.005-Scheduled Task | Persistent scheduled task with SYSTEM privileges creation | 4688
+TA0002-Execution | T1053.005-Scheduled Task | Scheduled task creation | 4688
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell  | Encoded PowerShell MSF payload via process execution | 4688
 TA0002-Execution | T1059.003-Windows Command Shell  | SQL Server payload injectection for reverse shell (MSF) | 4688
 TA0002-Execution | T1569.002-Service Execution  | PSexec installation detected | 4688
@@ -77,6 +80,7 @@ TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification |
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Permissions changed on a GPO | 5136
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Sensitive GUID related to "Replicate directory changes" detected  | 4662
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | Firewall rule created by a suspicious command (netsh.exe, wmiprvse.exe) | 2004
+TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration | 2004/4688/410x/800
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance  | WSL for Windows installation detected | 4688
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS process accessed by a non system account | 4656/4663
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | SAM database accessed by a non system account | 4661
@@ -102,7 +106,6 @@ TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | New file share cr
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Psexec remote execution via SMB | 5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote service creation over SMB | 5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote shell execuction via SMB admin share | 5145
-TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server firewall configuration | 2004/4688/410x/800
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows activation/configuration detected | 4103/4104
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows installation detected | 4103/4104
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47**
