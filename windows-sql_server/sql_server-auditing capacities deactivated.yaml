@@ -23,7 +23,7 @@ detection:
   server_audit_spec_disabled:
     action_id: AL # Alter
     class_type: SA  # Server Audit Specifications
-    statement: '*STATE = OFF*'
+    statement|contains: 'STATE = OFF'
   
   server_audit_spec_deleted:
     action_id: DR # Drop
@@ -33,7 +33,7 @@ detection:
   server_audit_obj_disabled:
     action_id: AL # Alter
     class_type: A  # Server audit
-    statement: '*STATE = OFF*'
+    statement|contains: 'STATE = OFF'
   
   server_audit_obj_deleted:
     action_id: DR # Drop

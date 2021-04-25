@@ -2,7 +2,6 @@ title: Suspicious SPN enumeration previous to Kerberoasting attack (native comma
 description: Detects scenarios where an attacker attempts to retrieve SPN using commandline and native tools.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087.002-Domain%20Account%20discovery
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688
 - https://github.com/nidem/kerberoast
 - https://github.com/cyberark/RiskySPN
 - https://pentestlab.blog/2018/06/04/spn-discovery/
@@ -18,12 +17,12 @@ detection:
   selection1_process_execution:
     EventID: 4688
     Channel: 'Security'
-    NewProcessName: '*\setspn.exe'
+    NewProcessName|endswith: '\setspn.exe'
 
   selection2_process_create_sysmon:
     EventID: 1
     Channel: 'Microsoft-Windows-Sysmon/Operational '
-    Image: '*\setspn.exe'
+    Image|endswith: '\setspn.exe'
 
   arguments:
     CommandLine|contains:

@@ -14,7 +14,7 @@ logsource:
 detection:
   selection:
     EventID: 4769
-    ServiceName: '*$'
+    ServiceName|endswith: '$'
     Status: '0x0'
   filter:
     ServiceName: krbtgt

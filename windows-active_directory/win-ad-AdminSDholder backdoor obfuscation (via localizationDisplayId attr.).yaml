@@ -17,9 +17,9 @@ detection:
     EventID: 5136
     OperationType: '%%14674' # Value added
     AttributeLDAPDisplayName: localizationDisplayId
-    ObjectDN: 'CN=User-Force-Change-Password,*'
+    ObjectDN|startswith: 'CN=User-Force-Change-Password,'
   filter:
-    SubjectUserName: '*$'
+    SubjectUserName|endswith: '$'
   condition: selection and not filter
 falsepositives:
 - Unknown

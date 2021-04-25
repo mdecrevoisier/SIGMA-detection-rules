@@ -14,8 +14,8 @@ logsource:
 detection:
   selection:
     EventID: 4741
-    SubjectUserName: '*$'
-    TargetUserName: '*$'
+    SubjectUserName|endswith: '$'
+    TargetUserName|endswith: '$'
   condition: selection
 falsepositives:
 - None

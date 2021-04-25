@@ -29,9 +29,9 @@ detection:
     TicketEncryptionType: 0x17 # RC4-HMAC
     Status: 0x0 # Success
   filter:
-    ServiceName: '*$' # Exclude computer account services
-    ServiceSid: '*-502' # Exclude Krbrtg service
-    TargetUserName: '$@' # Exclude computer accounts requests
+    ServiceName|endswith: '$' # Exclude computer account services
+    ServiceSid|endswith: '-502' # Exclude Krbrtg service
+    TargetUserName|contains: '$@' # Exclude computer accounts requests
     IpAddress:
       - '::1'
       - '127.0.0.1'

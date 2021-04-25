@@ -20,7 +20,7 @@ detection:
     - OldTargetUserName: # Original target account name should not be already an admin account
       - 'admin'
       - 'adm-'
-    - TargetSid: '*-500' # Exclude default builtin account
+    - TargetSid|endswith: '-500' # Exclude default builtin account
   condition: selection and not filter
 falsepositives:
 - Unknown

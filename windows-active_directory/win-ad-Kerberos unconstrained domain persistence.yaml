@@ -17,8 +17,8 @@
   detection:
     selection:
       EventID: 4769 
-      TransmittedServices: '*@*'
-      ServiceSid: '*-502' # Krbtgt account SID
+      TransmittedServices|contains: '@'
+      ServiceSid|endswith: '-502' # Krbtgt account SID
     filter:
       TargetUserName: '%allowed_unconstrained_accounts%' # User accounts allowed to perform unconstrained delegation
     condition: selection and not filter
