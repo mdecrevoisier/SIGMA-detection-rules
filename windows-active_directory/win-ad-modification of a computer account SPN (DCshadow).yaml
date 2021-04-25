@@ -21,7 +21,7 @@ logsource:
 detection:
   selection:
     EventID: 4742
-    ServicePrincipalNames: '*GC/*'
+    ServicePrincipalNames|startswith: 'GC/'
   filter:
     Hostname: '%domain_controller_list%' # exclude existing domain controllers
   condition: selection and not filter

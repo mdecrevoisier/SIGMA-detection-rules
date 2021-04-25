@@ -17,6 +17,7 @@ detection:
     SubjectUserName: '*$'
     AttributeLDAPDisplayName: ntSecurityDescriptor
     OperationType: '%%14674' # Value added
+
   selection_exchange_server:
     EventID: 5136
     SubjectUserName:  # List of Exchange servers

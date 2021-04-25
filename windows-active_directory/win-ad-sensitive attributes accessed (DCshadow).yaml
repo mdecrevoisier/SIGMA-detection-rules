@@ -22,7 +22,7 @@ detection:
       - 1131f6ac-9c07-11d1-f79f-00c04fc2dcd2 # DS-Replication-Manage-Topology
       - f0f8ffab-1191-11d0-a060-00aa006c33ed # NTDS-DSA
   filter:
-    SubjectUserName: '*$'
+    SubjectUserName|endswith: '$'
   condition: 1 of selection and not filter
 falsepositives:
 - new domain controller registration

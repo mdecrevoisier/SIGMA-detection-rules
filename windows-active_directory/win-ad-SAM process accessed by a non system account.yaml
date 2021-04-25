@@ -15,9 +15,9 @@ detection:
         EventID: 4661
         ObjectType: SAM_DOMAIN
         ObjectServer: Security Account Manager
-        ProcessName: '*\lsass.exe'
+        ProcessName|endswith: '\lsass.exe'
     filter:
-        SubjectUserName: '*$'
+        SubjectUserName|endswith: '$'
     condition: selection and not filter
 falsepositives:
 - Antivirus, security products
