@@ -36,6 +36,6 @@ detection:
       - OpenSSH.Server
 
   condition: 1 of selection*
-falsepositives:
-- Unknown
-level: high
+falsepositives: 
+- legitimate administrator installation
+level: medium
