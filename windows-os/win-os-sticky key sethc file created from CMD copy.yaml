@@ -1,0 +1,24 @@
+title: Sticky key file created from CMD copy
+description: Detects scenarios where an attacker attempts to replace the original sethc.exe file by cmd.exe.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection
+- https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
+- https://www.fireeye.com/blog/threat-research/2017/03/apt29_domain_frontin.html
+- https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
+tags:
+- attack.privilege-escalation
+- attack.t1546.008
+status: experimental
+logsource:
+  product: windows
+detection:
+  selection: # command: 'copy /y C:\windows\system32\cmd.exe C:\windows\system32\sethc.exe'
+    EventID: 11 # File created
+    Image|endswith:
+      - 'cmd.exe'
+      - 'powershell.exe'
+    TargetFilename: 'C:\Windows\System32\sethc.exe'
+  condition: selection
+falsepositives:
+- None
+level: high

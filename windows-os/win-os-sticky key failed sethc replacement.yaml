@@ -1,0 +1,27 @@
+title: Sticky key sethc file failed replacement
+description: Detects scenarios where an attacker failed to replace the original sethc.exe file by cmd.exe.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection
+- https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
+- https://www.fireeye.com/blog/threat-research/2017/03/apt29_domain_frontin.html
+- https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
+tags:
+- attack.privilege-escalation
+- attack.t1546.008
+status: experimental
+logsource:
+  product: windows
+  service: process_execution
+detection:
+  selection: # No ID 4688 will be triggered if access is denied
+    EventID: 4656
+    ObjectServer: Security
+    ObjectType: File
+    ObjectName|endswith: 'sethc.exe'
+    ProcessName|endswith: 'cmd.exe'
+    EventType: AUDIT_FAILURE
+    AccessReason|contains: '%4417: %%1805' # WriteData (or AddFile):  Not granted
+  condition: selection
+falsepositives:
+- None
+level: high

@@ -1,0 +1,35 @@
+title: Stickey key IFEO command for registry set
+description: Detects scenarios where an attacker attempts to enable the Image File Execution Options (IFEO) debugger for sethc.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection
+- https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
+- https://www.fireeye.com/blog/threat-research/2017/03/apt29_domain_frontin.html
+- https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
+tags:
+- attack.privilege-escalation
+- attack.t1546.008
+status: experimental
+logsource:
+  product: windows
+  service: process_execution
+detection:
+  selection_process:
+    EventID: 4688
+    NewProcessName: 'C:\Windows\System32\reg.exe'
+
+  selection_sysmon_process:
+    EventID: 1
+    Image: 'C:\Windows\System32\reg.exe'
+
+  selection_command:
+    CommandLine|contains|all: # Full command: REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /t REG_SZ /v Debugger /d "C:\windows\system32\cmd.exe" /f
+      - 'REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe"'
+      - '/t REG_SZ'
+      - '/v Debugger'
+      - '/d "C:\windows\system32\cmd.exe"'
+      - '/f'
+
+  condition: selection_command and (selection_process or selection_sysmon_process)
+falsepositives:
+- None
+level: high
