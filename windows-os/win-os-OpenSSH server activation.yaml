@@ -38,6 +38,12 @@ detection:
       - StartupType 'Automatic'
       - Name sshd
 
+  selection4_ssh_logs_windows:
+    EventID: 4
+    Channel: 'OpenSSH/Operational'
+    process: sshd
+    payload|startswith: 'Server listening on'
+
   condition: 1 of selection*
 falsepositives:
 - legitimate administrator activation
