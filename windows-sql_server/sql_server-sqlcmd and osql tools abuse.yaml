@@ -16,7 +16,7 @@ detection:
   selection_process:
     Image|endswith: '\sqlcmd.exe'
     CommandLine|contains: '-S ' # parameter to specify the database\instance'
-  selection_sql: 
+  selection_sql:
     - Commandline|contains: sqlcmd  # used in recent SQL Server versions
     - CommandLine|contains: osql # used in old SQL server version
   condition: selection_process and selection_sql

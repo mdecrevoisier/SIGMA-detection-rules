@@ -5,6 +5,7 @@ references:
 - https://github.com/AlsidOfficial/UncoverDCShadow/
 - https://www.labofapenetrationtester.com/2018/05/dcshadow-sacl.html
 - https://blog.stealthbits.com/creating-persistence-with-dcshadow/
+- 
 tags:
   - attack.defense-evasion
   - attack.t1207

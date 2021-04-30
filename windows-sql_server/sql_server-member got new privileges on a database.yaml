@@ -7,16 +7,16 @@ references:
 - https://docs.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles
 tags:
 - attack.account-manipulation
-- attack.t1098 
+- attack.t1098
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
   category: application
-detection: 
+detection:
   selection: # GRANT [Privilege] TO [DEMO\svc-netwrix-db]
     EventID: 33205
-    action_id: 
+    action_id:
       - G # GRANT
       - GWG # GRANT WITH GRANT
     class_type: DB # DATABASE

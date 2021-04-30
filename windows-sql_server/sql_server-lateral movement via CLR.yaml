@@ -14,7 +14,7 @@ logsource:
   service: application
 detection:
   selection:
-    EventID: 15457  
+    EventID: 15457
     EventData|contains|all:
       - <Data>clr enabled</Data>
       - <Data>0</Data> # Previous status

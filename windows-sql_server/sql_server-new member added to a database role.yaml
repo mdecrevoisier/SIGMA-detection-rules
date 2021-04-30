@@ -7,16 +7,16 @@ references:
 - https://docs.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles
 tags:
 - attack.account-manipulation
-- attack.t1098 
+- attack.t1098
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
   category: application
-detection: 
+detection:
   selection: # ALTER ROLE [db_datareader] ADD MEMBER [DEMO\svc-kasp-db]
     EventID: 33205
-    action_id: 
+    action_id:
       - APRL # ADD MEMBER
       - ADDP # DATABASE_ROLE_MEMBER_CHANGE_GROUP
     class_type: RL # ROLE

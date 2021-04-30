@@ -16,11 +16,11 @@ logsource:
 detection:
   selection:
     EventID: 33205
-    action_id: 
+    action_id:
       - LGFL # FAILED_LOGIN_GROUP
       - LGIF # LOGIN FAILED
     class_type: LX # LOGIN
-    additional_information|contains: 
+    additional_information|contains:
       - "<state>7</state>" # User account is disabled
   condition: selection
 falsepositives:

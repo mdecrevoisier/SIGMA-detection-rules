@@ -12,7 +12,7 @@ logsource:
   product: windows
 detection:
   selection1:
-    EventID: 4697
+    EventID: 4697 # security logs
     ServiceFileName|contains|all:
       - powershell.exe
       - FromBase64String
@@ -21,7 +21,7 @@ detection:
       - '-noni'
       - 'System.IO.Compression.CompressionMode'
   selection2:
-    EventID: 7045
+    EventID: 7045 # system logs
     ImagePath|contains|all: # same payload than previous ServiceFileName
       - powershell.exe
       - FromBase64String

@@ -23,5 +23,5 @@ detection:
     object_name: sa # Default account
   condition: selection
 falsepositives:
-- None 
+- Recovery situations
 level: high
