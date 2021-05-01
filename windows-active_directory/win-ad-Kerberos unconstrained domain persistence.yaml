@@ -1,11 +1,13 @@
   title: Rubeus Kerberos unconstrained delegation abuse
   description: Detects scenarios where an attacker abuse Kerberos unconstrained delegation for domain persistence.
   references:
-  - https://attack.mitre.org/techniques/T1558/
-  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
+  - https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/
   - https://www.alsid.com/crb_article/kerberos-delegation/
   - https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
   - https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html
+  - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-kerberos-constrained-delegation
+  - https://www.guidepointsecurity.com/delegating-like-a-boss-abusing-kerberos-delegation-in-active-directory/
+  - https://stealthbits.com/blog/what-is-kerberos-delegation-an-overview-of-kerberos-delegation/
   tags:
   - attack.credential-access
   - attack.t1558

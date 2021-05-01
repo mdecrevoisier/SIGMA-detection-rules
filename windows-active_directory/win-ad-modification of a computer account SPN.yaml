@@ -3,7 +3,6 @@ description: Detects scenarios where an attacker update the Service Principal Na
 references:
 - https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4742
 tags:
 - attack.persistence
 - attack.t1098
