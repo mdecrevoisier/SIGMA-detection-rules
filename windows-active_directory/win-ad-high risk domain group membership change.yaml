@@ -1,0 +1,39 @@
+title: High risk Active Directory group membership change
+description: Detects scenarios where a suspicious group membership is changed.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://ss64.com/nt/syntax-groups.html
+- https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups
+- https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/security-identifiers-in-windows
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_baseline:
+    EventID:  
+      - 4728 # security global group
+      - 4756 # universal group
+      #- 4732 # local and domain local group are covered in another rule
+    TargetSid|startswith: 'S-1-5-21-'
+
+  selection_group_universal:
+    TargetSid|endswith:
+      - '-518' # Schema Admins
+      - '-519' # Enterprise Admins
+      - '-527' # Enterprise Key Admins
+
+  selection_group_global:
+    - TargetSid|endswith:
+      - '-512' # Domain Admins
+      - '-520' # Group Policy Creator Owners
+      - '-526' # Key Admins
+
+  condition: selection_baseline and (selection_group_universal or selection_group_global)
+falsepositives:
+- Administrator activity
+level: high

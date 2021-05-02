@@ -13,10 +13,11 @@ logsource:
 detection:
   selection:
     EventID:
-      - 4728
-      - 4756
-  condition: selection | count(TargetUserName) by SubjectUserName > 20 # Count how many different groups had a member added in a short period
-  timeframe: 5m
+      - 4728 # security global group
+      - 4756 # universal group
+      - 4732 # local and domain local group
+  condition: selection | count(TargetSid) by SubjectUserName > 20 # Count how many different groups had a member added in a short period
+  timeframe: 15m
 falsepositives:
 - Automatic scripts, provisionning accounts
 level: medium

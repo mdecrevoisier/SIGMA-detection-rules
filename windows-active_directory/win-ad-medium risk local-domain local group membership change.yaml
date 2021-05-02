@@ -1,0 +1,47 @@
+title: Medium risk Active Directory local/domain local group membership change
+description: Detects scenarios where a suspicious group membership is changed.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://ss64.com/nt/syntax-groups.html
+- https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups
+- https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/security-identifiers-in-windows
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_baseline:
+    EventID: 4732 # local and domain local group
+    TargetSid|startswith: 'S-1-5-21-'
+
+  selection_group_local:
+    TargetSid|endswith:
+      - '-517' # Cert Publishers
+      - '-546' # Guests
+      - '-547' # Power Users
+      - '-548' # Account Operators
+      - '-549' # Server Operators
+      - '-550' # Print Operators
+      - '-551' # Backup Operators
+      - '-555' # Remote Desktop Users
+      - '-556' # Network Configuration Operators
+      - '-560' # Windows Authorization Access Group
+      - '-562' # Distributed COM Users
+      - '-568' # IIS_IUSRS
+      - '-569' # Cryptographic Operators
+      - '-573' # Event Log Readers
+      - '-574' # Certificate Service DCOM Access
+      - '-579' # Access Control Assistance Operators
+      - '-580' # Remote Management Users
+      - '-582' # Storage Replica Administrators
+      - '-1000' # WinRMRemoteWMIUsers_
+  filter:
+    SubjectUserName|endswith: '$'
+  condition: selection_baseline and selection_group_local and not filter 
+falsepositives:
+- Administrator activity
+level: high
