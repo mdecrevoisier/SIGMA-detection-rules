@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker attempts to execute WMIexec in 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation
 - https://riccardoancarani.github.io/2020-05-10-hunting-for-impacket/#wmiexecpy
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py
 tags:
 - attack.execution
 - attack.t1047
@@ -20,16 +21,16 @@ detection:
   selection_process:
     - ParentCommandLine|contains|all: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat ""
       - cmd.exe
-      - /Q
       - /c
+      - /Q
       - \\127.0.0.1\C$
-      - execute.bat
+      #- /K # Use in FireEye Impacket version instead of /c
 
     - CommandLine|contains|all:
       - cmd.exe
-      - /Q
       - /c
-      - execute.bat
+      - /Q
+      #- /K # Use in FireEye Impacket version instead of /c
 
   condition: selection_baseline and selection_process
 falsepositives:
