@@ -18,5 +18,5 @@ detection:
     RelativeTargetName|re: '__\d*\.\d*' # example: '__1619091076.1269338' or '__1619090610.0007844'
   condition: selection
 falsepositives:
-- None 
+- None
 level: high

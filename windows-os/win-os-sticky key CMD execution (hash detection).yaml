@@ -1,0 +1,29 @@
+title: Stickey key called CMD via command execution (hash detection)
+description: Detects scenarios where an attacker calls the stickey key and execute CMD.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection
+- https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
+- https://www.fireeye.com/blog/threat-research/2017/03/apt29_domain_frontin.html
+- https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
+requirements: have an up to date inventory for CMD hashes of your environment
+tags:
+- attack.privilege-escalation
+- attack.t1546.008
+author: mdecrevoisier
+status: process_execution
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 1
+    ParentImage|endwith: \winlogon.exe
+    Hashes|contains: # SHA1 hash of CMD.exe
+    - 99AE9C73E9BEE6F9C76D6F4093A9882DF06832CF # Windows 10 x64 v10.0.14393.0
+    - 8C5437CD76A89EC983E3B364E219944DA3DAB464 # Windows 10 x64 v10.0.17763.0
+    - 8DCA9749CD48D286950E7A9FA1088C937CBCCAD4 # Windows 10 x64 v10.0.18363.0
+    - F1EFB0FDDC156E4C61C5F78A54700E4E7984D55D # Windows 10 x64 v10.0.18363.0
+  condition: selection
+falsepositives:
+- None
+level: high

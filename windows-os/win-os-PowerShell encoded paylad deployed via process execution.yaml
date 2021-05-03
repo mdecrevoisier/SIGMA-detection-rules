@@ -4,7 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
 tags:
-- attack.execution  
+- attack.execution
 - attack.t1059.001
 - attack.defense-evasion
 - attack.t1564.003

@@ -28,7 +28,7 @@ detection:
       - /sc # Run task every X minutes
   condition: selection_execution
 falsepositives:
-- Administrator 
+- Administrator
 level: high
 
 # Extract ID 4698

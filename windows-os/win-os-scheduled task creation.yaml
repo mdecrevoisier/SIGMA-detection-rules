@@ -30,5 +30,5 @@ detection:
       - /sc # Run task every X minutes
   condition: selection_execution and not filter
 falsepositives:
-- Administrator 
+- Administrator
 level: medium

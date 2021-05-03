@@ -12,16 +12,26 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection:
-    EventID: 4688
-    #ParentProcessName|endswith: \WmiPrvSE.exe
-    NewProcessName|endswith: \cmd.exe
-    CommandLine|contains|all: # 'cmd.exe /Q /c cd \ 1> \\127.0.0.1\ADMIN$\__1619090610.0007844 2>&1'
+  selection_baseline:
+    EventID: 1
+    Image|endswith: \cmd.exe
+    #ParentImage|endswith: \cmd.exe
+
+  selection_process:
+    - ParentCommandLine|contains|all: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat ""
       - cmd.exe
-      - '127.0.0.1\ADMIN$'
       - /Q
       - /c
-  condition: selection
+      - \\127.0.0.1\C$
+      - execute.bat
+
+    - CommandLine|contains|all:
+      - cmd.exe
+      - /Q
+      - /c
+      - execute.bat
+
+  condition: selection_baseline and selection_process
 falsepositives:
 - None
 level: high
