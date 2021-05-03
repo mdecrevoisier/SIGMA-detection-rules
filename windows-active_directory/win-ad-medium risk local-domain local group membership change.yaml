@@ -1,4 +1,4 @@
-title: Medium risk Active Directory local/domain local group membership change
+title: Medium risk local/domain local group membership change
 description: Detects scenarios where a suspicious group membership is changed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
@@ -14,20 +14,15 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_baseline:
+  selection:
     EventID: 4732 # local and domain local group
     TargetSid|startswith: 'S-1-5-21-'
-
-  selection_group_local:
     TargetSid|endswith:
       - '-517' # Cert Publishers
       - '-546' # Guests
-      - '-547' # Power Users
-      - '-548' # Account Operators
-      - '-549' # Server Operators
       - '-550' # Print Operators
-      - '-551' # Backup Operators
       - '-555' # Remote Desktop Users
+      - '-557' # Incoming Forest Trust Builders
       - '-556' # Network Configuration Operators
       - '-560' # Windows Authorization Access Group
       - '-562' # Distributed COM Users
@@ -41,7 +36,7 @@ detection:
       - '-1000' # WinRMRemoteWMIUsers_
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection_baseline and selection_group_local and not filter 
+  condition: selection and not filter 
 falsepositives:
 - Administrator activity
 level: high

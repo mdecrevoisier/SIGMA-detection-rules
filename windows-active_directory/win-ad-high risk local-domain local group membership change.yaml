@@ -1,4 +1,4 @@
-title: High risk Active Directory local/domain local group membership change
+title: High risk local/domain local group membership change
 description: Detects scenarios where a suspicious group membership is changed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
@@ -14,20 +14,19 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_baseline:
+  selection:
     EventID: 4732 # local and domain local group
     TargetSid|startswith: 'S-1-5-21-'
-
-  selection_group_local:
-    - TargetSid|endswith:
-      - '-544'  # Administrators
-      - '-557'  # Incoming Forest Trust Builders
-      - '-578'  # Hyper-V Administrators
-    - TargetUserName: DnsAdmins # Variable SID
-
+    TargetSid|endswith:
+      - '-544' # Administrators
+      - '-547' # Power Users
+      - '-548' # Account Operators
+      - '-549' # Server Operators
+      - '-551' # Backup Operators
+      - '-578' # Hyper-V Administrators
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection_baseline and selection_group_local and not filter 
+  condition: selection and not filter 
 falsepositives:
 - Administrator activity
 level: high
