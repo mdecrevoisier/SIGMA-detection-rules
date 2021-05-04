@@ -22,8 +22,8 @@ detection:
       - '-546' # Guests
       - '-550' # Print Operators
       - '-555' # Remote Desktop Users
-      - '-557' # Incoming Forest Trust Builders
       - '-556' # Network Configuration Operators
+      - '-557' # Incoming Forest Trust Builders
       - '-560' # Windows Authorization Access Group
       - '-562' # Distributed COM Users
       - '-568' # IIS_IUSRS
@@ -36,7 +36,7 @@ detection:
       - '-1000' # WinRMRemoteWMIUsers_
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection and not filter 
+  condition: selection and not filter
 falsepositives:
 - Administrator activity
 level: high

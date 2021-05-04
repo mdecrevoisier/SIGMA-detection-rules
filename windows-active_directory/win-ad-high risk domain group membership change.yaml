@@ -15,7 +15,7 @@ logsource:
   service: security
 detection:
   selection_baseline:
-    EventID:  
+    EventID:
       - 4728 # security global group
       - 4756 # universal group
       #- 4732 # local and domain local group are covered in another rule
