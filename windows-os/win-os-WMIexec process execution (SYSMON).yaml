@@ -24,13 +24,13 @@ detection:
       - /c
       - /Q
       - \\127.0.0.1\C$
-      #- /K # Use in FireEye Impacket version instead of /c
+      #- /K # Used in FireEye Impacket version instead of /c
 
     - CommandLine|contains|all:
       - cmd.exe
       - /c
       - /Q
-      #- /K # Use in FireEye Impacket version instead of /c
+      #- /K # Used in FireEye Impacket version instead of /c
 
   condition: selection_baseline and selection_process
 falsepositives:
