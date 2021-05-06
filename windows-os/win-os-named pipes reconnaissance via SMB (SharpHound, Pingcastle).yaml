@@ -23,7 +23,7 @@ detection:
      - samr
      - srvsvc
   filter:
-    IpAddress: '%administration_hosts%'
+    IpAddress: '%administration_hosts%' # List of IPs of your administration host to reduce false positive
   condition: selection and not filter | count(Computer) by IpAddress > 20
   timeframe: 30m
 falsepositives:
