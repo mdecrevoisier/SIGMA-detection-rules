@@ -65,6 +65,7 @@ TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server: sqlcmd & oss
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server: started in single mode for password recovery | 4688
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected (mimidrv.sys) | 4697/7045
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | MSF payload deployed via service | 4697/7045
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045 / 4697
 TA0003-Persistence | T1546-Event Triggered Execution | AdminSDHolder container permissions modified | 5136
 TA0003-Persistence | T1546-Event Triggered Execution | localizationDisplayId attribute abuse for backdoor introduction | 5136
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717
@@ -85,7 +86,7 @@ TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit spe
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Database audit specifications deleted | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Database audit specifications disabled | 33205
 TA0005-Defense Evasion | T1078.002-Valid accounts-Domain accounts | Login from a user member of a "special group" detected (special logon) | 4964
-TA0005-Defense Evasion | T1112-Modify registry | Impacket WMIexec stealthy service registration | 13
+TA0005-Defense Evasion | T1112-Modify registry | Impacket SMBexec stealthy service registration | 13
 TA0005-Defense Evasion | T1207-Rogue domain controller | Sensitive attributes accessed (DCshadow) | 4662
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Computer account modifying AD permissions (PrivExchange) | 5136
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Network share permissions changed | 5143
@@ -128,3 +129,4 @@ TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote shell exec
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows activation/configuration detected | 4103/4104
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows installation detected | 4103/4104
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47**
+TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCOn abuse command | 4688
