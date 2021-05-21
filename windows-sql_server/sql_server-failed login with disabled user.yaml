@@ -1,7 +1,6 @@
 title: SQL Server - Connection attempt using a disabled account
 description: Detects scenarios where an attacker attempts authenticate to the database using a disabled user accont
 references:
-- https://attack.mitre.org/techniques/T1078/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts
 - https://www.eraofdata.com/sql-server/connectivity/login-failures/
 - https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms366351(v=sql.105)

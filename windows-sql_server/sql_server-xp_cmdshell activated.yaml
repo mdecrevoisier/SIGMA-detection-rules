@@ -1,7 +1,6 @@
 title: SQL Server xp_cmdshell activation (native event)
 description: Detects scenarios where an attacker enable the xp_cmdshell in order to execute non SQL content and escalate privileges
 references:
-- https://attack.mitre.org/techniques/T1505/001/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505.001-SQL%20Stored%20Procedures
 tags:
 - attack.persistence

@@ -1,7 +1,6 @@
 title: SQL Server - Member got new privileges added on a SQL instance level
 description: Detects scenarios where an attacker grants new privileges on a SQL instance level
 references:
-- https://attack.mitre.org/techniques/T1098/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 - https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions
 - https://docs.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles

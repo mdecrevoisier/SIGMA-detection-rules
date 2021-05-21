@@ -1,0 +1,28 @@
+title: Success login attempt on a Windows OpenSSH server
+description: Detects scenarios where an attacker attempts to connect to a Windows host using the SSH protocol. 
+remarks: This requires to have previously enabled the builtin OpenSSH server or to have installed the "OpenSSH-Win64" component. IpAddress or Workstation fields may be empty. In case Workstation field is not empty, be aware that it may wrongly report the source host. Moreover, the 1st initial connection attempt (before SSH credentials prompt) will be reported with event ID 4624, logon type 5 (service) and target user "sshd_*". Following authenticated events will be with logon type 3 (network) and 8 (clear text). For reliable source IP information, use the logs from the OpenSSH channel, event ID 4.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts
+- https://winaero.com/enable-openssh-server-windows-10/
+- https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+- https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+tags:
+- attack.valid-account
+- attack.t1078
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_event:
+    EventID: 4624
+    ProcessName|endswith: '\sshd.exe' # Can be "C:\Program Files\OpenSSH-Win64\sshd.exe" or "C:\Windows\system32\OpenSSH\sshd.exe"
+  filter_user:
+    TargetUserSid|startswith: 'S-1-5-111-' # Exclude "sshd_*" system events
+  filter_ssh_servers:
+    - Computer: '%win_ssh_servers%' # List of Windows hosts where OpenSSH server is officialy known as installed and active.
+  condition: selection_event and not (filter_user or filter_ssh_servers)
+falsepositives:
+- Normal administrator activity
+level: medium

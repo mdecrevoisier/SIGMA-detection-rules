@@ -1,5 +1,5 @@
-title: OpenSSH server installation on Windows
-description: Detects scenarios where an attacker enables the OpenSSH server on Windows to perform stealthy lateral movement.
+title: OpenSSH native server feature installation
+description: Detects scenarios where an attacker enables the native OpenSSH server feature on Windows to perform stealthy lateral movement.
 references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
  - https://winaero.com/enable-openssh-server-windows-10/
@@ -36,6 +36,6 @@ detection:
       - OpenSSH.Server
 
   condition: 1 of selection*
-falsepositives: 
+falsepositives:
 - legitimate administrator installation
 level: medium

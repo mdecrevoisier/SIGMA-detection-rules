@@ -13,26 +13,26 @@ status: experimental
 logsource:
   product: windows
 detection:
-  selection1.1_firewall_ssh_cmd:
+  selection1.1_firewall_ssh_cmd: # Command for firewall rule creation (available starting Server 2012 R2)
     EventID: 4688
     CommandLine|contains|all:
       - netsh advfirewall
       - localport=22
 
-  selection1.2_firewall_ssh_cmd:
+  selection1.2_firewall_ssh_cmd: # Command for firewall rule creation (deprecated)
     EventID: 4688
     CommandLine|contains|all:
       - netsh firewall
       - portopening TCP 22
 
-  selection2_firewall_windows_process:
+  selection2_firewall_windows_process: # New firewall rule creation (process focus)
     Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
-    EventID: 2004 # New rule created
+    EventID: 2004
     ApplicationPath: C:\Windows\system32\OpenSSH\sshd.exe
 
-  selection3_firewall_windows_port:
+  selection3_firewall_windows_port: # New firewall rule creation (port focus)
     Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
-    EventID: 2004 # New rule created
+    EventID: 2004
     LocalPorts: 22
 
   selection4_powershell_native:
