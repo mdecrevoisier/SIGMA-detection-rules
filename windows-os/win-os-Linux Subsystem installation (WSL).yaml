@@ -1,7 +1,6 @@
 title: Windows Subsystem for Linux installation (WSL)
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
- - https://attack.mitre.org/techniques/T1564/006/
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts
  - https://docs.microsoft.com/en-us/windows/wsl/install-win10
  - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/

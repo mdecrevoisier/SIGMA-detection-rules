@@ -1,7 +1,6 @@
 title: Failed DNS server zone transfer for enumeration purposes
 description: Detects scenarios where an attacker attempts to exploit DNS server missconfiguration to trigger a DNS zone transfer and enumerate list of valid IP and hostnames.
 references:
-- https://attack.mitre.org/techniques/T1016/
 - https://capec.mitre.org/data/definitions/291.html
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1016-System%20Network%20Configuration%20Discovery
 - http://intelligentsystemsmonitoring.com/knowledgebase/windows-operating-system/the-dns-server-received-a-zone-transfer-request-from-for-a-nonexistent-or-nonauthoritative-zone-8319/

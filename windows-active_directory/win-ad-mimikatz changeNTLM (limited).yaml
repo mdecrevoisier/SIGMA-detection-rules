@@ -1,10 +1,8 @@
 title: Detects Mimikatz changeNTLM attack
 description: Detects scenarios where an attacker resets a user account by using the compromised NTLM password hash. The newly clear text password defined by the attacker can be then used in order to login into services like Outlook Web Access (OWA), RDP, SharePoint...
 references:
-- https://attack.mitre.org/techniques/T1098/
 - https://stealthbits.com/blog/manipulating-user-passwords-with-mimikatz/
 - https://www.trustedsec.com/blog/azure-account-hijacking-using-mimikatzs-lsadumpsetntlm/
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4723
 tags:
 - attack.persistence
 - attack.t1098
