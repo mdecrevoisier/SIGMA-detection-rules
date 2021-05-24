@@ -16,8 +16,14 @@ detection:
   selection_process:
     EventID: 4688
     #Version: 2  # to reduce False positive only > parent process name is available starting Windows 10 or higher
-    #ParentProcessName: C:\Windows\System32\winlogon.exe # to reduce False positive only
-    NewProcessName: C:\Windows\System32\cmd.exe
+    #ParentProcessName: '\winlogon.exe' # to reduce False positive only > parent process name is available starting Windows 10 or higher
+    NewProcessName|endswith: '\cmd.exe' # C:\Windows\System32\cmd.exe
+
+  selection_sysmon:
+    EventID: 1
+    ParentImage|endswith: '\winlogon.exe'
+    
+  selection_command_line:
     CommandLine|contains:
       - 'cmd.exe sethc.exe '
       - 'cmd.exe utilman.exe '
@@ -25,19 +31,7 @@ detection:
       - 'cmd.exe Magnify.exe '
       - 'cmd.exe Narrator.exe '
       - 'cmd.exe DisplaySwitch.exe '
-
-  selection_sysmon:
-    EventID: 1
-    ParentImage|endswith:
-      - '\winlogon.exe'
-    CommanCommandLine|contains:
-      - 'cmd.exe sethc.exe '
-      - 'cmd.exe utilman.exe '
-      - 'cmd.exe osk.exe '
-      - 'cmd.exe Magnify.exe '
-      - 'cmd.exe Narrator.exe '
-      - 'cmd.exe DisplaySwitch.exe '
-  condition: selection_process or selection_sysmon
+  condition: (selection_process or selection_sysmon) and selection_command_line
 falsepositives:
 - None
 level: high

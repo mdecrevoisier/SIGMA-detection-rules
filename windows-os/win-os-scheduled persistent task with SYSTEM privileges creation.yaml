@@ -19,7 +19,7 @@ logsource:
 detection:
   selection_execution:
     EventID: 4688
-    NewProcessName: 'C:\Windows\System32\schtasks.exe'
+    NewProcessName|endswith: \schtasks.exe # Original: 'C:\Windows\System32\schtasks.exe'
     CommandLine|contains|all: # "C:\Windows\system32\schtasks.exe" /create /sc minute /mo 1 /tn eviltask /tr C:\tools\shell.cmd /ru SYSTEM
       - schtasks
       - /create
