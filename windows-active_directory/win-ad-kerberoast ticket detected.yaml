@@ -29,13 +29,13 @@ detection:
     TicketEncryptionType: 0x17 # RC4-HMAC
     Status: 0x0 # Success
   filter:
-    ServiceName|endswith: '$' # Exclude computer account services
-    ServiceSid|endswith: '-502' # Exclude Krbrtg service
-    TargetUserName|contains: '$@' # Exclude computer accounts requests
-    IpAddress:
+    - ServiceName|endswith: '$' # Exclude computer account services
+    - ServiceSid|endswith: '-502' # Exclude Krbrtg service
+    - TargetUserName|contains: '$@' # Exclude computer accounts requests
+    - IpAddress:
       - '::1'
       - '127.0.0.1'
-    #ServiceName NOT IN TargetUserName (NOT SUPPORTED BY ALL SIEM)
+    #- ServiceName NOT IN TargetUserName (NOT SUPPORTED BY ALL SIEM)
   condition: selection and not filter
 falsepositives:
 - Applications using RC4 encryption (eg: SAP, Azure AD,...)

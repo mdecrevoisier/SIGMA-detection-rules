@@ -29,7 +29,7 @@ detection:
       - '-T'
       - '-Q'
 
-  condition:  1 of selection* and arguments
+  condition:  (selection1_process_execution or selection2_process_create_sysmon) and arguments
 falsepositives:
 - Administrators
 level: high

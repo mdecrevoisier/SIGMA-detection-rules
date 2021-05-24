@@ -1,5 +1,5 @@
 title: Detects Mimikatz changeNTLM attack
-description: Detects scenarios where an attacker resets a user account by using the compromised NTLM password hash. The newly clear text password defined by the attacker can be then used in order to login into services like Outlook Web Access (OWA), RDP, SharePoint...
+description: Detects scenarios where an attacker resets a user account by using the compromised NTLM password hash. The newly clear text password defined by the attacker can be then used in order to login into services like Outlook Web Access (OWA), RDP, SharePoint... As ID 4723 refers to user changing is own password, the SubjectSid and TargetSid should be equal. However in a change initiated by Mimikatz, they will be different.
 references:
 - https://stealthbits.com/blog/manipulating-user-passwords-with-mimikatz/
 - https://www.trustedsec.com/blog/azure-account-hijacking-using-mimikatzs-lsadumpsetntlm/
@@ -15,8 +15,6 @@ detection:
   selection:
     EventID: 4723
     # SubjectUserSid == TargetSid (comparing 2 fields is not possible in SIGMA language)
-    # ID 4723 refers to user changing is own password. Having SubjectSid and TargetSid different spots the suspicious activity
-  filter:
   condition: selection
 falsepositives:
 - Admin changing is own account directly using the Active Directory console and not the GUI (ctrl alt suppr)
