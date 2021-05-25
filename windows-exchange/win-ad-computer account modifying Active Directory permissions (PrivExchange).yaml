@@ -26,7 +26,7 @@ detection:
       - srvexchange03$
     AttributeLDAPDisplayName: ntSecurityDescriptor
     OperationType: '%%14674' # Value added
-  condition: 1 of selection*
+  condition: selection_any_server or selection_exchange_server
 falsepositives:
 - Unknown
 level: high
