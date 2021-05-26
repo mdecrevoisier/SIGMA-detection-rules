@@ -1,0 +1,33 @@
+title: Discovery for print spooler bug abuse (NTLM hash retrivial)
+description: Detects scenarios where an attacker with a responder in place initiates an authenticated callback request from a targeted host with the print spooler service enabled (RpcRemoteFindFirstPrinterChangeNotification abuse). In case the targeted host answers to the responder, the NTLM hash of the computer account will be disclosed. Following that, the hash can be used for different type of abuse like Silver ticket generation or unconstrained delegation abuse. The rule is designed to detect the following scripts > printerbug.py, dementor.py, SpoolSample.exe and Get-SpoolStatus.ps1. Additional  correlation can be done with the following logic > ID 5145 + SubjectLogonId + IpPort | ID 4624 + TargetLogonId + IpPort.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1557-Man%20in%20the%20middle
+- https://github.com/dirkjanm/krbrelayx/blob/master/printerbug.py
+- https://github.com/NotMedic/NetNTLMtoSilverTicket?s=09
+- https://github.com/leechristensen/SpoolSample/
+- https://github.com/vletoux/SpoolerScanner
+- https://posts.specterops.io/hunting-in-active-directory-unconstrained-delegation-forests-trusts-71f2b33688e1
+- https://book.hacktricks.xyz/windows/active-directory-methodology/printers-spooler-service-abuse
+- https://stealthbits.com/blog/impersonating-service-accounts-with-silver-tickets/
+- https://blog.cymulate.com/compromising-a-domain
+- https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn/b8b414d9-f1cd-4191-bb6b-87d09ab2fd83
+tags:
+- attack.credential-access
+- attack.t1557.001 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5145
+    ShareName: '\\*\IPC$'
+    RelativeTargetName: spoolss 
+    AccessMask:
+      - 0x3 # printerbug.py, dementor.py
+      - 0x12019F # Get-SpoolStatus.ps1
+  condition: selection | count(Hostname) by IpAddress > 20
+falsepositives:
+- vulnerability scanners 
+level: high

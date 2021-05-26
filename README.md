@@ -113,12 +113,13 @@ TA0006-Credential Access | T1110.xxx-Brut force | Brutforce enumeration on Windo
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce on Windows OpenSSH server with valid user | 4625 / 4
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 33205
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662
+TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Discovery for print spooler bug abuse | 5145
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Exchange server impersonation via PrivExchange relay attack | 4624
+TA0006-Credential Access | T1558.001-Golden Ticket  | SMB Admin share accessed with a forged Golden ticket | 5140/5145
+TA0006-Credential Access | T1558.001-Golden Ticket  | Success login impersonation with forged Golden ticket | 4624
 TA0006-Credential Access | T1558.003-Kerberoasting  | KerberOAST ticket (TGS) request detected (low encryption) | 4769
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Susipicious Kerberos ticket (TGS) with constrained delegation (S4U2Proxy) | 4769
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Susipicious Kerberos ticket (TGS) with unconstrained delegation (TrustedForDelegation) | 4769
-TA0006-Credential Access | T1558.001-Golden Ticket  | SMB Admin share accessed with a forged Golden ticket | 5140/5145
-TA0006-Credential Access | T1558.001-Golden Ticket  | Success login impersonation with forged Golden ticket | 4624
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Tentative of zone transfer from a non DNS server detected | 6004 (DNS server)
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated via SharpHound | 4799
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661
