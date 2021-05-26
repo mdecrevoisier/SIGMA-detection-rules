@@ -21,7 +21,7 @@ detection:
   filter_user:
     TargetUserSid|startswith: 'S-1-5-111-' # Exclude "sshd_*" system events
   filter_ssh_servers:
-    - Computer: '%win_ssh_servers%' # List of Windows hosts where OpenSSH server is officialy known as installed and active.
+    Computer: '%win_ssh_servers%' # List of Windows hosts where OpenSSH server is officialy known as installed and active.
   condition: selection_event and not (filter_user or filter_ssh_servers)
 falsepositives:
 - Normal administrator activity

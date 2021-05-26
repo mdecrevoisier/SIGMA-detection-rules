@@ -14,9 +14,9 @@ logsource:
 detection:
   selection:
     EventID: 
-    - 4756 # Universal group
-    - 4732 # Local / domain local group
-    - 4728 # Global group  selection:
+      - 4756 # Universal group
+      - 4732 # Local / domain local group
+      - 4728 # Global group  selection:
     TargetUserName:
       - Security Reader
       - Exchange View-Only Administrators

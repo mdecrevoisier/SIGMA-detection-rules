@@ -1,4 +1,4 @@
-title: Host delegation settings changed for potential abuse (Rubeus)
+title: Host constrained delegation settings changed for potential abuse (Rubeus) - Any protocol
 description: Detects scenarios where an attacker modifies host delegation settings for privilege escalation.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
@@ -19,29 +19,12 @@ logsource:
   product: windows
   service: security
 detection:
-  
-  # UNCONSTRAINED DELEGATION | delegation to any service, Kerberos only
-  selection_1_unconstrained:
-    EventID: 4742
-    UserAccountControl: '%%2093' # Enable option "Trust this computer for delegation to any service (Kerberos only)"
-  
-  # CONSTRAINED DELEGATION | delegation to specified service, any protocol
-  selection_2_constrained:
+  selection: #Delegation to specified service, any protocol
     EventID: 4742
     UserAccountControl: '%%2098' # Enable option "Approved for authenticated delegation"
-  filter_2:
-    AllowedToDelegateTo: '-' # Can be: ""cifs/srv01 cifs/srv02.offsec.lan dcom/dc03..."
-  condition: (selection_2 and not filter_2)
-
-  # CONSTRAINED DELEGATION | delegation to specified service, Kerberos only
-  selection_3_constrained:
-    EventID: 4742
-    UserAccountControl: '-'  # Avoid duplicate with with selection 2
-  filter_3:
-    AllowedToDelegateTo: '-' # Can be: ""cifs/srv01 cifs/srv02.offsec.lan dcom/dc03..."
-  condition: (selection_3 and not filter_3)
-
-  condition: selection_1_unconstrained or (selection_2_constrained and not filter_2) or (selection_3_constrained and not filter_3)
+  filter:
+    AllowedToDelegateTo: '-' # Can be: "cifs/srv01 cifs/srv02.offsec.lan dcom/dc03..."
+  condition: selection and not filter
 falsepositives:
 - Rare administrator modifying host delegation settings
 level: high

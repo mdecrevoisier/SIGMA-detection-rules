@@ -20,7 +20,7 @@ detection:
     filter:
         SubjectUserName|endswith: '$'
         ProcessName:
-            - '*\AppData\Local\Google\Chrome\User Data\SwReporter\\*\software_reporter_tool.exe' # Google Chrome Security tool
+            - '*\\AppData\Local\Google\Chrome\User Data\SwReporter\\*\software_reporter_tool.exe' # Google Chrome Security tool
     condition: selection and not filter
 falsepositives:
 - Antivirus, security products, browsers

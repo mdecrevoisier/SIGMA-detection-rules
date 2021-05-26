@@ -1,4 +1,4 @@
-title: DLL loaded by DNS server ("serverlevelplugindll" feature abuse)
+title: DLL loaded by DNS server - success ("serverlevelplugindll" feature abuse)
 description: Detects scenarios where a DLL is loaded by the DNS server in order to escalate privileges or initiate a remote shell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1574.002-DLL%20Side-Loading
@@ -19,9 +19,8 @@ logsource:
   service: dns-server
 detection:
   selection:
-    EventID:
-    - 150 # failed load
-    - 770 # success load
+    Channel: 'DNS Server'
+    EventID: 770 # success load
   condition: selection
 falsepositives:
 - None
