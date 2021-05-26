@@ -11,17 +11,18 @@ logsource:
   product: windows
   service: security
 detection:
-    selection:
-        EventID:
-            - 4656
-            - 4663
-        ObjectType: 'Process'
-        ObjectName|endswith: '\lsass.exe'
-    filter:
-        SubjectUserName|endswith: '$'
-        ProcessName:
-            - '*\\AppData\Local\Google\Chrome\User Data\SwReporter\\*\software_reporter_tool.exe' # Google Chrome Security tool
-    condition: selection and not filter
+  selection:
+    EventID:
+      - 4656
+      - 4663
+    ObjectType: 'Process'
+    ObjectName|endswith: '\lsass.exe'
+  filter_1:
+    SubjectUserName|endswith: '$'
+  filter_2:
+    ProcessName:
+      - '*\\AppData\Local\Google\Chrome\User Data\SwReporter\\*\software_reporter_tool.exe' # Google Chrome Security tool
+  condition: selection and not (filter_1 or filter_2)
 falsepositives:
 - Antivirus, security products, browsers
 level: high

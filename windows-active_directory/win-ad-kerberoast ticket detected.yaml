@@ -26,8 +26,8 @@ detection:
   selection:
     EventID: 4769
     TicketOptions: '0x40810000'
-    TicketEncryptionType: 0x17 # RC4-HMAC
-    Status: 0x0 # Success
+    TicketEncryptionType: '0x17' # RC4-HMAC
+    Status: '0x0' # Success
   filter:
     - ServiceName|endswith: '$' # Exclude computer account services
     - ServiceSid|endswith: '-502' # Exclude Krbrtg service

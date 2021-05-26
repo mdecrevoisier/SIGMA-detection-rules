@@ -18,7 +18,7 @@ detection:
     ShareName: '\\*\ADMIN$'
   filter: # Filter works only with ID 5145
     - RelativeTargetName|contains: PSEXESVC # see PSexec SMB rule
-    - RelativeTargetName: # see PSexec remote shell rule
+    - RelativeTargetName: # see remote shell execution via SMB rule
       - cmd.exe
       - powershell.exe
   condition: selection and not filter

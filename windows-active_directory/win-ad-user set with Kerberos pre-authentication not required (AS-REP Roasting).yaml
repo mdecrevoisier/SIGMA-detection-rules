@@ -1,5 +1,5 @@
-title: Account set with Kerberos pre-authentication not required (weakness introduction)
-description: Detects scenarios where an attacker set an account with Kerberos pre-authentication not required to perform offline brutforce.
+title: Account set with Kerberos pre-authentication not required (AS-REP Roasting)
+description: Detects scenarios where an attacker set an account with Kerberos pre-authentication not required to perform offline brutforce. Account with this status can be checked with the following command > "Get-ADUser -Filter 'useraccountcontrol -band 4194304' -Properties useraccountcontrol".
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 - https://social.technet.microsoft.com/wiki/contents/articles/23559.kerberos-pre-authentication-why-it-should-not-be-disabled.aspx

@@ -1,0 +1,29 @@
+title: Kerberos AS-REP Roasting ticket request detected
+description: Detects scenarios where an attacker abuse an account with UAC settings set to "Accounts Does not Require Pre-Authentication" in order to perform offline TGT brutforce.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
+- https://m0chan.github.io/2019/07/31/How-To-Attack-Kerberos-101.html#as-rep-roasting
+- https://github.com/HarmJ0y/ASREPRoast
+- https://medium.com/@jsecurity101/ioc-differences-between-kerberoasting-and-as-rep-roasting-4ae179cdf9ec
+- https://www.harmj0y.net/blog/activedirectory/roasting-as-reps/
+tags:
+- attack.credential-access
+- attack.t1558.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4768
+    Status: '0x0' # Success
+    TicketOptions: '0x40800010'
+    ServiceName: krbtgt 
+    TicketEncryptionType: '0x17' # RC4-HMAC
+    PreAuthType: '0'
+    # TargetDomainName|re: in lowercase
+  condition: selection
+falsepositives:
+- Account configured to not require pre-authentication 
+level: high
