@@ -1,0 +1,27 @@
+title: Impacket DCOMexec process abuse via MMC
+description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.  
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.003-Distributed%20Component%20Object%20Model%20(DCOM)
+- https://enigma0x3.net/2017/01/23/lateral-movement-via-dcom-round-2/
+- https://enigma0x3.net/2017/01/05/lateral-movement-using-the-mmc20-application-com-object/
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/dcomexec.py
+- https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
+tags:
+- attack.lateral-movement
+- attack.t1021.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    Version: '2' # Available since Windows 10 and provides ParentProcessName
+    ParentProcessName: C:\Windows\System32\svchost.exe'
+    NewProcessName: 'C:\Windows\System32\mmc.exe'
+  condition: selection
+falsepositives:
+- applications using DCOM components remotely
+- rare administrator modifications of DCOM settings
+level: high

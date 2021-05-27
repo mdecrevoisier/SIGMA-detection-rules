@@ -17,21 +17,18 @@ logsource:
 detection:
   selection1_powershell_native:
     EventID: 800
-    Channel: 'Windows PowerShell'
     EventData|contains:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'
 
   selection2_powershell_modern:
     EventID: 4103
-    Channel: 'Microsoft-Windows-PowerShell/Operational'
     Payload|contains:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'
 
   selection3_powershell_block:
     EventID: 4104
-    Channel: 'Microsoft-Windows-PowerShell/Operational'
     ScriptBlockText|contains:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'

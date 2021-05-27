@@ -1,0 +1,28 @@
+title: DCOM lateral movement (via MMC20)
+description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.  
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.003-Distributed%20Component%20Object%20Model%20(DCOM)
+- https://enigma0x3.net/2017/01/23/lateral-movement-via-dcom-round-2/
+- https://enigma0x3.net/2017/01/05/lateral-movement-using-the-mmc20-application-com-object/
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/dcomexec.py
+- https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
+tags:
+- attack.lateral-movement
+- attack.t1021.003   
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell # only logged in Event ID 4104 (not 800 or 4103)
+detection:
+  selection:
+    EventID: 4104
+    ScriptBlockText|contains|all: # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
+      - '[System.Activator]'
+      - 'CreateInstance'
+      - 'GetTypeFromProgID'
+      - 'MMC20.Application'
+  condition: selection
+falsepositives:
+- none
+level: high
