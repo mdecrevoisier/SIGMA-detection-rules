@@ -1,0 +1,32 @@
+title: New member added to a OCS/Lync/Skype for Business administration group (high risk)
+description: Detects scenarios where a new member is added to a sensitive administration group related to OCS/Lync/Skype for Business.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://docs.microsoft.com/en-us/previous-versions/office/lync-server-2013/lync-server-2013-planning-for-role-based-access-control
+- https://docs.microsoft.com/en-us/skypeforbusiness/schema-reference/active-directory-schema-extensions-classes-and-attributes/changes-made-by-forest-preparation
+- https://blog.insideo365.com/2012/11/a-lync-administrator-access-refresher/
+tags:
+- attack.credential-access
+- attack.t1003.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 
+      - 4756 # Universal group
+      - 4732 # Local / domain local group
+      - 4728 # Global group  selection:
+    TargetUserName:
+      - CSArchivingAdministrator
+      - CSUserAdministrator
+      - RTCHSUniversalServices
+      - RTCUniversalGlobalWriteGroup
+      - RTCUniversalSBATechnicians
+  condition: selection
+falsepositives:
+- OCS/Lync/Skype administrator updating server configuration or topology
+- OCS/Lync/Skype upgrade or migration
+level: high
