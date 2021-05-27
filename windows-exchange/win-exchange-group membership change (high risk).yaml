@@ -4,8 +4,8 @@ references:
 - https://msexchangeguru.com/2015/12/18/rbac-2016/
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 tags:
-- attack.credential-access
-- attack.t1003.006
+- attack.persistence
+- attack.t1098
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -16,8 +16,8 @@ The SIGMA rules can be used in different ways together with your SIEM:
 * Active Directory Certification Services (ADCS / PKI) with online responder (OCSP)
 * SQL Server 2014
 * Windows Defender
-* OCS / Lync / Skype for Business
-* SYSMON v11 -- *pending*
+* Office Communication Server (OCS) / Lync / Skype for Business
+* SYSMON v11 and higher
 
 ## SIGMA rules content
 
@@ -59,6 +59,7 @@ TA0003-Persistence | T1098.xxx-Account manipulation | User account set to use Ke
 TA0003-Persistence | T1098.xxx-Account manipulation | User account set with new SPN | 5136
 TA0003-Persistence | T1098.xxx-Account manipulation | User account with password set to never expire detected | 4738
 TA0003-Persistence | T1098.xxx-Account manipulation | User account with password set to not require detected | 4738
+TA0003-Persistence | T1098-Account Manipulation | New member added to administration group related to OCS/Lync/Skype4B  | 4732/4756
 TA0003-Persistence | T1136.001-Create account-Local account | Disbled Guest (and support_388945a0) accounts enabled | 4722
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741
@@ -103,6 +104,7 @@ TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification |
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | Firewall rule created by a suspicious command (netsh.exe, wmiprvse.exe) | 2004
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration | 2004/4688/410x/800
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance  | WSL for Windows installation detected | 4688
+TA0006-Credential Access | 1558.004-Steal or Forge Kerberos Tickets: AS-REP Roasting | erberoas AS-REP Roasting ticket request detected | 4768
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS process accessed by a non system account | 4656/4663
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | SAM database user credential dump with Mimikatz | 4661
 TA0006-Credential Access | T1003.002-Security Account Manager | SAM database access during DCshadow | 4661
