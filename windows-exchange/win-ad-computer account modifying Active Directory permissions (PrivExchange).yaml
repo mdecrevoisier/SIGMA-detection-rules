@@ -1,5 +1,6 @@
 title: Computer account modifying Active Directory permissions (PrivExchange)
 description: Detects scenarios where an attacker compromise a server with high privileges to perform permissions changes. PrivExchange attack can be detected using this rule.
+requirements: auditing SACL must be placed on the AD root container using the Active Directory console.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
 - https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/ 
@@ -14,7 +15,7 @@ logsource:
 detection:
   selection_any_server:
     EventID: 5136
-    SubjectUserName: '*$'
+    SubjectUserName|endswith: '$'
     AttributeLDAPDisplayName: ntSecurityDescriptor
     OperationType: '%%14674' # Value added
 

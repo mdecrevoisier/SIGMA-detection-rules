@@ -1,5 +1,6 @@
 title: Permissions changed on a Group Policy (GPO)
 description: Detects scenarios where an attacker will attempt to take control over a group policy.
+requirements: auditing SACL must be placed on the "GPO" container using the Active Directory console.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
 tags:

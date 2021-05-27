@@ -19,8 +19,9 @@ detection:
     - Last AV signature age
     - Last AS security intelligence age
     - Last AV security intelligence age
-  condition: selection_event | selection_age > 7
+  condition: selection_event and (selection_age > 7)
 falsepositives:
 - Unconnected systems to internet
-- System offline during long duration 
+- System offline during long duration
+- Windows system with license hack (date set to + 10 years)
 level: medium

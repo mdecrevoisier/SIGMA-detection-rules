@@ -6,6 +6,8 @@ references:
 - https://github.com/HarmJ0y/ASREPRoast
 - https://medium.com/@jsecurity101/ioc-differences-between-kerberoasting-and-as-rep-roasting-4ae179cdf9ec
 - https://www.harmj0y.net/blog/activedirectory/roasting-as-reps/
+- https://rioasmara.com/2020/07/04/kerberoasting-as-req-pre-auth-vs-non-pre-auth/
+- https://www.hackingarticles.in/as-rep-roasting/
 tags:
 - attack.credential-access
 - attack.t1558.004

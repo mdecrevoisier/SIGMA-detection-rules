@@ -19,8 +19,7 @@ detection:
       - LGFL # FAILED_LOGIN_GROUP
       - LGIF # LOGIN FAILED
     class_type: LX # LOGIN
-    additional_information|contains:
-      - "<state>7</state>" # User account is disabled
+    additional_information|contains: "<state>7</state>" # User account is disabled
   condition: selection
 falsepositives:
 - Miss configured accounts or scripts

@@ -1,5 +1,6 @@
 title: AdminSDHolder permissions change for persistence
 description: Detects scenarios where an attacker changes permissions on the AdminSDHolder container to establish persistence.
+requirements: auditing SACL must be placed on the "AdminSDHolder" container using the Active Directory console.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
 - https://adsecurity.org/?p=1906

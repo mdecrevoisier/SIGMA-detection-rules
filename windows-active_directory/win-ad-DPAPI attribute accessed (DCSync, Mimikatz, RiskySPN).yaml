@@ -28,7 +28,7 @@ detection:
       - b8dfa744-31dc-4ef1-ac7c-84baf7ef9da7 # ms-PKI-AccountCredentials / Stores certificates, certificate signing requests, private keys and saved passwords.
       - 91e647de-d96f-4b70-9557-d63ff4f3ccd8 # Private-Information
   filter:
-    SubjectUserName: '*$'
+    SubjectUserName|endswith: '$'
   condition: 1 of selection and not filter | count(ObjectName) > 5 # count the amount of different AD objects reporting DPAPI accessed
   timeframe: 30m
 falsepositives:
