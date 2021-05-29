@@ -12,18 +12,18 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_username:
+  selection_event:
     EventID: 4722
+  selection_username:
     TargetUserName:
       - Guest
       - support_388945a0 # Remote assistance
       - HelpAssistant # Managed by Remote Desktop Help Session Manager service
   selection_usersid:
-    EventID: 4722
     TargetUserSid|endswith:
       - '-501' # Guest account
       - '1001' # support_388945a0
-  condition: 1 of selection*
+  condition: selection_event and (selection_username or selection_usersid)
 falsepositives:
 - SYSPREP deployement
 - Usage of Remote assistance

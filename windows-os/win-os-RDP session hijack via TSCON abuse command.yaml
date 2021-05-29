@@ -17,7 +17,10 @@ logsource:
   category: process_creation
 detection:
   selection:
-    CommandLine|contains|all: # full command "CommandLine sc.exe create random_service binpath= "cmd.exe /k tscon 2 /dest:rdp-tcp#5""
+    EventID: 
+      - 4688
+      - 1
+    CommandLine|contains|all: # full command "sc.exe create random_service binpath= "cmd.exe /k tscon 2 /dest:rdp-tcp#5""
       - 'tscon '
       - '/dest:rdp-' # can also be UDP (rarely)
   condition: selection

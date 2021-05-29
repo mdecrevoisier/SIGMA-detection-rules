@@ -16,7 +16,6 @@ detection:
   selection_baseline:
     EventID: 1
     Image|endswith: \cmd.exe
-    #ParentImage|endswith: \cmd.exe
 
   selection_process:
     - ParentCommandLine|contains|all: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat ""

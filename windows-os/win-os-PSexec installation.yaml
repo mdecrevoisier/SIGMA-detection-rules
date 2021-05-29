@@ -9,20 +9,20 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  category: process_creation
 detection:
   selection_event:
     EventID: 4688
     Version: 2  # parent process name is available starting Windows 10 or higher
 
   selection_service_execution:
-    ParentProcessName: C:\Windows\System32\services.exe
-    NewProcessName: C:\Windows\PSEXESVC.exe
+    ParentProcessName|endswith: \services.exe # C:\Windows\System32\services.exe
+    NewProcessName|endswith: \PSEXESVC.exe # "C:\Windows\PSEXESVC.exe"
 
-  selection_process_execution:
-    ParentProcessName: C:\Windows\PSEXESVC.exe
+  selection_process_creation:
+    ParentProcessName|endswith: \PSEXESVC.exe # C:\Windows\PSEXESVC.exe
 
-  condition: selection_event and (selection_service_execution or selection_process_execution)
+  condition: selection_event and (selection_service_execution or selection_process_creation)
 falsepositives:
 - Administrator activity
 level: medium

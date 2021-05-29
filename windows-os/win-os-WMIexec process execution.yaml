@@ -15,7 +15,8 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    #ParentProcessName|endswith: \WmiPrvSE.exe
+    Version: 2  # parent process name is available starting Windows 10 or higher
+    ParentProcessName|endswith: \WmiPrvSE.exe
     NewProcessName|endswith: \cmd.exe
     CommandLine|contains|all: # 'cmd.exe /Q /c cd \ 1> \\127.0.0.1\ADMIN$\__1619090610.0007844 2>&1'
       - cmd.exe

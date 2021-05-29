@@ -11,13 +11,12 @@ tags:
 status: experimental
 logsource:
   product: windows
-  service: process_execution
+  category: process_creation
 detection:
   selection_process:
     EventID: 4688
-    #Version: 2  # to reduce False positive only > parent process name is available starting Windows 10 or higher
-    #ParentProcessName: '\winlogon.exe' # to reduce False positive only > parent process name is available starting Windows 10 or higher
-    NewProcessName|endswith: '\cmd.exe' # C:\Windows\System32\cmd.exe
+    Version: 2  # parent process name is available starting Windows 10 or higher
+    ParentProcessName|endswith: '\winlogon.exe'
 
   selection_sysmon:
     EventID: 1

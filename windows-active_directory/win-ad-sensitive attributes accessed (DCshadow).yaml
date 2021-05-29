@@ -1,5 +1,6 @@
 title: Account accessed to attributes related to DCshadow
 description: Detects scenarios where an attacker accessed attributes related to DCshadow attack in order to create a fake domain controller.
+requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1207-Rogue%20domain%20controller
 - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/t1207-creating-rogue-domain-controllers-with-dcshadow

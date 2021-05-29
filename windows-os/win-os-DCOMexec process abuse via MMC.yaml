@@ -17,9 +17,9 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    Version: '2' # Available since Windows 10 and provides ParentProcessName
-    ParentProcessName: C:\Windows\System32\svchost.exe'
-    NewProcessName: 'C:\Windows\System32\mmc.exe'
+    Version: 2  # parent process name is available starting Windows 10 or higher
+    ParentProcessName|endswith: '\svchost.exe' # C:\Windows\System32\svchost.exe'
+    NewProcessName|endswith: '\mmc.exe' #'C:\Windows\System32\mmc.exe'
   condition: selection
 falsepositives:
 - applications using DCOM components remotely

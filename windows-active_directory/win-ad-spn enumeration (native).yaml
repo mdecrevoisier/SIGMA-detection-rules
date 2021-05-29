@@ -13,21 +13,20 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
+  service: process_creation
 detection:
   selection1_process_execution:
     EventID: 4688
-    Channel: 'Security'
     NewProcessName|endswith: '\setspn.exe'
 
   selection2_process_create_sysmon:
     EventID: 1
-    Channel: 'Microsoft-Windows-Sysmon/Operational '
     Image|endswith: '\setspn.exe'
 
   arguments:
-    CommandLine|contains:
-      - '-T'
-      - '-Q'
+    CommandLine|contains: # full command : 'setspn -T my_domain -Q */*'
+      - '-T' # Perform query on the specified domain 
+      - '-Q' # Will execute on each target domain or forest
 
   condition:  (selection1_process_execution or selection2_process_create_sysmon) and arguments
 falsepositives:

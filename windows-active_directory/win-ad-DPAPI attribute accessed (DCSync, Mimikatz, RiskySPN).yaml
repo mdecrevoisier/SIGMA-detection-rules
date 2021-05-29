@@ -1,7 +1,7 @@
 title: Suspicious Active Directory DPAPI attributes accessed (Mimikatz, DCSync, RiskySPN)
 description: Detects scenarios where an attacker attempts to extract sensitive DPAPI information from Active Directory (RiskySPN PowerShell tool, DCSync and Mimikatz may also trigger this rule).
+requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
-- Requires extended rights auditing enabled-https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1555-Credentials%20from%20Password%20Stores
 - https://docs.microsoft.com/en-us/windows/win32/adschema/extended-rights
 - https://github.com/PSGumshoe/PSGumshoe/blob/master/DirectoryService/PrivateFunctions.ps1

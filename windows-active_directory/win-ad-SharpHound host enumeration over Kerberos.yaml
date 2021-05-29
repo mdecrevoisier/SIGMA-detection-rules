@@ -1,4 +1,4 @@
-title: Suspicious Bloodhound host enumeration over Kerberos
+title: SharpHound host enumeration over Kerberos
 description: Detect if a source host is requesting multiple Kerberos Service tickets for different assets in a short period of time.
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769

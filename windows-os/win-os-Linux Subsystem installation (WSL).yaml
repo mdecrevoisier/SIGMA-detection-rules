@@ -11,19 +11,21 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: process_creation
+  category: process_creation
 detection:
+  selection_event:
+      EventID: 4688
+  
   selection_wsl_activation: # dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-    EventID: 4688
     CommandLine|contains|all:
       - dism.exe
       - /enable-feature
       - Microsoft-Windows-Subsystem-Linux
+  
   selection_wsl_configuration: # C:\WINDOWS\system32\wsl.exe" --set-default-version 2
-    EventID: 4688
     NewProcessName|endswith: '\wsl.exe'
     CommandLine|contains: '--set-default-version 2'
-  condition: selection_wsl_activation or selection_wsl_configuration
+  condition: selection_event and (selection_wsl_activation or selection_wsl_configuration)
 falsepositives:
 - Unknown
 level: medium

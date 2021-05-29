@@ -22,7 +22,7 @@ detection:
     ProcessName: 'C:\Windows\System32\services.exe'
     ObjectName: PSEXESVC
 
-  condition: 1 of selection*
+  condition: selection_service_install or selection_service_privilege
 falsepositives:
 - Administrator activity
 level: medium

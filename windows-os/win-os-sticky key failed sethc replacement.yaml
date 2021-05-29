@@ -11,7 +11,7 @@ tags:
 status: experimental
 logsource:
   product: windows
-  service: process_execution
+  service: security
 detection:
   selection: # No ID 4688 will be triggered if access is denied
     EventID: 4656
