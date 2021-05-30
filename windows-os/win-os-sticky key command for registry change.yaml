@@ -15,11 +15,15 @@ logsource:
 detection:
   selection_process:
     EventID: 4688
-    NewProcessName|endswith: '\reg.exe' # 'C:\Windows\System32\reg.exe'
+    NewProcessName|endswith: 
+        - '\reg.exe' # 'C:\Windows\System32\reg.exe'
+        - '\regsvr32.exe'
 
   selection_sysmon_process:
     EventID: 1
-    Image|endswith: '\reg.exe' # 'C:\Windows\System32\reg.exe'
+    Image|endswith:
+        - '\reg.exe' # 'C:\Windows\System32\reg.exe'
+        - '\regsvr32.exe'
 
   selection_command:
     CommandLine|contains|all: # Full command: REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /t REG_SZ /v Debugger /d "C:\windows\system32\cmd.exe" /f

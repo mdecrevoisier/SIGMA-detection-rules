@@ -1,0 +1,30 @@
+title: OpenSSH server firewall configuration on Windows (firewall)
+description: Detects scenarios where an attacker configure the Windows firewall to allow incoming connections to perform stealthy lateral movement.
+references:
+ - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
+ - https://winaero.com/enable-openssh-server-windows-10/
+ - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+ - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+tags:
+- attack.defense-evasion
+- attack.t1562.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: firewall 
+detection:
+  selection_event:
+    Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
+    EventID: 2004   
+
+  selection_process: # New firewall rule creation (process focus)
+    ApplicationPath: C:\Windows\system32\OpenSSH\sshd.exe
+
+  selection_port: # New firewall rule creation (port focus)
+    LocalPorts: 22
+
+  condition: selection_event and (selection_process or selection_port)
+falsepositives:
+- Unknown
+level: high

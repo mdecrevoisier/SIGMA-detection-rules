@@ -1,0 +1,42 @@
+title: OpenSSH server firewall configuration on Windows (PowerShell)
+description: Detects scenarios where an attacker configure the Windows firewall to allow incoming connections to perform stealthy lateral movement.
+references:
+ - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
+ - https://winaero.com/enable-openssh-server-windows-10/
+ - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+ - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+tags:
+- attack.defense-evasion
+- attack.t1562.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: powershell
+detection:
+ 
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - New-NetFirewallRule
+      - LocalPort 22
+      - Action Allow
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - New-NetFirewallRule
+      - LocalPort 22
+      - Action Allow
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - New-NetFirewallRule
+      - LocalPort 22
+      - Action Allow
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high

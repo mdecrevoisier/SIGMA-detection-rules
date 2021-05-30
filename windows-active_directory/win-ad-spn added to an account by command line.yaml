@@ -1,0 +1,31 @@
+title: SPN added to an account by command line
+description: Detects scenarios where an attacker adds a SPN to an account in order to perform different type of abuse (Kerberoast, delegation abuse, ...)
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://petri.com/how-to-use-setspn-to-set-active-directory-service-principal-names-2
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: process_creation
+detection:
+  selection1_process_execution:
+    EventID: 4688
+    NewProcessName|endswith: '\setspn.exe'
+
+  selection2_process_create_sysmon:
+    EventID: 1
+    Image|endswith: '\setspn.exe'
+
+  arguments:
+    CommandLine|contains|all: # SetSPN -a MSSQLSvc/srv01.demo.lan demo\srv01
+      - setspn
+      - '-a '
+
+  condition:  (selection1_process_execution or selection2_process_create_sysmon) and arguments
+falsepositives:
+- Administrators adding SPN
+level: high

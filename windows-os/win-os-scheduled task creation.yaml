@@ -27,7 +27,6 @@ detection:
     CommandLine|contains|all: # See schedule persistent rule with SYSTEM privileges
       - '/ru SYSTEM' # Run with SYSTEM privileges
       - /tr # Program, path or command to run
-      - /sc # Run task every X minutes
   condition: selection_execution and not filter
 falsepositives:
 - Administrator

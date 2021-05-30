@@ -17,7 +17,7 @@ detection:
   selection:
     EventID: 13 # registry set (event ID 7045/4697 are NOT registered in latest versions)
     Image|endswith: \services.exe
-    TargetObject|contains: \CurrentControlSet\Services\BTOBTO\ # Service name can be changes in the application name
+    TargetObject|contains: \CurrentControlSet\Services\BTOBTO\ # Service name can be changed in the application name
   condition: selection
 falsepositives:
 - None

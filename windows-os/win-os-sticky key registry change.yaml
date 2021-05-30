@@ -14,7 +14,9 @@ logsource:
   service: sysmon
 detection:
   selection_image:
-    Image: C:\Windows\system32\reg.exe
+    Image|endswith:
+        - '\reg.exe' # 'C:\Windows\System32\reg.exe'
+        - '\regsvr32.exe'
 
   selection_registry_set:
     EventID: 13 # Registry value set
