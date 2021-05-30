@@ -19,7 +19,7 @@ detection:
     EventID: 2004   
 
   selection_process: # New firewall rule creation (process focus)
-    ApplicationPath: C:\Windows\system32\OpenSSH\sshd.exe
+    ApplicationPath|endswith: '\sshd.exe' # full path 'C:\Windows\system32\OpenSSH\sshd.exe'
 
   selection_port: # New firewall rule creation (port focus)
     LocalPorts: 22
