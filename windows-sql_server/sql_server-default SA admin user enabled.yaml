@@ -14,7 +14,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: application
+  category: application
 detection:
   selection:
     EventID: 33205
