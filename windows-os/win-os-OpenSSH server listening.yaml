@@ -20,7 +20,6 @@ detection:
     Channel: 'OpenSSH/Operational'
     process: sshd
     payload|startswith: 'Server listening on'
-
   condition: selection
 falsepositives:
 - legitimate administrator activation

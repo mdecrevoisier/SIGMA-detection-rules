@@ -17,12 +17,12 @@ detection:
       - 4663
     ObjectType: 'Process'
     ObjectName|endswith: '\lsass.exe'
-  filter_1:
+  filter_user:
     SubjectUserName|endswith: '$'
-  filter_2:
+  filter_process:
     ProcessName:
       - '*\\AppData\Local\Google\Chrome\User Data\SwReporter\\*\software_reporter_tool.exe' # Google Chrome Security tool
-  condition: selection and not (filter_1 or filter_2)
+  condition: selection and not (filter_user or filter_process)
 falsepositives:
 - Antivirus, security products, browsers
 level: high

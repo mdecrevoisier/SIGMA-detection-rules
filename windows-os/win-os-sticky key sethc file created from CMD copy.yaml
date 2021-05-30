@@ -11,6 +11,7 @@ tags:
 status: experimental
 logsource:
   product: windows
+  service: sysmon
 detection:
   selection: # command: 'copy /y C:\windows\system32\cmd.exe C:\windows\system32\sethc.exe'
     EventID: 11 # File created

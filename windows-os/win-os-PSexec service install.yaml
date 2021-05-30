@@ -9,6 +9,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
+  service: security
 detection:
   selection_service_install:
     EventID:
@@ -19,7 +20,7 @@ detection:
   selection_service_privilege:
     EventID: 4674
     ObjectServer: 'SC Manager'
-    ProcessName: 'C:\Windows\System32\services.exe'
+    ProcessName|endswith: '\services.exe' # full path 'C:\Windows\System32\services.exe'
     ObjectName: PSEXESVC
 
   condition: selection_service_install or selection_service_privilege

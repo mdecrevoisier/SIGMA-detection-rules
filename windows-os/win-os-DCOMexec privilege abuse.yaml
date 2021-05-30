@@ -17,7 +17,7 @@ logsource:
 detection:
   selection:
     EventID: 4674
-    ProcessName: 'C:\Windows\System32\mmc.exe'
+    ProcessName|endswith: '\mmc.exe' # Full process: 'C:\Windows\System32\mmc.exe'
     ObjectName|startswith:
       - '\BaseNamedObjects\HWNDInterface:'
       - '\REGISTRY\MACHINE\SYSTEM\ControlSet001\Services\WinSock2\Parameters'
