@@ -1,5 +1,5 @@
-title: OpenSSH server activation on Windows
-description: Detects scenarios where an attacker enables the OpenSSH server on Windows to perform stealthy lateral movement.
+title: OpenSSH server listening on socket
+description: Detects scenarios where an attacker enables the OpenSSH server and server starts to listening on SSH socket.
 references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
  - https://winaero.com/enable-openssh-server-windows-10/
@@ -13,30 +13,15 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: powershell
+  service: sshd
 detection:
-  selection_powershell_native:
-    EventID: 800
-    EventData|contains|all:
-      - Set-Service
-      - StartupType 'Automatic'
-      - Name sshd
+  selection:
+    EventID: 4
+    Channel: 'OpenSSH/Operational'
+    process: sshd
+    payload|startswith: 'Server listening on'
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Set-Service
-      - StartupType 'Automatic'
-      - Name sshd
-
-  selection_powershell_block:
-    EventID: 4104
-    ScriptBlockText|contains|all:
-      - Set-Service
-      - StartupType 'Automatic'
-      - Name sshd
-
-  condition: 1 of selection*
+  condition: selection
 falsepositives:
 - legitimate administrator activation
 level: medium

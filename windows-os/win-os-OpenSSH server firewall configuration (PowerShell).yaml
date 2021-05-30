@@ -12,7 +12,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category: powershell
+  service: powershell
 detection:
  
   selection_powershell_native:

@@ -14,23 +14,20 @@ logsource:
   product: windows
   service: powershell
 detection:
-  selection1_powershell_native:
+  selection_powershell_native:
     EventID: 800
-    Channel: 'Windows PowerShell'
     EventData|contains|all:
       - Add-WindowsCapability
       - OpenSSH.Server
 
-  selection2_powershell_modern:
+  selection_powershell_modern:
     EventID: 4103
-    Channel: 'Microsoft-Windows-PowerShell/Operational'
     Payload|contains|all:
       - Add-WindowsCapability
       - OpenSSH.Server
 
-  selection3_powershell_block:
+  selection_powershell_block:
     EventID: 4104
-    Channel: 'Microsoft-Windows-PowerShell/Operational'
     ScriptBlockText|contains|all:
       - Add-WindowsCapability
       - OpenSSH.Server
