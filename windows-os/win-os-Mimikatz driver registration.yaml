@@ -1,4 +1,4 @@
-title: Mimikatz drivers for LSA protected mode bypass
+title: Mimikatz driver registration
 description: Detects scenarios where an attacker installs the Mimikatz driver to bypass the LSA protected mode (RunAsPPL) and dump LSASS process content.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -11,18 +11,12 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
+  category: registry_event
 detection:
-  selection_service:
-    EventID:
-      - 4697 # SECURITY logs: new service
-      - 7045 # SYSTEM logs: new service
-    ServiceName|contains:
-      - mimidrv
-      - mimikatz
-  selection_registry:
+  selection:
     EventID: 13 # SYSMON registry value set
     TargetObject|startswith: 'HKLM\System\CurrentControlSet\Services\mimidrv\'
-  condition: selection_service or selection_registry
+  condition: selection
 falsepositives:
 - None
 level: high

@@ -16,16 +16,20 @@ author: Florian Roth (shortly adapted my mdecrevoisier)
 status: experimental
 logsource:
   product: windows
-  service: sysmon
+  category: process_creation
 detection:
-  dns_process:
+
+  selection_process:
+    EventID: 4688
+    NewProcessName|endswith: '\dnscmd.exe'
+
+  selection_sysmon_process:
     EventID: 1
-    Image|endswith: dnscmd.exe # Full path 'C:\Windows\System32\dnscmd.exe'
+    Image|endswith: '\dnscmd.exe' # Full path 'C:\Windows\System32\dnscmd.exe'
+    
+  selection_command:   
     CommandLine|contains: 'dnscmd.exe /config /serverlevelplugindll' # full command 'dnscmd.exe /config /serverlevelplugindll "C:\mimilib.dll"'
-  dns_registry:
-    EventID: 13
-    TargetObject|endswith: '\services\DNS\Parameters\ServerLevelPluginDll'
-  condition: dns_process or dns_registry
+  condition: (selection_process or selection_sysmon) and selection_command
 falsepositives:
 - None
 level: critical
