@@ -1,0 +1,44 @@
+title: Interactive PipeShell over named pipe
+description: Detects scenarios where an attacker establishes "PipeShell" connection(s) between a server and client(s) in order to move laterally or exfiltrate data. The server side will trigger "ServerStream" IOCs meanwhile the client side will trigger "ClientStream" IOCs. The rule works based on this condition, where at least 2 hosts need to trigger one of the condition.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://github.com/threatexpress/invoke-pipeshell
+- https://github.com/p3nt4/Invoke-Piper/blob/master/Invoke-Piper.psm1
+- https://sudonull.com/post/25207-Using-Pipes-for-Pivoting
+- https://codewhitesec.blogspot.com/2020/01/cve-2019-19470-rumble-in-pipe.html
+- https://decoder.cloud/2019/03/06/windows-named-pipes-impersonation/
+- https://www.powershellgallery.com/packages/PSNamedPipe/1.0.0.19/Content/Public%5CNew-PSNamedPipeServer.ps1
+tags:
+- attack.exfiltration
+- attack.execution
+- attack.t1059.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  SERVER_powershell_native:
+    EventID: 800
+    EventData|contains: 'System.IO.Pipes.NamedPipeServerStream'
+  SERVER_powershell_modern:
+    EventID: 4103
+    Payload|contains: 'System.IO.Pipes.NamedPipeServerStream'
+  SERVER_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains: 'System.IO.Pipes.NamedPipeServerStream'
+
+  CLIENT_powershell_native:
+    EventID: 800
+    EventData|contains: 'System.IO.Pipes.NamedPipeClientStream'
+  CLIENT_spowershell_modern:
+    EventID: 4103
+    Payload|contains: 'System.IO.Pipes.NamedPipeClientStream'
+  CLIENT_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains: 'System.IO.Pipes.NamedPipeClientStream'
+
+  condition: (1 of SERVER*) AND (1 of CLIENT*) | count(EventRecordID) by Hostname > 2
+falsepositives:
+- packet manager
+level: medium
