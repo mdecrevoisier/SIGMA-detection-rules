@@ -18,7 +18,7 @@ detection:
     Image|endswith:
       - 'cmd.exe'
       - 'powershell.exe'
-    TargetFilename|endswith: 
+    TargetFilename|endswith:
       - '\sethc.exe' # Full path 'C:\Windows\System32\sethc.exe'
       - '\seth2c.exe' # Full path 'C:\Windows\System32\seth2c.exe'
   condition: selection

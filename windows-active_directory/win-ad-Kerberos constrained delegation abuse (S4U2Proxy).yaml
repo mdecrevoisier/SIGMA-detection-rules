@@ -18,7 +18,7 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 4769 
+    EventID: 4769
     TransmittedServices|contains: '@'
   filter:
     - ServiceSid|endswith: '-502' # Krbtgt account SID is excluded as it may be related to "Unconstrained Domain Persistence" (see other rule)

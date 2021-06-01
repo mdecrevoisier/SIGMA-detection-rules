@@ -25,7 +25,7 @@ detection:
 
   arguments:
     CommandLine|contains: # full command : 'setspn -T my_domain -Q */*'
-      - '-T' # Perform query on the specified domain 
+      - '-T' # Perform query on the specified domain
       - '-Q' # Will execute on each target domain or forest
 
   condition:  (selection1_process_execution or selection2_process_create_sysmon) and arguments

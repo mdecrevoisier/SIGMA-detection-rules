@@ -17,5 +17,5 @@ detection:
   condition: selection | count(ThreatName) by Computer > 5
   timeframe: 30m
 falsepositives:
-- EICAR test file 
+- EICAR test file
 level: high

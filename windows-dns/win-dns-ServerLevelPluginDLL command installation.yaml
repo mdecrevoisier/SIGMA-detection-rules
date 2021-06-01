@@ -26,8 +26,8 @@ detection:
   selection_sysmon_process:
     EventID: 1
     Image|endswith: '\dnscmd.exe' # Full path 'C:\Windows\System32\dnscmd.exe'
-    
-  selection_command:   
+
+  selection_command:
     CommandLine|contains: 'dnscmd.exe /config /serverlevelplugindll' # full command 'dnscmd.exe /config /serverlevelplugindll "C:\mimilib.dll"'
   condition: (selection_process or selection_sysmon) and selection_command
 falsepositives:

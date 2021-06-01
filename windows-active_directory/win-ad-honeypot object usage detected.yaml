@@ -15,7 +15,7 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 
+    EventID:
       - 4624
       - 4625
       - 4768

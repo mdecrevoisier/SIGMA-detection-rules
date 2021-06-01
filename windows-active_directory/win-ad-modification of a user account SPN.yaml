@@ -1,11 +1,11 @@
 title: Suspicious modification of a user account SPN to enable Kerberoast attack
 description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a user account in order to enable Kerberoast attack and crack its password.
-requirements: auditing SACL must be placed on the AD root container using the Active Directory console.
+requirements: auditing SACL ("Write all properties") must be placed on the AD root container using the Active Directory console.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-5136
 - https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet#force-set-spn
-- In order to audit changes on AD objects, it is required to add a SACL entry for "Write all properties". More info: https://docs.microsoft.com/en-us/troubleshoot/windows-server/windows-security/use-audit-active-directory-objects-track-events
+- https://docs.microsoft.com/en-us/troubleshoot/windows-server/windows-security/use-audit-active-directory-objects-track-events
 tags:
 - attack.persistence
 - attack.t1098

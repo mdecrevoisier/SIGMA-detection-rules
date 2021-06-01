@@ -8,7 +8,7 @@ references:
 - https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
 tags:
 - attack.lateral-movement
-- attack.t1021.003   
+- attack.t1021.003
 author: mdecrevoisier
 status: experimental
 logsource:

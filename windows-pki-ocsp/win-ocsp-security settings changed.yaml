@@ -16,5 +16,5 @@ detection:
     EventID: 5124
   condition: selection
 falsepositives:
-- Rare PKI/ADCS/OSCP admin changes 
+- Rare PKI/ADCS/OSCP admin changes
 level: high

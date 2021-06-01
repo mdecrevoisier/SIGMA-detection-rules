@@ -15,7 +15,7 @@ logsource:
 detection:
   selection_process:
     EventID: 4688
-    NewProcessName|endswith: 
+    NewProcessName|endswith:
         - '\reg.exe' # 'C:\Windows\System32\reg.exe'
         - '\regsvr32.exe'
 

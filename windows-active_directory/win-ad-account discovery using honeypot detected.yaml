@@ -8,7 +8,7 @@ references:
 - https://jblog.javelin-networks.com/blog/the-honeypot-buster/
 tags:
 - attack.discovery
-- attack.t1087 
+- attack.t1087
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -16,7 +16,7 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 4662 
+    EventID: 4662
     ObjectName: '%honeypot_guid_list%' # GUID of pre-configured honeypot object(s). Eg: '%{259162f1-58e4-4ee9-9b9c-2baf2a03d376}'
   condition: selection
 falsepositives:

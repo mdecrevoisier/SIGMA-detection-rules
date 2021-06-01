@@ -13,7 +13,7 @@ references:
 - https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn/b8b414d9-f1cd-4191-bb6b-87d09ab2fd83
 tags:
 - attack.credential-access
-- attack.t1557.001 
+- attack.t1557.001
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -23,11 +23,11 @@ detection:
   selection:
     EventID: 5145
     ShareName: '\\*\IPC$'
-    RelativeTargetName: spoolss 
+    RelativeTargetName: spoolss
     AccessMask:
       - 0x3 # printerbug.py, dementor.py
       - 0x12019F # Get-SpoolStatus.ps1
   condition: selection | count(Hostname) by IpAddress > 20
 falsepositives:
-- vulnerability scanners 
+- vulnerability scanners
 level: high

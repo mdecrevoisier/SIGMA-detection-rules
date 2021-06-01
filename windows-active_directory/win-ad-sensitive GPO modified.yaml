@@ -23,7 +23,7 @@ detection:
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
   filter:
-    AttributeValue: 0 # First time GPO creation 
+    AttributeValue: 0 # First time GPO creation
   condition: selection and not filter
 falsepositives:
 - Group policy administrator activity / AGPM activity

@@ -14,7 +14,7 @@ logsource:
   category: process_creation
 detection:
   selection:
-    NewProcessName|endswith: '\PktMon.exe' 
+    NewProcessName|endswith: '\PktMon.exe'
     CommandLine|contains|all: # full command : 'pktmon filter add -p 80'
       - PktMon
       - filter

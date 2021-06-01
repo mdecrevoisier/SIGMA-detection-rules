@@ -21,11 +21,11 @@ detection:
     EventID: 4768
     Status: '0x0' # Success
     TicketOptions: '0x40800010'
-    ServiceName: krbtgt 
+    ServiceName: krbtgt
     TicketEncryptionType: '0x17' # RC4-HMAC
     PreAuthType: '0'
     # TargetDomainName|re: in lowercase
   condition: selection
 falsepositives:
-- Account configured to not require pre-authentication 
+- Account configured to not require pre-authentication
 level: high

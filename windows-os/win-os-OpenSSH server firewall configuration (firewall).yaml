@@ -12,11 +12,11 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: firewall 
+  service: firewall
 detection:
   selection_event:
     Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
-    EventID: 2004   
+    EventID: 2004
 
   selection_process: # New firewall rule creation (process focus)
     ApplicationPath|endswith: '\sshd.exe' # full path 'C:\Windows\system32\OpenSSH\sshd.exe'

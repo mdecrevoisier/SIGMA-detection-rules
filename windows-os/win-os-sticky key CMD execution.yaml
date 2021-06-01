@@ -21,7 +21,7 @@ detection:
   selection_sysmon:
     EventID: 1
     ParentImage|endswith: '\winlogon.exe'
-    
+
   selection_command_line:
     CommandLine|contains:
       - 'cmd.exe sethc.exe '
