@@ -1,12 +1,10 @@
-title: Fortinet APT group abuse on Windows
+title: Fortinet APT group abuse on Windows (task)
 description: Detects scenarios where APT actors exploits Fortinet vulnerabilities to gain access into Windows infrastructure.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/EVTX_full_APT_attack_steps
 - https://www.aha.org/system/files/media/file/2021/05/fbi-flash-tlp-white-apt-actors-exploiting-fortinet-vulnerabilities-to-gain-access-for-malicious-activity-5-27-21.pdf
 - https://www.securityweek.com/fbi-shares-iocs-apt-attacks-exploiting-fortinet-vulnerabilities
 tags:
-- attack.persistence
-- attack.t1136
 - attack.execution
 - attack.t1053.005
 author: mdecrevoisier
@@ -15,15 +13,10 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_account:
-    EventID: 4720
-    TargetUserName:
-      - elie
-      - WADGUtilityAccount
-  selection_task:
+  selection:
     EventID: 4698
     TaskName|endswith: '\SynchronizeTimeZone'
-  condition: selection_account or selection_task
+  condition: selection
 falsepositives:
 - None
 level: high
