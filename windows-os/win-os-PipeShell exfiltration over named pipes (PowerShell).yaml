@@ -1,7 +1,7 @@
-title: Interactive PipeShell over named pipe
+title: PipeShell exfiltration over named pipes
 description: Detects scenarios where an attacker establishes "PipeShell" connection(s) between a server and client(s) in order to move laterally or exfiltrate data. The server side will trigger "ServerStream" IOCs meanwhile the client side will trigger "ClientStream" IOCs. The rule works based on this condition, where at least 2 hosts need to trigger one of the condition.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
 - https://github.com/threatexpress/invoke-pipeshell
 - https://github.com/p3nt4/Invoke-Piper/blob/master/Invoke-Piper.psm1
 - https://sudonull.com/post/25207-Using-Pipes-for-Pivoting

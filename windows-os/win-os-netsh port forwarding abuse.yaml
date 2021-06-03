@@ -1,0 +1,38 @@
+title: Netsh port forwarding abuse via proxy
+description: Detects scenarios where an attacker configure port forwarding on a host to redirect traffic to a C&C target.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0011-Command%20and%20Control/T1090-Proxy
+- https://www.fireeye.com/blog/hreat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html
+- https://embracethered.com/blog/posts/2020/windows-port-forward/
+- https://davidhamann.de/2019/06/20/setting-up-portproxy-netsh/
+- https://parsiya.net/blog/2016-06-07-windows-netsh-interface-portproxy/
+tags:
+- attack.command-and-control
+- attack.t1090
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: process_creation
+detection:
+  selection_event:
+    EventID: 4688
+    NewProcessName|endswith: '\netsh.exe' # Full path "C:\Windows\system32\netsh.exe"
+
+  selection_command: # full command 'netsh interface portproxy add v4tov4 listenport=8001 listenaddress=0.0.0.0 connectport=3389 connectaddress=1.1.1.1'
+    Commandline|contains:
+      - 'netsh interface portproxy add' # setup forwarding
+      - 'netsh interface portproxy reset' # reset configuration
+  
+  selection_obfuscated: # full command: 'netsh i p a v l=8001 listena=0.0.0.0 connectp=3389 c=1.1.1.1'
+    Commandline|contains|all:
+      - netsh
+      - ' i ' # interface
+      - ' p ' # portproxy
+      - ' a ' # add
+  condition: selection_event and (selection_command or selection_obfuscated)
+falsepositives:
+- Administrator activity 
+level: high
+
+

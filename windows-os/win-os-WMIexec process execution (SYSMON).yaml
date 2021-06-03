@@ -17,21 +17,25 @@ detection:
     EventID: 1
     Image|endswith: \cmd.exe
 
-  selection_process:
-    - ParentCommandLine|contains|all: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat ""
+  selection_parent: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat"
+    ParentCommandLine|contains|all: 
       - cmd.exe
-      - /c
       - /Q
-      - \\127.0.0.1\C$
-      #- /K # Used in FireEye Impacket version instead of /c
+      - \\127.0.0.1\
+    ParentCommandLine|contains:
+      - /k # Used in FireEye Impacket version instead of /c
+      - /c
 
-    - CommandLine|contains|all:
+  selection_process: # full command: "C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat"
+    CommandLine|contains|all:
       - cmd.exe
-      - /c
       - /Q
-      #- /K # Used in FireEye Impacket version instead of /c
 
-  condition: selection_baseline and selection_process
+    CommandLine|contains:
+      - /k # Used in FireEye Impacket version instead of /c
+      - /c
+
+  condition: selection_baseline and (selection_parent or selection_process)
 falsepositives:
 - None
 level: high
