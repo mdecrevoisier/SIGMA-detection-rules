@@ -1,11 +1,11 @@
-title: Encoded PowerShell payload triggered via process execution
-description: Detects scenarios where an attacker deployed an encoded PowerShell payload via a process execution.
+title: Encoded PowerShell payload deployed via process execution
+description: Detects scenarios where an attacker deployed an encoded PowerShell payload via a process execution. Some parameters are commented in case you would like to reduce false positives or make the rule more precise.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
 tags:
 - attack.execution
-- attack.t1059.001
+- attack.t1059.003 
 - attack.defense-evasion
 - attack.t1564.003
 author: mdecrevoisier
@@ -21,12 +21,15 @@ detection:
       - \cmd.exe
       - \pwsh.exe
     CommandLine|contains|all:
-      - powershell.exe
-      - FromBase64String
-      - hidden
-      - '-nop'
-      - '-noni'
-      - 'System.IO.Compression.CompressionMode'
+      - 'powershell.exe'
+      - '[System.Convert]::'
+      - 'FromBase64String'
+      # - hidden
+      # - '-nop'
+      # - '-noni'
+      # - 'System.IO.StreamReader'
+      # - 'System.IO.Compression.'
+      # - 'System.Diagnostics.Process'
   condition: selection
 falsepositives:
   - none

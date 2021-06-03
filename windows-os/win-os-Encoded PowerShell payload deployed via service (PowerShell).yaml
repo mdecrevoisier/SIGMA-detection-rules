@@ -1,0 +1,54 @@
+title: Encoded PowerShell payload deployed (PowerShell)
+description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
+tags:
+- attack.execution
+- attack.t1059.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - '[System.Convert]::'
+      - 'FromBase64String'
+       - hidden
+       - '-nop'
+       - '-noni'
+       - 'System.IO.StreamReader'
+       - 'System.IO.Compression.'
+       - 'System.Diagnostics.Process'
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - '[System.Convert]::'
+      - 'FromBase64String'
+       - hidden
+       - '-nop'
+       - '-noni'
+       - 'System.IO.StreamReader'
+       - 'System.IO.Compression.'
+       - 'System.Diagnostics.Process'
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - '[System.Convert]::'
+      - 'FromBase64String'
+       - hidden
+       - '-nop'
+       - '-noni'
+       - 'System.IO.StreamReader'
+       - 'System.IO.Compression.'
+       - 'System.Diagnostics.Process'
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high

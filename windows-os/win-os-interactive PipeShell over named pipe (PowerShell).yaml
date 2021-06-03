@@ -39,6 +39,7 @@ detection:
     ScriptBlockText|contains: 'System.IO.Pipes.NamedPipeClientStream'
 
   condition: (1 of SERVER*) AND (1 of CLIENT*) | count(EventRecordID) by Hostname > 2
+  timeframe: 15m
 falsepositives:
 - packet manager
 level: medium
