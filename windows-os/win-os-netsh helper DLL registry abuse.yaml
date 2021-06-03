@@ -7,6 +7,7 @@ references:
 - https://github.com/outflanknl/NetshHelperBeacon
 - https://www.ired.team/offensive-security/persistence/t1128-netsh-helper-dll
 - https://lolbas-project.github.io/lolbas/Binaries/Netsh/
+- https://pentestlab.blog/2019/10/29/persistence-netsh-helper-dll/
 tags:
 - attack.persistence
 - attack.t1546.007

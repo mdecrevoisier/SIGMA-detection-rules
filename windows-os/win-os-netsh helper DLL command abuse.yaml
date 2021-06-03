@@ -7,6 +7,7 @@ references:
 - https://github.com/outflanknl/NetshHelperBeacon
 - https://www.ired.team/offensive-security/persistence/t1128-netsh-helper-dll
 - https://lolbas-project.github.io/lolbas/Binaries/Netsh/
+- https://pentestlab.blog/2019/10/29/persistence-netsh-helper-dll/
 tags:
 - attack.persistence
 - attack.t1546.007
@@ -16,19 +17,14 @@ logsource:
   product: windows
   service: process_creation
 detection:
-  selection_event:
+  selection:
     EventID: 4688
     NewProcessName|endswith: '\netsh.exe' # Full path "C:\Windows\system32\netsh.exe"
-
-  selection_command:
-    Commandline|contains: 'netsh add helper'  # full command 'netsh add helper mimikatz.exe'
-  
-  selection_obfuscated:
-    Commandline|contains|all:
+    Commandline|contains|all: # full command 'netsh add helper virus.dll'
       - netsh
-      - ' a ' # add
-      - ' p ' # helper
-  condition: selection_event and (selection_command or selection_obfuscated)
+      - add
+      - helper
+  condition: selection
 falsepositives:
 - Administrator activity 
 level: high
