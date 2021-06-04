@@ -1,0 +1,37 @@
+title: Exchange transport agent installation artifacts (PowerShell)
+description: Detects scenarios where an attacker attempts to load an artifact in the Exchange transport agent.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505-Server%20Software%20Component
+- https://speakerdeck.com/heirhabarov/hunting-for-persistence-via-microsoft-exchange-server-or-outlook
+- https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf
+tags:
+- attack.persistence
+- attack.t1505.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains:
+      - Enable-TransportAgent
+      - Install-TransportAgent 
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains:
+      - Enable-TransportAgent
+      - Install-TransportAgent 
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains:
+      - Enable-TransportAgent
+      - Install-TransportAgent 
+
+  condition: 1 of selection*
+falsepositives:
+- rare administrator change 
+level: high
