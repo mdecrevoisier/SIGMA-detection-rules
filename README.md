@@ -10,14 +10,15 @@ The SIGMA rules can be used in different ways together with your SIEM:
 * Using the SOC Prime free Kibana plugin: https://github.com/socprime/SigmaUI
 
 ## Microsoft products used:
-* Windows 7 and higher
-* Windows Server 2008 R2 and higher
+* Windows 10
+* Windows Server 2021 R2 and higher
 * Active Directory Domain Services (ADDS)
 * Active Directory Certification Services (ADCS / PKI) with online responder (OCSP)
 * SQL Server 2014
 * Windows Defender
-* Office Communication Server (OCS) / Lync / Skype for Business
 * SYSMON v11 and higher
+* Exchange 2016
+* Internet Information Services (IIS web server) -- *planned*
 
 ## SIGMA rules content
 
@@ -50,6 +51,7 @@ TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings c
 TA0003-Persistence | T1098.xxx-Account manipulation | Kerberos account password reset | 4723/4724
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to a built-in Exchange security group | 4756
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to DNSadmin group for DLL abuse | 4732
+TA0003-Persistence | T1098.xxx-Account manipulation | New admin (or likely) created by a non administrative account | 4720
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: Member had new privileges added to a database  | 33205
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: Member had new privileges added to an instance | 33205
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: new member added to a database role | 33205
@@ -71,9 +73,14 @@ TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL lateral movement wit
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server xp_cmdshell procedure activated | 18457
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server: sqlcmd & ossql utilities abuse | 4688
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server: started in single mode for password recovery | 4688
+TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent injection via configuration file | 11
+TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts (PowerShell) | 800/4103/4104
+TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts | 1/6
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Encoded PowerShell payload deployed via service installation | 4697/7045
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected (mimidrv.sys) | 4697/7045
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045/4697
+TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse | 4688
+TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL registry abuse | 12/13
 TA0003-Persistence | T1546-Event Triggered Execution | AdminSDHolder container permissions modified | 5136
 TA0003-Persistence | T1546-Event Triggered Execution | localizationDisplayId attribute abuse for backdoor introduction | 5136
 TA0003-Persistence | T1574.002-DLL Side-Loading | DNS DLL "serverlevelplugindll" command execution (+registry set) | 1/13
@@ -90,6 +97,7 @@ TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key IFEO command for registry change | 4688
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key IFEO registry changed | 12/13
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key sethc command for replacement by CMD | 4688
+TA0004-Privilege Escalation | T1547.010-Port Monitors  | Print spooler privilege escalation via printer added (CVE-2020-1048) | 800/4103/4104
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object deleted | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object disabled | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit specifications deleted | 33205
@@ -104,6 +112,9 @@ TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification |
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | OCSP security settings changed | 5124(OCSP)
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Permissions changed on a GPO | 5136
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Sensitive GUID related to "Replicate directory changes" detected  | 4662
+TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall  | Firewall deactivation (cmd) | 4688
+TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall  | Firewall deactivation (firewall) | 2003/4950
+TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall  | Firewall deactivation (PowerShell) | 800/4103/4104
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | Firewall rule created by a suspicious command (netsh.exe, wmiprvse.exe) | 2004
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (command) | 4688/1
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (firewall) | 2004
@@ -150,4 +161,5 @@ TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec process abuse via MMC | 4688
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH native server feature installation | 800/4103/4104
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows activation/configuration detected | 800/4103/4104
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47**
-TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCOn abuse command | 4688
+TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 4688
+TA0011-Command and control | T1090-Proxy | Netsh port forwarding abuse via proxy | 4688
