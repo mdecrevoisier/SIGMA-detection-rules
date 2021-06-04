@@ -13,21 +13,15 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_any_server:
+  selection:
     EventID: 5136
-    SubjectUserName|endswith: '$'
     AttributeLDAPDisplayName: ntSecurityDescriptor
     OperationType: '%%14674' # Value added
-
-  selection_exchange_server:
-    EventID: 5136
     SubjectUserName:  # List of Exchange servers
       - srvexchange01$
       - srvexchange02$
       - srvexchange03$
-    AttributeLDAPDisplayName: ntSecurityDescriptor
-    OperationType: '%%14674' # Value added
-  condition: selection_any_server or selection_exchange_server
+  condition: selection
 falsepositives:
 - Unknown
 level: high
