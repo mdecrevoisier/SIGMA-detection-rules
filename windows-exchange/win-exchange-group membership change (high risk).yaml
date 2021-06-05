@@ -1,4 +1,4 @@
-title: New member added to a sensitive Exchange administration group
+title: New member added to an Exchange administration group (high risk)
 description: Detects scenarios where a new member is added to a sensitive group related to Exchange server
 references:
 - https://msexchangeguru.com/2015/12/18/rbac-2016/

@@ -18,7 +18,7 @@ detection:
     EventID: 11
     TargetFilename|endswith: '\TransportRoles\Shared\agents.config'
   filter:
-    Image: '\ExchangeSetup\ExSetupUI.exe'
+    Image: '\ExchangeSetup\ExSetupUI.exe' # Exchange installer / updater
   condition: selection and not filter
 falsepositives:
 - rare administrator change 

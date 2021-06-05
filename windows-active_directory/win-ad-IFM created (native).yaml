@@ -1,0 +1,25 @@
+title: IFM detected - ESENT (installation from media)
+description: Detects scenarios where an attacker attemps to create an IFM for dumping credentials.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping- https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
+- https://adsecurity.org/?p=2398
+- https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
+tags:
+- attack.credential-dumping
+- attack.t1003.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+      - 325 # The database engine created a new database 
+      - 327 # The database engine detached a database 
+    EventData|contains:
+      - '\ntds.dit' # path can be "c:\hacker\Active Directory\ntds.dit"
+  condition: selection
+falsepositives:
+- Administrator creating a IFM image
+level: high

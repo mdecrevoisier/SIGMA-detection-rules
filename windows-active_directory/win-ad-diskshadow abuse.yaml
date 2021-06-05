@@ -1,0 +1,27 @@
+title: Diskshadow command abuse to expose VSS backup
+description: Detects scenarios where an attacker attemps to create an IFM for dumping credentials.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping- https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
+- https://adsecurity.org/?p=2398
+- https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
+- https://bohops.com/2018/03/26/diskshadow-the-return-of-vss-evasion-persistence-and-active-directory-database-extraction/
+tags:
+- attack.credential-dumping
+- attack.t1003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection: # Full command " diskshadow.exe /s shadow.txt"
+    EventID: 4688
+    NewProcessName|endswith: '\diskshadow.exe' # Full path "C:\Windows\System32\diskshadow.exe"
+    CommandLine|contains: diskshadow
+    CommandLine|contains:
+      - '/s'
+      - '-s'
+  condition: selection
+falsepositives:
+- Administrator manipulating VSS backup
+level: high
