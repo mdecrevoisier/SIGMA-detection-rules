@@ -12,14 +12,16 @@ logsource:
   product: windows
   service: firewall
 detection:
-  selection_advanced:
+  selection_advanced: # Avanced ID provides the SID of the Subject User
     Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
     EventID: 2003 # Firewall setting  has changed.
+    SettingType: '1' # Enable Windows Firewall
     SettingValueString: 'No' # Enable Windows Firewall > No
 
   selection_basic:
-    EventID: 4950 # Security channel: MPSSVC Rule-Level Policy Change
-    SettingValue: 'No' # Enable Windows Firewall > No
+    EventID: 4950 # MPSSVC Rule-Level Policy Change
+    SettingType: 'Enable Windows Firewall'
+    SettingValue: 'No' # Enable Windows Firewall
   condition: selection_advanced or selection_basic
 falsepositives:
 - Administrator activity 
