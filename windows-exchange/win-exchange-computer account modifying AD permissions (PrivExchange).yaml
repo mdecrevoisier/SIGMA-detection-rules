@@ -5,7 +5,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
 - https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/ 
 tags:
-- attack.defense-evasion
+- attack.defense_evasion
 - attack.t1222.001
 author: mdecrevoisier
 status: experimental

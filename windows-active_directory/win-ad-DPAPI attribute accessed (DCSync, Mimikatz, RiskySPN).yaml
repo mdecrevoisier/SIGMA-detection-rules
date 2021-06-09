@@ -10,7 +10,7 @@ references:
 - https://www.harmj0y.net/blog/redteaming/operational-guidance-for-offensive-user-dpapi-abuse/
 - https://www.dsinternals.com/en/retrieving-dpapi-backup-keys-from-active-directory/
 tags:
-- attack.credential-access
+- attack.credential_access
 - attack.t1555
 author: mdecrevoisier
 status: experimental

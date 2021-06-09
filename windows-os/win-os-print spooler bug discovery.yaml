@@ -12,7 +12,7 @@ references:
 - https://blog.cymulate.com/compromising-a-domain
 - https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn/b8b414d9-f1cd-4191-bb6b-87d09ab2fd83
 tags:
-- attack.credential-access
+- attack.credential_access
 - attack.t1557.001
 author: mdecrevoisier
 status: experimental

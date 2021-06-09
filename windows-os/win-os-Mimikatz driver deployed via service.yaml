@@ -5,7 +5,7 @@ references:
 - https://posts.specterops.io/mimidrv-in-depth-4d273d19e148?gi=a5033fbeb71d
 - https://gorkemkaradeniz.medium.com/defeating-runasppl-utilizing-vulnerable-drivers-to-read-lsass-with-mimikatz-28f4b50b1de5
 tags:
-- attack.privilege-escalation
+- attack.privilege_escalation
 - attack.t1543.003
 author: mdecrevoisier
 status: experimental

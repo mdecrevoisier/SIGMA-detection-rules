@@ -6,7 +6,7 @@
   - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access
   - https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/
   tags:
-  - attack.credential-access
+  - attack.credential_access
   - attack.t1003.006
   author: mdecrevoisier
   status: experimental

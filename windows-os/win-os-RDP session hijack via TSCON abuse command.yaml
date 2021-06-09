@@ -8,7 +8,7 @@ references:
 - https://doublepulsar.com/rdp-hijacking-how-to-hijack-rds-and-remoteapp-sessions-transparently-to-move-through-an-da2a1e73a5f6
 - https://twitter.com/bohops/status/992232940900962304
 tags:
-- attack.lateral-movement
+- attack.lateral_movement
 - attack.t1563.002
 author: mdecrevoisier
 status: experimental

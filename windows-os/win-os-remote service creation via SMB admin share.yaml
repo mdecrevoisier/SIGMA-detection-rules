@@ -3,7 +3,7 @@ description: Detects scenarios where an attacker create a service remotely over 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
 tags:
-- attack.lateral-movement
+- attack.lateral_movement
 - attack.t1021.002
 author: mdecrevoisier
 status: experimental

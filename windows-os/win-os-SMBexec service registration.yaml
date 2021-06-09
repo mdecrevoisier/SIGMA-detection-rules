@@ -4,7 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1112-Modify%20registry
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/smbexec.py
 tags:
-- attack.defense-evasion
+- attack.defense_evasion
 - attack.t1112
 - attack.privilege-execution
 - attack.t1543.003

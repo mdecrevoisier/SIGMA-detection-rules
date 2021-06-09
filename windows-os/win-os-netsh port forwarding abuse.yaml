@@ -7,7 +7,7 @@ references:
 - https://davidhamann.de/2019/06/20/setting-up-portproxy-netsh/
 - https://parsiya.net/blog/2016-06-07-windows-netsh-interface-portproxy/
 tags:
-- attack.command-and-control
+- attack.command_and_control
 - attack.t1090
 author: mdecrevoisier
 status: experimental

@@ -9,7 +9,7 @@ references:
 - https://rioasmara.com/2020/07/04/kerberoasting-as-req-pre-auth-vs-non-pre-auth/
 - https://www.hackingarticles.in/as-rep-roasting/
 tags:
-- attack.credential-access
+- attack.credential_access
 - attack.t1558.004
 author: mdecrevoisier
 status: experimental

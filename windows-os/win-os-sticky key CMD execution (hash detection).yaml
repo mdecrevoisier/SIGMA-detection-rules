@@ -7,7 +7,7 @@ references:
 - https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
 requirements: have an up to date inventory for CMD hashes of your environment
 tags:
-- attack.privilege-escalation
+- attack.privilege_escalation
 - attack.t1546.008
 author: mdecrevoisier
 status: experimental

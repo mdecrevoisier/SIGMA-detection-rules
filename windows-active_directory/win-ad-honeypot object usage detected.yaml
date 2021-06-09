@@ -6,7 +6,7 @@ references:
 - http://www.labofapenetrationtester.com/2018/10/deploy-deception.html
 - https://jblog.javelin-networks.com/blog/the-honeypot-buster/
 tags:
-- attack.lateral-movement
+- attack.lateral_movement
 - attack.t1021
 author: mdecrevoisier
 status: experimental

@@ -13,7 +13,7 @@ references:
 - https://blog.stealthbits.com/creating-persistence-with-dcshadow/
 - https://book.hacktricks.xyz/windows/active-directory-methodology/dcshadow
 tags:
-  - attack.defense-evasion
+  - attack.defense_evasion
   - attack.t1207
 author: mdecrevoisier
 status: experimental

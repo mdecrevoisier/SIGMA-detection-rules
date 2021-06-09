@@ -9,7 +9,7 @@
   - https://www.guidepointsecurity.com/delegating-like-a-boss-abusing-kerberos-delegation-in-active-directory/
   - https://stealthbits.com/blog/what-is-kerberos-delegation-an-overview-of-kerberos-delegation/
   tags:
-  - attack.credential-access
+  - attack.credential_access
   - attack.t1558
   author: mdecrevoisier
   status: experimental

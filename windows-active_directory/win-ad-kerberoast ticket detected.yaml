@@ -15,7 +15,7 @@ references:
 - https://www.trimarcsecurity.com/single-post/TrimarcResearch/Detecting-Kerberoasting-Activity
 - https://www.trustedsec.com/2018/05/art_of_kerberoast/
 tags:
-- attack.credential-access
+- attack.credential_access
 - attack.t1558.003
 author: mdecrevoisier
 status: experimental

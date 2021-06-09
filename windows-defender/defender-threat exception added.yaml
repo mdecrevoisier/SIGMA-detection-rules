@@ -4,7 +4,7 @@ references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
 tags:
-- attack.defense-evasion
+- attack.defense_evasion
 - attack.t1562
 author: mdecrevoisier
 status: experimental

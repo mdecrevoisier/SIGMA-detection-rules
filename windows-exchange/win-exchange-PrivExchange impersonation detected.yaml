@@ -4,7 +4,7 @@ references:
 - https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/
 - https://twitter.com/_dirkjan/status/1091632489561575424?s=20
 tags:
-- attack.credential-access
+- attack.credential_access
 - attack.t1557.001
 author: mdecrevoisier
 status: experimental

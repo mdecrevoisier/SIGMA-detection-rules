@@ -7,7 +7,7 @@ references:
 - https://bond-o.medium.com/golden-ticket-attack-ea89553cf9c0
 - https://social.technet.microsoft.com/wiki/contents/articles/13813.localized-names-for-administrator-account-in-windows.aspx
 tags:
-- attack.credential-access
+- attack.credential_access
 - attack.t1558.001
 author: mdecrevoisier
 status: stable

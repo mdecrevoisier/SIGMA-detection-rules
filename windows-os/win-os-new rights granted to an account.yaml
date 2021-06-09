@@ -6,7 +6,7 @@ references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4717
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment
 tags:
-- attack.privilege-escalation
+- attack.privilege_escalation
 - attack.t1134
 author: mdecrevoisier
 status: experimental

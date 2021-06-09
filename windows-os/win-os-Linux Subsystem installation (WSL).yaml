@@ -5,7 +5,7 @@ references:
  - https://docs.microsoft.com/en-us/windows/wsl/install-win10
  - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
 tags:
-- attack.defense-evasion
+- attack.defense_evasion
 - attack.t1564.006
 author: mdecrevoisier
 status: experimental

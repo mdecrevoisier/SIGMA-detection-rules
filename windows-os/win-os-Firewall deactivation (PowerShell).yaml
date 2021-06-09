@@ -4,7 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
 - https://www.alitajran.com/disable-windows-firewall-with-powershell/
 tags:
-- attack.defense-evasion
+- attack.defense_evasion
 - attack.t1562.004 
 author: mdecrevoisier
 status: experimental

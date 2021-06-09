@@ -7,7 +7,7 @@ references:
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/dcomexec.py
 - https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
 tags:
-- attack.lateral-movement
+- attack.lateral_movement
 - attack.t1021.003
 author: mdecrevoisier
 status: experimental

@@ -6,7 +6,7 @@ references:
 - https://www.fireeye.com/blog/threat-research/2017/03/apt29_domain_frontin.html
 - https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
 tags:
-- attack.privilege-escalation
+- attack.privilege_escalation
 - attack.t1546.008
 status: experimental
 logsource:
