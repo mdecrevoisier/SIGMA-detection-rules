@@ -1,0 +1,24 @@
+title: WMI event registration
+description: Detects scenarios where an attacker registers a WMI event (filter, consumer or ConsumerToFilter).
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
+- https://github.com/Sw4mpf0x/PowerLurk
+- https://www.netspi.com/blog/technical/adversary-simulation/getting-started-wmi-weaponization-part-5/
+tags:
+- attack.persistence
+- attack.t1546.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: wmi_event
+detection:
+  selection:
+    EventID:  
+      - 19 # WmiEventFilter activity detected
+      - 20 # WmiEventConsumer activity detected
+      - 21 # WmiEventConsumerToFilter activity detected
+  condition: selection
+falsepositives:
+- legitimate WMI class registration
+level: high
