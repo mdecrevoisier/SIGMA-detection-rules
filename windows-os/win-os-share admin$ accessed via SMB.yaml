@@ -1,4 +1,4 @@
-title: Administrative share accessed over SMB
+title: SMB admin share accessed
 description: Detects scenarios where an attacker attempts to connect to the administrative SMB share.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

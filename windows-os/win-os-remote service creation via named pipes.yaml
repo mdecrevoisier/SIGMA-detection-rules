@@ -1,4 +1,4 @@
-title: Remote service creation via SMB admin share
+title: Remote service creation via named pipes
 description: Detects scenarios where an attacker create a service remotely over SMB.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

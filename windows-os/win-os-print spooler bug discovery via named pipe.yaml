@@ -1,4 +1,4 @@
-title: Discovery for print spooler bug abuse (NTLM hash retrivial)
+title: Discovery for print spooler bug abuse (NTLM hash retrivial) via named pipe
 description: Detects scenarios where an attacker with a responder in place initiates an authenticated callback request from a targeted host with the print spooler service enabled (RpcRemoteFindFirstPrinterChangeNotification abuse). In case the targeted host answers to the responder, the NTLM hash of the computer account will be disclosed. Following that, the hash can be used for different type of abuse like Silver ticket generation or unconstrained delegation abuse. The rule is designed to detect the following scripts > printerbug.py, dementor.py, SpoolSample.exe and Get-SpoolStatus.ps1. Additional  correlation can be done with the following logic > ID 5145 + SubjectLogonId + IpPort | ID 4624 + TargetLogonId + IpPort.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1557-Man%20in%20the%20middle

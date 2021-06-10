@@ -1,0 +1,47 @@
+title: WMI registration (PowerShell)
+description: Detects scenarios where an attacker createsan instance of a WMI class using tools like WMImplant or PowerLurk.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
+- https://github.com/Sw4mpf0x/PowerLurk
+- https://github.com/FortyNorthSecurity/WMImplant
+- https://www.netspi.com/blog/technical/adversary-simulation/getting-started-wmi-weaponization-part-5/
+tags:
+- attack.persistence
+- attack.t1546.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+
+detection:
+  selection1_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - 'Set-WmiInstance'
+      - 'Class' # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
+      #- 'Namespace'
+      #- 'Arguments'
+      
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - 'Set-WmiInstance'
+      - 'Class' # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
+      #- 'Namespace'
+      #- 'Arguments'
+
+  selection3_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - 'Set-WmiInstance'
+      - 'Class' # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
+      #- 'Namespace'
+      #- 'Arguments'
+
+  condition: 1 of selection*
+falsepositives:
+- legitimate WMI class registration
+- monitoring products
+- Microsoft System Center or security products
+level: high
