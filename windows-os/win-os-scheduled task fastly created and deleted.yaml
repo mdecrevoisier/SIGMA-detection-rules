@@ -1,0 +1,26 @@
+title: Scheduled task created and deleted fastly (ATexec.py)
+description: Detects scenarios where an attacker abuse task scheduler capacities to execute commands or elevate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/atexec.py
+- https://u0041.co/blog/post/1
+tags:
+- attack.execution
+- attack.t1053.005
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_create:
+    EventID: 4698
+  selection_delete:
+    EventID: 4699
+  #filter:
+  #  SubjectUserSid: 'S-1-5-18'
+  condition: selection_create > selection_delete | group(Hostname, TaskName)
+  timeframe: 5m
+falsepositives:
+- Rare application activity
+level: high

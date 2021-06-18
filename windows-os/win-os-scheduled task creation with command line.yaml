@@ -1,4 +1,4 @@
-title: Scheduled task creation
+title: Scheduled task creation with command line
 description: Detects scenarios where an attacker creates a scheduled task.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task

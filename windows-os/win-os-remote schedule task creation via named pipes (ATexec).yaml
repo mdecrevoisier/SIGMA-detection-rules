@@ -1,0 +1,24 @@
+title: Remote schedule task creation via named pipes (ATexec.py)
+description: Detects scenarios where an attacker create a scheduled task remotely over named pipes to execute commands or elevate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/atexec.py
+- https://u0041.co/blog/post/1
+tags:
+- attack.execution
+- attack.t1053.005
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5145
+    ShareName: '\\*\IPC$'
+    RelativeTargetName: atsvc
+    AccessList|contains: '%%4417' # WriteData
+  condition: selection
+falsepositives:
+- Administrator activity
+level: medium
