@@ -18,7 +18,7 @@ detection:
     Image|endswith: \cmd.exe
 
   selection_parent: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat"
-    ParentCommandLine|contains|all: 
+    ParentCommandLine|contains|all:
       - cmd.exe
       - /Q
       - \\127.0.0.1\

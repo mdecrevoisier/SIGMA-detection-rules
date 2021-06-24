@@ -5,7 +5,7 @@ references:
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
 tags:
 - attack.execution
-- attack.t1059.003 
+- attack.t1059.003
 - attack.defense_evasion
 - attack.t1564.003
 author: mdecrevoisier
