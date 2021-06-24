@@ -5,7 +5,7 @@ references:
 - https://www.winhelponline.com/blog/enable-and-disable-windows-firewall-quickly-using-command-line/
 tags:
 - attack.defense_evasion
-- attack.t1562.004 
+- attack.t1562.004
 author: mdecrevoisier
 status: experimental
 logsource:

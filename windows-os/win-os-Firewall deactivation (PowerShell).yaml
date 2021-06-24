@@ -5,7 +5,7 @@ references:
 - https://www.alitajran.com/disable-windows-firewall-with-powershell/
 tags:
 - attack.defense_evasion
-- attack.t1562.004 
+- attack.t1562.004
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -25,7 +25,7 @@ detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Priv
       - 'Set-NetFirewallProfile'
       - '-Profile'
       - '-Enabled False'
-      
+
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
@@ -35,5 +35,5 @@ detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Priv
 
   condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
 falsepositives:
-- None 
+- None
 level: high

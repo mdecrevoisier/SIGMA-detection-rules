@@ -11,12 +11,12 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  service: application # provider: ESENT
 detection:
   selection:
     EventID:
-      - 325 # The database engine created a new database 
-      - 327 # The database engine detached a database 
+      - 325 # The database engine created a new database
+      - 327 # The database engine detached a database
     EventData|contains:
       - '\ntds.dit' # path can be "c:\hacker\Active Directory\ntds.dit"
   condition: selection

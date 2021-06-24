@@ -5,7 +5,7 @@ references:
 - https://www.winhelponline.com/blog/enable-and-disable-windows-firewall-quickly-using-command-line/
 tags:
 - attack.defense_evasion
-- attack.t1562.004 
+- attack.t1562.004
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -18,10 +18,10 @@ detection:
 
   selection_command:
     Commandline|contains|all: # full command 'netsh advfirewall set <privateprofile/publicprofile/domainprofile> state off'
-      - netsh 
-      - advfirewall 
+      - netsh
+      - advfirewall
       - set
-      - state 
+      - state
       - 'off'
 
   selection_obfuscated:
@@ -29,9 +29,9 @@ detection:
       - netsh
       - ' a ' # advfirewall
       - ' s ' # set
-      - state 
+      - state
       - 'off'
   condition: selection_event and (selection_command or selection_obfuscated)
 falsepositives:
-- Administrator activity 
+- Administrator activity
 level: high
