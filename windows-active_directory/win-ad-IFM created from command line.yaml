@@ -1,9 +1,11 @@
-title: IFM detected from commandline (installation from media)
+title: IFM creation detected from commandline (installation from media)
 description: Detects scenarios where an attacker attemps to create an IFM for dumping credentials.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping- https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
 - https://adsecurity.org/?p=2398
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc753343(v=ws.11)
+- https://twitter.com/JohnLaTwC/status/1416382178380767233?s=09
 tags:
 - attack.credential-dumping
 - attack.t1003.003
@@ -13,23 +15,33 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection_event:
+  root_event:
     EventID: 4688
     NewProcessName|endswith: '\ntdsutil.exe' # Full path "C:\Windows\System32\ntdsutil.exe"
 
-  selection_basic: # full command "ntdsutil "activate instance ntds" ifm "create full c:\data" quit quit"
+  selection_creation_basic: # full command "ntdsutil "activate instance ntds" ifm "create full c:\data" quit quit"
     CommandLine|contains|all:
-      - ntdsutil
       - ifm
       - create
 
-  selection_obfuscated: # full command "ntdsutil.exe " ntdsutil.exe "act i ntds" i "c full c:\hacker" q q "
+  selection_creation_obfuscated: # full command "ntdsutil.exe " ntdsutil.exe "act i ntds" i "c full c:\hacker" q q "
     CommandLine|contains|all:
-      - ntdsutil
       - ' i ' # ifm
-      - 'c '  # create
+      - ' c '  # create
 
-  condition: selection_event and (selection_basic or selection_obfuscated)
+  selection_activation_basic:
+    CommandLine|contains|all:
+      - activate
+      - instance
+      - ntds
+
+  selection_activation_obfuscated:
+    CommandLine|contains|all:
+      - ' ac ' # activate
+      - ' i ' # instance
+      - ntds
+
+  condition: root_event and 1 of selection_*
 falsepositives:
 - Administrator creating a IFM image
 level: high

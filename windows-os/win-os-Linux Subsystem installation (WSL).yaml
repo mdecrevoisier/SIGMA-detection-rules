@@ -4,6 +4,7 @@ references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts
  - https://docs.microsoft.com/en-us/windows/wsl/install-win10
  - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
+ - https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
 tags:
 - attack.defense_evasion
 - attack.t1564.006

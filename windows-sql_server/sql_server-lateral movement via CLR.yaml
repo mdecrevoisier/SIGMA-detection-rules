@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     EventID: 15457
-    EventData|contains: <Data>clr enabled</Data><Data>0</Data><Data>1</Data> # 0 is for previous status and 1 for new status
+    EventData|contains: '<Data>clr enabled</Data><Data>0</Data><Data>1</Data>' # 0 is for previous status and 1 for new status
   condition: selection
 falsepositives:
 - None

@@ -14,14 +14,14 @@ logsource:
   category: application
 detection:
   selection:
-    EventID:  
+    EventID:
       - 1 # success
       - 6 # failure
     Channel: 'MSExchange Management'
     EventData|contains:
       - Enable-TransportAgent
-      - Install-TransportAgent 
+      - Install-TransportAgent
   condition: selection
 falsepositives:
-- rare administrator change 
+- rare administrator change
 level: high

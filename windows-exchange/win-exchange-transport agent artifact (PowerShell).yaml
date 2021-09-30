@@ -17,21 +17,21 @@ detection:
     EventID: 800
     EventData|contains:
       - Enable-TransportAgent
-      - Install-TransportAgent 
+      - Install-TransportAgent
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains:
       - Enable-TransportAgent
-      - Install-TransportAgent 
+      - Install-TransportAgent
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains:
       - Enable-TransportAgent
-      - Install-TransportAgent 
+      - Install-TransportAgent
 
   condition: 1 of selection*
 falsepositives:
-- rare administrator change 
+- rare administrator change
 level: high

@@ -1,5 +1,5 @@
 title: Netsh helper DLL abuse (registry)
-description: Detects scenarios where an attacker 
+description: Detects scenarios where an attacker
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
 - https://www.hackingarticles.in/windows-persistence-using-netsh/
@@ -24,7 +24,7 @@ detection:
   selection_registry_set:
     EventID: 13 # Registry value set
     EventType: 'SetValue'
-  
+
   selection_object_added:
     EventID: 12 # Registry object added
     EventType: 'CreateKey'

@@ -26,5 +26,5 @@ detection:
       - helper
   condition: selection
 falsepositives:
-- Administrator activity 
+- Administrator activity
 level: high
