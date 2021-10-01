@@ -30,7 +30,6 @@ detection:
     CommandLine|contains|all:
       - cmd.exe
       - /Q
-
     CommandLine|contains:
       - /k # Used in FireEye Impacket version instead of /c
       - /c

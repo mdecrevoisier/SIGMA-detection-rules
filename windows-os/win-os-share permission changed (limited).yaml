@@ -13,9 +13,8 @@ logsource:
 detection:
   selection:
     EventID: 5143
-  filter:
-    # OldSD == NewSD (comparing 2 fields is not possible in SIGMA language)
-    # If both Security descriptor are the same, it means that no permission changes were done.
+  filter: # If both Security descriptor are the same, no permission changes were done.
+    # OldSD == NewSD # (comparing 2 fields is not possible in SIGMA language)
   condition: selection and not filter
 falsepositives:
 - Administrator modification on network shares

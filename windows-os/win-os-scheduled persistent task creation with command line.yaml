@@ -8,6 +8,7 @@ references:
 - https://nasbench.medium.com/a-deep-dive-into-windows-scheduled-tasks-and-the-processes-running-them-218d1eed4cce
 - https://posts.specterops.io/abstracting-scheduled-tasks-3b6451f6a1c5
 - https://www.darkoperator.com/blog/2009/4/11/abusing-the-scheduler-with-meterpreter.html
+- https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
 tags:
 - attack.execution
 - attack.t1053.005

@@ -27,7 +27,8 @@ detection:
 
   selection_command:
     CommandLine|contains|all: # Full command: REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /t REG_SZ /v Debugger /d "C:\windows\system32\cmd.exe" /f
-      - 'REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe"'
+      - 'REG ADD'
+      - 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe'
       - '/t REG_SZ'
       - '/v Debugger'
       - '/d "C:\windows\system32\cmd.exe"'

@@ -15,11 +15,10 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    # NewProcessName|endswith: 'cmd.exe' # C:\Windows\System32\cmd.exe
     CommandLine|contains|all: # full command 'copy /y C:\windows\system32\cmd.exe C:\windows\system32\sethc.exe'
       - copy
-      - /y 
-      - cmd.exe 
+      - /y
+      - cmd.exe
       - sethc.exe
   condition: selection
 falsepositives:

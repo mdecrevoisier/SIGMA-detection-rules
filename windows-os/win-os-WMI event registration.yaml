@@ -15,7 +15,7 @@ logsource:
   category: wmi_event
 detection:
   selection:
-    EventID:  
+    EventID:
       - 19 # WmiEventFilter activity detected
       - 20 # WmiEventConsumer activity detected
       - 21 # WmiEventConsumerToFilter activity detected

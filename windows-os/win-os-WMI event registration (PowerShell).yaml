@@ -22,7 +22,7 @@ detection:
       - 'Class' # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
       #- 'Namespace'
       #- 'Arguments'
-      
+
   selection2_powershell_modern:
     EventID: 4103
     Payload|contains|all:
