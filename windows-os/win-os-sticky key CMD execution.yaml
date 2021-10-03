@@ -23,7 +23,7 @@ detection:
     ParentImage|endswith: \winlogon.exe
 
   selection_command_line:
-    CommandLine|contains: cmd.exe
+    CommandLine|contains: cmd
     CommandLine|contains:
       - sethc.exe
       - utilman.exe

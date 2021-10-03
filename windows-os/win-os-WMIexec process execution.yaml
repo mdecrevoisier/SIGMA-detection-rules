@@ -17,7 +17,7 @@ detection:
     EventID: 4688
     NewProcessName|endswith: \cmd.exe
     CommandLine|contains|all: # 'cmd.exe /Q /c cd \ 1> \\127.0.0.1\ADMIN$\__1619090610.0007844 2>&1'
-      - cmd.exe
+      - cmd
       - \\127.0.0.1\
       - /Q
     CommandLine|contains:

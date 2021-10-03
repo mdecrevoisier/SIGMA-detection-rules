@@ -24,7 +24,8 @@ detection:
     CommandLine|contains|all: # "C:\Windows\system32\schtasks.exe" /create /sc minute /mo 1 /tn eviltask /tr C:\tools\shell.cmd /ru SYSTEM
       - schtasks
       - /create
-      - /ru SYSTEM # Run with SYSTEM privileges
+      - /ru # Run with privileges from user X
+      - SYSTEM # Run with SYSTEM privileges
       - /tr # Program, path or command to run
       - /sc # Run task every X minutes
   condition: selection_execution

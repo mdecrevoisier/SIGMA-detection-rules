@@ -17,36 +17,36 @@ detection:
     EventData|contains|all:
       - '[System.Convert]::'
       - 'FromBase64String'
-       - hidden
-       - '-nop'
-       - '-noni'
-       - 'System.IO.StreamReader'
-       - 'System.IO.Compression.'
-       - 'System.Diagnostics.Process'
+      - 'System.IO.StreamReader'
+      - 'System.IO.Compression.'
+      - 'System.Diagnostics.Process'
+      #- hidden
+      #- '-nop'
+      #- '-noni'
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - '[System.Convert]::'
       - 'FromBase64String'
-       - hidden
-       - '-nop'
-       - '-noni'
-       - 'System.IO.StreamReader'
-       - 'System.IO.Compression.'
-       - 'System.Diagnostics.Process'
+      - 'System.IO.StreamReader'
+      - 'System.IO.Compression.'
+      - 'System.Diagnostics.Process'
+      #- hidden
+      #- '-nop'
+      #- '-noni'
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - '[System.Convert]::'
       - 'FromBase64String'
-       - hidden
-       - '-nop'
-       - '-noni'
-       - 'System.IO.StreamReader'
-       - 'System.IO.Compression.'
-       - 'System.Diagnostics.Process'
+      - 'System.IO.StreamReader'
+      - 'System.IO.Compression.'
+      - 'System.Diagnostics.Process'
+      #- hidden
+      #- '-nop'
+      #- '-noni'
 
   condition: 1 of selection*
 falsepositives:

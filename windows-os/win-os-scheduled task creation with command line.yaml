@@ -26,7 +26,8 @@ detection:
       - /create
   filter:
     CommandLine|contains|all: # See schedule persistent rule with SYSTEM privileges
-      - '/ru SYSTEM' # Run with SYSTEM privileges
+      - /ru # Run with privileges from user X
+      - SYSTEM # Run with SYSTEM privileges
       - /tr # Program, path or command to run
   condition: selection_execution and not filter
 falsepositives:

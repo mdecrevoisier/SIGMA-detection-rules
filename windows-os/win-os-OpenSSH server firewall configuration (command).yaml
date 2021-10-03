@@ -21,13 +21,17 @@ detection:
 
   selection_netsh_adv: # Command for firewall rule creation (available starting Server 2012 R2)
     CommandLine|contains|all:
-      - netsh advfirewall
-      - localport=22
+      - netsh
+      - advfirewall
+      - localport=
+      - '22'
 
   selection_netsh: # Command for firewall rule creation (deprecated)
     CommandLine|contains|all:
-      - netsh firewall
-      - portopening TCP 22
+      - netsh 
+      - firewall
+      - portopening
+      - '22'
 
   condition: selection_event and (selection_netsh_adv or selection_netsh)
 falsepositives:

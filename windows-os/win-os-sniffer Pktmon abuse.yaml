@@ -16,7 +16,7 @@ detection:
   selection:
     NewProcessName|endswith: '\PktMon.exe'
     CommandLine|contains|all: # full command : 'pktmon filter add -p 80'
-      - PktMon
+      - pktmon
       - filter
       - add
   condition: selection

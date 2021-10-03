@@ -20,16 +20,23 @@ detection:
     NewProcessName|endswith: '\netsh.exe' # Full path "C:\Windows\system32\netsh.exe"
 
   selection_command: # full command 'netsh interface portproxy add v4tov4 listenport=8001 listenaddress=0.0.0.0 connectport=3389 connectaddress=1.1.1.1'
-    Commandline|contains:
-      - 'netsh interface portproxy add' # setup forwarding
-      - 'netsh interface portproxy reset' # reset configuration
+    Commandline|contains|all:
+      - netsh
+      - interface
+      - portproxy
+    Commandline|contains: 
+      - add  # add forwarding
+      - reset # reset configuration
   
   selection_obfuscated: # full command: 'netsh i p a v l=8001 listena=0.0.0.0 connectp=3389 c=1.1.1.1'
     Commandline|contains|all:
       - netsh
       - ' i ' # interface
       - ' p ' # portproxy
-      - ' a ' # add
+    Commandline|contains: 
+      - ' a ' # add forwarding
+      - ' r'  # reset configuration
+
   condition: selection_event and (selection_command or selection_obfuscated)
 falsepositives:
 - Administrator activity 

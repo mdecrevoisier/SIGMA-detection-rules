@@ -19,7 +19,7 @@ detection:
 
   selection_parent: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat"
     ParentCommandLine|contains|all:
-      - cmd.exe
+      - cmd
       - /Q
       - \\127.0.0.1\
     ParentCommandLine|contains:
@@ -28,7 +28,7 @@ detection:
 
   selection_process: # full command: "C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat"
     CommandLine|contains|all:
-      - cmd.exe
+      - cmd
       - /Q
     CommandLine|contains:
       - /k # Used in FireEye Impacket version instead of /c

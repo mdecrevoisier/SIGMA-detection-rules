@@ -27,12 +27,12 @@ detection:
 
   selection_command:
     CommandLine|contains|all: # Full command: REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /t REG_SZ /v Debugger /d "C:\windows\system32\cmd.exe" /f
-      - 'REG ADD'
+      - REG ADD
       - 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe'
-      - '/t REG_SZ'
-      - '/v Debugger'
-      - '/d "C:\windows\system32\cmd.exe"'
-      - '/f'
+      - /t # Registry entry type
+      - /v # Value to add
+      - /d # Data to add
+      - /f # Add without prompte
 
   condition: selection_command and (selection_process or selection_sysmon_process)
 falsepositives:
