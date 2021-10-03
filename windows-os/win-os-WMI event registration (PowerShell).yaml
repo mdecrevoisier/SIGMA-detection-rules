@@ -14,12 +14,12 @@ logsource:
   product: windows
   service: powershell
 
-detection:
+detection: # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
   selection1_powershell_native:
     EventID: 800
     EventData|contains|all:
       - 'Set-WmiInstance'
-      - 'Class' # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
+      - 'Class' 
       #- 'Namespace'
       #- 'Arguments'
 
@@ -27,7 +27,7 @@ detection:
     EventID: 4103
     Payload|contains|all:
       - 'Set-WmiInstance'
-      - 'Class' # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
+      - 'Class'
       #- 'Namespace'
       #- 'Arguments'
 
@@ -35,7 +35,7 @@ detection:
     EventID: 4104
     ScriptBlockText|contains|all:
       - 'Set-WmiInstance'
-      - 'Class' # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
+      - 'Class'
       #- 'Namespace'
       #- 'Arguments'
 

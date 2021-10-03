@@ -19,22 +19,28 @@ detection:
     EventID: 800
     EventData|contains|all:
       - Set-Service
-      - StartupType 'Automatic'
-      - Name sshd
+      - StartupType 
+      - 'Automatic'
+      - Name 
+      - sshd
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Set-Service
-      - StartupType 'Automatic'
-      - Name sshd
+      - StartupType 
+      - 'Automatic'
+      - Name 
+      - sshd
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Set-Service
-      - StartupType 'Automatic'
-      - Name sshd
+      - StartupType 
+      - 'Automatic'
+      - Name 
+      - sshd
 
   condition: 1 of selection*
 falsepositives:

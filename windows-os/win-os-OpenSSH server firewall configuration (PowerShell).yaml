@@ -18,22 +18,28 @@ detection:
     EventID: 800
     EventData|contains|all:
       - New-NetFirewallRule
-      - LocalPort 22
-      - Action Allow
+      - LocalPort
+      - '22'
+      - Action 
+      - Allow
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - New-NetFirewallRule
-      - LocalPort 22
-      - Action Allow
+      - LocalPort
+      - '22'
+      - Action 
+      - Allow
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - New-NetFirewallRule
-      - LocalPort 22
-      - Action Allow
+      - LocalPort
+      - '22'
+      - Action 
+      - Allow
 
   condition: 1 of selection*
 falsepositives:
