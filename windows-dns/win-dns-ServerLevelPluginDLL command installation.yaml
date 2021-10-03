@@ -30,7 +30,7 @@ detection:
 
   selection_command:
     CommandLine|contains|all: # full command 'dnscmd.exe /config /serverlevelplugindll "C:\mimilib.dll"'
-      - dnscmd.exe
+      - dnscmd
       - /config
       - /serverlevelplugindll'
   condition: (selection_process or selection_sysmon) and selection_command
