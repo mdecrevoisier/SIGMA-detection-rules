@@ -23,7 +23,7 @@ detection:
     EventID: 4742
     UserAccountControl: '%%2098' # Enable option "Approved for authenticated delegation"
   filter:
-    AllowedToDelegateTo: '-' # Can be: "cifs/srv01 cifs/srv02.offsec.lan dcom/dc03..."
+    AllowedToDelegateTo: '-' # Can be: "cifs/srv01 cifs/srv02.demo.lan dcom/dc03..."
   condition: selection and not filter
 falsepositives:
 - Rare administrator modifying host delegation settings

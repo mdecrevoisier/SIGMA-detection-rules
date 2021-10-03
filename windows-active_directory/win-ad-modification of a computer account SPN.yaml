@@ -16,7 +16,7 @@ detection:
     EventID: 4742
   filter:
     ServicePrincipalNames:
-      - '-'     # exclude empty SPN
+      - '-'    # exclude empty SPN
       - 'GC/*' # covered by similar rule dedicated to DCshadow
   condition: selection and not filter
 falsepositives:

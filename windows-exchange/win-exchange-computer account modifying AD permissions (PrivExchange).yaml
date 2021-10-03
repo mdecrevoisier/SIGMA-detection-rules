@@ -17,7 +17,7 @@ detection:
     EventID: 5136
     AttributeLDAPDisplayName: ntSecurityDescriptor
     OperationType: '%%14674' # Value added
-    SubjectUserName:  # List of Exchange servers
+    SubjectUserName:  # List of Exchange servers + $
       - srvexchange01$
       - srvexchange02$
       - srvexchange03$

@@ -22,6 +22,7 @@ detection:
   condition: selection_event and (selection_age > 7)
 falsepositives:
 - Unconnected systems to internet
+- Missconfigured systems unable to reach their signature update server (SCCM/SCEP)
 - System offline during long duration
-- Windows system with license hack (date set to + 10 years)
+- Windows system with license hack (date set to +10 years)
 level: medium

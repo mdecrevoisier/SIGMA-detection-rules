@@ -13,7 +13,7 @@ logsource:
   product: windows
   category: application
 detection:
-  selection:
+  selection: # ALTER SERVER ROLE [setupadmin] ADD MEMBER [demo\SQL_user1]
     EventID: 33205
     action_id:
       - APRL # ADD MEMBER

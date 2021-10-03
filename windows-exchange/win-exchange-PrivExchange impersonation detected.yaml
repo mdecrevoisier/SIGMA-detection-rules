@@ -15,7 +15,7 @@ detection:
   selection:
     EventID: 4624
     AuthenticationPackageName: NTLM
-    LogonProcessName: NtLmSsp  
+    LogonProcessName: NtLmSsp
     LogonType: 3
     Hostname: '%domain_controllers%' # Logon event has to be generated on a DC
     TargetUserName: # Exchange server HOSTNAMES list + "$"
