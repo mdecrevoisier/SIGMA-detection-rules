@@ -1,0 +1,37 @@
+title: Microsoft Defender default action changed to allow any threat (command)
+description: Detects scenarios where an attacker attempts to change Defender default action to allow any threats
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+tags:
+- attack.defense_evasion
+- attack.t1562.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_event:
+    EventID:
+      - 1
+      - 4688
+
+  selection_command:
+    CommandLine|contains|all:
+      - Set-MpPreference
+      - '6' # MP_THREAT_ACTION_ALLOW
+    CommandLine|contains:
+      - HighThreatDefaultAction
+      - ModerateThreatDefaultAction
+      - LowThreatDefaultAction
+      - SevereThreatDefaultAction
+
+  condition: selection_event and selection_command
+falsepositives:
+- None
+level: high

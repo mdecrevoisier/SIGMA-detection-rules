@@ -1,0 +1,45 @@
+title: Microsoft Defender threat exclusion added (PowerShell)
+description: Detects scenarios where a threat exclusion is added to the antivirus in order to bypass its detection capacities
+references:
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+tags:
+- attack.defense_evasion
+- attack.t1562.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection1_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - Set-MpPreference
+    EventData|contains:
+      - ExclusionPath
+      - ExclusionExtension
+      - ExclusionProcess
+
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Set-MpPreference
+    Payload|contains:
+      - ExclusionPath
+      - ExclusionExtension
+      - ExclusionProcess
+
+  selection3_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - Set-MpPreference
+    ScriptBlockText|contains:
+      - ExclusionPath
+      - ExclusionExtension
+      - ExclusionProcess
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high

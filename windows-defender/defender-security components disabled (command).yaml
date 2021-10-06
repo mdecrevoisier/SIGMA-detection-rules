@@ -1,0 +1,53 @@
+title: Microsoft Defender security components disabled (command)
+description: Detects scenarios where an attacker attempts to disable Defender security features
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+tags:
+- attack.defense_evasion
+- attack.t1562.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # Set-MpPreference -DisableArchiveScanning $true
+  selection_event:
+    EventID:
+      - 1
+      - 4688
+
+  selection_command:
+    CommandLine|contains|all:
+      - Set-MpPreference
+      - $true
+    CommandLine|contains:
+      # Scanning features
+      - DisableArchiveScanning
+      - DisableRemovableDriveScanning
+      - DisableScanningMappedNetworkDrivesForFullScan
+      - DisableScanningNetworkFiles
+      - DisableRestorePoint
+      - DisableScriptScanning
+      - DisableEmailScanning
+      # Parsing features
+      - DisableDnsParsing
+      - DisableDnsOverTcpParsing
+      - DisableSshParsing
+      - DisableTlsParsing
+      - DisableHttpParsing
+      - DisableRdpParsing
+      # Misc features
+      - DisableAutoExclusions
+      - DisableBlockAtFirstSeen
+      - DisableCpuThrottleOnIdleScans
+      - DisableDatagramProcessing
+
+  condition: selection_event and selection_command
+falsepositives:
+- None
+level: medium

@@ -32,7 +32,7 @@ detection:
       - /t # Registry entry type
       - /v # Value to add
       - /d # Data to add
-      - /f # Add without prompte
+      - /f # Add without prompt
 
   condition: selection_command and (selection_process or selection_sysmon_process)
 falsepositives:
