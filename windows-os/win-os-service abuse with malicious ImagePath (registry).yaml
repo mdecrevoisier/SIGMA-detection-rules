@@ -6,7 +6,7 @@ references:
 - https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
 tags:
 - attack.persistence
-- attack.t1543.003
+- attack.t1574.010 
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -37,5 +37,5 @@ detection:
 
   condition: selection_command and (selection_process or selection_sysmon_process)
 falsepositives:
-- None
+- administrator reconfiguring service
 level: high

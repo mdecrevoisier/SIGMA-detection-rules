@@ -1,0 +1,41 @@
+title: Service permissions hijacked for privileges abuse (service)
+description: Detects scenarios where an attacker modify the permissions of a service in order to abuse its privileges
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- http://woshub.com/set-permissions-on-windows-service/
+- https://www.winhelponline.com/blog/view-edit-service-permissions-windows/
+- https://decoder.cloud/2019/02/07/demystifying-windows-service-permissions-configuration/
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-7.1
+- https://medium.com/r3d-buck3t/abuse-service-registry-acls-windows-privesc-f88079140509
+tags:
+- attack.persistence
+- attack.t1543.003
+- attack.t1574.010
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - Set-Service
+      - -SecurityDescriptorSddl
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Set-Service
+      - -SecurityDescriptorSddl
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - Set-Service
+      - -SecurityDescriptorSddl
+
+  condition: 1 of selection*
+falsepositives:
+- administrator reconfiguring service
+level: high

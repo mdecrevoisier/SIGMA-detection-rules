@@ -28,7 +28,7 @@ detection:
 
   selection_netsh: # Command for firewall rule creation (deprecated)
     CommandLine|contains|all:
-      - netsh 
+      - netsh
       - firewall
       - portopening
       - '22'

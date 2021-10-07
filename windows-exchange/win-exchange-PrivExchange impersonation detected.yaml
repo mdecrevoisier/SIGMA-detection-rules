@@ -26,5 +26,5 @@ detection:
     IpAddress: '%exchange_server_ips%' # Source has to be attacker relay
   condition: selection and not filter
 falsepositives:
-- None 
+- None
 level: high

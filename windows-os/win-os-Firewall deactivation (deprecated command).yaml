@@ -33,5 +33,5 @@ detection:
       - ' d' # disable
   condition: selection_event and (selection_command or selection_obfuscated)
 falsepositives:
-- Administrator activity 
+- Administrator activity
 level: high

@@ -20,7 +20,7 @@ detection:
       - New-NetFirewallRule
       - LocalPort
       - '22'
-      - Action 
+      - Action
       - Allow
 
   selection_powershell_modern:
@@ -29,7 +29,7 @@ detection:
       - New-NetFirewallRule
       - LocalPort
       - '22'
-      - Action 
+      - Action
       - Allow
 
   selection_powershell_block:
@@ -38,7 +38,7 @@ detection:
       - New-NetFirewallRule
       - LocalPort
       - '22'
-      - Action 
+      - Action
       - Allow
 
   condition: 1 of selection*

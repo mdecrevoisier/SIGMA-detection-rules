@@ -26,5 +26,5 @@ detection:
 
   condition: selection_command and selection_process
 falsepositives:
-- None
+- administrator reconfiguring service
 level: high

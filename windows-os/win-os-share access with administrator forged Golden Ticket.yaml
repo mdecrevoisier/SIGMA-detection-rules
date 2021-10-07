@@ -19,7 +19,7 @@ detection:
     EventID:
       - 5140
       - 5145
-    SubjectUserSid|startswith: 'S-1-5-21'  
+    SubjectUserSid|startswith: 'S-1-5-21'
     SubjectUserSid|endswith: '-500' # Refers to builtin Administrator SID account
   filter:
     SubjectUserName: # Excludes builtin admin account names when using a localized Windows OS version (select the ones applicable)
