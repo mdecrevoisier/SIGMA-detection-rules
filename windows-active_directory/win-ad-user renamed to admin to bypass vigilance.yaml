@@ -11,17 +11,29 @@ logsource:
   product: windows
   service: security
 detection:
-  selection:
-    EventID: 4781
-    NewTargetUserName|startswith:
-      - 'admin'
+  selection_event:
+    EventID: 4781 # Account name change
+
+  selection_pattern:
+    - NewTargetUserName|startswith:
+      - 'admin-'
       - 'adm-'
+      - '<customer pattern>'
+    - NewTargetUserName|endswith:
+      - '-admin'
+      - '-adm'
+      - '<customer pattern>'
   filter:
-    - OldTargetUserName: # Original target account name should not be already an admin account
-      - 'admin'
+    - OldTargetUserName|startswith: # Original target account name should not be already an admin account
+      - 'admin-'
       - 'adm-'
+      - '<customer pattern>'
+    - OldTargetUserName|endswith:
+      - '-admin'
+      - '-adm'
+      - '<customer pattern>'
     - TargetSid|endswith: '-500' # Exclude default builtin account
-  condition: selection and not filter
+  condition: (selection_event and selection_pattern) and not filter
 falsepositives:
-- Unknown
+- builtin admin account renamed for obfuscation
 level: high

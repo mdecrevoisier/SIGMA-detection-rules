@@ -1,0 +1,27 @@
+title: Interactive privileged shell triggered by schedule task (deprecated)
+description: Detects scenarios where an attacker abuse the at command to elevate privilages. Note that at command is deprecated since Windows 8 and replaced by schtask.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task
+- https://docs.microsoft.com/en-us/troubleshoot/windows-client/system-management-components/use-at-command-to-schedule-tasks
+- https://strontic.github.io/xcyclopedia/library/at.exe-5FD22B915C232378E567160D641CC9F2.html
+- https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
+tags:
+- attack.execution
+- attack.t1053.005
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \cmd.exe
+    CommandLine|contains|all:
+      - at
+      - /interactive
+      - cmd
+  condition: selection
+falsepositives:
+- None
+level: high

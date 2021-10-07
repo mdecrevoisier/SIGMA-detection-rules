@@ -1,0 +1,30 @@
+title: Service abuse with backdoored "command failure" (service)
+description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://twitter.com/JohnLaTwC/status/1432689635122159623?s=09
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc742019(v=ws.11)
+- https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_process:
+    EventID: 4688
+    NewProcessName|endswith: \sc.exe # 'C:\Windows\System32\sc.exe'
+
+  selection_command:
+    CommandLine|contains|all: # Full command: sc failure W32Time command= "\"c:\Windows\system32\pentestlab.exe\""
+      - sc
+      - failure
+      - command
+
+  condition: selection_command and selection_process
+falsepositives:
+- None
+level: high

@@ -1,0 +1,29 @@
+title: Service abuse with malicious ImagePath (service)
+description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc742019(v=ws.11)
+- https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_process:
+    EventID: 4688
+    NewProcessName|endswith: \sc.exe # 'C:\Windows\System32\sc.exe'
+
+  selection_command: # Full command: sc config xboxgip binPath= "C:\windows\system32\pentestlab.exe"
+    CommandLine|contains|all:
+      - sc
+      - config
+      - binPath
+
+  condition: selection_command and selection_process
+falsepositives:
+- None
+level: high

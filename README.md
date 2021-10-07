@@ -30,6 +30,7 @@ Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login failure from a single source with a disabled account | 33205
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Success login on OpenSSH server | 4624/4
 TA0002-Execution | T1047-Windows Management Instrumentation  | Impacket WMIexec process execution | 4688
+TA0002-Execution | T1053.005-Scheduled Task | Interactive shell triggered by scheduled task (at, deprecated) | 4688
 TA0002-Execution | T1053.005-Scheduled Task | Persistent scheduled task with SYSTEM privileges creation | 4688
 TA0002-Execution | T1053.005-Scheduled Task | Remote schedule task creation via named pipes | 5145
 TA0002-Execution | T1053.005-Scheduled Task | Schedule task fastly created and deleted | 4698,4699
@@ -39,6 +40,7 @@ TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell  | In
 TA0002-Execution | T1059.003-Windows Command Shell  | Encoded PowerShell payload deployed via process execution | 4688
 TA0002-Execution | T1059.003-Windows Command Shell  | SQL Server payload injectection for reverse shell (MSF) | 4688
 TA0002-Execution | T1569.002-Service Execution  | PSexec installation detected | 4688
+TA0003-Persistence | T1078.002-Valid accounts-Domain accounts | Account renamed to "admin" (or likely) | 4781
 TA0003-Persistence | T1098.xxx-Account Manipulation  | High risk domain group membership change | 4728/4756
 TA0003-Persistence | T1098.xxx-Account Manipulation  | High risk local-domain local group membership change | 4732
 TA0003-Persistence | T1098.xxx-Account Manipulation  | Medium risk local-domain local group membership change | 4732
@@ -79,6 +81,10 @@ TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exch
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts | 1/6
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Encoded PowerShell payload deployed via service installation | 4697/7045
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected (mimidrv.sys) | 4697/7045
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (registry) | 4688/1
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (service) | 4688/1
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with malicious ImagePath (registry) | 4688/1
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with malicious ImagePath (service) | 4688/1
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045/4697
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800,4103,4104
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration | 19,20,21

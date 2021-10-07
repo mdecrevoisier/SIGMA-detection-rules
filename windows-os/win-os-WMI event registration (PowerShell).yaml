@@ -19,7 +19,7 @@ detection: # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
     EventID: 800
     EventData|contains|all:
       - 'Set-WmiInstance'
-      - 'Class' 
+      - 'Class'
       #- 'Namespace'
       #- 'Arguments'
 

@@ -4,6 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/atexec.py
 - https://u0041.co/blog/post/1
+- https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
 tags:
 - attack.execution
 - attack.t1053.005

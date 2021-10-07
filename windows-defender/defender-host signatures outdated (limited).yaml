@@ -1,5 +1,5 @@
 title: Microsoft Defender signatures not up to date
-description: Detects scenarios where multiple threats are detected on a single host by Microsoft Defender
+description: Detects scenarios where Defender signatures are outdated.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
@@ -22,7 +22,7 @@ detection:
   condition: selection_event and (selection_age > 7)
 falsepositives:
 - Unconnected systems to internet
-- Missconfigured systems unable to reach their signature update server (SCCM/SCEP)
+- Missconfigured systems unable to reach their signature update server (SCCM/SCEP/WSUS)
 - System offline during long duration
 - Windows system with license hack (date set to +10 years)
 level: medium
