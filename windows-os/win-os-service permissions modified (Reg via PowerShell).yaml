@@ -1,4 +1,4 @@
-title: Service permissions hijacked for privileges abuse (PowerShell)
+title: Service permissions hijacked for privileges abuse (Reg via PowerShell)
 description: Detects scenarios where an attacker modify the permissions of a service using native PowerShell commands in order to abuse its privileges. Note that it requires PowerShell 7 or higher.
 references:
 - http://woshub.com/set-permissions-on-windows-service/
@@ -19,21 +19,27 @@ logsource:
 detection:
   selection_powershell_native:
     EventID: 800
+    EventData|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
     EventData|contains|all:
-      - Set-Service
-      - -SecurityDescriptorSddl
+      - Set-ItemProperty
+      - -path
+      - Security
 
   selection_powershell_modern:
     EventID: 4103
+    Payload|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
     Payload|contains|all:
-      - Set-Service
-      - -SecurityDescriptorSddl
+      - Set-ItemProperty
+      - -path
+      - Security
 
   selection_powershell_block:
     EventID: 4104
+    ScriptBlockText|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
     ScriptBlockText|contains|all:
-      - Set-Service
-      - -SecurityDescriptorSddl
+      - Set-ItemProperty
+      - -path
+      - Security
 
   condition: 1 of selection*
 falsepositives:

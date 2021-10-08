@@ -1,12 +1,13 @@
 title: Service permissions hijacked for privileges abuse (service)
 description: Detects scenarios where an attacker modify the permissions of a service in order to abuse its privileges
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
 - http://woshub.com/set-permissions-on-windows-service/
 - https://www.winhelponline.com/blog/view-edit-service-permissions-windows/
 - https://decoder.cloud/2019/02/07/demystifying-windows-service-permissions-configuration/
 - https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-7.1
 - https://medium.com/r3d-buck3t/abuse-service-registry-acls-windows-privesc-f88079140509
+- https://github.com/rohnedwards/PowerShellAccessControl
 tags:
 - attack.persistence
 - attack.t1543.003
@@ -20,19 +21,20 @@ detection:
   selection_event:
     EventID: 4688
 
-  selection_sdset: # full command :sc sdset Spooler "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)
+  selection_sdset: # full command (native commmand):sc sdset XblGameSave "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)
     NewProcessName|endswith: \sc.exe # 'C:\Windows\System32\sc.exe'
     CommandLine|contains|all:
       - sc
       - sdset
 
-  selection_subinACL: # full command: subinacl.exe /service Spooler /grant=contoso\tuser=PTO
+  selection_subinACL: # full command (3rd party tool): subinacl.exe /service Spooler /grant=contoso\tuser=PTO
     CommandLine|contains|all:
       #- subinacl # not considered as executable name can be changed
       - /service
       - /grant=
 
-  selection_setACL: # full command: SetACL.exe -on "schedule" -ot srv -actn list
+  selection_setACL: # full command (3rd party tool): SetACL.exe -on "schedule" -ot srv -actn list
+    CommandLine|contains|all:
       #- setacl # not considered as executable name can be changed
       - -on   # object name
       - -srv  # object type

@@ -81,8 +81,10 @@ TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exch
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts | 1/6
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Encoded PowerShell payload deployed via service installation | 4697/7045
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected (mimidrv.sys) | 4697/7045
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (PowerShell) | 800/4103/4104
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (registry) | 4688/1
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (service) | 4688/1
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with malicious ImagePath (PowerShell) | 800/4103/4104
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with malicious ImagePath (registry) | 4688/1
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with malicious ImagePath (service) | 4688/1
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045/4697
@@ -95,6 +97,10 @@ TA0003-Persistence | T1546-Event Triggered Execution | localizationDisplayId att
 TA0003-Persistence | T1574.002-DLL Side-Loading | DNS DLL "serverlevelplugindll" command execution (+registry set) | 1/13
 TA0003-Persistence | T1574.002-DLL Side-Loading | Failed DLL loaded by DNS server | 150
 TA0003-Persistence | T1574.002-DLL Side-Loading | Success DLL loaded by DNS server | 770
+TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (PowerShell) | 800/4103/4104
+TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (Reg via PowerShell) | 800/4103/4104
+TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (registry) | 4688
+TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (service) | 4688
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | User right granted to an account by a standard user | 4704
 TA0004-Privilege Escalation | T1484.001-Domain Policy Modification-Group Policy Modification | Modification of a sensitive Group Policy  | 5136
