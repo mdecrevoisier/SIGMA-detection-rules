@@ -14,21 +14,14 @@ status: experimental
 logsource:
   product: windows
   service: process_creation
-detection:
-  selection1_process_execution:
+detection: # full command : 'setspn -T my_domain -Q */*'
+  selection:
     EventID: 4688
-    NewProcessName|endswith: '\setspn.exe'
-
-  selection2_process_create_sysmon:
-    EventID: 1
-    Image|endswith: '\setspn.exe'
-
-  arguments:
-    CommandLine|contains: # full command : 'setspn -T my_domain -Q */*'
-      - '-T' # Perform query on the specified domain
-      - '-Q' # Will execute on each target domain or forest
-
-  condition:  (selection1_process_execution or selection2_process_create_sysmon) and arguments
+    NewProcessName|endswith: \setspn.exe
+    CommandLine|contains:
+      - -T # Perform query on the specified domain
+      - -Q # Will execute on each target domain or forest
+  condition: selection
 falsepositives:
 - Administrators
 level: high

@@ -13,13 +13,16 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection_process:
-    Image|endswith: '\sqlcmd.exe'
-    CommandLine|contains: '-S ' # parameter to specify the database\instance'
-  selection_sql_tool:
-    - Commandline|contains: sqlcmd  # used in recent SQL Server versions
-    - CommandLine|contains: osql # used in old SQL server version
-  condition: selection_process and selection_sql_tool
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \sqlcmd.exe
+    Commandline|contains:
+      - sqlcmd  # used in recent SQL Server versions
+      - osql    # used in old SQL server version
+    CommandLine|contains: # parameter to specify the database\instance'
+      - -S
+      - /S
+  condition: selection
 falsepositives:
 - Master database restore procedure
 - Maintenance operation
