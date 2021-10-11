@@ -16,12 +16,8 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection_event:
-    EventID:
-      - 1
-      - 4688
-
-  selection_command:
+  selection:
+    EventID: 4688
     CommandLine|contains|all:
       - Set-MpPreference
       - '6' # MP_THREAT_ACTION_ALLOW
@@ -30,8 +26,7 @@ detection:
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
-
-  condition: selection_event and selection_command
+  condition: selection
 falsepositives:
 - None
 level: high

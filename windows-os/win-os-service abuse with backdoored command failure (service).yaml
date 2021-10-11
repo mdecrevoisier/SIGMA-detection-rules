@@ -14,17 +14,14 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection_process:
+  selection:
     EventID: 4688
     NewProcessName|endswith: \sc.exe # 'C:\Windows\System32\sc.exe'
-
-  selection_command:
     CommandLine|contains|all: # Full command: sc failure W32Time command= "\"c:\Windows\system32\pentestlab.exe\""
       - sc
       - failure
       - command
-
-  condition: selection_command and selection_process
+  condition: selection
 falsepositives:
 - administrator reconfiguring service
 level: high

@@ -18,15 +18,9 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection_process:
+  selection:
     EventID: 4688
     NewProcessName|endswith: \reg.exe # 'C:\Windows\System32\reg.exe'
-
-  selection_sysmon_process:
-    EventID: 1
-    Image|endswith: \reg.exe # 'C:\Windows\System32\reg.exe'
-
-  selection_command:
     CommandLine|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security' # HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xboxsvc\Security
     CommandLine|contains|all:
       - REG ADD
@@ -35,8 +29,7 @@ detection:
       - Security
       - /d # Data to add
       #- /f # Add without prompt
-
-  condition: selection_command and (selection_process or selection_sysmon_process)
+  condition: selection
 falsepositives:
 - administrator reconfiguring service
 level: high

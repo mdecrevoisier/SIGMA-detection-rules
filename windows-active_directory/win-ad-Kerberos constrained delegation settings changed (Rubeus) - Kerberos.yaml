@@ -21,7 +21,7 @@ logsource:
 detection:
   selection: # Delegation to specified service, Kerberos only
     EventID: 4742
-    UserAccountControl: '-'  # Avoid duplicate with with "contrained delegation to any protocol"
+    UserAccountControl: '-'  # Avoid duplicate with with "constrained delegation to any protocol"
   filter:
     AllowedToDelegateTo: '-' # Can be: "cifs/srv01 cifs/srv02.demo.lan dcom/dc03..."
   condition: selection and not filter

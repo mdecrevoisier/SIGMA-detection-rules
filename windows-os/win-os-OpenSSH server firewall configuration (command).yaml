@@ -15,9 +15,7 @@ logsource:
   category: process_creation
 detection:
   selection_event:
-    EventID:
-      - 1
-      - 4688
+    EventID: 4688
 
   selection_netsh_adv: # Command for firewall rule creation (available starting Server 2012 R2)
     CommandLine|contains|all:

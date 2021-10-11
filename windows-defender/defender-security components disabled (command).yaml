@@ -16,12 +16,8 @@ logsource:
   product: windows
   category: process_creation
 detection: # Set-MpPreference -DisableArchiveScanning $true
-  selection_event:
-    EventID:
-      - 1
-      - 4688
-
-  selection_command:
+  selection: 
+    EventID: 4688
     CommandLine|contains|all:
       - Set-MpPreference
       - $true
@@ -46,8 +42,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
       - DisableBlockAtFirstSeen
       - DisableCpuThrottleOnIdleScans
       - DisableDatagramProcessing
-
-  condition: selection_event and selection_command
+  condition: selection
 falsepositives:
 - None
 level: medium

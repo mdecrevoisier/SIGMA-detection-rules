@@ -19,21 +19,14 @@ logsource:
   product: windows
   category: process_creation
 detection:
-
-  selection_process:
+  selection:
     EventID: 4688
     NewProcessName|endswith: '\dnscmd.exe'
-
-  selection_sysmon_process:
-    EventID: 1
-    Image|endswith: '\dnscmd.exe' # Full path 'C:\Windows\System32\dnscmd.exe'
-
-  selection_command:
     CommandLine|contains|all: # full command 'dnscmd.exe /config /serverlevelplugindll "C:\mimilib.dll"'
-      - dnscmd
+      #- dnscmd
       - /config
       - /serverlevelplugindll'
-  condition: (selection_process or selection_sysmon) and selection_command
+  condition: selection
 falsepositives:
 - None
 level: critical

@@ -11,21 +11,15 @@ status: experimental
 logsource:
   product: windows
   service: process_creation
-detection:
-  selection1_process_execution:
+detection: # SetSPN -a MSSQLSvc/srv01.demo.lan demo\srv01
+  selection:
     EventID: 4688
     NewProcessName|endswith: '\setspn.exe'
-
-  selection2_process_create_sysmon:
-    EventID: 1
-    Image|endswith: '\setspn.exe'
-
-  arguments:
-    CommandLine|contains|all: # SetSPN -a MSSQLSvc/srv01.demo.lan demo\srv01
-      - setspn
-      - '-a '
-
-  condition:  (selection1_process_execution or selection2_process_create_sysmon) and arguments
+    #CommandLine|contains: setspn
+    CommandLine|contains|all:
+      - /a
+      - -a
+  condition: selection
 falsepositives:
 - Administrators adding SPN
 level: high
