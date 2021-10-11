@@ -15,17 +15,16 @@ detection:
     EventID: 4661
     ProcessName|endswith: '\lsass.exe'
     ObjectServer: 'Security Account Manager'
+    ObjectName|startswith: 'S-1-5-21'
 
   # net user administrator /domain
   selection_users:
     ObjectType: SAM_USER
-    ObjectName|startswith: 'S-1-5-21'
     ObjectName|endswith: '-500' # local administrator
 
   # net group "Domain Admins" /domain
   selection_groups:
     ObjectType: SAM_GROUP
-    ObjectName|startswith: 'S-1-5-21'
     ObjectName|endswith:
       - '-512' # Domain Admins
       - '-513' # Domain users (less critical)
