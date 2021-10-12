@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: \reg.exe # 'C:\Windows\System32\reg.exe'
+    NewProcessName|endswith: \reg.exe
     CommandLine|contains|all: # Full command: reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xboxgip" /v ImagePath /t REG_SZ /d "C:\tmp\pentestlab.exe"
       - REG ADD
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'

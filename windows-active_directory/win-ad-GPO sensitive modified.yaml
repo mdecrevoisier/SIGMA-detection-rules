@@ -16,14 +16,14 @@ detection:
     EventID: 5136
     AttributeLDAPDisplayName: versionNumber
     ObjectClass: groupPolicyContainer
-    OperationType: "%%14674" # Value is added
+    OperationType: '%%14674' # Value is added
     ObjectGUID|contains: # List of sensitive GPO GUID
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
   filter:
-    AttributeValue: 0 # First time GPO creation
+    AttributeValue: '0' # First value when GPO is created
   condition: selection and not filter
 falsepositives:
 - Group policy administrator activity / AGPM activity

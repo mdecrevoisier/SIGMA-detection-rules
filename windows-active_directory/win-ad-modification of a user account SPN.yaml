@@ -19,7 +19,7 @@ detection:
     EventID: 5136 # ID 4738 doesn't report any changes about SPN changes
     AttributeLDAPDisplayName: servicePrincipalName
     ObjectClass: user
-    OperationType: "%%14674" # Value is added
+    OperationType: '%%14674' # Value is added
   filter:
     AttributeValue: '-'
   condition: selection and not filter

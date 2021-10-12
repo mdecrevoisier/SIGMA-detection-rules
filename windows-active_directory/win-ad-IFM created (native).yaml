@@ -18,8 +18,10 @@ detection:
       - 325 # The database engine created a new database
       - 327 # The database engine detached a database
     EventData|contains:
-      - '\ntds.dit' # path can be "c:\hacker\Active Directory\ntds.dit"
-  condition: selection
+      - \ntds.dit
+  filter:
+      - <normal backup path>
+  condition: selection and not filter
 falsepositives:
 - Administrator creating a IFM image
 level: high

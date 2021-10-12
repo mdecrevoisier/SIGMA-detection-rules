@@ -16,7 +16,7 @@ detection: # SetSPN -a MSSQLSvc/srv01.demo.lan demo\srv01
     EventID: 4688
     NewProcessName|endswith: '\setspn.exe'
     #CommandLine|contains: setspn
-    CommandLine|contains|all:
+    CommandLine|contains:
       - /a
       - -a
   condition: selection

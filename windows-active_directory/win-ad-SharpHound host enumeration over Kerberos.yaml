@@ -15,7 +15,7 @@ detection:
   selection:
     EventID: 4769
     ServiceName|endswith: '$'
-    Status: '0x0'
+    Status: 0x0
   filter:
     ServiceName: krbtgt
   condition: selection and not filter | count(ServiceName) by IpAddress > 20

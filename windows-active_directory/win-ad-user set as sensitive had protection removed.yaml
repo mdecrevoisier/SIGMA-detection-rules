@@ -18,5 +18,5 @@ detection:
     UserAccountControl: '%%2062' # Account is sensitive and cannot be delegated - FALSE
   condition: selection
 falsepositives:
-- high
+- none
 level: high

@@ -1,4 +1,4 @@
-title: Massive SAM users/groups discovery via commandline
+title: Massive SAM users/groups discovery (native)
 description: Detects scenarios where an attacker attempts to enumerate sensitive domain users/groups settings and membership.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
@@ -10,18 +10,22 @@ author: mdecrevoisier
 logsource:
   product: windows
   service: security
-detection:
-  selection: # net user $_user_name_or_group /domain
+detection: # net user <user or group> /domain
+  selection:
     EventID: 4661
     ProcessName|endswith: '\lsass.exe'
     ObjectServer: 'Security Account Manager'
+    ObjectName|startswith: 'S-1-5-21'
     ObjectType:
       - SAM_USER
       - SAM_GROUP
-    ObjectName|startswith: 'S-1-5-21'
   filter:
-    SubjectUserName|endswith: '$'
+    - SubjectUserName|endswith: '$'
+    - ObjectName|endswith: # already covered in a separated rule for sensitive user & group enumeration
+      - '-500' # local administrator
+      - '-512' # Domain Admins
+      - '-513' # Domain users (less critical)
   condition: selection and not filter | count(ObjectName) by Computer > 10
 falsepositives:
-- None
+- Administrator activity
 level: high

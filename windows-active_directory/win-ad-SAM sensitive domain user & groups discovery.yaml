@@ -1,4 +1,4 @@
-title: Sensitive SAM domain user & groups discovery via commandline
+title: Sensitive SAM domain user & groups discovery (native)
 description: Detects scenarios where an attacker attempts to enumerate sensitive domain group settings and membership.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
@@ -11,27 +11,21 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_baseline:
+  selection:
     EventID: 4661
     ProcessName|endswith: '\lsass.exe'
     ObjectServer: 'Security Account Manager'
-    ObjectName|startswith: 'S-1-5-21'
-
-  # net user administrator /domain
-  selection_users:
-    ObjectType: SAM_USER
-    ObjectName|endswith: '-500' # local administrator
-
-  # net group "Domain Admins" /domain
-  selection_groups:
-    ObjectType: SAM_GROUP
+    ObjectName|startswith: 'S-1-5-21-'
+    ObjectType:
+      - SAM_USER
+      - SAM_GROUP
     ObjectName|endswith:
-      - '-512' # Domain Admins
-      - '-513' # Domain users (less critical)
-
+      - '-500' # local administrator / "net user administrator /domain"
+      - '-512' # Domain Admins       / "net group "Domain Admins" /domain"
+      - '-513' # Domain users
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection_baseline and (selection_users or selection_groups) and not filter
+  condition: selection and not filter
 falsepositives:
 - Administrator activity
 level: high

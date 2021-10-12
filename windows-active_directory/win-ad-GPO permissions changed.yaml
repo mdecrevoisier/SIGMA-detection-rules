@@ -16,7 +16,7 @@ detection:
     EventID: 5136
     AttributeLDAPDisplayName: ntSecurityDescriptor
     ObjectClass: groupPolicyContainer
-    OperationType: "%%14674" # Value is added
+    OperationType: '%%14674' # Value is added
   filter:
     SubjectUserName: # AGPM servers (to customize)
       - SRVAGPM01$

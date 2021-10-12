@@ -17,6 +17,7 @@ detection:
       - 4663
     ObjectType: 'Process'
     ObjectName|endswith: '\lsass.exe'
+    # AccessMask: 0x1438 # misc::memssp
   filter_user:
     SubjectUserName|endswith: '$'
   filter_process:
