@@ -5,7 +5,7 @@
 
 ## How to use the rules:
 The SIGMA rules can be used in different ways together with your SIEM:
-* Using the native SIGMA converter: https://github.com/Neo23x0/sigma
+* Using the native SIGMA converter: https://github.com/SigmaHQ/sigma
 * Using SOC Prime online SIGMA converter: https://uncoder.io/
 * Using the SOC Prime free Kibana plugin: https://github.com/socprime/SigmaUI
 
