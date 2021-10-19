@@ -1,0 +1,38 @@
+title: Security package (SSP) loaded into LSA (native)
+description: Detects scenarios where an attacker loads a malicious SSP (Security Support Provider) into the LSA process. Note that this rule will not work with "in memory" SSP injection (Mimikatz) as no event will be triggered.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1547-Boot%20or%20Logon%20Autostart%20Execution
+- https://twitter.com/JohnLaTwC/status/1417106953881497602?s=09
+- https://blog.xpnsec.com/exploring-mimikatz-part-2/
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4622
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn408187(v=ws.11)?redirectedfrom=MSDN
+- https://pentestlab.blog/2019/10/21/persistence-security-support-provider/
+- https://www.ired.team/offensive-security/credential-access-and-credential-dumping/intercepting-logon-credentials-via-custom-security-support-provider-and-authentication-package
+- https://securityintelligence.com/posts/hunting-evidence-dll-side-loading-powershell-sysmon/
+- https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
+tags:
+- attack.persistence
+- attack.t1547.008
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4622 # Security package loaded by LSA (Local Security Authority)
+  filter:
+    SecurityPackageName|contains: # native Windows SSP
+      - \Windows\system32\cloudAP.dll  # CloudAP
+      - \Windows\system32\kerberos.dll # Kerberos
+      - \Windows\system32\lsasrv.dll   # Negotiate
+      - \Windows\system32\msv1_0.dll   # NTLM
+      - \Windows\system32\negoexts.dll # NegoExtender
+      - \Windows\system32\pku2u.dll    # pku2u
+      - \Windows\system32\schannel.dll # Schannel
+      - \Windows\system32\tspkg.dll    # TSSSP
+      - \Windows\system32\wdigest.dll  # WDigest
+  condition: selection and not filter
+falsepositives:
+- None
+level: high

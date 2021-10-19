@@ -1,4 +1,4 @@
-title: Massive SAM users/groups discovery (native)
+title: Massive SAM users/groups enumeration (native)
 description: Detects scenarios where an attacker attempts to enumerate sensitive domain users/groups settings and membership.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery

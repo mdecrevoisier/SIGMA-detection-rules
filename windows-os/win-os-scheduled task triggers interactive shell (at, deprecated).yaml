@@ -5,6 +5,7 @@ references:
 - https://docs.microsoft.com/en-us/troubleshoot/windows-client/system-management-components/use-at-command-to-schedule-tasks
 - https://strontic.github.io/xcyclopedia/library/at.exe-5FD22B915C232378E567160D641CC9F2.html
 - https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
+- https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
 tags:
 - attack.execution
 - attack.t1053.005

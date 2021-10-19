@@ -1,5 +1,5 @@
-title: Security package (SSP) loaded into LSA (registry)
-description: Detects scenarios where an attacker loads a malicious SSP (Security Support Provider) into the LSA process. Note that this rule will not work with "in memory" SSP injection as no event will be triggered.
+title: Security package (SSP) added to registry
+description: Detects scenarios where an attacker adds a reference in the registry to a malicious SSP (Security Support Provider). Note that this rule will not work with "in memory" SSP injection (Mimikatz).
 references:
 - https://twitter.com/JohnLaTwC/status/1417106953881497602?s=09
 - https://blog.xpnsec.com/exploring-mimikatz-part-2/
@@ -10,7 +10,7 @@ references:
 - https://securityintelligence.com/posts/hunting-evidence-dll-side-loading-powershell-sysmon/
 - https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
 tags:
-- attack.persistente
+- attack.persistence
 - attack.t1547.008
 author: mdecrevoisier
 status: experimental
@@ -33,6 +33,3 @@ detection:
 falsepositives:
 - None
 level: high
-
-
-# C:\Windows\System32\mimilsa.log
