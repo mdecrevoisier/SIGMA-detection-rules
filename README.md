@@ -72,6 +72,7 @@ TA0003-Persistence | T1136.001-Create account-Local account | Disbled Guest (and
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741
 TA0003-Persistence | T1136.002-Create account-Domain account | User account created to fake a computer account (ends with "$") | 4720
+TA0003-Persistence | T1136-Create account | User creation via commandline | 4688
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL lateral movement with CLR | 15457
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server xp_cmdshell procedure activated | 18457
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server: sqlcmd & ossql utilities abuse | 4688
@@ -94,6 +95,8 @@ TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL registry abuse | 12/13
 TA0003-Persistence | T1546-Event Triggered Execution | AdminSDHolder container permissions modified | 5136
 TA0003-Persistence | T1546-Event Triggered Execution | localizationDisplayId attribute abuse for backdoor introduction | 5136
+TA0003-Persistence | T1547.008-Boot or Logon Autostart Execution: LSASS Driver | win-os-security package (SSP) loaded into LSA (native) | 4622
+TA0003-Persistence | T1547.008-Boot or Logon Autostart Execution: LSASS Driver | win-os-security package (SSP) reference added to registry | 4688
 TA0003-Persistence | T1574.002-DLL Side-Loading | DNS DLL "serverlevelplugindll" command execution (+registry set) | 1/13
 TA0003-Persistence | T1574.002-DLL Side-Loading | Failed DLL loaded by DNS server | 150
 TA0003-Persistence | T1574.002-DLL Side-Loading | Success DLL loaded by DNS server | 770
@@ -170,11 +173,16 @@ TA0007-Discovery | T1016-System Network Configuration Discovery  | Tentative of 
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated via SharpHound | 4799
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661
 TA0007-Discovery | T1069.002-Discovery domain groups | Sensitive SAM domain user & groups discovery | 4661
+TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via commandline | 4688
 TA0007-Discovery | T1087.002-Domain Account discovery | Honeypot object (container, computer, group, user) enumerated | 4662/4624
 TA0007-Discovery | T1087.002-Domain Account discovery | Single source performing host enumeration over Kerberos ticket (TGS) detected | 4769
 TA0007-Discovery | T1087-Account discovery | Command execution related to Kerberos SPN enumeration activity detected | 4688/1
 TA0007-Discovery | T1087-Account discovery | Command execution related to Kerberos SPN enumeration activity detected | 800/4103/4104
-TA0007-Discovery | T1135.xxx-Network Share Discovery | Host performing advanced named pipes enumeration on different hosts via SMB | 5145
+TA0007-Discovery | T1087-Account discovery | User enumeration via commandline | 4688
+TA0007-Discovery | T1135-Network Share Discovery | Host performing advanced named pipes enumeration on different hosts via SMB | 5145
+TA0007-Discovery | T1135-Network Share Discovery | Network share discovery and/or connection via commandline | 4688
+TA0007-Discovery | T1135-Network Share Discovery | Network share manipulation via commandline | 4688
+TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery via commandline | 4688
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP authentication with valid credentials | 4825
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Admin share accessed via SMB (basic) | 5140/5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Impacket WMIexec execution via SMB admin share | 5145
