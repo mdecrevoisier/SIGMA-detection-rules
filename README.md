@@ -150,6 +150,10 @@ TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance  | WSL f
 TA0006-Credential Access | 1558.004-Steal or Forge Kerberos Tickets: AS-REP Roasting | erberoas AS-REP Roasting ticket request detected | 4768
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS process accessed by a non system account | 4656/4663
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | SAM database user credential dump with Mimikatz | 4661
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (kernel) | 4656/4663
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (PowerShell) | 800/4103/4104
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (process) | 4688/1
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (share) | 5145
 TA0006-Credential Access | T1003.002-Security Account Manager | SAM database access during DCshadow | 4661
 TA0006-Credential Access | T1003.002-Security Account Manager | Secretdump password dump over SMB ADMIN$ | 5145
 TA0006-Credential Access | T1003.003-NTDS | IFM created | 325/327
