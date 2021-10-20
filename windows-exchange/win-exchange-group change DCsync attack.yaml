@@ -1,26 +1,26 @@
-  title: Exchange group membership change to perform DCsync attack
-  description: Detects scenarios where an attacker adds its account into a sensitive Exchange group to obtain "Replicating Directory Changes /all" and perform DCsync attack.
-  references:
-  - https://adsecurity.org/?p=4119
-  - https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/
-  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access
-  - https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/
-  tags:
-  - attack.credential_access
-  - attack.t1003.006
-  author: mdecrevoisier
-  status: experimental
-  logsource:
-    product: windows
-    service: security
-  detection:
-    selection:
-      EventID: 4756 # Security universal group
-      TargetUserName:
-        - Exchange Trusted Subsystem
-        - Exchange Windows Permissions
-    condition: selection
-  falsepositives:
-  - Exchange administrator updating server configuration
-  - Exchange upgrade or migration
-  level: high
+title: Exchange group membership change to perform DCsync attack
+description: Detects scenarios where an attacker adds its account into a sensitive Exchange group to obtain "Replicating Directory Changes /all" and perform DCsync attack.
+references:
+- https://adsecurity.org/?p=4119
+- https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access
+- https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/
+tags:
+- attack.credential_access
+- attack.t1003.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4756 # Security universal group
+    TargetUserName:
+      - Exchange Trusted Subsystem
+      - Exchange Windows Permissions
+  condition: selection
+falsepositives:
+- Exchange administrator updating server configuration
+- Exchange upgrade or migration
+level: high

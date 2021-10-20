@@ -1,7 +1,8 @@
 title: Diskshadow command abuse to expose VSS backup
 description: Detects scenarios where an attacker attemps to create an IFM for dumping credentials.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping- https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
+- https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
 - https://adsecurity.org/?p=2398
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
 - https://bohops.com/2018/03/26/diskshadow-the-return-of-vss-evasion-persistence-and-active-directory-database-extraction/
