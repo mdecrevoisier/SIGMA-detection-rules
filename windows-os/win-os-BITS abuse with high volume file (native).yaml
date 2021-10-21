@@ -1,0 +1,36 @@
+title: File with high volume downloaded via BITS
+description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs
+- https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
+- https://docs.microsoft.com/en-us/windows/win32/bits/bitsadmin-tool
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bitsadmin-examples
+- https://attack.mitre.org/software/S0190/
+- https://www.microsoft.com/security/blog/2019/12/12/multi-stage-downloader-trojan-sload-abuses-bits-almost-exclusively-for-malicious-activities/
+- https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
+- https://www.hackingarticles.in/windows-for-pentester-bitsadmin/
+tags:
+- attack.exfiltration
+- attack.t1048 # Exfiltration Over Alternative Protocol
+- attack.lateral-movement
+- attack.t1570 # Lateral Tool Transfer
+- attack.Command-and-Control
+- attack.t1105 # Ingress Tool Transfer
+- attack.persistence
+- attack.t1197 # Bits jobs
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: bits
+detection:
+  selection_baseline:
+    EventID: 60   # BITS Task stopped
+    hr: 0         # Indicate download completed successfully
+  selection_size: # Size is provided in Bytes (524288000 =~ 500Mb)
+    - fileLength >= 524288000
+    - bytesTotal >= 524288000
+  condition: selection_baseline and selection_size
+falsepositives:
+- Microsoft updates
+level: medium

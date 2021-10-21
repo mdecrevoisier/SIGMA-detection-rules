@@ -19,26 +19,26 @@ logsource:
 detection:
   selection_powershell_native:
     EventID: 800
-    EventData|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
+    EventData|re: '\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
     EventData|contains|all:
       - Set-ItemProperty
-      - -path
+      #- -path # parameter is optional
       - Security
 
   selection_powershell_modern:
     EventID: 4103
-    Payload|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
+    Payload|re: '\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
     Payload|contains|all:
       - Set-ItemProperty
-      - -path
+      #- -path # parameter is optional
       - Security
 
   selection_powershell_block:
     EventID: 4104
-    ScriptBlockText|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
+    ScriptBlockText|re: '\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security'
     ScriptBlockText|contains|all:
       - Set-ItemProperty
-      - -path
+      #- -path # parameter is optional
       - Security
 
   condition: 1 of selection*

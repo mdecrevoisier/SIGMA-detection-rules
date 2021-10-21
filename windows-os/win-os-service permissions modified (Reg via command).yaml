@@ -1,4 +1,4 @@
-title: Service permissions hijacked for privileges abuse (registry)
+title: Service permissions hijacked for privileges abuse (reg via command)
 description: Detects scenarios where an attacker modify the permissions of a service in order to abuse its privileges
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -21,7 +21,7 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith: \reg.exe # 'C:\Windows\System32\reg.exe'
-    CommandLine|re: 'HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security' # HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xboxsvc\Security
+    CommandLine|re: '\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security' # HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xboxsvc\Security
     CommandLine|contains|all:
       - REG ADD
       - /t # Registry entry type

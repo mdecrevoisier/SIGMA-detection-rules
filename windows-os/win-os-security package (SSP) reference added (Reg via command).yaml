@@ -1,4 +1,4 @@
-title: Security package (SSP) added to registry
+title: Security package (SSP) added (Reg via command)
 description: Detects scenarios where an attacker adds a reference in the registry to a malicious SSP (Security Support Provider). Note that this rule will not work with "in memory" SSP injection (Mimikatz).
 references:
 - https://twitter.com/JohnLaTwC/status/1417106953881497602?s=09
@@ -9,6 +9,7 @@ references:
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/intercepting-logon-credentials-via-custom-security-support-provider-and-authentication-package
 - https://securityintelligence.com/posts/hunting-evidence-dll-side-loading-powershell-sysmon/
 - https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
+- https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet#custom-ssp
 tags:
 - attack.persistence
 - attack.t1547.008
@@ -23,7 +24,7 @@ detection:
     NewProcessName|endswith: \reg.exe
     CommandLine|contains|all: # Full command: reg add "hklm\system\currentcontrolset\control\lsa\" /v "Security Packages" /d "kerberos\0msv1_0\0schannel\0wdigest\0tspkg\0pku2u\0mimilib" /t REG_MULTI_SZ
       - REG ADD
-      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa'
+      - '\SYSTEM\CurrentControlSet\Control\Lsa'
       - /t # Registry entry type
       - /v # Value to add
       - 'Security Packages'

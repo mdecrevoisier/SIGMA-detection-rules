@@ -1,0 +1,46 @@
+title: DSRM password changed (Reg via PowerShell)
+description: Detects scenarios where an attacker reset or synchronize with another domain account the DSRM (Directory Services Restore Mode) password in order to escalate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
+- https://adsecurity.org/?p=1714
+- https://adsecurity.org/?p=1785
+- https://book.hacktricks.xyz/windows/active-directory-methodology/dsrm-credentials
+- https://www.hackingarticles.in/domain-persistence-dsrm/
+- https://azurecloudai.blog/2020/06/19/how-to-reset-the-directory-service-restore-mode-dsrm-password/
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CONTROL\LSA" -name DsrmAdminLogonBehavior -value 2'
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
+      #- -path # parameter is optional
+      - '\SYSTEM\CurrentControlSet\Control\Lsa'
+      - DsrmAdminLogonBehavior
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
+      #- -path # parameter is optional
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      - DsrmAdminLogonBehavior
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
+      #- -path # parameter is optional
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      - DsrmAdminLogonBehavior
+
+  condition: 1 of selection*
+falsepositives:
+- Disaster recovery situation
+level: high

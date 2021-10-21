@@ -1,4 +1,4 @@
-title: Stickey key IFEO registry changed
+title: Stickey key IFEO registry changed (Reg via Sysmon)
 description: Detects scenarios where an attacker changed the IFEO settings related to sethc.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection

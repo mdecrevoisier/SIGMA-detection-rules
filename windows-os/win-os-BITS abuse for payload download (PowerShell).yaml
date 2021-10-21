@@ -1,0 +1,48 @@
+title: BITS payload downloaded via PowerShell
+description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs
+- https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
+- https://docs.microsoft.com/en-us/windows/win32/bits/bitsadmin-tool
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bitsadmin-examples
+- https://attack.mitre.org/software/S0190/
+- https://www.microsoft.com/security/blog/2019/12/12/multi-stage-downloader-trojan-sload-abuses-bits-almost-exclusively-for-malicious-activities/
+- https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
+- https://www.hackingarticles.in/windows-for-pentester-bitsadmin/
+tags:
+- attack.exfiltration
+- attack.t1048 # Exfiltration Over Alternative Protocol
+- attack.lateral-movement
+- attack.t1570 # Lateral Tool Transfer
+- attack.Command-and-Control
+- attack.t1105 # Ingress Tool Transfer
+- attack.persistence
+- attack.t1197 # Bits jobs
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection: # Full command: 'Start-BitsTransfer -Priority foreground -Source https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1197/T1197.md -Destination C:\Users\bits.ps1'
+  selection1_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - Start-BitsTransfer
+      - '-Source'
+
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Start-BitsTransfer
+      - '-Source'
+
+  selection3_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - Start-BitsTransfer
+      - '-Source'
+
+  condition: 1 of selection*
+falsepositives:
+- None
+level: medium

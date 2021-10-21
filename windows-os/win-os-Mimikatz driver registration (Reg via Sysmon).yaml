@@ -1,4 +1,4 @@
-title: Mimikatz driver registration
+title: Mimikatz driver registration (Reg via Sysmon)
 description: Detects scenarios where an attacker installs the Mimikatz driver to bypass the LSA protected mode (RunAsPPL) and dump LSASS process content.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

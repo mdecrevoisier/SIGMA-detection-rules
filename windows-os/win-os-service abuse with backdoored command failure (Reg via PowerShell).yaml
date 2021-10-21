@@ -1,4 +1,4 @@
-title: Service abuse with backdoored "command failure" (PowerShell)
+title: Service abuse with backdoored "command failure" (Reg via PowerShell)
 description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -18,24 +18,24 @@ detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xbox
     EventID: 800
     EventData|contains|all:
       - Set-ItemProperty
-      - -path
-      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      #- -path # parameter is optional
+      - '\SYSTEM\CurrentControlSet\Services\'
       - FailureCommand
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Set-ItemProperty
-      - -path
-      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      #- -path # parameter is optional
+      - '\SYSTEM\CurrentControlSet\Services\'
       - FailureCommand
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Set-ItemProperty
-      - -path
-      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      #- -path # parameter is optional
+      - '\SYSTEM\CurrentControlSet\Services\'
       - FailureCommand
 
   condition: 1 of selection*

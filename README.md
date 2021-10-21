@@ -125,6 +125,9 @@ TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Database 
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | Tentative of disabling or clearing audit policy by commandline | 4688
 TA0005-Defense Evasion | T1078.002-Valid accounts-Domain accounts | Login from a user member of a "special group" detected (special logon) | 4964
 TA0005-Defense Evasion | T1112-Modify registry | Impacket SMBexec stealthy service registration | 13
+TA0005-Defense Evasion | T1197-BITS job | Command execution related to a suspicious BITS activity detected | 4688
+TA0005-Defense Evasion | T1197-BITS job | Command execution related to a suspicious BITS activity detected | 800/4103/4104
+TA0005-Defense Evasion | T1197-BITS job | High amount of data downloaded via BITS | 60
 TA0005-Defense Evasion | T1207-Rogue domain controller | Sensitive attributes accessed (DCshadow) | 4662
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Computer account modifying AD permissions (PrivExchange) | 5136
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Network share permissions changed | 5143
@@ -158,6 +161,9 @@ TA0006-Credential Access | T1003.002-Security Account Manager | SAM database acc
 TA0006-Credential Access | T1003.002-Security Account Manager | Secretdump password dump over SMB ADMIN$ | 5145
 TA0006-Credential Access | T1003.003-NTDS | IFM created | 325/327
 TA0006-Credential Access | T1003.003-NTDS | IFM created from command line | 4688
+TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM password reset | 4794
+TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via command) | 4688
+TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via PowerShell) | 800/4103/4104
 TA0006-Credential Access | T1003.006-DCSync | Member added to a sensitive Exchange security group to perform DCsync attack | 4756
 TA0006-Credential Access | T1003.006-DCSync | Replication privileges granted to perform DCSync attack | 5136
 TA0006-Credential Access | T1003-Credential dumping | Diskshadow abuse | 4688

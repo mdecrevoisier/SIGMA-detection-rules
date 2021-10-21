@@ -1,4 +1,4 @@
-title: Netsh helper DLL abuse (registry)
+title: Netsh helper DLL abuse (Reg via Sysmon)
 description: Detects scenarios where an attacker
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution

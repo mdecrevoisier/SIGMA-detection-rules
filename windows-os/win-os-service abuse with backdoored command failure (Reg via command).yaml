@@ -1,12 +1,13 @@
-title: Service abuse with malicious ImagePath (registry)
-description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
+title: Service abuse with backdoored "command failure" (Reg via command)
+description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://twitter.com/JohnLaTwC/status/1432689635122159623?s=09
 - https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc742019(v=ws.11)
 - https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
 tags:
 - attack.persistence
-- attack.t1574.010
+- attack.t1543.003
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -15,13 +16,13 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: \reg.exe
-    CommandLine|contains|all: # Full command: reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xboxgip" /v ImagePath /t REG_SZ /d "C:\tmp\pentestlab.exe"
+    NewProcessName|endswith: \reg.exe # 'C:\Windows\System32\reg.exe'
+    CommandLine|contains|all: # Full command: REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v FailureCommand /t REG_SZ /d "C:\tmp\pentestlab.exe"
       - REG ADD
-      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\'
+      - '\SYSTEM\CurrentControlSet\Services\'
       - /t # Registry entry type
       - /v # Value to add
-      - ImagePath
+      - FailureCommand
       - /d # Data to add
       #- /f # Add without prompt
   condition: selection

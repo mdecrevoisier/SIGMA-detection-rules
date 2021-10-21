@@ -1,4 +1,4 @@
-title: DLL ServerLevelPluginDll registry set
+title: DLL ServerLevelPluginDll registration (Reg via Sysmon)
 description: Detects scenarios where a DLL is loaded by the DNS server in order to escalate privileges or initiate a remote shell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1574-Hijack%20Execution%20Flow

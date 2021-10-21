@@ -10,6 +10,7 @@ references:
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/intercepting-logon-credentials-via-custom-security-support-provider-and-authentication-package
 - https://securityintelligence.com/posts/hunting-evidence-dll-side-loading-powershell-sysmon/
 - https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
+- https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet#custom-ssp
 tags:
 - attack.persistence
 - attack.t1547.008
