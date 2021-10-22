@@ -1,0 +1,25 @@
+title: Scheduled task enumerated
+description: Detects scenarios where an attacker enumerates scheduled task configuration.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1016-System%20Network%20Configuration%20Discovery
+- https://strontic.github.io/xcyclopedia/library/schtasks.exe-5BD86A7193D38880F339D4AFB1F9B63A.html
+- https://enigma0x3.net/2016/05/25/userland-persistence-with-scheduled-tasks-and-com-handler-hijacking/
+tags:
+- attack.discovery
+- attack.t1016
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \schtasks.exe # Original: 'C:\Windows\System32\schtasks.exe'
+    CommandLine|contains|all: # full command: "schtasks /query /xml"
+      - schtasks
+      - /query
+  condition: selection
+falsepositives:
+- Administrator checking task status
+level: medium

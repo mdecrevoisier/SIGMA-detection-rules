@@ -1,0 +1,33 @@
+title: Firewall configuration checked (command)
+description: Detects scenarios where an attacker attempts to extract current Windows firewall configuration to prepare an attack.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1016-System%20Network%20Configuration%20Discovery
+- https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/netsh-advfirewall-firewall-control-firewall-behavior
+tags:
+- attack.discovery
+- attack.t1016
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: process_creation
+detection:
+  selection_event:
+    EventID: 4688
+    NewProcessName|endswith: '\netsh.exe' # Full path "C:\Windows\system32\netsh.exe"
+
+  selection_command:
+    Commandline|contains|all: # full command 'netsh advfirewall show allprofiles'
+      - netsh
+      - advfirewall
+      - show
+
+  selection_obfuscated:
+    Commandline|contains|all: # full command 'netsh a show allprofiles'
+      - netsh
+      - ' a ' # advfirewall
+      - show
+  condition: selection_event and (selection_command or selection_obfuscated)
+falsepositives:
+- Administrator activity
+level: high

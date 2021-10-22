@@ -17,12 +17,12 @@ detection:
     NewProcessName|endswith: '\auditpol.exe'
 
   selection_clear_audit:
-    CommandLine|contains|all: # full command "C:\Windows\system32\auditpol.exe" /clear /y"
+    CommandLine|contains|all: # full command "auditpol.exe" /clear /y"
       - auditpol
       - clear
 
   selection_disable_audit:
-    CommandLine|contains|all: # full command " "C:\Windows\system32\auditpol.exe" /set /category:* /success:disable /failure:disable"
+    CommandLine|contains|all: # full command " "auditpol.exe" /set /category:* /success:disable /failure:disable"
       - auditpol
       - disable
       - /set
