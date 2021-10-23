@@ -16,7 +16,7 @@ logsource:
   product: windows
   category: process_creation
 detection: # Set-MpPreference -DisableArchiveScanning $true
-  selection: 
+  selection:
     EventID: 4688
     CommandLine|contains|all:
       - Set-MpPreference

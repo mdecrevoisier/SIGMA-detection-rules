@@ -15,10 +15,12 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: \sqlcmd.exe
+    NewProcessName|endswith:
+      - '\sqlcmd.exe'  # used in recent SQL Server versions
+      - '\osql.exe'    # used in old SQL server version
     Commandline|contains:
-      - sqlcmd  # used in recent SQL Server versions
-      - osql    # used in old SQL server version
+      - sqlcmd
+      - osql
     CommandLine|contains: # parameter to specify the database\instance'
       - /S
       - -S
