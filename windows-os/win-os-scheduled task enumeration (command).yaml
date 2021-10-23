@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: \schtasks.exe # Original: 'C:\Windows\System32\schtasks.exe'
+    NewProcessName|endswith: \schtasks.exe
     CommandLine|contains|all: # full command: "schtasks /query /xml"
       - schtasks
       - /query

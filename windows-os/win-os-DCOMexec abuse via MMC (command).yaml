@@ -1,5 +1,5 @@
 title: Impacket DCOMexec process abuse via MMC
-description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.  
+description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.003-Distributed%20Component%20Object%20Model%20(DCOM)
 - https://enigma0x3.net/2017/01/23/lateral-movement-via-dcom-round-2/
@@ -15,12 +15,18 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection:
+  selection_basic:
     EventID: 4688
     Version: 2  # parent process name is available starting Windows 10 or higher
-    ParentProcessName|endswith: '\svchost.exe' # C:\Windows\System32\svchost.exe'
-    NewProcessName|endswith: '\mmc.exe' #'C:\Windows\System32\mmc.exe'
-  condition: selection
+    ParentProcessName|endswith: '\svchost.exe'
+    NewProcessName|endswith: '\mmc.exe'
+
+  selection_sysmon:
+    EventID: 1
+    ParentImage|endswith: '\svchost.exe'
+    Image|endswith: '\mmc.exe'
+
+  condition: selection_basic or selection_sysmon
 falsepositives:
 - applications using DCOM components remotely
 - rare administrator modifications of DCOM settings

@@ -18,18 +18,18 @@ status: experimental
 logsource:
   product: windows
   category: process_creation
-detection:
+detection: # Full command: "schtasks" /create /sc minute /mo 1 /tn eviltask /tr C:\tools\shell.cmd /ru SYSTEM
   selection_execution:
     EventID: 4688
-    NewProcessName|endswith: \schtasks.exe # Original: 'C:\Windows\System32\schtasks.exe'
-    CommandLine|contains|all: # "C:\Windows\system32\schtasks.exe" /create /sc minute /mo 1 /tn eviltask /tr C:\tools\shell.cmd /ru SYSTEM
+    NewProcessName|endswith: \schtasks.exe
+    CommandLine|contains|all:
       - schtasks
       - /create
   filter:
     CommandLine|contains|all: # See schedule persistent rule with SYSTEM privileges
-      - /ru # Run with privileges from user X
-      - SYSTEM # Run with SYSTEM privileges
-      - /tr # Program, path or command to run
+      - /ru     # Run with privileges from user X
+      - SYSTEM  # Run with SYSTEM privileges
+      - /tr     # Program, path or command to run
   condition: selection_execution and not filter
 falsepositives:
 - Administrator
