@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     EventID: 4738
-    UserAccountControl: '%%2096' # Do not require Kerberos preauthentication detected - TRUE
+    UserAccountControl: '%%2096' # Do not require Kerberos preauthentication - TRUE
   condition: selection
 falsepositives:
 - None
