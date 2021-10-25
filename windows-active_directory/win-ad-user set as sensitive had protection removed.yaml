@@ -4,6 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 - https://www.sans.org/blog/protecting-privileged-domain-accounts-safeguarding-access-tokens/
 - https://www.cyberark.com/resources/threat-research-blog/weakness-within-kerberos-delegation
+- https://book.hacktricks.xyz/windows/stealing-credentials/credentials-protections#protected-users
 tags:
 - attack.persistence
 - attack.t1098

@@ -1,0 +1,31 @@
+title: Microsoft Defender service deactivation attempt (command)
+description: Detects scenarios where an attacker attempts to disable Defender security service. If tamper protection is enabled, this action may not work.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-antivirus-on-windows-server?view=o365-worldwide
+tags:
+- attack.defense_evasion
+- attack.t1562.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \sc.exe
+    CommandLine|contains|all:
+      - sc
+      - config
+      - disabled
+    CommandLine|contains: # Defender related services names
+      - WinDefend
+      - Sense
+      - MpsSvc
+  condition: selection
+falsepositives:
+- None
+level: high
+

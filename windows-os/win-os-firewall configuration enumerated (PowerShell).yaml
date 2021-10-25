@@ -1,0 +1,39 @@
+title: Firewall configuration enumerated (PowerShell)
+description: Detects scenarios where an attacker attempts to extract current Windows firewall configuration to prepare an attack.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1016-System%20Network%20Configuration%20Discovery
+- https://docs.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallprofile?view=windowsserver2019-ps
+tags:
+- attack.discovery
+- attack.t1016
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection: # full command: Get-NetFirewallSetting
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains:
+      - Get-NetFirewallProfile
+      - Get-NetFirewallRule
+      - Get-NetFirewallSetting
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains:
+      - Get-NetFirewallProfile
+      - Get-NetFirewallRule
+      - Get-NetFirewallSetting
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains:
+      - Get-NetFirewallProfile
+      - Get-NetFirewallRule
+      - Get-NetFirewallSetting
+
+  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+falsepositives:
+- Administrator activity
+level: medium
