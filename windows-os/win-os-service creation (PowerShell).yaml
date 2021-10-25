@@ -1,0 +1,35 @@
+title: Service creation (PowerShell)
+description: Detects scenarios where an attacker attempts to create a service for persistence.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-7.1
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection1_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - New-Service
+      - -Name
+  selection2_powershell_modern:
+    EventID: 4103
+      - New-Service
+      - -Name
+
+  selection3_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - New-Service
+      - -Name
+
+  condition: 1 of selection*
+falsepositives:
+- administrator deplying service
+- new application installation
+level: high

@@ -1,0 +1,25 @@
+title: Audit policy enumerated
+description: Detects scenarios where an attacker attempts enumerate the audit policy in place.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.xxx-Audit%20policy%20disabled
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-get
+tags:
+- attack.discovery
+- attack.t1082
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: '\auditpol.exe'
+    CommandLine|contains|all: # full command "Auditpol.exe /get /category:* "
+      - auditpol
+      - get      # Can be '/' or '-'
+      - category # Can be '/' or '-'
+  condition: selection
+falsepositives:
+- Administrator debugging audit policy
+level: high

@@ -16,7 +16,7 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: \sc.exe # 'C:\Windows\System32\sc.exe'
+    NewProcessName|endswith: \sc.exe
     CommandLine|contains|all: # Full command: sc failure W32Time command= "\"c:\Windows\system32\pentestlab.exe\""
       - sc
       - failure

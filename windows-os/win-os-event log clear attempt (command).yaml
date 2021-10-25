@@ -1,0 +1,26 @@
+title: Event log clear attempt (command)
+description: Detects scenarios where an attacker attempts to clear the event logs.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil
+tags:
+- attack.defense_evasion
+- attack.t1070.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: process_creation
+detection: # Full command: wevtutil el | Foreach-Object {Write-Host "Clearing $_"; wevtutil cl "$_"}
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: '\wevtutil.exe'
+    CommandLine|contains:
+      - wevtutil
+    CommandLine|contains:
+      - clear-log
+      - cl # reduced command
+  condition: selection
+falsepositives:
+- None
+level: high

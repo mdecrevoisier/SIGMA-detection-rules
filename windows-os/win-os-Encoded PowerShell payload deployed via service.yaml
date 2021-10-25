@@ -4,7 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
 tags:
-- attack.privilege-execution
+- attack.privilege_execution
 - attack.t1543.003
 author: mdecrevoisier
 status: experimental

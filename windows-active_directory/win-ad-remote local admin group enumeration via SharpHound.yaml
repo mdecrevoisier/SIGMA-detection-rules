@@ -22,7 +22,7 @@ detection:
     CallerProcessName: '-' # Process is empty when call is done remotely
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection and not filter | count(Hostname) > 20 # Count on how many hosts this event was produced
+  condition: selection and not filter | count(Computer) by SubjectUserSid > 20 # Count on how many hosts this event was produced
   # some correlation could also be done using the SubjectLogonId between ID 4799 and ID 4624 to identify the source of the enumeration
 falsepositives:
 - Administrators

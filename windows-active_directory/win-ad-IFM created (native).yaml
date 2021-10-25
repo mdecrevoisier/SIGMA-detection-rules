@@ -6,7 +6,7 @@ references:
 - https://adsecurity.org/?p=2398
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
 tags:
-- attack.credential-dumping
+- attack.credential_dumping
 - attack.t1003.003
 author: mdecrevoisier
 status: experimental

@@ -7,7 +7,7 @@ references:
 - https://pentestlab.blog/2018/06/04/spn-discovery/
 - https://adsecurity.org/?p=3458
 tags:
-- attack.account-discovery
+- attack.account_discovery
 - attack.t1087
 author: mdecrevoisier
 status: experimental

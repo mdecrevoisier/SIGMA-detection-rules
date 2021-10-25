@@ -5,7 +5,7 @@ references:
 - https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions
 - https://docs.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles
 tags:
-- attack.account-manipulation
+- attack.account_manipulation
 - attack.t1098
 author: mdecrevoisier
 status: experimental

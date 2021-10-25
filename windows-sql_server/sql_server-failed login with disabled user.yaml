@@ -5,7 +5,7 @@ references:
 - https://www.eraofdata.com/sql-server/connectivity/login-failures/
 - https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms366351(v=sql.105)
 tags:
-- attack.valid-account
+- attack.valid_account
 - attack.t1078
 author: mdecrevoisier
 status: experimental

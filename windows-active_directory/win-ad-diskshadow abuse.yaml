@@ -7,7 +7,7 @@ references:
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
 - https://bohops.com/2018/03/26/diskshadow-the-return-of-vss-evasion-persistence-and-active-directory-database-extraction/
 tags:
-- attack.credential-dumping
+- attack.credential_dumping
 - attack.t1003
 author: mdecrevoisier
 status: experimental

@@ -20,7 +20,7 @@ detection:
     EventID: 4699
   #filter:
   #  SubjectUserSid: 'S-1-5-18'
-  condition: selection_create > selection_delete | group(Hostname, TaskName)
+  condition: selection_create > selection_delete | group(Computer, TaskName)
   timeframe: 5m
 falsepositives:
 - Rare application activity

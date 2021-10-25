@@ -24,7 +24,7 @@ detection:
     EventID: 4742
     ServicePrincipalNames|startswith: 'GC/'
   filter:
-    Hostname: '%domain_controller_list%' # exclude existing domain controllers
+    Computer: '%domain_controller_list%' # exclude existing domain controllers
   condition: selection and not filter
 falsepositives:
 - New domain controller registration

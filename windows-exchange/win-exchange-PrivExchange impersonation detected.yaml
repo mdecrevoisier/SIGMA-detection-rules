@@ -17,7 +17,7 @@ detection:
     AuthenticationPackageName: NTLM
     LogonProcessName: NtLmSsp
     LogonType: 3
-    Hostname: '%domain_controllers%' # Logon event has to be generated on a DC
+    Computer: '%domain_controllers%' # Logon event has to be generated on a DC
     TargetUserName: # Exchange server HOSTNAMES list + "$"
       - SRVEXCH01$
       - SRVEXCH02$

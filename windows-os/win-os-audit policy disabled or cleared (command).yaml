@@ -1,5 +1,5 @@
 title: Audit policy disabled by command line
-description: Detects scenarios where an attacker attempts to stop audit policy logging for defense evasion purposes.
+description: Detects scenarios where an attacker attempts to disbale or clear the audit policy for defense evasion purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.xxx-Audit%20policy%20disabled
 - https://searchitchannel.techtarget.com/feature/Using-AuditPol-to-audit-Windows-users-and-set-policies
@@ -17,12 +17,12 @@ detection:
     NewProcessName|endswith: '\auditpol.exe'
 
   selection_clear_audit:
-    CommandLine|contains|all: # full command "auditpol.exe" /clear /y"
+    CommandLine|contains|all: # full command "auditpol.exe /clear /y"
       - auditpol
       - clear
 
   selection_disable_audit:
-    CommandLine|contains|all: # full command " "auditpol.exe" /set /category:* /success:disable /failure:disable"
+    CommandLine|contains|all: # full command " "auditpol.exe /set /category:* /success:disable /failure:disable"
       - auditpol
       - disable
       - /set

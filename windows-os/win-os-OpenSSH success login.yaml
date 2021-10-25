@@ -7,7 +7,7 @@ references:
 - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
 - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
 tags:
-- attack.valid-account
+- attack.valid_account
 - attack.t1078
 author: mdecrevoisier
 status: experimental

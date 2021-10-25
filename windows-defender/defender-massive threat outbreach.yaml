@@ -14,7 +14,7 @@ detection:
   selection:
     EventID: 1116 # Threat detected, no action taken
     SourceName: "Microsoft-Windows-Windows Defender"
-  condition: selection | count(Hostname) by ThreatName > 10
+  condition: selection | count(Computer) by ThreatName > 10
   timeframe: 30m
 falsepositives:
 - EICAR test file

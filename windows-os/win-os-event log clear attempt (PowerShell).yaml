@@ -1,0 +1,36 @@
+title: Event log clear attempt (PowerShell)
+description: Detects scenarios where an attacker attempts to clear the event logs.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/clear-eventlog?view=powershell-5.1
+tags:
+- attack.defense_evasion
+- attack.t1070.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection: # full command: "Clear-EventLog -LogName application, system"
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - Clear-EventLog
+      - -LogName
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Clear-EventLog
+      - -LogName
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - Clear-EventLog
+      - -LogName
+
+  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+falsepositives:
+- None
+level: high

@@ -27,7 +27,7 @@ detection:
     AccessMask:
       - 0x3 # printerbug.py, dementor.py
       - 0x12019F # Get-SpoolStatus.ps1
-  condition: selection | count(Hostname) by IpAddress > 20
+  condition: selection | count(Computer) by IpAddress > 20
 falsepositives:
 - vulnerability scanners
 level: high

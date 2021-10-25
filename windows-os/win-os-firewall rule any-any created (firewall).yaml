@@ -1,0 +1,25 @@
+title: Firewall rule any/any created
+description: Detects scenarios where a firewall rule any/any is added to allow any incoming or outgoing traffic.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
+- https://kb.eventtracker.com/evtpass/evtPages/EventId_2004_Microsoft-Windows-WindowsFirewallwithAdvancedS_65673.asp
+tags:
+- attack.defense_evasion
+- attack.t1562.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: firewall
+detection:
+  selection:
+    EventID:
+      - 2004  # new rule created
+      - 2005  # existing rule modified
+    Action: 3 # allow
+    LocalPorts: *
+    RemotePorts: *
+  condition: selection
+falsepositives:
+- Firewall rule debugging
+level: high

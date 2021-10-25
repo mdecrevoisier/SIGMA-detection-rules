@@ -33,6 +33,7 @@ TA0002-Execution | T1047-Windows Management Instrumentation  | Impacket WMIexec 
 TA0002-Execution | T1053.005-Scheduled Task | Interactive shell triggered by scheduled task (at, deprecated) | 4688
 TA0002-Execution | T1053.005-Scheduled Task | Persistent scheduled task with SYSTEM privileges creation | 4688
 TA0002-Execution | T1053.005-Scheduled Task | Remote schedule task creation via named pipes | 5145
+TA0002-Execution | T1053.005-Scheduled Task | Schedule task created and deleted in a short period of time | 4698-4699
 TA0002-Execution | T1053.005-Scheduled Task | Schedule task fastly created and deleted | 4698,4699
 TA0002-Execution | T1053.005-Scheduled Task | Scheduled task creation | 4688
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell  | Encoded PowerShell payload deployed (PowerShell) | 800/4103/4104
@@ -89,6 +90,8 @@ TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service |
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with malicious ImagePath (registry) | 4688/1
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with malicious ImagePath (service) | 4688/1
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045/4697
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (command) | 4688
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (PowerShell) | 800/4103/4104
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800,4103,4104
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration | 19,20,21
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse | 4688
@@ -116,6 +119,10 @@ TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key IFEO registry changed | 12/13
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key sethc command for replacement by CMD | 4688
 TA0004-Privilege Escalation | T1547.010-Port Monitors  | Print spooler privilege escalation via printer added (CVE-2020-1048) | 800/4103/4104
+TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Event log file(s) cleared | 104/1102
+TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 4688
+TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 800/4103/4104
+TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | Audit policy disabled | 4719
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object deleted | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object disabled | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit specifications deleted | 33205
@@ -145,6 +152,7 @@ TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Def
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall  | Firewall deactivation (cmd) | 4688
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall  | Firewall deactivation (firewall) | 2003/4950
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall  | Firewall deactivation (PowerShell) | 800/4103/4104
+TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | Any/any firewall rule created | 2004
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | Firewall rule created by a suspicious command (netsh.exe, wmiprvse.exe) | 2004
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (command) | 4688/1
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (firewall) | 2004
@@ -161,9 +169,9 @@ TA0006-Credential Access | T1003.002-Security Account Manager | SAM database acc
 TA0006-Credential Access | T1003.002-Security Account Manager | Secretdump password dump over SMB ADMIN$ | 5145
 TA0006-Credential Access | T1003.003-NTDS | IFM created | 325/327
 TA0006-Credential Access | T1003.003-NTDS | IFM created from command line | 4688
-TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM password reset | 4794
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via command) | 4688
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via PowerShell) | 800/4103/4104
+TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM password reset | 4794
 TA0006-Credential Access | T1003.006-DCSync | Member added to a sensitive Exchange security group to perform DCsync attack | 4756
 TA0006-Credential Access | T1003.006-DCSync | Replication privileges granted to perform DCSync attack | 5136
 TA0006-Credential Access | T1003-Credential dumping | Diskshadow abuse | 4688
@@ -179,11 +187,14 @@ TA0006-Credential Access | T1558.001-Golden Ticket  | Success login impersonatio
 TA0006-Credential Access | T1558.003-Kerberoasting  | KerberOAST ticket (TGS) request detected (low encryption) | 4769
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Susipicious Kerberos ticket (TGS) with constrained delegation (S4U2Proxy) | 4769
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Susipicious Kerberos ticket (TGS) with unconstrained delegation (TrustedForDelegation) | 4769
+TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall configuration enumerated (command) | 4688
+TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall configuration enumerated (PowerShell) | 800/4103/4104
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Tentative of zone transfer from a non DNS server detected | 6004(DNSserver)
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated via SharpHound | 4799
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661
 TA0007-Discovery | T1069.002-Discovery domain groups | Sensitive SAM domain user & groups discovery | 4661
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via commandline | 4688
+TA0007-Discovery | T1082-System Information Discovery | Audit policy settings collection | 4688
 TA0007-Discovery | T1087.002-Domain Account discovery | Honeypot object (container, computer, group, user) enumerated | 4662/4624
 TA0007-Discovery | T1087.002-Domain Account discovery | Single source performing host enumeration over Kerberos ticket (TGS) detected | 4769
 TA0007-Discovery | T1087-Account discovery | Command execution related to Kerberos SPN enumeration activity detected | 4688/1

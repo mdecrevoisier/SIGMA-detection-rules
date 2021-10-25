@@ -6,7 +6,7 @@ references:
 - https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES/blob/master/Lateral%20Movement/LM_4624_mimikatz_sekurlsa_pth_source_machine.evtx
 - https://s3cur3th1ssh1t.github.io/Named-Pipe-PTH/
 tags:
-- attack.lateral-movement
+- attack.lateral_movement
 - attack.t1550.002
 author: mdecrevoisier
 status: experimental

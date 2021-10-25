@@ -3,7 +3,7 @@ description: Detects scenarios where an attacker would access and/or transfer a 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
 tags:
-- attack.credential-access
+- attack.credential_access
 - attack.t1003.001
 author: mdecrevoisier
 status: experimental
