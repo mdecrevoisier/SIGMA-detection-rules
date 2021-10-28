@@ -1,0 +1,43 @@
+title: Mimispool printer driver installation (PrintNightmare vulnerability - CVE-2021-36958)
+description: Detects scenarios where an attacker exploit the Mimispool print driver to escalate privileges.
+requirements: event logs 'PrintService\*' must be enabled.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1574-DLL%20side-loading
+- https://github.com/GossiTheDog/SystemNightmare
+- https://github.com/outflanknl/PrintNightmare
+- https://github.com/cube0x0/CVE-2021-1675
+- https://github.com/xbufu/Mimispool
+- https://github.com/gentilkiwi/mimikatz/tree/master/mimispool
+- https://www.theregister.com/2021/09/21/microsoft_printnightmare/
+- https://www.exabeam.com/information-security/detecting-the-printnightmare-cve-2021-1675-34527-vulnerability-using-exabeam/
+tags:
+- attack.privilege_escalation
+- attack.t1574.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: printservice
+detection:
+  selection_load:
+    Channel: Microsoft-Windows-PrintService/Admin
+    EventID: 808 # Print spooler failed to load plug-in module
+    PluginDllName|endswith: .dll # If too many false positives, replace by 'mimispool.dll'
+
+  selection_init:
+    Channel: Microsoft-Windows-PrintService/Admin
+    EventID: 354 # Legit Printer initialization
+    Param2|endswith: .dll # If too many false positives, replace by 'mimispool.dll'
+
+  selection_install:
+    EventID: 321
+    Channel: Microsoft-Windows-PrintService/Operational
+  selection_install_add1:
+    Param1|contains: mimispool
+  selection_install_add2:
+    Param2|contains: printnightmare.gentilkiwi.com
+
+  condition: selection_load or selection_init or (selection_install and (selection_install_add1 or selection_install_add2))
+falsepositives:
+- none
+level: high

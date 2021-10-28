@@ -17,7 +17,7 @@ logsource:
 detection:
   selection_basic:
     EventID: 4688
-    Version: 2  # parent process name is available starting Windows 10 or higher
+    Version: 2  # parent process name is available starting Windows 10 / Server 2016 and higher
     ParentProcessName|endswith: '\svchost.exe'
     NewProcessName|endswith: '\mmc.exe'
 

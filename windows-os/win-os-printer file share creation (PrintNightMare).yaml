@@ -1,0 +1,29 @@
+title: Shared printer creation (PrintNightmare vulnerability - CVE-2021-36958)
+description: Detects scenarios where an attacker exploit the PrintNightmare vulnerability by exposing a vulnerable shared printer. At any case, any new printer share creation should be carefully monitored.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+- https://github.com/GossiTheDog/SystemNightmare
+- https://github.com/outflanknl/PrintNightmare
+- https://github.com/cube0x0/CVE-2021-1675
+- https://github.com/xbufu/Mimispool
+- https://github.com/gentilkiwi/mimikatz/tree/master/mimispool
+- https://www.theregister.com/2021/09/21/microsoft_printnightmare/
+- https://www.exabeam.com/information-security/detecting-the-printnightmare-cve-2021-1675-34527-vulnerability-using-exabeam/
+tags:
+- attack.lateral_movement
+- attack.t1021.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: security
+detection:
+  selection:
+    EventID: 5142
+    ShareName:
+      - \\*\print$             # Shared local path should refer to '*\system32\spool\drivers'
+      - \\*\Kiwi Legit Printer # Name can be changed in code
+  condition: selection
+falsepositives:
+- print server, printer shared by a user
+level: medium

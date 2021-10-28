@@ -19,7 +19,7 @@ detection:
 
   selection_process_parent:
     ParentProcessName|endswith: \PSEXESVC.exe # C:\Windows\PSEXESVC.exe
-    Version: 2  # parent process name is available starting Windows 10 or higher
+    Version: 2  # parent process name is available starting Windows 10 / Server 2016 and higher
 
   condition: selection_event and (selection_process_child or selection_process_parent)
 falsepositives:
