@@ -21,13 +21,13 @@ detection:
     LogonProcessName: Kerberos
   filter:
     TargetUserName: # Excludes builtin admin account names when using a localized Windows OS version (select the ones applicable)
-      - 'Administrator' # Default
+      - 'Administrator'  # Default
       - 'Järjestelmänvalvoja' # Finnish
       - 'Administrateur' # French
-      - 'Administrador' # Spanish / Portuguese
-      - 'Administratör' # Swedish
-      - 'Rendszergazda' # Hungarian
-      - 'Администратор' # Russian
+      - 'Administrador'  # Spanish / Portuguese
+      - 'Administratör'  # Swedish
+      - 'Rendszergazda'  # Hungarian
+      - 'Администратор'  # Russian
   condition: selection and not filter
 falsepositives:
 - login with renamed builtin administrator account ("administrator" renamed to "admin_org")

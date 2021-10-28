@@ -1,4 +1,4 @@
-title: New file share created
+title: New network file share created
 description: Detects scenarios when a new file share is created.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
