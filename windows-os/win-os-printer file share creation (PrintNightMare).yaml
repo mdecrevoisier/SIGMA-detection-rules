@@ -19,11 +19,15 @@ logsource:
   category: security
 detection:
   selection:
-    EventID: 5142
-    ShareName:
-      - \\*\print$             # Shared local path should refer to '*\system32\spool\drivers'
+    EventID:
+      - 5142 # file share created
+      - 5143 # file share modified
+  selection_path:
+    - ShareName:
+      - \\*\print$
       - \\*\Kiwi Legit Printer # Name can be changed in code
-  condition: selection
+    - ShareLocalPath|endswith: '\system32\spool\drivers'
+  condition: selection and selection_path
 falsepositives:
 - print server, printer shared by a user
 level: medium

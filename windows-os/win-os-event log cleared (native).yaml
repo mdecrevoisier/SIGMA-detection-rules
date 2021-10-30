@@ -13,8 +13,8 @@ logsource:
 detection:
   selection:
     EventID:
-      - 1102 # Security event log cleared (Security channel)
-      - 104  # Other event log clear (System channel)
+      - 1102 # Security event log cleared (reported in Security channel)
+      - 104  # Other event log cleared (reported in System channel)
   condition: selection
 falsepositives:
 - None

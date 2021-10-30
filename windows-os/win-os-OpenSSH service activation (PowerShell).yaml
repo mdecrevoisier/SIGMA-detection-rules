@@ -1,4 +1,4 @@
-title: OpenSSH server activation on Windows
+title: OpenSSH service activation on Windows
 description: Detects scenarios where an attacker enables the OpenSSH server on Windows to perform stealthy lateral movement.
 references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
@@ -20,27 +20,27 @@ detection:
     EventData|contains|all:
       - Set-Service
       - StartupType
-      - 'Automatic'
       - Name
       - sshd
+      #- Automatic / Manual
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Set-Service
       - StartupType
-      - 'Automatic'
       - Name
       - sshd
+      #- Automatic / Manual
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Set-Service
       - StartupType
-      - 'Automatic'
       - Name
       - sshd
+      #- Automatic / Manual
 
   condition: 1 of selection*
 falsepositives:

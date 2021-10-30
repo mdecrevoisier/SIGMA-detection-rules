@@ -27,6 +27,7 @@ Att@ck Tactic	| Att@ck  Technique	| Description | 	Event IDs   |
 Antivirus | Antivirus | Defender: antivirus not up to date | 1151
 Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple hosts | 1116
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116
+TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login denied due to account policy restrictions | 4625
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login failure from a single source with a disabled account | 33205
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Success login on OpenSSH server | 4624/4
 TA0002-Execution | T1047-Windows Management Instrumentation  | Impacket WMIexec process execution | 4688
@@ -119,6 +120,8 @@ TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key IFEO registry changed | 12/13
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key sethc command for replacement by CMD | 4688
 TA0004-Privilege Escalation | T1547.010-Port Monitors  | Print spooler privilege escalation via printer added (CVE-2020-1048) | 800/4103/4104
+TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Printer spool driver from Mimikatz installed  | 808 / 354 / 321
+TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Spool process spawned a CMD shell (PrintNightmare) | 4688 / 1 
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Event log file(s) cleared | 104/1102
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 4688
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 800/4103/4104
@@ -179,6 +182,7 @@ TA0006-Credential Access | T1040-Network sniffing | Windows native sniffing tool
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce enumeration on Windows OpenSSH server with non existing user | 4625/4
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce on Windows OpenSSH server with valid user | 4625/4
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 33205
+TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 4625
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Discovery for print spooler bug abuse via named pipe | 5145
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Exchange server impersonation via PrivExchange relay attack | 4624
@@ -211,6 +215,7 @@ TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | New file share cr
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Psexec remote execution via SMB | 5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote service creation over SMB | 5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote shell execuction via SMB admin share | 5145
+TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Shared printer creation (PrintNightMare) | 5142
 TA0008-Lateral Movement | T1021.003-DCOM | DCOM lateral movement (via MMC20) | 4104
 TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec privilege abuse | 4674
 TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec process abuse via MMC | 4688

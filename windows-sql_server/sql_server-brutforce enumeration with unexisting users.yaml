@@ -1,4 +1,4 @@
-title: SQL Server - User enumeration brutforce
+title: SQL Server - User enumeration brutforce with non existing users.
 description: Detects scenarios where an attacker attempts to enumerate potential existing SQL users, resulting in failed logins with unexisting or invalid accounts.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
@@ -22,8 +22,8 @@ detection:
     additional_information|contains:
       - "<state>2</state>" # User ID is not valid
       - "<state>5</state>" # Login not found
-  condition: selection | count(server_principal_name) by Computer > 15
+  condition: selection | count(server_principal_name) by Computer > 20
   timeframe: 30m
 falsepositives:
-- Unknown
+- Missconfigured application
 level: high
