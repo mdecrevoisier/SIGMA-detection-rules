@@ -24,4 +24,5 @@ detection:
   condition: selection
 falsepositives:
 - Pentest
+- Administrator activity
 level: high

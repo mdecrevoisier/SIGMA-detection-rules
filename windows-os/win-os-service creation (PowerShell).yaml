@@ -16,17 +16,17 @@ detection:
     EventID: 800
     EventData|contains|all:
       - New-Service
-      - -Name
+      - Name
   selection2_powershell_modern:
     EventID: 4103
       - New-Service
-      - -Name
+      - Name
 
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - New-Service
-      - -Name
+      - Name
 
   condition: 1 of selection*
 falsepositives:

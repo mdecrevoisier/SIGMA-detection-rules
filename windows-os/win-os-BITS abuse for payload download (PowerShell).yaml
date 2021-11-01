@@ -28,19 +28,19 @@ detection: # Full command: 'Start-BitsTransfer -Priority foreground -Source http
     EventID: 800
     EventData|contains|all:
       - Start-BitsTransfer
-      - '-Source'
+      - Source
 
   selection2_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Start-BitsTransfer
-      - '-Source'
+      - Source
 
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Start-BitsTransfer
-      - '-Source'
+      - Source
 
   condition: 1 of selection*
 falsepositives:

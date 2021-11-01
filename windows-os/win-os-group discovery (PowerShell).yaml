@@ -1,0 +1,39 @@
+title: Group discovery (PowerShell)
+description: Detects scenarios where an attacker attempts to enumerate local or domain groups via PowerShell.
+references:
+- https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+- https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-adgroup?view=windowsserver2019-ps
+- https://adamtheautomator.com/get-adgroupmember/
+tags:
+- attack.discovery
+- attack.t1069.001
+- attack.t1069.002
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - Get-LocalGroupMember # Get-LocalGroupMember -Name Administrators
+      - Get-ADGroupMember    # Get-ADGroupMember -Identity Administrators
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Get-LocalGroupMember
+      - Get-ADGroupMember
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - Get-LocalGroupMember
+      - Get-ADGroupMember
+
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+level: medium

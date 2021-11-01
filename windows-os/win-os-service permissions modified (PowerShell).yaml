@@ -21,19 +21,19 @@ detection:
     EventID: 800
     EventData|contains|all:
       - Set-Service
-      - -SecurityDescriptorSddl
+      - SecurityDescriptorSddl
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Set-Service
-      - -SecurityDescriptorSddl
+      - SecurityDescriptorSddl
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Set-Service
-      - -SecurityDescriptorSddl
+      - SecurityDescriptorSddl
 
   condition: 1 of selection*
 falsepositives:

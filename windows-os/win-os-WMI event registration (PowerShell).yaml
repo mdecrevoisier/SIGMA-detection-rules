@@ -18,26 +18,26 @@ detection: # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
   selection1_powershell_native:
     EventID: 800
     EventData|contains|all:
-      - 'Set-WmiInstance'
-      - 'Class'
-      #- 'Namespace'
-      #- 'Arguments'
+      - Set-WmiInstance
+      - Class
+      #- Namespace
+      #- Arguments
 
   selection2_powershell_modern:
     EventID: 4103
     Payload|contains|all:
-      - 'Set-WmiInstance'
-      - 'Class'
-      #- 'Namespace'
-      #- 'Arguments'
+      - Set-WmiInstance
+      - Class
+      #- Namespace
+      #- Arguments
 
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
-      - 'Set-WmiInstance'
-      - 'Class'
-      #- 'Namespace'
-      #- 'Arguments'
+      - Set-WmiInstance
+      - Class
+      #- Namespace
+      #- Arguments
 
   condition: 1 of selection*
 falsepositives:

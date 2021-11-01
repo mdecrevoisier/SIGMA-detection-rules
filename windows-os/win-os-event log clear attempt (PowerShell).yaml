@@ -16,19 +16,19 @@ detection: # full command: "Clear-EventLog -LogName application, system"
     EventID: 800
     EventData|contains|all:
       - Clear-EventLog
-      - -LogName
+      - LogName
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Clear-EventLog
-      - -LogName
+      - LogName
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Clear-EventLog
-      - -LogName
+      - LogName
 
   condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
 falsepositives:

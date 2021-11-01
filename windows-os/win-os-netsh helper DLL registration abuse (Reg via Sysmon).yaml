@@ -1,5 +1,5 @@
 title: Netsh helper DLL abuse (Reg via Sysmon)
-description: Detects scenarios where an attacker
+description: Detects scenarios where an attacker abuses the Netsh DLL feature to perform some code execution.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
 - https://www.hackingarticles.in/windows-persistence-using-netsh/

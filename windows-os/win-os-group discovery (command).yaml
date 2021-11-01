@@ -1,8 +1,9 @@
-title: Group discovery via commandline
-description: Detects scenarios where an attacker attempts to enumerate groups or domain groups via commandline.
+title: Group discovery (command)
+description: Detects scenarios where an attacker attempts to enumerate local or domain groups via commandline.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
 - https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
 - https://attack.mitre.org/software/S0039/
 tags:
 - attack.discovery
@@ -24,4 +25,5 @@ detection:
   condition: selection
 falsepositives:
 - Pentest
-level: high
+- Administrator activity
+level: medium

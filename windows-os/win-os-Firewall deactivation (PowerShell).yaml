@@ -17,24 +17,24 @@ detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Priv
     EventID: 800
     EventData|contains|all:
       - Set-NetFirewallProfile
-      - -Profile
-      - -Enabled
+      - Profile
+      - Enabled
       - 'False'
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Set-NetFirewallProfile
-      - -Profile
-      - -Enabled
+      - Profile
+      - Enabled
       - 'False'
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Set-NetFirewallProfile
-      - -Profile
-      - -Enabled
+      - Profile
+      - Enabled
       - 'False'
 
   condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
