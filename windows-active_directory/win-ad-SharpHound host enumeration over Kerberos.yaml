@@ -17,7 +17,7 @@ detection:
     ServiceName|endswith: '$'
     Status: 0x0
   filter:
-    ServiceName: krbtgt
+    IpAddress: '::1'
   condition: selection and not filter | count(ServiceName) by IpAddress > 20
   timeframe: 5m
 falsepositives:

@@ -1,0 +1,24 @@
+title: Massive remote service creation via named pipes - Tchopper
+description: Detects scenarios where an attacker uses the Tchopper tool by remotely creating multiple services via named pipes.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution
+- https://github.com/lawrenceamer/TChopper
+tags:
+- attack.execution
+- attack.t1569
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5145
+    ShareName: '\\*\IPC$'
+    RelativeTargetName: svcctl
+    AccessList|contains: '%%4417' # WriteData
+  condition: selection | count(EventRecordID) by Computer > 100
+  timeframe: 20m
+falsepositives:
+- None
+level: high

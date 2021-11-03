@@ -24,6 +24,7 @@ detection:
       - '0xC0000070' # STATUS_INVALID_WORKSTATION - The user account is restricted so that it cannot be used to log on from the source workstation.
       - '0xC000015B' # STATUS_LOGON_TYPE_NOT_GRANTED - A user has requested a type of logon (for example, interactive or network) that has not been granted. An administrator has control over who can logon interactively and through the network.
   condition: selection | count(EventRecordID) by Computer > 10
+  timeframe: 30m
 falsepositives:
 - missconfigured accounts
 level: medium

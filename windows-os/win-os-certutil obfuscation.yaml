@@ -1,0 +1,31 @@
+title: Certutil payload obfuscation (command)
+description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://www.elastic.co/guide/en/security/current/suspicious-certutil-commands.html
+- https://www.bleepingcomputer.com/news/security/certutilexe-could-allow-attackers-to-download-malware-while-bypassing-av/
+- https://attack.mitre.org/software/S0160/
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+- https://www.sentinelone.com/blog/malware-living-off-land-with-certutil/
+tags:
+- attack.defense_evasion
+- attack.t1140
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: '\certutil.exe'
+    CommandLine|contains:
+      #- urlcache # see other related rule
+      - decode
+      - encode
+      - encodehex
+      - decodehex
+  condition: selection
+falsepositives:
+- None
+level: high

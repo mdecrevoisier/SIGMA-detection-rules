@@ -1,0 +1,26 @@
+title: Massive service installation - Tchopper
+description: Detects scenarios where an attacker uses the Tchopper tool by abusing the display name of a service as a placeholder to upload an obfuscated payload. Service name may come with very high entropy. Option mode "-m" will not report any service installation, only service failures.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution
+- https://github.com/lawrenceamer/TChopper
+tags:
+- attack.execution
+- attack.t1569
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    EventID: 7045 # service installation
+    #ImagePath|contains|all: # May not be necessary as deploying a high number of services is already suspicious
+    #  - cmd
+    #  - powershell
+    #  - Get-Service
+    #  - out-file
+  condition: selection | count(ServiceName) by Computer > 50 # Count how many different services are deployed on the host.
+  timeframe: 20m
+falsepositives:
+- None
+level: high

@@ -1,10 +1,10 @@
 title: Remote service creation via named pipes
-description: Detects scenarios where an attacker create a service remotely over SMB.
+description: Detects scenarios where an attacker create a service remotely over SMB. Tools like Tchopper can trigger this rule.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution
 tags:
-- attack.lateral_movement
-- attack.t1021.002
+- attack.execution
+- attack.t1569
 author: mdecrevoisier
 status: experimental
 logsource:
