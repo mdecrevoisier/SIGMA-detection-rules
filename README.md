@@ -42,6 +42,9 @@ TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell  | In
 TA0002-Execution | T1059.003-Windows Command Shell  | Encoded PowerShell payload deployed via process execution | 4688
 TA0002-Execution | T1059.003-Windows Command Shell  | SQL Server payload injectection for reverse shell (MSF) | 4688
 TA0002-Execution | T1569.002-Service Execution  | PSexec installation detected | 4688
+TA0002-Execution | T1569.002-Service Execution  | Service massive failures (native) | 7000/7009
+TA0002-Execution | T1569.002-Service Execution  | Service massive installation (native) | 7045
+TA0002-Execution | T1569.002-Service Execution  | Service massive remote creation via named pipes (native) | 5145
 TA0003-Persistence | T1078.002-Valid accounts-Domain accounts | Account renamed to "admin" (or likely) | 4781
 TA0003-Persistence | T1098.xxx-Account Manipulation  | High risk domain group membership change | 4728/4756
 TA0003-Persistence | T1098.xxx-Account Manipulation  | High risk local-domain local group membership change | 4732
@@ -122,6 +125,7 @@ TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility
 TA0004-Privilege Escalation | T1547.010-Port Monitors  | Print spooler privilege escalation via printer added (CVE-2020-1048) | 800/4103/4104
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Printer spool driver from Mimikatz installed  | 808 / 354 / 321
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Spool process spawned a CMD shell (PrintNightmare) | 4688 / 1 
+TA0005-Defense Evasion | T1027-Obfuscated Files or Information | Payload obfuscated transfer via service name | 4688
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Event log file(s) cleared | 104/1102
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 4688
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 800/4103/4104
@@ -198,6 +202,7 @@ TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661
 TA0007-Discovery | T1069.002-Discovery domain groups | Sensitive SAM domain user & groups discovery | 4661
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via commandline | 4688
+TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via PowerShell | 800/4103/4104
 TA0007-Discovery | T1082-System Information Discovery | Audit policy settings collection | 4688
 TA0007-Discovery | T1087.002-Domain Account discovery | Honeypot object (container, computer, group, user) enumerated | 4662/4624
 TA0007-Discovery | T1087.002-Domain Account discovery | Single source performing host enumeration over Kerberos ticket (TGS) detected | 4769
