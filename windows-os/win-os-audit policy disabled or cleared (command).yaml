@@ -25,7 +25,7 @@ detection:
     CommandLine|contains|all: # full command " "auditpol /set /category:* /success:disable /failure:disable"
       - auditpol
       - disable
-      - /set
+      - set
 
   condition: selection_baseline and (selection_clear_audit or selection_disable_audit)
 falsepositives:

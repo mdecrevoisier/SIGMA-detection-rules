@@ -32,5 +32,5 @@ detection:
     - bytesTotal >= 524288000
   condition: selection_baseline and selection_size
 falsepositives:
-- Microsoft updates
+- Microsoft updates, WSL ISO download
 level: medium

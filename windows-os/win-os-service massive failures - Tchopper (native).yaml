@@ -14,11 +14,10 @@ logsource:
 detection:
   selection:
     EventID:
-	    - 7000 # EVENT_SERVICE_START_FAILED
-	    - 7009 # EVENT_CONNECTION_TIMEOUT
+      - 7000 # EVENT_SERVICE_START_FAILED
+      - 7009 # EVENT_CONNECTION_TIMEOUT
   condition: selection | count(EventRecordID) by Computer > 100 # Count how many services failures are reported on the host.
   timeframe: 20m
 falsepositives:
 - Missconfigured services
 level: high
-

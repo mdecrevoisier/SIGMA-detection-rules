@@ -18,21 +18,21 @@ detection:
     EventID: 4732 # local and domain local group
     TargetSid|startswith: 'S-1-5-21-'
     TargetSid|endswith:
-      - '-517' # Cert Publishers
-      - '-546' # Guests
-      - '-550' # Print Operators
-      - '-555' # Remote Desktop Users
-      - '-556' # Network Configuration Operators
-      - '-557' # Incoming Forest Trust Builders
-      - '-560' # Windows Authorization Access Group
-      - '-562' # Distributed COM Users
-      - '-568' # IIS_IUSRS
-      - '-569' # Cryptographic Operators
-      - '-573' # Event Log Readers
-      - '-574' # Certificate Service DCOM Access
-      - '-579' # Access Control Assistance Operators
-      - '-580' # Remote Management Users
-      - '-582' # Storage Replica Administrators
+      - '-517'  # Cert Publishers
+      - '-546'  # Guests
+      - '-550'  # Print Operators
+      - '-555'  # Remote Desktop Users
+      - '-556'  # Network Configuration Operators
+      - '-557'  # Incoming Forest Trust Builders
+      - '-560'  # Windows Authorization Access Group
+      - '-562'  # Distributed COM Users
+      - '-568'  # IIS_IUSRS
+      - '-569'  # Cryptographic Operators
+      - '-573'  # Event Log Readers
+      - '-574'  # Certificate Service DCOM Access
+      - '-579'  # Access Control Assistance Operators
+      - '-580'  # Remote Management Users
+      - '-582'  # Storage Replica Administrators
       - '-1000' # WinRMRemoteWMIUsers_
   filter:
     SubjectUserName|endswith: '$'

@@ -1,6 +1,7 @@
-title: Certutil payload obfuscation (command)
-description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload. Tools like Tchopper can trigger this rule.
+title: Certutil payload obfuscation - Tchopper (command)
+description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload using the Tchopper tool.
 references:
+- https://github.com/lawrenceamer/TChopper
 - https://www.elastic.co/guide/en/security/current/suspicious-certutil-commands.html
 - https://www.bleepingcomputer.com/news/security/certutilexe-could-allow-attackers-to-download-malware-while-bypassing-av/
 - https://attack.mitre.org/software/S0160/
@@ -17,13 +18,10 @@ logsource:
 detection:
   selection:
     EventID: 4688
+    Version: 2 # parent process name is available starting Windows 10 / Server 2016 and higher
+    ParentProcessName|endswith: '\WmiPrvSE.exe'
     NewProcessName|endswith: '\certutil.exe'
-    CommandLine|contains:
-      #- urlcache # see other related rule
-      - decode
-      - encode
-      - encodehex
-      - decodehex
+    CommandLine|contains: decode
   condition: selection
 falsepositives:
 - None

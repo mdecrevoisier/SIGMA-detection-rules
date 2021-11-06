@@ -1,7 +1,7 @@
 title: Obfuscated payload transfer via service name - Tchopper (command)
 description: Detects scenarios where an attacker uses the Tchopper tool by abusing the display name of a service as a placeholder to upload an obfuscated payload. With this command, attacker appends the current service name to a file.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxx
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1027-Obfuscated%20Files%20or%20Informationxxx
 - https://github.com/lawrenceamer/TChopper
 tags:
 - attack.defense_evasion
@@ -23,10 +23,10 @@ detection: # Full command: "powershell -command "Get-Service "seg243" | select -
       - \powershell.exe # Process spwaned by \cmd.exe
     CommandLine|contains|all:
       - powershell
-      - Get-Service
+      - command
       - out-file
-      #- command
-      #- append
+      - append
+      #- Get-Service # not present using the WMI mode
   condition: selection | count(EventRecordID) by Computer > 50
   timeframe: 20m
 falsepositives:
