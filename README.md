@@ -1,7 +1,7 @@
 # SIGMA detection rules
 
 ## Project purpose:
-**SIGMA detection rules** provides a free set of advanced correlation rules to be used for suspicious activity hunting. 
+**SIGMA detection rules** provides a free set of >200 advanced correlation rules to be used for suspicious hunting activities.
 
 ## How to use the rules:
 The SIGMA rules can be used in different ways together with your SIEM:
@@ -11,7 +11,7 @@ The SIGMA rules can be used in different ways together with your SIEM:
 
 ## Microsoft products used:
 * Windows 10
-* Windows Server 2021 R2 and higher
+* Windows Server 2016
 * Active Directory Domain Services (ADDS)
 * Active Directory Certification Services (ADCS / PKI) with online responder (OCSP)
 * SQL Server 2014
