@@ -18,7 +18,7 @@ detection:
     NewProcessName|endswith: \schtasks.exe
     CommandLine|contains|all: # full command: "schtasks /query /xml"
       - schtasks
-      - /query
+      - query
   condition: selection
 falsepositives:
 - Administrator checking task status

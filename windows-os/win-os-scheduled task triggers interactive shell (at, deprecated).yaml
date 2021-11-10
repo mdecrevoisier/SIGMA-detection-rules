@@ -20,7 +20,7 @@ detection:
     NewProcessName|endswith: \cmd.exe
     CommandLine|contains|all:
       - at
-      - /interactive
+      - interactive
       - cmd
   condition: selection
 falsepositives:

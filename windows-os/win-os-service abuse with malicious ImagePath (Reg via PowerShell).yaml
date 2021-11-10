@@ -20,7 +20,7 @@ detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xbox
       - Set-ItemProperty
       - '\SYSTEM\CurrentControlSet\Services\'
       - ImagePath
-      #- -path # parameter is optional
+      #- path # parameter is optional
 
   selection_powershell_modern:
     EventID: 4103
@@ -28,7 +28,7 @@ detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xbox
       - Set-ItemProperty
       - '\SYSTEM\CurrentControlSet\Services\'
       - ImagePath
-      #- -path # parameter is optional
+      #- path # parameter is optional
 
   selection_powershell_block:
     EventID: 4104
@@ -36,7 +36,7 @@ detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xbox
       - Set-ItemProperty
       - '\SYSTEM\CurrentControlSet\Services\'
       - ImagePath
-      #- -path # parameter is optional
+      #- path # parameter is optional
 
   condition: 1 of selection*
 falsepositives:

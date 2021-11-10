@@ -13,12 +13,15 @@ logsource:
 detection:
   selection:
     EventID:
-      - 4656
-      - 4663
+      - 4656 # A handle to an object was requested.
+      - 4663 # An attempt was made to access an object.
     ObjectType: Process
     ObjectServer: Security
-    ObjectName|endswith: '\lsass.exe'
-    # AccessMask: 0x1438 could refers to misc::memssp
+    ObjectName|endswith: '\System32\lsass.exe'
+    # AccessMask:
+      #- '0x1438' could refers to misc::memssp
+      #- '0x1410'
+      #- '0x1010' could refers to Mimikatz Pth
   filter:
     SubjectUserName|endswith: '$'
     ProcessName:

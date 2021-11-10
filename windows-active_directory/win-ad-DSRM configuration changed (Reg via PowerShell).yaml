@@ -22,7 +22,7 @@ detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CON
       - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
       - '\SYSTEM\CurrentControlSet\Control\Lsa'
       - DsrmAdminLogonBehavior
-      #- -path # parameter is optional
+      #- path # parameter is optional
 
   selection_powershell_modern:
     EventID: 4103
@@ -30,7 +30,7 @@ detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CON
       - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
       - '\SYSTEM\CurrentControlSet\Control\Lsa'
       - DsrmAdminLogonBehavior
-      #- -path # parameter is optional
+      #- path # parameter is optional
 
   selection_powershell_block:
     EventID: 4104
@@ -38,7 +38,7 @@ detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CON
       - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
       - '\SYSTEM\CurrentControlSet\Control\Lsa'
       - DsrmAdminLogonBehavior
-      #- -path # parameter is optional
+      #- path # parameter is optional
 
   condition: 1 of selection*
 falsepositives:

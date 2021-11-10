@@ -14,6 +14,7 @@ references:
 - https://www.harmj0y.net/blog/powershell/kerberoasting-without-mimikatz/
 - https://www.trimarcsecurity.com/single-post/TrimarcResearch/Detecting-Kerberoasting-Activity
 - https://www.trustedsec.com/2018/05/art_of_kerberoast/
+- https://m365internals.com/2021/11/08/kerberoast-with-opsec/
 tags:
 - attack.credential_access
 - attack.t1558.003

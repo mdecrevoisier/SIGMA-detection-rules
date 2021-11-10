@@ -19,18 +19,19 @@ logsource:
   product: windows
   category: process_creation
 detection: # Full command: "schtasks" /create /sc minute /mo 1 /tn eviltask /tr C:\tools\shell.cmd /ru SYSTEM
-  selection_execution:
+  selection:
     EventID: 4688
     NewProcessName|endswith: \schtasks.exe
     CommandLine|contains|all:
       - schtasks
-      - /create
+      - create
   filter:
     CommandLine|contains|all: # See schedule persistent rule with SYSTEM privileges
-      - /ru     # Run with privileges from user X
+      - ru      # Run with privileges from user X
       - SYSTEM  # Run with SYSTEM privileges
-      - /tr     # Program, path or command to run
-  condition: selection_execution and not filter
+      - tr      # Program, path or command to run
+      - sc      # Run task every X minutes
+  condition: selection and not filter
 falsepositives:
 - Administrator
 level: medium

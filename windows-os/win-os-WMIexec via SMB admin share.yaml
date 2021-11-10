@@ -16,7 +16,7 @@ detection:
   selection:
     EventID: 5145
     ShareName: '\\*\ADMIN$'
-    RelativeTargetName|re: '__\d*\.\d*' # example: '__1619091076.1269338' or '__1619090610.0007844'
+    RelativeTargetName|re: '__\d*\.\d*' # example: '__1619091076.1269338'. Can be changed in source code
   condition: selection
 falsepositives:
 - None
