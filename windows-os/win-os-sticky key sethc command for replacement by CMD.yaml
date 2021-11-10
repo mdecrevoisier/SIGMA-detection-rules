@@ -17,7 +17,6 @@ detection:
     EventID: 4688
     CommandLine|contains|all: # full command 'copy /y C:\windows\system32\cmd.exe C:\windows\system32\sethc.exe'
       - copy
-      - /y
       - cmd.exe
       - sethc.exe
   condition: selection

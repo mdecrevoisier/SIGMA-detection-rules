@@ -20,7 +20,7 @@ detection:
   selection_wsl_activation: # dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
     CommandLine|contains|all:
       - dism.exe
-      - /enable-feature
+      - enable-feature
       - Microsoft-Windows-Subsystem-Linux
 
   selection_wsl_configuration: # C:\WINDOWS\system32\wsl.exe" --set-default-version 2

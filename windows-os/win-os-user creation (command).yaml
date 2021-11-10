@@ -20,7 +20,7 @@ detection:
       - \net.exe
     CommandLine|contains|all:
       - user
-      - /add
+      - add
   condition: selection
 falsepositives:
 - Pentest

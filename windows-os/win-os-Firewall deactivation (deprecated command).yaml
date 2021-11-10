@@ -30,7 +30,7 @@ detection:
       - ' f ' # firewall
       - ' s ' # set
       - ' o ' # opmode
-      - ' d' # disable
+      - ' d'  # disable
   condition: selection_event and (selection_command or selection_obfuscated)
 falsepositives:
 - Administrator activity

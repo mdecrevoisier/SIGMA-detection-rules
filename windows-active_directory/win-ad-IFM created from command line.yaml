@@ -18,16 +18,16 @@ logsource:
 detection:
   root_event:
     EventID: 4688
-    NewProcessName|endswith: '\ntdsutil.exe' # Full path "C:\Windows\System32\ntdsutil.exe"
+    NewProcessName|endswith: '\ntdsutil.exe'
 
   selection_creation_basic: # full command "ntdsutil "activate instance ntds" ifm "create full c:\data" quit quit"
     CommandLine|contains|all:
       - ifm
       - create
 
-  selection_creation_obfuscated: # full command "ntdsutil.exe " ntdsutil.exe "act i ntds" i "c full c:\hacker" q q "
+  selection_creation_obfuscated: # full command "ntdsutil.exe " ntdsutil.exe "act i ntds" i "c full c:\hacker" q q"
     CommandLine|contains|all:
-      - ' i ' # ifm
+      - ' i '  # ifm
       - ' c '  # create
 
   selection_activation_basic:
@@ -39,7 +39,7 @@ detection:
   selection_activation_obfuscated:
     CommandLine|contains|all:
       - ' ac ' # activate
-      - ' i ' # instance
+      - ' i '  # instance
       - ntds
 
   condition: root_event and 1 of selection_*

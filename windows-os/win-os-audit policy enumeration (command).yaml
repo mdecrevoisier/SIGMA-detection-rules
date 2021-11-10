@@ -17,8 +17,8 @@ detection:
     NewProcessName|endswith: '\auditpol.exe'
     CommandLine|contains|all: # full command "Auditpol.exe /get /category:* "
       - auditpol
-      - get      # Can be '/' or '-'
-      - category # Can be '/' or '-'
+      - get
+      - category
   condition: selection
 falsepositives:
 - Administrator debugging audit policy

@@ -15,10 +15,10 @@ detection:
     EventID: 4688
 
   selection_process_child:
-    NewProcessName|endswith: \PSEXESVC.exe # "C:\Windows\PSEXESVC.exe"
+    NewProcessName|endswith: \PSEXESVC.exe
 
   selection_process_parent:
-    ParentProcessName|endswith: \PSEXESVC.exe # C:\Windows\PSEXESVC.exe
+    ParentProcessName|endswith: \PSEXESVC.exe
     Version: 2  # parent process name is available starting Windows 10 / Server 2016 and higher
 
   condition: selection_event and (selection_process_child or selection_process_parent)

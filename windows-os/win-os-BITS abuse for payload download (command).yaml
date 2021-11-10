@@ -29,8 +29,8 @@ detection:
     NewProcessName|endswith: '\bitsadmin.exe'
     CommandLine|contains|all:
     - bitsadmin
-    - '/transfer'
-    - '/download'
+    - /transfer
+    - /download
   condition: selection
 falsepositives:
 - None

@@ -25,8 +25,8 @@ detection:
   selection_obfuscated:
     Commandline|contains|all: # full command 'netsh a show allprofiles'
       - netsh
-      - ' a ' # advfirewall
       - show
+      - ' a ' # advfirewall
   condition: selection_event and (selection_command or selection_obfuscated)
 falsepositives:
 - Administrator activity

@@ -21,9 +21,9 @@ logsource:
 detection:
   selection_native:
     EventID: 4688
+    Version: 2  # parent process name is available starting Windows 10 / Server 2016 and higher
     ParentProcessName|endswith: \spoolsv.exe
     NewProcessName|endswith: \cmd.exe
-    Version: 2  # parent process name is available starting Windows 10 / Server 2016 and higher
 
   selection_sysmon:
     EventID: 1

@@ -25,7 +25,7 @@ detection:
       - interface
       - portproxy
     Commandline|contains:
-      - add  # add forwarding
+      - add   # add forwarding
       - reset # reset configuration
 
   selection_obfuscated: # full command: 'netsh i p a v l=8001 listena=0.0.0.0 connectp=3389 c=1.1.1.1'

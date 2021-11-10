@@ -19,8 +19,8 @@ detection:
   selection:
     EventID: 4688
     CommandLine|contains|all: # full command "sc.exe create random_service binpath= "cmd.exe /k tscon 2 /dest:rdp-tcp#5""
-      - 'tscon '
-      - '/dest:rdp-' # can also be UDP (rarely)
+      - tscon
+      - 'dest:rdp-'
   condition: selection
 falsepositives:
 - None

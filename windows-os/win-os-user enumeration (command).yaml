@@ -20,7 +20,7 @@ detection:
       - \net.exe
     CommandLine|contains: user
   filter:
-    CommandLine|contains: /add # refers to another use case for user creation via commandline
+    CommandLine|contains: add # refers to another use case for user creation via commandline
   condition: selection and not filter
 falsepositives:
 - Pentest
