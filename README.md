@@ -96,6 +96,7 @@ TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service |
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045/4697
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (command) | 4688
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (PowerShell) | 800/4103/4104
+TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | System crash behavior manipulation - WMImplant (registry) | 13
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800,4103,4104
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration | 19,20,21
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse | 4688
@@ -228,4 +229,6 @@ TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH native server
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows activation/configuration detected | 800/4103/4104
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47**
 TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 4688
+TA0008-Lateral Movement | Tt1550.002-Use Alternate Authentication Material: Pass the Hash | Mimikatz Pass-the-hash login | 4624
+TA0008-Lateral Movement | Tt1550.002-Use Alternate Authentication Material: Pass the Hash | Mimikatz Pass-the-hash LSASS process accessed | 10
 TA0011-Command and control | T1090-Proxy | Netsh port forwarding abuse via proxy | 4688

@@ -5,6 +5,7 @@ references:
 - https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
 - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
 - https://attack.mitre.org/software/S0039/
+- https://regex101.com/r/S6vTNM/1
 tags:
 - attack.discovery
 - attack.t1069.001

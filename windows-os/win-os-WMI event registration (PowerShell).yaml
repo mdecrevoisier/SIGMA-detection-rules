@@ -14,7 +14,7 @@ logsource:
   product: windows
   service: powershell
 
-detection: # "__EventFilter/CommandLineEventConsumer/__FilterToConsumerBinding"
+detection:
   selection1_powershell_native:
     EventID: 800
     EventData|contains|all:

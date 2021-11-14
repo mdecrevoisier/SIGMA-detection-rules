@@ -16,13 +16,11 @@ detection:
   selection_process:
     EventID: 4688
     NewProcessName|endswith: \sc.exe # 'C:\Windows\System32\sc.exe'
-
-  selection_command: # Full command: sc config xboxgip binPath= "C:\windows\system32\pentestlab.exe"
+  selection_command: # Full command: sc config <service_name> binPath="C:\windows\system32\pentestlab.exe"
     CommandLine|contains|all:
       - sc
       - config
       - binPath
-
   condition: selection_command and selection_process
 falsepositives:
 - administrator reconfiguring service

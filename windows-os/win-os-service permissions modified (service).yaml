@@ -21,8 +21,8 @@ detection:
   selection_event:
     EventID: 4688
 
-  selection_sdset: # full command (native commmand):sc sdset XblGameSave "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)
-    NewProcessName|endswith: \sc.exe # 'C:\Windows\System32\sc.exe'
+  selection_sdset: # full command (native commmand): "sc sdset XblGameSave "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)"
+    NewProcessName|endswith: \sc.exe
     CommandLine|contains|all:
       - sc
       - sdset

@@ -18,8 +18,8 @@ detection:
       - \net1.exe
       - \net.exe
     CommandLine|contains:
-      - view # view external shares in the network
-      - use  # establish/remove connection to a network share
+      - net view # view external shares in the network
+      - net use  # view current mapped network shares
   condition: selection
 falsepositives:
 - Pentest

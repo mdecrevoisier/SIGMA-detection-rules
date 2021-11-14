@@ -17,6 +17,7 @@ detection:
     EventData|contains|all:
       - New-Service
       - Name
+
   selection2_powershell_modern:
     EventID: 4103
       - New-Service
