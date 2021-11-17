@@ -2,10 +2,15 @@ title: Shared folder access with forged Golden ticket
 description: Detects scenarios where an attacker used a forged Golden ticket to login on a remote shared folder. Per default or if specified, the ticket will be forged using the builtin administrator account (SID *-500). However, and it frequent cases, a non suspicious user name will be specificied during the forge in order to evade security monitoring. The rule works based on this trick.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
+- https://infosecwriteups.com/forest-an-asreproast-dcsync-and-golden-ticket-hackthebox-walkthrough-ade8dcdd1ee5
+- https://attack.stealthbits.com/how-golden-ticket-attack-works
 - https://www.hackingarticles.in/domain-persistence-golden-ticket-attack/
+- https://adsecurity.org/?p=1515
+- https://en.it-pirate.eu/azure-atp-golden-ticket-attack-how-golden-ticket-attacks-work/
 - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/kerberos-golden-tickets
 - https://bond-o.medium.com/golden-ticket-attack-ea89553cf9c0
 - https://social.technet.microsoft.com/wiki/contents/articles/13813.localized-names-for-administrator-account-in-windows.aspx
+- https://www.blackhat.com/docs/us-15/materials/us-15-Metcalf-Red-Vs-Blue-Modern-Active-Directory-Attacks-Detection-And-Protection-wp.pdf
 tags:
 - attack.credential_access
 - attack.t1558.001
@@ -23,13 +28,13 @@ detection:
     SubjectUserSid|endswith: '-500' # Refers to builtin Administrator SID account
   filter:
     SubjectUserName: # Excludes builtin admin account names when using a localized Windows OS version (select the ones applicable)
-      - 'Administrator' # Default
+      - 'Administrator'  # Default
       - 'Järjestelmänvalvoja' # Finnish
       - 'Administrateur' # French
-      - 'Administrador' # Spanish / Portuguese
-      - 'Administratör' # Swedish
-      - 'Rendszergazda' # Hungarian
-      - 'Администратор' # Russian
+      - 'Administrador'  # Spanish / Portuguese
+      - 'Administratör'  # Swedish
+      - 'Rendszergazda'  # Hungarian
+      - 'Администратор'  # Russian
   condition: selection and not filter
 falsepositives:
 - login with renamed builtin administrator account ("administrator" renamed to "admin_org")

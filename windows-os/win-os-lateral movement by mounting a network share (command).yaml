@@ -1,0 +1,34 @@
+title: Lateral movement by mounting a network share - net use (command)
+description: Detects scenarios where an attacker attempts to move laterally by mounting a network share using compromised user credentials.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+- https://imphash.medium.com/detecting-lateral-movement-101-tracking-movement-smb-windows-admin-shares-through-windows-log-6005e3ba6980
+- https://stealthbits.com/blog/how-to-detect-pass-the-hash-attacks/
+- https://attack.mitre.org/software/S0039/
+tags:
+- attack.lateral_movement
+- attack.t1021.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection: # Full command example: 'net use m: \\<dst-server>\c$ /USER:<compromised_user> <credentials>'
+  selection_command:
+    EventID: 4688
+    NewProcessName|endswith:
+      - \net1.exe
+      - \net.exe
+    CommandLine|contains|all:
+      - net
+      - use
+      - '/user:'
+
+  #selection_swtich_cred:
+    #EventID: 4648
+    #TargetInfo|startswith: cifs
+
+  condition: selection_command # optional[and selection_swtich_cred]. Correlate both events with SubjectUserName and SubjectLogonId
+falsepositives:
+- Administrator activity
+level: medium
