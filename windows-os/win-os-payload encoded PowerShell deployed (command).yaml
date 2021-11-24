@@ -17,9 +17,9 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith:
-      - \powershell.exe
       - \cmd.exe
-      - \pwsh.exe
+      - \powershell.ex
+      - \pwsh.exe # PowerShell v6
     CommandLine|contains|all:
       - 'powershell.exe'
       - '[System.Convert]::'

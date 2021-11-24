@@ -1,5 +1,5 @@
-title: Guest or remote account activated
-description: Detects scenarios where an attacker enable unused builtin accounts.
+title: Guest or builtin account activated
+description: Detects scenarios where an attacker enable a builtin account.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
 - https://www.stigviewer.com/stig/windows_xp/2013-03-14/finding/V-3369
@@ -17,11 +17,13 @@ detection:
   selection_username:
     TargetUserName:
       - Guest
+      - DefaultAccount
       - support_388945a0 # Remote assistance
-      - HelpAssistant # Managed by Remote Desktop Help Session Manager service
+      - HelpAssistant    # Managed by Remote Desktop Help Session Manager service
   selection_usersid:
     TargetUserSid|endswith:
       - '-501' # Guest account
+      - '-503' # Default System Managed Account (DSMA) starting Windows 10.1607
       - '1001' # support_388945a0
   condition: selection_event and (selection_username or selection_usersid)
 falsepositives:

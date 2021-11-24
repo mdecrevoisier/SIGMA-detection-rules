@@ -21,7 +21,8 @@ detection:
       - PSEXESVC       # see PSexec SMB rule
       - cmd.exe        # see remote shell execution via SMB rule
       - powershell.exe # see remote shell execution via SMB rule
+      - pwsh.exe       # see remote shell execution via SMB rule
   condition: selection and not filter
 falsepositives:
-- Administrator activity
+- Administrator activity, backup solutions
 level: medium

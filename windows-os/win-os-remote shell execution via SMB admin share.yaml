@@ -15,8 +15,9 @@ detection:
     EventID: 5145
     ShareName: '\\*\ADMIN$'
     RelativeTargetName|endswith:
-      - cmd.exe
-      - powershell.exe
+      - \cmd.exe
+      - \powershell.ex
+      - \pwsh.exe # PowerShell v6
   condition: selection
 falsepositives:
 - Administrator activity

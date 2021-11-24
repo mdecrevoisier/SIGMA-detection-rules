@@ -1,0 +1,29 @@
+title: Multiple authenticated logins performed from a single source
+description: Detects scenarios where an attacker would attempt to enumerate hosts resources and execute a payload with a compromised account. Vulnerability scanners, enumeration software or tool like SharepHound/CrackMapexec may generate such behavior.
+references:
+- https://medium.com/@Shorty420/enumerating-ad-98e0821c4c78
+- https://book.hacktricks.xyz/pentesting/pentesting-smb
+- https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html
+tags:
+- attack.discovery
+- attack.t1046
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4624
+    TargetUserSid|startswith: S-1-5-21-
+    LogonType: 3
+  filter:
+     IpAddress:
+        - '%vulnerability_scanners%'
+        - '127.0.0.1'
+        - '::1'
+  condition: selection and not filter | count(Computer) by IpAddress > 20 # Count of many computer are reporting connection attemps from a single source IP
+  timeframe: 15m
+falsepositives:
+- VAS scanners, administrator jump host, backup solutions, monitoring solutions
+level: high

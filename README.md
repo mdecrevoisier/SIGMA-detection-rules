@@ -29,6 +29,7 @@ Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple 
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login denied due to account policy restrictions | 4625
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login failure from a single source with a disabled account | 33205
+TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Multiple authenticated logins performed from a single source | 4624
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Success login on OpenSSH server | 4624/4
 TA0002-Execution | T1047-Windows Management Instrumentation  | Impacket WMIexec process execution | 4688
 TA0002-Execution | T1053.005-Scheduled Task | Interactive shell triggered by scheduled task (at, deprecated) | 4688
@@ -130,6 +131,8 @@ TA0005-Defense Evasion | T1027-Obfuscated Files or Information | Payload obfusca
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Event log file(s) cleared | 104/1102
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 4688
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 800/4103/4104
+TA0005-Defense Evasion | T1070.006-Timestomp | System time changed (PowerShell) | 800/4103/4104
+TA0005-Defense Evasion | T1070.006-Timestomp | System time changed | 4616
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | Audit policy disabled | 4719
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object deleted | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object disabled | 33205
@@ -191,6 +194,7 @@ TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single so
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Discovery for print spooler bug abuse via named pipe | 5145
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Exchange server impersonation via PrivExchange relay attack | 4624
+TA0006-Credential Access | T1558.001-Golden Ticket  | Kerberos TGS ticket request related to a potential Golden ticket | 4769
 TA0006-Credential Access | T1558.001-Golden Ticket  | SMB Admin share accessed with a forged Golden ticket | 5140/5145
 TA0006-Credential Access | T1558.001-Golden Ticket  | Success login impersonation with forged Golden ticket | 4624
 TA0006-Credential Access | T1558.003-Kerberoasting  | KerberOAST ticket (TGS) request detected (low encryption) | 4769
@@ -199,13 +203,14 @@ TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Susipicious 
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall configuration enumerated (command) | 4688
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall configuration enumerated (PowerShell) | 800/4103/4104
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Tentative of zone transfer from a non DNS server detected | 6004(DNSserver)
+TA0007-Discovery | T1046-Network Service Scanning  | Multiple anonymous login from a single source | 4624
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated via SharpHound | 4799
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661
 TA0007-Discovery | T1069.002-Discovery domain groups | Sensitive SAM domain user & groups discovery | 4661
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via commandline | 4688
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via PowerShell | 800/4103/4104
 TA0007-Discovery | T1082-System Information Discovery | Audit policy settings collection | 4688
-TA0007-Discovery | T1087.002-Domain Account discovery | Honeypot object (container, computer, group, user) enumerated | 4662/4624
+TA0007-Discovery | T1087.002-Domain Account discovery | Honeypot object (container, computer, group, user) enumerated | 4662
 TA0007-Discovery | T1087.002-Domain Account discovery | Single source performing host enumeration over Kerberos ticket (TGS) detected | 4769
 TA0007-Discovery | T1087-Account discovery | Command execution related to Kerberos SPN enumeration activity detected | 4688/1
 TA0007-Discovery | T1087-Account discovery | Command execution related to Kerberos SPN enumeration activity detected | 800/4103/4104
@@ -217,6 +222,7 @@ TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery v
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP authentication with valid credentials | 4825
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Admin share accessed via SMB (basic) | 5140/5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Impacket WMIexec execution via SMB admin share | 5145
+TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Lateral movement by mounting a network share - net use (command) | 4688/4648
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | New file share created on a host | 5142
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Psexec remote execution via SMB | 5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote service creation over SMB | 5145

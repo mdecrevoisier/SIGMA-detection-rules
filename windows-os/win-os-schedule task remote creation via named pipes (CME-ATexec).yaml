@@ -1,5 +1,5 @@
-title: Remote schedule task creation via named pipes (ATexec)
-description: Detects scenarios where an attacker remotely creates a scheduled task over named pipes to execute commands or elevate privileges.
+title: Massive remote schedule task creation via named pipes (CrackMapExec with ATexec)
+description: Detects scenarios where an attacker remotely creates a scheduled task on multiple hosts over named pipes to execute commands or elevate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/atexec.py
@@ -19,7 +19,7 @@ detection:
     ShareName: '\\*\IPC$'
     RelativeTargetName: atsvc
     AccessList|contains: '%%4417' # WriteData
-  condition: selection
+  condition: selection | count(Computer) by IpAddress > 20
 falsepositives:
 - Administrator activity, backup solutions
 level: medium
