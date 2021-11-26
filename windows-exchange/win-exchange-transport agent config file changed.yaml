@@ -12,7 +12,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: sysmon
+  category: file_event
 detection:
   selection:
     EventID: 11

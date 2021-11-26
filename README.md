@@ -113,6 +113,7 @@ TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions w
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (Reg via PowerShell) | 800/4103/4104
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (registry) | 4688
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (service) | 4688
+TA0004-Privilege Escalation | T1134.002- Access Token Manipulation: Create Process with Token  | Privilege escalation via runas (command) | 4688/4648/4624
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | User right granted to an account by a standard user | 4704
 TA0004-Privilege Escalation | T1484.001-Domain Policy Modification-Group Policy Modification | Modification of a sensitive Group Policy  | 5136
@@ -204,13 +205,15 @@ TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall conf
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall configuration enumerated (PowerShell) | 800/4103/4104
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Tentative of zone transfer from a non DNS server detected | 6004(DNSserver)
 TA0007-Discovery | T1046-Network Service Scanning  | Multiple anonymous login from a single source | 4624
+TA0007-Discovery | T1069.001-Discovery domain groups | Local domain group enumeration via RID brutforce | 4661
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated via SharpHound | 4799
+TA0007-Discovery | T1069.002-Discovery domain groups | Domain group enumeration | 4661
+TA0007-Discovery | T1069.002-Discovery domain groups | Honeypot object (container, computer, group, user) enumerated | 4662
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661
 TA0007-Discovery | T1069.002-Discovery domain groups | Sensitive SAM domain user & groups discovery | 4661
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via commandline | 4688
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via PowerShell | 800/4103/4104
 TA0007-Discovery | T1082-System Information Discovery | Audit policy settings collection | 4688
-TA0007-Discovery | T1087.002-Domain Account discovery | Honeypot object (container, computer, group, user) enumerated | 4662
 TA0007-Discovery | T1087.002-Domain Account discovery | Single source performing host enumeration over Kerberos ticket (TGS) detected | 4769
 TA0007-Discovery | T1087-Account discovery | Command execution related to Kerberos SPN enumeration activity detected | 4688/1
 TA0007-Discovery | T1087-Account discovery | Command execution related to Kerberos SPN enumeration activity detected | 800/4103/4104
@@ -218,6 +221,7 @@ TA0007-Discovery | T1087-Account discovery | User enumeration via commandline | 
 TA0007-Discovery | T1135-Network Share Discovery | Host performing advanced named pipes enumeration on different hosts via SMB | 5145
 TA0007-Discovery | T1135-Network Share Discovery | Network share discovery and/or connection via commandline | 4688
 TA0007-Discovery | T1135-Network Share Discovery | Network share manipulation via commandline | 4688
+TA0007-Discovery | T1201-Password Policy Discovery | Domain password policy enumeration | 4661
 TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery via commandline | 4688
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP authentication with valid credentials | 4825
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Admin share accessed via SMB (basic) | 5140/5145

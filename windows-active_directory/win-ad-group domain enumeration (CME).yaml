@@ -1,0 +1,28 @@
+title: Domain group enumeration
+description: Detects scenarios where an attacker enumrates domain group with tools like CME (--groups).
+correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
+requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
+- https://hideandsec.sh/books/cheatsheets/page/crackmapexec
+- https://www.infosecmatter.com/crackmapexec-module-library/
+tags:
+- attack.discovery
+- attack.t1069.002
+- attack.t1087.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4662
+    ObjectType|contains: '{bf967a9c-0de6-11d0-a285-00aa003049e2}' # Groups class
+    ObjectServer: DS
+    OperationType: Object Access
+  condition: selection | count(ObjectName) by Computer > 30 # Count how many different ObjectName (GUID of the group) were enumerated.
+  timeframe: 15m
+falsepositives:
+- Administrator activity
+level: high

@@ -19,10 +19,10 @@ detection:
     LogonType: 3
     #AuthenticationPackageName: NTLM
   filter:
-     IpAddress:
-        - '%vulnerability_scanners%'
-        - '127.0.0.1'
-        - '::1'
+    IpAddress:
+      - '%vulnerability_scanners%'
+      - '127.0.0.1'
+      - '::1'
   condition: selection and not filter | count(Computer) by IpAddress > 20 # Count of many computer are reporting connection attemps from a single source IP
   timeframe: 15m
 falsepositives:

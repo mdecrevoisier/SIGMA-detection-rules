@@ -16,18 +16,25 @@ detection: # full command: Set-Date -Date (Get-Date).AddDays(3)
   selection_powershell_native:
     EventID: 800
     EventData|contains: Set-Date
+    EventData|contains:
+      - -Date
+      - -Adjust
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains: Set-Date
+    Payload|contains:
+      - -Date
+      - -Adjust
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains: Set-Date
+    ScriptBlockText|contains:
+      - -Date
+      - -Adjust
 
   condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
-
-  condition: selection
 falsepositives:
 - None
 level: medium

@@ -1,0 +1,43 @@
+title: Privilege escalation via runas (command)
+description: Detects scenarios where attack attempts to elevate privileges via the command runas.
+correlation: correlation between the 3 event IDs can be done over SubjectLogonId in order to get more context.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/
+- https://www.elastic.co/fr/blog/how-attackers-abuse-access-token-manipulation
+- http://www.pseale.com/pretend-youre-on-the-domain-with-runas-netonly
+- https://blog.palantir.com/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e
+tags:
+- attack.privilege_escalation
+- attack.t1134.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection: # Full command: 'runas /user:<domain>\<user> cmd.exe'
+
+  selection_command:
+    EventID: 4688
+    NewProcessName|endswith: '\runas.exe'
+    CommandLine|contains|all:
+      - runas
+      - '/user:'
+
+  selection_login:
+    EventID: 4624
+    LogonType: 2
+    LogonProcessName: seclogo
+    AuthenticationPackageName: Negotiate
+    ProcessName|endswith: '\svchost.exe'
+    IpAddress: '::1'
+
+  selection_swtich_cred:
+    EventID: 4648
+    TargetServerName: localhost
+    ProcessName|endswith: '\svchost.exe'
+    IpAddress: '::1 '
+
+  condition: selection_login and selection_command and selection_swtich_cred
+falsepositives:
+- Administrator activity
+level: medium

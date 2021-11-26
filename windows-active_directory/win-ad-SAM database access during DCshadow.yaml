@@ -1,7 +1,16 @@
-title: SAM database user credentials dump with Mimikatz
-description: Detects scenarios where an attacker dump the LSASS memory content using Mimikatz (sekurla module).
+title: Potential SAM database user credentials dumped with DCshadow
+description: Detects scenarios where an attacker would dump user passwords using the DCshadow attack.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
+- https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/t1207-creating-rogue-domain-controllers-with-dcshadow
+- https://medium.com/@maarten.goet/dcshadow-detecting-a-rogue-domain-controller-replicating-malicious-changes-to-your-active-1e22440df9ad
+- https://github.com/AlsidOfficial/UncoverDCShadow
+- https://github.com/shellster/DCSYNCMonitor
+- https://blog.alsid.eu/dcshadow-explained-4510f52fc19d
+- https://stealthbits.com/blog/detecting-dcshadow-with-event-logs/
+- https://www.labofapenetrationtester.com/2018/05/dcshadow-sacl.html
+- https://blog.stealthbits.com/creating-persistence-with-dcshadow/
+- https://book.hacktricks.xyz/windows/active-directory-methodology/dcshadow
 tags:
 - attack.credential_access
 - attack.t1003.001
@@ -25,9 +34,6 @@ detection:
     AccessList|contains|all:
       - '%%5392' # ReadPasswordParameters
       - '%%5447' # SetPassword
-    #AccessMask:
-      #- '0xF01FD'
-      #- '0xf01ff'
   condition: selection | count(ObjectName) by Computer > 10
 falsepositives:
 - None

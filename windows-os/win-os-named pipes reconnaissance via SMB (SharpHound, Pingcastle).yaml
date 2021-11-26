@@ -1,5 +1,5 @@
 title: SharpHound enumeration via SMB named pipes
-description: Detects scenarios where an attacker enumerate different host named pipes with SharpHound for discovery purposes.
+description: Detects scenarios where an attacker enumerate different host via named pipes with SharpHound for discovery purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1135.xxx-Network%20Share%20Discovery
 - https://docs.google.com/presentation/d/1OdufXKGYPgoV1d5jDrMYSe-SYKZ7lcA4w2MFn8AkUWE/edit
@@ -23,9 +23,9 @@ detection:
      - samr
      - srvsvc
   filter:
-    IpAddress: '%administration_hosts%' # List of IPs of your administration host to reduce false positive
-  condition: selection and not filter | count(Computer) by IpAddress > 20
-  timeframe: 30m
+    IpAddress: '%administration_hosts%' # List of IPs of your administration hosts to reduce false positive
+  condition: selection and not filter | count(Computer) by IpAddress > 30
+  timeframe: 15m
 falsepositives:
 - Administrator activity, backup solutions, Windows Server Manager
 level: medium
