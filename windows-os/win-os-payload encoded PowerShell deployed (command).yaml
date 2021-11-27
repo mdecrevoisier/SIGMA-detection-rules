@@ -18,7 +18,7 @@ detection:
     EventID: 4688
     NewProcessName|endswith:
       - \cmd.exe
-      - \powershell.ex
+      - \powershell.exe
       - \pwsh.exe # PowerShell v6
     CommandLine|contains|all:
       - 'powershell.exe'

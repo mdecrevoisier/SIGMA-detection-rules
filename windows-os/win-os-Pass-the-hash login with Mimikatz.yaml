@@ -3,7 +3,6 @@ description: Detects scenarios where an attacker uses the Mimikatz Pass-the-hash
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1550-Use%20Alternate%20Authentication%20Material
 - https://stealthbits.com/blog/passing-the-hash-with-mimikatz/
-- https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES/blob/master/Lateral%20Movement/LM_4624_mimikatz_sekurlsa_pth_source_machine.evtx
 - https://s3cur3th1ssh1t.github.io/Named-Pipe-PTH/
 tags:
 - attack.lateral_movement

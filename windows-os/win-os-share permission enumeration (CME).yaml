@@ -1,6 +1,6 @@
 title: CrackMaxpExec share permission enumeration
 description: Detects scenarios where an attacker would perform share permission enumeration using CrackMaxExec SMBmodule.
-correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
+correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 5145 to identify the source of the enumeration.
 references:
 - https://github.com/mdecrevoisier/############ missing EVTX
 
@@ -22,8 +22,8 @@ detection: # full command: cme smb -u user -p password --shares
   selection_pipes:
     ShareName: '\\*\IPC$'
     RelativeTargetName:
-      - srvctl
-      - svcctl # May also be triggered by others tools like Tchopper or via a named pipe service creation
+      - srvsvc # May also be triggered by other tools like SharpHound
+      - svcctl # May also be triggered by other tools like Tchopper 
 
   selection_admin_share:
     ShareName: '\\*\ADMIN$'

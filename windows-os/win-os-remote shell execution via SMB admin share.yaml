@@ -2,6 +2,7 @@ title: Remote shell execution via SMB admin share
 description: Detects scenarios where an attacker execute a remote shell via the admin share.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+- https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
 tags:
 - attack.lateral_movement
 - attack.t1021.002
@@ -16,7 +17,7 @@ detection:
     ShareName: '\\*\ADMIN$'
     RelativeTargetName|endswith:
       - \cmd.exe
-      - \powershell.ex
+      - \powershell.exe
       - \pwsh.exe # PowerShell v6
   condition: selection
 falsepositives:
