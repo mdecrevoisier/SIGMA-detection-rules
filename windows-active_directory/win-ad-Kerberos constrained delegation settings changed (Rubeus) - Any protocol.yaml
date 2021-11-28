@@ -19,7 +19,7 @@ logsource:
   product: windows
   service: security
 detection:
-  selection: #Delegation to specified service, any protocol
+  selection: # Delegation to specified service, any protocol
     EventID: 4742
     UserAccountControl: '%%2098' # Enable option "Approved for authenticated delegation"
   filter:
