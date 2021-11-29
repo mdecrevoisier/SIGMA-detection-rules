@@ -17,7 +17,7 @@ detection:
     EventID: 11 # File created
     Image|endswith:
       - cmd.exe
-      - powershell.ex
+      - powershell.exe
       - pwsh.exe # PowerShell v6
     TargetFilename|endswith:
       - \sethc.exe  # Full path 'C:\Windows\System32\sethc.exe'

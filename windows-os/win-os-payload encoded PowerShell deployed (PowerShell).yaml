@@ -6,6 +6,8 @@ references:
 tags:
 - attack.execution
 - attack.t1059.001
+- attack.defense_evasion
+- attack.t1027
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -22,8 +22,8 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith: '\dnscmd.exe'
-    #CommandLine|contains: dnscmd
     CommandLine|contains|all: # full command 'dnscmd.exe /config /serverlevelplugindll "C:\mimilib.dll"'
+      - dnscmd
       - config
       - serverlevelplugindll'
   condition: selection

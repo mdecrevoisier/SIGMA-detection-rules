@@ -19,7 +19,8 @@ detection:
 
   selection_enriched: # Alternative method using Message. However this field may be in a different language and dropped in some cases during collection phase
     Message|contains: "option 'xp_cmdshell' changed from 0 to 1"
-  condition: selection_baseline and (selection1 or selection2)
+
+  condition: selection_baseline and (selection_raw or selection_enriched)
 falsepositives:
 - None
 level: high

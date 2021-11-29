@@ -20,23 +20,23 @@ detection:
 
   # Server audit specifications
   server_audit_spec_disabled:
-    action_id: AL # Alter
-    class_type: SA  # Server Audit Specifications
+    action_id: AL  # Alter
+    class_type: SA # Server Audit Specifications
     statement|contains: 'STATE = OFF'
 
   server_audit_spec_deleted:
-    action_id: DR # Drop
-    class_type: SA  # Server Audit Specifications
+    action_id: DR  # Drop
+    class_type: SA # Server Audit Specifications
 
   # Server audit object
   server_audit_obj_disabled:
     action_id: AL # Alter
-    class_type: A  # Server audit
+    class_type: A # Server audit
     statement|contains: 'STATE = OFF'
 
   server_audit_obj_deleted:
     action_id: DR # Drop
-    class_type: A  # Server audit
+    class_type: A # Server audit
 
   condition: sql_server_event and (1 of server_audit_*)
 falsepositives:

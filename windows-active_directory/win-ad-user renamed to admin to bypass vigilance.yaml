@@ -33,7 +33,7 @@ detection:
       - adm-
       - <customer pattern>
     - TargetSid|endswith: '-500' # Exclude default builtin account
-  condition: (selection_event and selection_pattern) and not filter
+  condition: selection_event and selection_pattern and not filter
 falsepositives:
 - builtin admin account renamed for obfuscation
 level: high

@@ -1,4 +1,4 @@
-title: AdminSDHolder permissions change for persistence
+title: AdminSDHolder permissions changed for persistence
 description: Detects scenarios where an attacker changes permissions on the AdminSDHolder container to establish persistence.
 requirements: auditing SACL must be placed on the "AdminSDHolder" container using the Active Directory console.
 references:

@@ -21,7 +21,7 @@ detection:
     RelativeTargetName:
      - lsarpc
      - samr
-     - srvsvc
+     - srvsvc # May also be triggered by other tools like SharpHound, DonPapi, ...
   filter:
     IpAddress: '%administration_hosts%' # List of IPs of your administration hosts to reduce false positive
   condition: selection and not filter | count(Computer) by IpAddress > 30

@@ -16,7 +16,7 @@ detection:
   selection: # GRANT [Privilege] TO [DEMO\svc-netwrix-db]
     EventID: 33205
     action_id:
-      - G # GRANT
+      - G   # GRANT
       - GWG # GRANT WITH GRANT
     class_type: DB # DATABASE
   condition: selection
