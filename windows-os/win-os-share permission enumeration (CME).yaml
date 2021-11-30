@@ -23,7 +23,7 @@ detection: # full command: cme smb -u user -p password --shares
     ShareName: '\\*\IPC$'
     RelativeTargetName:
       - srvsvc # May also be triggered by other tools like SharpHound, DonPapi, ...
-      - svcctl # May also be triggered by other tools like Tchopper 
+      - svcctl # May also be triggered by other tools like Tchopper
 
   selection_admin_share:
     ShareName: '\\*\ADMIN$'
