@@ -16,7 +16,7 @@ detection:
   selection: # GRANT ALTER ANY DATABASE TO [DEMO\svc-test]
     EventID: 33205
     action_id:
-      - G # GRANT
+      - G   # GRANT
       - GWG # GRANT WITH GRANT
     class_type: SR # SERVER
   condition: selection

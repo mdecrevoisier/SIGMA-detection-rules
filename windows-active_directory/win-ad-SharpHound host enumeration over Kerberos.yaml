@@ -18,7 +18,9 @@ detection:
     ServiceName|endswith: '$'
     Status: 0x0
   filter:
-    IpAddress: '::1'
+    IpAddress:
+      - '::1'
+      - '%domain_controllers_ip%'
   condition: selection and not filter | count(ServiceName) by IpAddress > 20
   timeframe: 5m
 falsepositives:

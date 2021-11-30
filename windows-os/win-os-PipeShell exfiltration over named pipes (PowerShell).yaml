@@ -9,9 +9,9 @@ references:
 - https://decoder.cloud/2019/03/06/windows-named-pipes-impersonation/
 - https://www.powershellgallery.com/packages/PSNamedPipe/1.0.0.19/Content/Public%5CNew-PSNamedPipeServer.ps1
 tags:
-- attack.exfiltration
 - attack.execution
 - attack.t1059.001
+- attack.exfiltration
 author: mdecrevoisier
 status: experimental
 logsource:

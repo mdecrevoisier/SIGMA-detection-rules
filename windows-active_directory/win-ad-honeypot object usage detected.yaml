@@ -22,6 +22,8 @@ detection:
       - 4769
       - 4770
       - 4771
+      - 5140
+      - 5145
     TargetUserName: '%honeypot_account_list%'
   condition: selection
 falsepositives:

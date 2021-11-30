@@ -7,7 +7,7 @@ tags:
 - attack.execution
 - attack.t1059.003
 - attack.defense_evasion
-- attack.t1564.003
+- attack.t1027
 author: mdecrevoisier
 status: experimental
 logsource:

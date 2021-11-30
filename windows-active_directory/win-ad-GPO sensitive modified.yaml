@@ -23,7 +23,7 @@ detection:
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
       - xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
   filter:
-    AttributeValue: '0' # First value when GPO is created. Corresponds to the GPO version number.
+    AttributeValue: '0' # First value when GPO is created. Refers to the GPO version number.
   condition: selection and not filter
 falsepositives:
 - Group policy administrator activity / AGPM activity
