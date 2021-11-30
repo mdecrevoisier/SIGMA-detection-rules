@@ -9,6 +9,7 @@ tags:
 - attack.discovery
 - attack.t1069.002
 author: mdecrevoisier
+status: experimental
 logsource:
   product: windows
   service: security
