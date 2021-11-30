@@ -19,13 +19,19 @@ detection:
     ObjectServer: Security
     ObjectName|endswith: '\System32\lsass.exe'
     # AccessMask:
-      #- '0x1438' could refers to misc::memssp
       #- '0x1410'
-      #- '0x1010' could refers to Mimikatz Pth
+      #- '0x1010'
+      #- '0x1438' # could refers to misc::memssp
+      #- '0x143a'
+      #- '0x1418'
   filter:
     SubjectUserName|endswith: '$'
     ProcessName:
       - '*\\AppData\Local\Google\Chrome\User Data\SwReporter\\*\software_reporter_tool.exe' # Google Chrome Security tool
+      - '*\ProgramData\Microsoft\Windows Defender\Platform\*'
+      - '*\Program Files\Windows Defender Advanced Threat Protection\*'
+      - '*\system32\csrss.exe'
+      - '*\system32\wininit.exe'
       - '*\Windows\System32\rundll32.exe' # See LSASSY dedicated rule
   condition: selection and not filter
 falsepositives:

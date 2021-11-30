@@ -1,0 +1,39 @@
+title: WMI module loaded by suspicious process
+description: Detects scenarios where an attacker attempts to load WMI modules from a suspicious process (like PowerShell).
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation
+- https://threathunterplaybook.com/notebooks/windows/02_execution/WIN-190811201010.html
+- https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
+- https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
+- https://posts.specterops.io/real-time-sysmon-processing-via-ksql-and-helk-part-3-basic-use-case-8fbf383cb54f
+- https://github.com/OTRF/ThreatHunter-Playbook/blob/master/signatures/sigma/sysmon_wmi_module_load.yml
+tags:
+- attack.execution
+- attack.t1047
+author: shortly adapted from Roberto Rodriguez rule
+status: experimental
+logsource:
+  product: windows
+  service: image_loaded
+detection:
+  selection:
+    EventID: 7 # image loaded
+    ImageLoaded|endswith:
+      - '\wmiclnt.dll'
+      - '\WmiApRpl.dll'
+      - '\wmiprov.dll'
+      - '\wmiutils.dll'
+      - '\wbemcomn.dll'
+      - '\WMINet_Utils.dll'
+      - '\wbemsvc.dll'
+      - '\fastprox.dll'
+      - '\wmi*'
+  filter:
+    Image|endswith:
+      - '\wmiprvse.exe'
+      - '\wmiapsrv.exe'
+      - '\svchost.exe'
+  condition: selection and not filter
+falsepositives:
+- None
+level: high
