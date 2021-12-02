@@ -22,7 +22,9 @@ detection:
     ObjectType|contains: '{bf967a9c-0de6-11d0-a285-00aa003049e2}' # Groups class
     ObjectServer: DS
     OperationType: Object Access
-  condition: selection | count(ObjectName) by Computer > 30 # Count how many different ObjectName (GUID of the group) were enumerated.
+  filter:
+    SubjectUserName|endswith: '$'
+  condition: selection and not filter | count(ObjectName) by Computer > 30 # Count how many different ObjectName (GUID of the group) were enumerated.
   timeframe: 15m
 falsepositives:
 - Administrator activity

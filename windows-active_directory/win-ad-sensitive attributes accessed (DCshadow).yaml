@@ -1,5 +1,6 @@
 title: Account accessed to attributes related to DCshadow
 description: Detects scenarios where an attacker accessed attributes related to DCshadow attack in order to create a fake domain controller.
+correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1207-Rogue%20domain%20controller
@@ -24,10 +25,9 @@ detection:
   selection:
     EventID: 4662
     Properties|contains:
-      - aa4e1a6d-550d-4e05-8c35-4afcb917a9fe # ms-TPM-OwnerInformation
-      - 9923a32a-3607-11d2-b9be-0000f87a36b2 # DS-Install-Replicaextendedright
       - 1131f6ac-9c07-11d1-f79f-00c04fc2dcd2 # DS-Replication-Manage-Topology
-      - f0f8ffab-1191-11d0-a060-00aa006c33ed # NTDS-DSA
+      - 9923a32a-3607-11d2-b9be-0000f87a36b2 # DS-Install-Replicaextendedright
+      #- f0f8ffab-1191-11d0-a060-00aa006c33ed # NTDS-DSA
   filter:
     SubjectUserName|endswith: '$'
   condition: 1 of selection and not filter

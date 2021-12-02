@@ -1,0 +1,31 @@
+title: Suspicious modification of a fake domain controller SPN (DCshadow)
+description: Detects scenarios where an attacker updates the Service Principal Name (SPN) of a fake domain controller account in order to perform DCshadow attack.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/t1207-creating-rogue-domain-controllers-with-dcshadow
+- https://medium.com/@maarten.goet/dcshadow-detecting-a-rogue-domain-controller-replicating-malicious-changes-to-your-active-1e22440df9ad
+- https://github.com/AlsidOfficial/UncoverDCShadow
+- https://github.com/shellster/DCSYNCMonitor
+- https://blog.alsid.eu/dcshadow-explained-4510f52fc19d
+- https://stealthbits.com/blog/detecting-dcshadow-with-event-logs/
+- https://www.labofapenetrationtester.com/2018/05/dcshadow-sacl.html
+- https://blog.stealthbits.com/creating-persistence-with-dcshadow/
+- https://book.hacktricks.xyz/windows/active-directory-methodology/dcshadow
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4742
+    ServicePrincipalNames|startswith: 'GC/'
+  filter:
+    Computer: '%domain_controller_list%' # exclude existing domain controllers
+  condition: selection and not filter
+falsepositives:
+- New domain controller registration
+level: high

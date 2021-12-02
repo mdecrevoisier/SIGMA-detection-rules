@@ -1,5 +1,6 @@
-title: Suspicious modification of a fake domain controller SPN (DCshadow)
-description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a fake domain controller account in order to perform DCshadow attack.
+title: Suspicious modification of a fake domain controller SPN (DCshadow) (Directory Services)
+description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a computer account in order to perform "Kerberos redirection" and escalate privileges.
+requirements: auditing SACL ("Write all properties") must be placed on the OU to monitor using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/t1207-creating-rogue-domain-controllers-with-dcshadow
@@ -21,11 +22,12 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 4742
-    ServicePrincipalNames|startswith: 'GC/'
-  filter:
-    Computer: '%domain_controller_list%' # exclude existing domain controllers
-  condition: selection and not filter
+    EventID: 5136
+    AttributeLDAPDisplayName: servicePrincipalName
+    ObjectClas: computer
+    OperationType: '%%14674' # Value is added
+    AttributeValue|startswith: 'GC/'
+  condition: selection
 falsepositives:
-- New domain controller registration
+- Rare administrator modifications on user objects
 level: high
