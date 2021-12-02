@@ -1,4 +1,4 @@
-title: User enumeration brutforce with non existing users.
+title: User enumeration with non existing users.
 description: Detects scenarios where an attacker attempts to enumerate potential existing users, resulting in failed logins with unexisting or invalid accounts.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
