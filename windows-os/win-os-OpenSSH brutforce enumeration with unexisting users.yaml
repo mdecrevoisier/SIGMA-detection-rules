@@ -1,5 +1,5 @@
 title: Brutforce enumeration on Windows OpenSSH server with non existing user
-description: Detects scenarios where an attacker attempts to SSH brutforce a Windows OpenSSH server with non existing users. 
+description: Detects scenarios where an attacker attempts to SSH brutforce a Windows OpenSSH server with non existing users.
 remarks: This requires to have previously enabled the builtin OpenSSH server or to have installed the "OpenSSH-Win64" component. IpAddress or Workstation fields may be empty. In case Workstation field is not empty, be aware that it may wrongly report the source host. Also note that SSH logins are reported with logon type 8 (clear text). For reliable source IP information, use the logs from the OpenSSH channel, event ID 4.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force

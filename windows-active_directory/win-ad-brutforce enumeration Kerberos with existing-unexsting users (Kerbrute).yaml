@@ -1,8 +1,9 @@
-title: Kerberos user enumeration with non existing users.
-description: Detects scenarios where an attacker attempts to enumerate potential existing users, resulting in failed Kerberos TGT requests with unexisting or invalid accounts.
+title: Brutforce Kerberos enumeration with existing/unexisting users (Kerbrute)
+description: Detects scenarios where an attacker attempts to enumerate existing or non existing users using "Kerbrute". This use case can also be related to spot vulnearbility "MS14-068".
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
 - https://github.com/ropnop/kerbrute
+- https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf
 tags:
 - attack.credential_access
 - attack.t1110
@@ -16,10 +17,10 @@ detection:
     EventID:
       - 4771
       - 4768
-    Status: '0x6' # KDC_ERR_C_PRINCIPAL_UNKNOWN
+    TicketOptions: 0x50800000
   filter:
     IpAddress: '%domain_controllers_ips%' # reduce amount of false positives
-  condition: selection and not filter | count(TargetUserName) by Computer > 20 # Count how many failed logins with non existing users were reported on the domain controller.
+  condition: selection and not filter | count(TargetUserName) by Computer > 20 # Count how many failed logins were reported on the domain controller.
   timeframe: 30m
 falsepositives:
 - Missconfigured application or identity services

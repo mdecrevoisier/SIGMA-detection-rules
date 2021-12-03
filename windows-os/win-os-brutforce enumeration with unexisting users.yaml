@@ -1,4 +1,4 @@
-title: User enumeration with non existing users.
+title: Brutforce enumeration with non existing users (login)
 description: Detects scenarios where an attacker attempts to enumerate potential existing users, resulting in failed logins with unexisting or invalid accounts.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
@@ -15,7 +15,9 @@ detection:
   selection:
     EventID: 4625
     SubStatus: '0xc0000064' # user not found | Failure code can be defined in "Status" or "Substatus" fields. Usually, if Substatus == 0x0, refers to Status.
-  condition: selection | count(TargetUserName) by Computer > 20 # Count how many failed logins with non existing users were reported on the host.
+  filter:
+    IpAddress: '%domain_controllers_ips%' # reduce amount of false positives
+  condition: selection and not filter | count(TargetUserName) by Computer > 20 # Count how many failed logins with non existing users were reported on the host.
   timeframe: 30m
 falsepositives:
 - Missconfigured application
