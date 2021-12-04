@@ -1,5 +1,5 @@
-title: Fake computer account creation
-description: Detects scenarios where an attacker creates a fake a user account that relates to a computer account.
+title: User account creation disguised in a computer account
+description: Detects scenarios where an attacker creates a user account that fakes a computer account.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
 tags:
@@ -12,7 +12,9 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 4720
+    EventID:
+      - 4720 # User account creation
+      - 4781 # User account name change
     TargetUserName|endswith: '$'
   condition: selection
 falsepositives:

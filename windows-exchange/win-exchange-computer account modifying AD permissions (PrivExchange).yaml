@@ -1,6 +1,6 @@
 title: Computer account modifying Active Directory permissions (PrivExchange)
 description: Detects scenarios where an attacker compromise a server with high privileges to perform permissions changes. PrivExchange attack can be detected using this rule.
-requirements: auditing SACL must be placed on the AD root container using the Active Directory console.
+requirements: auditing SACL "Modify permissions" must be placed on the AD root container using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
 - https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/

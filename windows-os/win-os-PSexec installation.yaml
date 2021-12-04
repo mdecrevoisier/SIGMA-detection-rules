@@ -2,6 +2,7 @@ title: PSexec application execution
 description: Detects scenarios where an attacker installs and executes PSexec.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
+- https://attack.mitre.org/software/S0029/
 tags:
 - attack.execution
 - attack.t1569.002

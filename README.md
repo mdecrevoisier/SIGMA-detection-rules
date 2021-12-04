@@ -51,7 +51,6 @@ TA0003-Persistence | T1098.xxx-Account Manipulation  | High risk domain group me
 TA0003-Persistence | T1098.xxx-Account Manipulation  | High risk local-domain local group membership change | 4732
 TA0003-Persistence | T1098.xxx-Account Manipulation  | Medium risk local-domain local group membership change | 4732
 TA0003-Persistence | T1098.xxx-Account Manipulation  | User performing massive group membership changes on multiple differents groups | 4728,4756
-TA0003-Persistence | T1098.xxx-Account manipulation | Fake self password reset performing by Mimikatz (changeNTLM) | 4723
 TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings changed for potential abuse (any protocol) | 4742
 TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings changed for potential abuse (any service, Kerberos only) | 4742
 TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings changed for potential abuse (Kerberos only) | 4742
@@ -73,12 +72,15 @@ TA0003-Persistence | T1098.xxx-Account manipulation | User account set to not re
 TA0003-Persistence | T1098.xxx-Account manipulation | User account set to use Kerberos DES encryption | 4738
 TA0003-Persistence | T1098.xxx-Account manipulation | User account with password set to never expire detected | 4738
 TA0003-Persistence | T1098.xxx-Account manipulation | User account with password set to not require detected | 4738
+TA0003-Persistence | T1098.xxx-Account manipulation | User password change using current hash password - ChangeNTLM | 4723
+TA0003-Persistence | T1098.xxx-Account manipulation | User password change without previous password known - SetNTLM | 4724
 TA0003-Persistence | T1098-Account Manipulation | New member added to administration group related to OCS/Lync/Skype4B  | 4732/4756
 TA0003-Persistence | T1098-Account Manipulation | SPN added to an account (command) | 4688/1
 TA0003-Persistence | T1136.001-Create account-Local account | Disbled Guest (and support_388945a0) accounts enabled | 4722
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205
+TA0003-Persistence | T1136.001-Create account-Local account | User account created by a computer account | 4720
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741
-TA0003-Persistence | T1136.002-Create account-Domain account | User account created to fake a computer account (ends with "$") | 4720
+TA0003-Persistence | T1136.002-Create account-Domain account | User account created to fake a computer account (ends with "$") | 4720/4781
 TA0003-Persistence | T1136-Create account | User creation via commandline | 4688
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL lateral movement with CLR | 15457
 TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server xp_cmdshell procedure activated | 18457
@@ -173,12 +175,14 @@ TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH serv
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (PowerShell) | 800/4103/4104
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance  | WSL for Windows installation detected | 4688
 TA0006-Credential Access | 1558.004-Steal or Forge Kerberos Tickets: AS-REP Roasting | erberoas AS-REP Roasting ticket request detected | 4768
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (kernel) | 4656/4663
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (PowerShell) | 800/4103/4104
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (process) | 4688/1
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (share) | 5145
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credentials dump via Task Manager (file) | 11
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS dump indicator via Task Manager access | 4688
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS process accessed by a non system account | 4656/4663
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | SAM database user credential dump with Mimikatz | 4661
-TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (kernel) | 4656/4663
-TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (PowerShell) | 800/4103/4104
-TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (process) | 4688/1
-TA0006-Credential Access | T1003.001-Credential dumping: LSASS | win-os-LSASS credential dump with LSASSY (share) | 5145
 TA0006-Credential Access | T1003.002-Security Account Manager | SAM database access during DCshadow | 4661
 TA0006-Credential Access | T1003.002-Security Account Manager | Secretdump password dump over SMB ADMIN$ | 5145
 TA0006-Credential Access | T1003.003-NTDS | IFM created | 325/327
@@ -192,7 +196,8 @@ TA0006-Credential Access | T1003-Credential dumping | Diskshadow abuse | 4688
 TA0006-Credential Access | T1040-Network sniffing | Windows native sniffing tool Pktmon usage | 4688
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce enumeration on Windows OpenSSH server with non existing user | 4625/4
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce on Windows OpenSSH server with valid user | 4625/4
-TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce with not existing users | 4768/4771
+TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce enumeration with existing/unexsting users (Kerbrute) | 4771/4768
+TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce with not existing users | 4771/4768
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 33205
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 4625
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662
