@@ -17,6 +17,7 @@ detection:
     AttributeLDAPDisplayName: ntSecurityDescriptor
     OperationType: '%%14674' # Value added
     SubjectUserName|endswith: '$'
+    #SubjectUserSid|startswith: 'S-1-5-21-' # SYSTEM account 'S-5-18' would trigger a false positive
   condition: selection
 falsepositives:
 - Unknown

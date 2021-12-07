@@ -1,0 +1,24 @@
+title: Active Directory PowerShell module called from a non administrative host
+description: Detects scenarios where an attacker attempts to load the Active Directory PowerShell module on a non administrative host in order to enumerate users, groups, ... Also note that no user information is reported by this event ID and that some correation would be required.
+correlation: correlate EventID 600 with ID 800 using field "HostId" or "RunspaceId" to obtain the user that triggered the action.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
+tags:
+- attack.discovery
+- attack.t1087.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 600
+    ProviderName: ActiveDirectory
+  filter:
+    - Computer: '%admin_workstation%'
+    - Computer: '%domain_controllers%'
+  condition: selection and not filter
+falsepositives:
+- Adminitrative host, jump host, domain controllers, application interacting with Active Directory modules
+level: medium

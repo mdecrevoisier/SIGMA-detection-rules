@@ -8,7 +8,9 @@ references:
 - https://adsecurity.org/?p=3458
 tags:
 - attack.account_discovery
-- attack.t1087
+- attack.t1087.002
+- attack.credential_access
+- attack.t1558.003
 author: mdecrevoisier
 status: experimental
 logsource:

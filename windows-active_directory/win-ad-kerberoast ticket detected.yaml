@@ -39,5 +39,5 @@ detection:
     #- ServiceName NOT IN TargetUserName (NOT SUPPORTED BY ALL SIEM)
   condition: selection and not filter
 falsepositives:
-- Applications using RC4 encryption (eg: SAP, Azure AD,...)
+- Applications using RC4 encryption (SAP, Azure AD, legacy applications...)
 level: high

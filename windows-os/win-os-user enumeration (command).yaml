@@ -1,4 +1,4 @@
-title: User enumeration via commandline
+title: User properties enumeration via commandline
 description: Detects scenarios where an attacker attempts to enumerate local users via commandline.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
@@ -18,7 +18,9 @@ detection:
     NewProcessName|endswith:
       - \net1.exe
       - \net.exe
-    CommandLine|contains: user
+    CommandLine|contains:
+      - user
+      - net
   filter:
     CommandLine|contains: add # refers to another use case for user creation via commandline
   condition: selection and not filter
