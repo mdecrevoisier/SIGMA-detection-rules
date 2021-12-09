@@ -2,7 +2,7 @@ title: Privilege escalation via runas (command)
 description: Detects scenarios where attack attempts to elevate privileges via the command runas.
 correlation: correlation between the 3 event IDs can be done over SubjectLogonId in order to get more context.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
 - https://www.elastic.co/fr/blog/how-attackers-abuse-access-token-manipulation
 - http://www.pseale.com/pretend-youre-on-the-domain-with-runas-netonly
 - https://blog.palantir.com/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e

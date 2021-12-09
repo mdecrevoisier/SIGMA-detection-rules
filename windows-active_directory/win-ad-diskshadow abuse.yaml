@@ -18,7 +18,7 @@ detection:
   selection: # Full command: "diskshadow.exe /s shadow.txt"
     EventID: 4688
     NewProcessName|endswith: \diskshadow.exe
-    #CommandLine|contains: diskshadow
+    CommandLine|contains: diskshadow
     CommandLine|contains:
       - /s
       - -s

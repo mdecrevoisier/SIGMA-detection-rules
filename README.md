@@ -116,6 +116,7 @@ TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions w
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (Reg via PowerShell) | 800/4103/4104
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (registry) | 4688
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (service) | 4688
+TA0004-Privilege Escalation | T1134.001- Access Token Manipulation: Token Impersonation/Theft  | Anonymous login (RottenPotatoNG) | 4624/4688
 TA0004-Privilege Escalation | T1134.002- Access Token Manipulation: Create Process with Token  | Privilege escalation via runas (command) | 4688/4648/4624
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | User right granted to an account by a standard user | 4704
@@ -222,9 +223,10 @@ TA0007-Discovery | T1069.002-Discovery domain groups | Sensitive SAM domain user
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via commandline | 4688
 TA0007-Discovery | T1069-Permission Groups Discovery  | Group discovery via PowerShell | 800/4103/4104
 TA0007-Discovery | T1082-System Information Discovery | Audit policy settings collection | 4688
+TA0007-Discovery | T1087.002-Domain Account discovery | Active Directory PowerShell module called from a non administrative host | 600
 TA0007-Discovery | T1087.002-Domain Account discovery | Single source performing host enumeration over Kerberos ticket (TGS) detected | 4769
-TA0007-Discovery | T1087-Account discovery | SPN enumeration | 4688/1
-TA0007-Discovery | T1087-Account discovery | SPN enumeration | 800/4103/4104
+TA0007-Discovery | T1087-Account discovery | SPN enumeration (command) | 4688/1
+TA0007-Discovery | T1087-Account discovery | SPN enumeration (PowerShell) | 800/4103/4104
 TA0007-Discovery | T1087-Account discovery | User enumeration via commandline | 4688
 TA0007-Discovery | T1135-Network Share Discovery | Host performing advanced named pipes enumeration on different hosts via SMB | 5145
 TA0007-Discovery | T1135-Network Share Discovery | Network share discovery and/or connection via commandline | 4688

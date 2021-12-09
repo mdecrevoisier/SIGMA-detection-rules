@@ -1,0 +1,35 @@
+title: Anonymous login (RottenPotatoNG)
+description: Detects scenarios where an attacker abuse RPC, NTLM relay and others components to escalate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
+- https://github.com/breenmachine/RottenPotatoNG
+- https://jlajara.gitlab.io/others/2020/11/22/Potatoes_Windows_Privesc.html
+- https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/
+tags:
+- attack.privilege_escalation
+- attack.t1134.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+
+  selection_login:
+    EventID: 4624
+    TargetUserSid: S-1-5-7 # ANONYMOUS LOGON
+    LogonType: 3
+    AuthenticationPackageName: NTLM
+    IpAddress: '127.0.0.1'
+    #LmPackageName NTLM V1
+
+  selection_process:
+    EventID: 4688
+    SubjectUserSid: S-1-5-18
+    NewProcessName|endswith: \System32\cmd.exe
+    CommandLine|endswith: \System32\cmd.exe
+
+  condition: selection_login and selection_process
+falsepositives:
+- None
+level: high
