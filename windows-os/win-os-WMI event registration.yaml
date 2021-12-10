@@ -5,6 +5,7 @@ references:
 - https://github.com/Sw4mpf0x/PowerLurk
 - https://github.com/FortyNorthSecurity/WMImplant
 - https://www.netspi.com/blog/technical/adversary-simulation/getting-started-wmi-weaponization-part-5/
+- https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
 tags:
 - attack.persistence
 - attack.t1546.003

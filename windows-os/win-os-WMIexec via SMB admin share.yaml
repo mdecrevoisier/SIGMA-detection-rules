@@ -3,7 +3,7 @@ description: Detects scenarios where an attacker attempts to remotely execute WM
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
 - https://riccardoancarani.github.io/2020-05-10-hunting-for-impacket/#wmiexecpy
-- https://github.com/SecureAuthCorp/impacket/blob/master/examples/smbexec.py
+- https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
 tags:
 - attack.lateral_movement
 - attack.t1021.002
