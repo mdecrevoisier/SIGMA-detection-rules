@@ -1,0 +1,30 @@
+title: Suspicious Kerberos proxiable ticket (CVE-2021-42287)
+description: Detects scenarios where an attacker attempts to (CVE-2021-42278 and CVE-2021-42287)
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
+- https://exploit.ph/cve-2021-42287-cve-2021-42278-weaponisation.html
+- https://support.microsoft.com/en-us/topic/kb5008380-authentication-updates-cve-2021-42287-9dafac11-e0d0-4cb8-959a-143bd0201041
+- https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf
+- https://github.com/WazeHell/sam-the-admin
+- https://github.com/cube0x0/noPac
+tags:
+- attack.credential_access
+- attack.t1558
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4768
+    Status: 0x0 # Success
+    ServiceSid|endswith: '-502' # Krbtgt account SID
+    TicketOptions: '0x50800000' # proxiable ticket
+  filter:
+    - IpAddress: '%domain_controllers_ips%'     # reduce amount of false positives
+    - TargetUserName: '%account_allowed_proxy%' # accounts allowed to perform proxiable requests
+  condition: selection and not filter
+falsepositives:
+- Applications or services performing delegation activities
+level: high

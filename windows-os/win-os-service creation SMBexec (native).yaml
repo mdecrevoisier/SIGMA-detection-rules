@@ -1,0 +1,26 @@
+title: Impacket SMBexec service registration (native)
+description: Detects scenarios where an attacker attempts to register the SMBexec service to estasblish persistence. Note that service registration is not always performed and that is recommended to use the related registry SYSMON rule to increase detection reliability.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/smbexec.py
+tags:
+- attack.defense_evasion
+- attack.t1112
+- attack.privilege_execution
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+      - 4697
+      - 7045
+    ServiceName: BTOBTO # Service name can be changed in the application name
+  filter:
+  condition: selection
+falsepositives:
+- None
+level: high

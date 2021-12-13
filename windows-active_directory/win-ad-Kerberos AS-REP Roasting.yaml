@@ -21,10 +21,10 @@ detection:
     EventID: 4768
     Status: 0x0 # Success
     ServiceName: krbtgt
-    PreAuthType: 0 # Logon without Pre-Authentication.
+    PreAuthType: 0  # Logon without Pre-Authentication.
     #TicketOptions:
     #  - 0x40800010 # triggered by ASREPRoast
-    #  - 0x50800000 # user enumeration triggered by Kerbrute
+    #  - 0x50800000 # user enumeration triggered by Kerbrute (proxiable ticket)
   condition: selection
 falsepositives:
 - Account configured to not require pre-authentication

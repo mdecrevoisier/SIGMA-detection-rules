@@ -30,8 +30,8 @@ detection:
     TicketEncryptionType: 0x17 # RC4-HMAC
     Status: 0x0 # Success
   filter:
-    - ServiceName|endswith: '$' # Exclude computer account services
-    - ServiceSid|endswith: '-502' # Exclude Krbrtg service
+    - ServiceName|endswith: '$'     # Exclude computer account services
+    - ServiceSid|endswith: '-502'   # Exclude Krbrtg service
     - TargetUserName|contains: '$@' # Exclude computer accounts requests
     - IpAddress:
       - '::1

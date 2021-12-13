@@ -1,5 +1,5 @@
-title: Impacket SMBexec stealthy service registration
-description: Detects scenarios where an attacker attempts to register the WMIexec service to estasblish persistence.
+title: Impacket SMBexec service creation (registry)
+description: Detects scenarios where an attacker attempts to register the SMBexec service to estasblish persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1112-Modify%20registry
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/smbexec.py
@@ -15,7 +15,7 @@ logsource:
   category: registry_event
 detection:
   selection:
-    EventID: 13 # registry set (event ID 7045/4697 are NOT registered in latest versions)
+    EventID: 13
     Image|endswith: \services.exe
     TargetObject|contains: \CurrentControlSet\Services\BTOBTO\ # Service name can be changed in the application name
   condition: selection

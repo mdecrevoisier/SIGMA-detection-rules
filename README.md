@@ -44,7 +44,7 @@ TA0002-Execution | T1059.003-Windows Command Shell  | Encoded PowerShell payload
 TA0002-Execution | T1059.003-Windows Command Shell  | SQL Server payload injectection for reverse shell (MSF) | 4688
 TA0002-Execution | T1569.002-Service Execution  | PSexec installation detected | 4688
 TA0002-Execution | T1569.002-Service Execution  | Service massive failures (native) | 7000/7009
-TA0002-Execution | T1569.002-Service Execution  | Service massive installation (native) | 7045
+TA0002-Execution | T1569.002-Service Execution  | Service massive installation (native) | 7045/4697
 TA0002-Execution | T1569.002-Service Execution  | Service massive remote creation via named pipes (native) | 5145
 TA0003-Persistence | T1078.002-Valid accounts-Domain accounts | Account renamed to "admin" (or likely) | 4781
 TA0003-Persistence | T1098.xxx-Account Manipulation  | High risk domain group membership change | 4728/4756
@@ -89,8 +89,9 @@ TA0003-Persistence | T1505.001-SQL Stored Procedures  | SQL Server: started in s
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent injection via configuration file | 11
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts (PowerShell) | 800/4103/4104
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts | 1/6
-TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Encoded PowerShell payload deployed via service installation | 4697/7045
-TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected (mimidrv.sys) | 4697/7045
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Encoded PowerShell payload deployed via service installation | 7045/4697
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Impacket SMBexec service registration (native) | 7045/4697
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected (mimidrv.sys) | 7045/4697
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (PowerShell) | 800/4103/4104
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (registry) | 4688/1
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (service) | 4688/1
@@ -121,7 +122,7 @@ TA0004-Privilege Escalation | T1134.002- Access Token Manipulation: Create Proce
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | User right granted to an account by a standard user | 4704
 TA0004-Privilege Escalation | T1484.001-Domain Policy Modification-Group Policy Modification | Modification of a sensitive Group Policy  | 5136
-TA0004-Privilege Escalation | T1543.003-Create or Modify System Process-Windows Service | PSexec service installation detected | 4697/7045
+TA0004-Privilege Escalation | T1543.003-Create or Modify System Process-Windows Service | PSexec service installation detected | 7045/4697
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | CMD executed by stickey key and detected via hash | 1
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key called CMD via command execution | 4688/1
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features  | Sticky key failed sethc replacement by CMD | 4656
@@ -147,7 +148,7 @@ TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Database 
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Database audit specifications disabled | 33205
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | Tentative of disabling or clearing audit policy by commandline | 4688
 TA0005-Defense Evasion | T1078.002-Valid accounts-Domain accounts | Login from a user member of a "special group" detected (special logon) | 4964
-TA0005-Defense Evasion | T1112-Modify registry | Impacket SMBexec stealthy service registration | 13
+TA0005-Defense Evasion | T1112-Modify registry | Impacket SMBexec service registration (registry) | 13
 TA0005-Defense Evasion | T1197-BITS job | Command execution related to a suspicious BITS activity detected | 4688
 TA0005-Defense Evasion | T1197-BITS job | Command execution related to a suspicious BITS activity detected | 800/4103/4104
 TA0005-Defense Evasion | T1197-BITS job | High amount of data downloaded via BITS | 60
@@ -175,7 +176,6 @@ TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH serv
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (firewall) | 2004
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (PowerShell) | 800/4103/4104
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance  | WSL for Windows installation detected | 4688
-TA0006-Credential Access | 1558.004-Steal or Forge Kerberos Tickets: AS-REP Roasting | erberoas AS-REP Roasting ticket request detected | 4768
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (kernel) | 4656/4663
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (PowerShell) | 800/4103/4104
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (process) | 4688/1
@@ -201,19 +201,26 @@ TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce enumeration
 TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce with not existing users | 4771/4768
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 33205
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 4625
+TA0006-Credential Access | T1555.003-Credentials from Password Stores: Credentials from Web Browsers  | User browser credentials dump via network share | 5145
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662
+TA0006-Credential Access | T1555-Credentials from Password Stores | User application credentials dump via network share  | 5145
+TA0006-Credential Access | T1555-Credentials from Password Stores | User files dump via network share | 5145
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Discovery for print spooler bug abuse via named pipe | 5145
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay  | Exchange server impersonation via PrivExchange relay attack | 4624
-TA0006-Credential Access | T1558.001-Golden Ticket  | Kerberos TGS ticket request related to a potential Golden ticket | 4769
-TA0006-Credential Access | T1558.001-Golden Ticket  | SMB Admin share accessed with a forged Golden ticket | 5140/5145
-TA0006-Credential Access | T1558.001-Golden Ticket  | Success login impersonation with forged Golden ticket | 4624
+TA0006-Credential Access | T1558.001-Golden Ticket | Kerberos TGS ticket request related to a potential Golden ticket | 4769
+TA0006-Credential Access | T1558.001-Golden Ticket | SMB Admin share accessed with a forged Golden ticket | 5140/5145
+TA0006-Credential Access | T1558.001-Golden Ticket | Success login impersonation with forged Golden ticket | 4624
 TA0006-Credential Access | T1558.003-Kerberoasting  | KerberOAST ticket (TGS) request detected (low encryption) | 4769
+TA0006-Credential Access | T1558.004-Steal or Forge Kerberos Tickets: AS-REP Roasting | Kerberos AS-REP Roasting ticket request detected | 4768
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Susipicious Kerberos ticket (TGS) with constrained delegation (S4U2Proxy) | 4769
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Susipicious Kerberos ticket (TGS) with unconstrained delegation (TrustedForDelegation) | 4769
+TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets  | Suspicious Kerberos proxiable ticket (CVE-2021-42287) | 4768
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall configuration enumerated (command) | 4688
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Firewall configuration enumerated (PowerShell) | 800/4103/4104
 TA0007-Discovery | T1016-System Network Configuration Discovery  | Tentative of zone transfer from a non DNS server detected | 6004(DNSserver)
+TA0007-Discovery | T1018-Remote System Discovery  | DNS hosts file accessed via network share | 5145
 TA0007-Discovery | T1046-Network Service Scanning  | Multiple anonymous login from a single source | 4624
+TA0007-Discovery | T1046-Network Service Scanning  | Suspicious anonymous login | 4624
 TA0007-Discovery | T1069.001-Discovery domain groups | Local domain group enumeration via RID brutforce | 4661
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated via SharpHound | 4799
 TA0007-Discovery | T1069.002-Discovery domain groups | Domain group enumeration | 4661
@@ -233,6 +240,7 @@ TA0007-Discovery | T1135-Network Share Discovery | Network share discovery and/o
 TA0007-Discovery | T1135-Network Share Discovery | Network share manipulation via commandline | 4688
 TA0007-Discovery | T1201-Password Policy Discovery | Domain password policy enumeration | 4661
 TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery via commandline | 4688
+TA0007-Discovery | T1482-Domain Trust Discovery | Active Directory Forest PowerShell class called from a non administrative host | 800/4103/4104
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP authentication with valid credentials | 4825
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Admin share accessed via SMB (basic) | 5140/5145
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Impacket WMIexec execution via SMB admin share | 5145
@@ -248,7 +256,8 @@ TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec process abuse via MMC | 4688
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH native server feature installation | 800/4103/4104
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows activation/configuration detected | 800/4103/4104
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47**
+TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | LSASS dump via process access | 10
+TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | Mimikatz Pass-the-hash login | 4624
 TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 4688
-TA0008-Lateral Movement | Tt1550.002-Use Alternate Authentication Material: Pass the Hash | LSASS dump via process access | 10
-TA0008-Lateral Movement | Tt1550.002-Use Alternate Authentication Material: Pass the Hash | Mimikatz Pass-the-hash login | 4624
 TA0011-Command and control | T1090-Proxy | Netsh port forwarding abuse via proxy | 4688
+TA0040-Impact | T1565-Data manipulation | DNS hosts file modified | 11

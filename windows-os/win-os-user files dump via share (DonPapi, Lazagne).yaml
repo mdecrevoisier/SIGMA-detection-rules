@@ -1,0 +1,32 @@
+title: User files dump via network share (DonPapi, Lazagne)
+description: Detects scenarios where an attacker attempt to dump user profile information via network share.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1555-Credentials%20from%20Password%20Stores
+- https://github.com/login-securite/DonPAPI
+tags:
+- attack.credential_access
+- attack.t1555
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5145
+    ShareName: '\\*\C$'
+    RelativeTargetName|re:
+      - Users\\.*\\Desktop.*
+      - Users\\.*\\Recent.*
+      - Users\\.*\\Downloads.*
+      #- Users\\.* # More broader filter
+  filter:
+    - RelativeTargetName|re: Users\\.*\\AppData\\.* # handled in another rule
+    - IpAddress:
+      - '%vulnerability_scanners%'
+      - '%admin_netork_administration%'
+  condition: selection and not filter | count(RelativeTargetName) by Computer > 15 # Counting over different user names in the path can also decrease false positives
+  timeframe: 5m
+falsepositives:
+- Roaming user profile, vulnerability scanners
+level: high

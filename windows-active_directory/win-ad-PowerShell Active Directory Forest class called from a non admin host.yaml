@@ -1,0 +1,37 @@
+title: Active Directory Forest PowerShell class called from a non administrative host
+description: Detects scenarios where an attacker attempts to call the Active Directory Forest PowerShell class on a non administrative host in order to enumerate trusts, forests, domains, sites and subnet information.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
+- https://podalirius.net/en/articles/active-directory-sites-and-subnets-enumeration/
+- https://adsecurity.org/?p=192
+- https://github.com/PyroTek3/PowerShell-AD-Recon/blob/master/Get-PSADForestInfo
+- https://hochwald.net/powershell-retrieve-information-an-active-directory-forest/
+tags:
+- attack.discovery
+- attack.t1482
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains: System.DirectoryServices.ActiveDirectory
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains: System.DirectoryServices.ActiveDirectory
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains: System.DirectoryServices.ActiveDirectory
+
+  filter:
+    - Computer: '%admin_workstation%'
+    - Computer: '%domain_controllers%'
+
+  condition: 1 of selection* and not filter
+falsepositives:
+- Adminitrative host, jump host, domain controllers, Exchange servers, application interacting with Active Directory modules
+level: medium

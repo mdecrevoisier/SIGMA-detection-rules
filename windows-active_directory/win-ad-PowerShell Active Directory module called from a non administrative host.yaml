@@ -20,5 +20,5 @@ detection:
     - Computer: '%domain_controllers%'
   condition: selection and not filter
 falsepositives:
-- Adminitrative host, jump host, domain controllers, application interacting with Active Directory modules
+- Adminitrative host, jump host, domain controllers, Exchange servers, application interacting with Active Directory modules
 level: medium

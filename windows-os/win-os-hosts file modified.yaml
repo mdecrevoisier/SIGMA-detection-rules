@@ -1,0 +1,21 @@
+title: DNS hosts file modified
+description: Detects scenarios where an attacker attempts to modify the Hosts file to perform DNS interception and/or redirect network traffic.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1565-Data%20manipulation
+- https://www.elastic.co/guide/en/security/current/hosts-file-modified.html
+tags:
+- attack.impact
+- attack.t1565
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 11
+    TargetFilename|endswith: '\System32\drivers\etc\hosts'
+  condition: selection
+falsepositives:
+- Administrator activity, web servers configuration, malware blocking attempt during incident response
+level: high
