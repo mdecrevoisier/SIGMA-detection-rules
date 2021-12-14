@@ -59,10 +59,10 @@ TA0003-Persistence | T1098.xxx-Account Manipulation | Medium risk local-domain l
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to a built-in Exchange security group | 4756 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to DNSadmin group for DLL abuse | 4732 | DNS DLL abuse
 TA0003-Persistence | T1098.xxx-Account manipulation | New admin (or likely) created by a non administrative account | 4720 | 
-TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account (DCshadow) (Directory Services) | 5136 | DCShadow
-TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account (DCshadow) | 4742 | DCShadow
+TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account (Directory Services) | 5136 | DCShadow
 TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account | 4742 | 
-TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a user account (Kerberoasting) | 5136 | Kerberoast
+TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account | 4742 | DCShadow
+TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a user account | 5136 | Kerberoasting
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: Member had new privileges added to a database  | 33205 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: Member had new privileges added to an instance | 33205 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | SQL Server: new member added to a database role | 33205 | 
@@ -93,7 +93,7 @@ TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exch
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts | 1/6 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Encoded PowerShell payload deployed via service installation | 7045/4697 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Impacket SMBexec service registration (native) | 7045/4697 | SMBexec
-TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected (mimidrv.sys) | 7045/4697 | Mimikatz
+TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected | 7045/4697 | Mimikatz
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (PowerShell) | 800/4103/4104 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (registry) | 4688/1 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service abuse with backdoored "command failure" (service) | 4688/1 | 
@@ -103,7 +103,7 @@ TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service |
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045/4697 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (command) | 4688 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (PowerShell) | 800/4103/4104 | 
-TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | System crash behavior manipulation - WMImplant (registry) | 13 | WMImplant
+TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | System crash behavior manipulation  (registry) | 13 | WMImplant
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800,4103,4104 | 
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration | 19,20,21 | 
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse | 4688 | 
@@ -133,7 +133,7 @@ TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features | Sticky key IFEO command for registry change | 4688 | Sticky key
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features | Sticky key IFEO registry changed | 12/13 | Sticky key
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features | Sticky key sethc command for replacement by CMD | 4688 | Sticky key
-TA0004-Privilege Escalation | T1547.010-Port Monitors | Print spooler privilege escalation via printer added (CVE-2020-1048) | 800/4103/4104 | CVE-2020-1048
+TA0004-Privilege Escalation | T1547.010-Port Monitors | Print spooler privilege escalation via printer added | 800/4103/4104 | CVE-2020-1048
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Printer spool driver from Mimikatz installed  | 808 / 354 / 321 | 
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Spool process spawned a CMD shell (PrintNightmare) | 4688 / 1  | 
 TA0005-Defense Evasion | T1027-Obfuscated Files or Information | Payload obfuscated transfer via service name | 4688 | Tchopper
@@ -155,9 +155,9 @@ TA0005-Defense Evasion | T1112-Modify registry | Impacket SMBexec service regist
 TA0005-Defense Evasion | T1197-BITS job | Command execution related to a suspicious BITS activity detected | 4688 | 
 TA0005-Defense Evasion | T1197-BITS job | Command execution related to a suspicious BITS activity detected | 800/4103/4104 | 
 TA0005-Defense Evasion | T1197-BITS job | High amount of data downloaded via BITS | 60 | 
-TA0005-Defense Evasion | T1207-Rogue domain controller | New fake domain controller registration (DCshadow) | 5137 / 5141 | DCShadow
-TA0005-Defense Evasion | T1207-Rogue domain controller | Sensitive attributes accessed (DCshadow) | 4662 | DCShadow
-TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Computer account modifying AD permissions (PrivExchange) | 5136 | PrivExchange
+TA0005-Defense Evasion | T1207-Rogue domain controller | New fake domain controller registration | 5137 / 5141 | DCShadow
+TA0005-Defense Evasion | T1207-Rogue domain controller | Sensitive attributes accessed | 4662 | DCShadow
+TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Computer account modifying AD permissions | 5136 | PrivExchange
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Network share permissions changed | 5143 | 
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | OCSP security settings changed | 5124(OCSP) | 
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Permissions changed on a GPO | 5136 | 
@@ -186,9 +186,9 @@ TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credentia
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credentials dump via Task Manager (file) | 11 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS dump indicator via Task Manager access | 4688 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS process accessed by a non system account | 4656/4663 | 
-TA0006-Credential Access | T1003.001-Credential dumping: LSASS | SAM database user credential dump with Mimikatz | 4661 | Mimikatz
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | SAM database user credential dump | 4661 | Mimikatz
+TA0006-Credential Access | T1003.002-Security Account Manager | Password dump over SMB ADMIN$ | 5145 | Secretdump
 TA0006-Credential Access | T1003.002-Security Account Manager | SAM database access during DCshadow | 4661 | DCShadow
-TA0006-Credential Access | T1003.002-Security Account Manager | Secretdump password dump over SMB ADMIN$ | 5145 | Secretdump
 TA0006-Credential Access | T1003.003-NTDS | IFM created | 325/327 | 
 TA0006-Credential Access | T1003.003-NTDS | IFM created from command line | 4688 | 
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via command) | 4688 | 
@@ -224,7 +224,7 @@ TA0007-Discovery | T1018-Remote System Discovery | DNS hosts file accessed via n
 TA0007-Discovery | T1046-Network Service Scanning | Multiple anonymous login from a single source | 4624 | 
 TA0007-Discovery | T1046-Network Service Scanning | Suspicious anonymous login | 4624 | 
 TA0007-Discovery | T1069.001-Discovery domain groups | Local domain group enumeration via RID brutforce | 4661 | CME
-TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated via SharpHound | 4799 | SharpHound
+TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated | 4799 | SharpHound
 TA0007-Discovery | T1069.002-Discovery domain groups | Domain group enumeration | 4661 | CME
 TA0007-Discovery | T1069.002-Discovery domain groups | Honeypot object (container, computer, group, user) enumerated | 4662 | SharpHound
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661 | 
@@ -259,7 +259,7 @@ TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH native server
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows activation/configuration detected | 800/4103/4104 | SSH server
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47** | 
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | LSASS dump via process access | 10 | Mimikatz
-TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | Mimikatz Pass-the-hash login | 4624 | Mimikatz
+TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | Pass-the-hash login | 4624 | Mimikatz
 TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 4688 | 
 TA0011-Command and control | T1090-Proxy | Netsh port forwarding abuse via proxy | 4688 | 
 TA0040-Impact | T1565-Data manipulation | DNS hosts file modified | 11 | 
