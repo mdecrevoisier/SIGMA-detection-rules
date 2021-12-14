@@ -1,28 +1,29 @@
-  title: Rubeus Kerberos unconstrained delegation abuse
-  description: Detects scenarios where an attacker abuse Kerberos unconstrained delegation for domain persistence.
-  references:
-  - https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/
-  - https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
-  - https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html
-  - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-kerberos-constrained-delegation
-  - https://www.guidepointsecurity.com/delegating-like-a-boss-abusing-kerberos-delegation-in-active-directory/
-  - https://stealthbits.com/blog/what-is-kerberos-delegation-an-overview-of-kerberos-delegation/
-  tags:
-  - attack.credential_access
-  - attack.t1558
-  author: mdecrevoisier
-  status: experimental
-  logsource:
-    product: windows
-    service: security
-  detection:
-    selection:
-      EventID: 4769
-      TransmittedServices|contains: '@'
-      ServiceSid|endswith: '-502' # Krbtgt account SID
-    filter:
-      TargetUserName: '%allowed_unconstrained_accounts%' # User accounts allowed to perform unconstrained delegation
-    condition: selection and not filter
-  falsepositives:
-  - Accounts with unconstrained delegation enabled
-  level: high
+title: Rubeus Kerberos unconstrained delegation abuse
+description: Detects scenarios where an attacker abuse Kerberos unconstrained delegation for domain persistence.
+references:
+- https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/
+- https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
+- https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html
+- https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-kerberos-constrained-delegation
+- https://www.guidepointsecurity.com/delegating-like-a-boss-abusing-kerberos-delegation-in-active-directory/
+- https://stealthbits.com/blog/what-is-kerberos-delegation-an-overview-of-kerberos-delegation/
+tags:
+- attack.credential_access
+- attack.t1558
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4769
+    TransmittedServices|contains: '@'
+    ServiceSid|endswith: '-502' # Krbtgt account SID
+  filter:
+    - TargetUserName: '%allowed_unconstrained_accounts%' # User accounts allowed to perform unconstrained delegation
+    - IpAddress: '%domain_controllers_ips%'              # reduce amount of false positives
+  condition: selection and not filter
+falsepositives:
+- Accounts with unconstrained delegation enabled
+level: high

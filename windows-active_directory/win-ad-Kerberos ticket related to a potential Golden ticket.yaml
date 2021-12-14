@@ -31,6 +31,7 @@ detection:
     IpAddress:
       - '::1'
       - '127.0.0.1'
+      - '%domain_controllers_ips%' # reduce amount of false positives
   condition: selection and not filter
 falsepositives:
 - Unknown

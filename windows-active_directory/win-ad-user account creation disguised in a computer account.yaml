@@ -4,7 +4,10 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
 tags:
 - attack.persistence
-- attack.t1136
+- attack.t1098 # account manipulation
+- attack.t1136 # user creation
+- attack.defense_evesion
+- attack.t0136 # masquerading
 author: mdecrevoisier
 status: experimental
 logsource:

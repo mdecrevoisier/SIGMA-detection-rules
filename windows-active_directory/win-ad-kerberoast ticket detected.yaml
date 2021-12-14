@@ -36,6 +36,7 @@ detection:
     - IpAddress:
       - '::1
       - '127.0.0.1'
+      - '%domain_controllers_ips%'
     #- ServiceName NOT IN TargetUserName (NOT SUPPORTED BY ALL SIEM)
   condition: selection and not filter
 falsepositives:

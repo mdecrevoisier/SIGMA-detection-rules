@@ -1,0 +1,30 @@
+title: Computer account created with privileges
+description: Detects scenarios where an attacker creates a computer account with privileges for later exploitation.
+correlation: correlate with ID 4763 (privileges) using field SubjectLogonId. See rule "Privilege SeMachineAccountPrivilege abuse" for advance correlation.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://exploit.ph/cve-2021-42287-cve-2021-42278-weaponisation.html
+- https://www.thehacker.recipes/ad/movement/kerberos/samaccountname-spoofing
+- https://support.microsoft.com/en-us/topic/kb5008380-authentication-updates-cve-2021-42287-9dafac11-e0d0-4cb8-959a-143bd0201041
+- https://github.com/WazeHell/sam-the-admin
+- https://github.com/cube0x0/noPac
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+- attack.t1136 # user creation
+- attack.privilege_escalation
+- attack.t1068 # exploitation for privilege escalation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4741
+  filter:
+    PrivilegeList: "-" # Interesting privileges would be "SeMachineAccountPrivilege"
+  condition: selection and not filter
+falsepositives:
+- None
+level: high

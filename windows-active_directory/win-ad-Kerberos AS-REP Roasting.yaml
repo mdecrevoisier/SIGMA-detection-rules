@@ -25,7 +25,9 @@ detection:
     #TicketOptions:
     #  - 0x40800010 # triggered by ASREPRoast
     #  - 0x50800000 # user enumeration triggered by Kerbrute (proxiable ticket)
-  condition: selection
+  filter:
+    - IpAddress: '%domain_controllers_ips%' # reduce amount of false positives
+  condition: selection and not filter
 falsepositives:
 - Account configured to not require pre-authentication
 level: high

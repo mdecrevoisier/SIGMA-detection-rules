@@ -19,7 +19,8 @@ detection:
       - 4768
     TicketOptions: 0x50800000
   filter:
-    IpAddress: '%domain_controllers_ips%' # reduce amount of false positives
+    - IpAddress: '%domain_controllers_ips%'     # reduce amount of false positives
+    - TargetUserName: '%account_allowed_proxy%' # accounts allowed to perform proxiable requests
   condition: selection and not filter | count(TargetUserName) by Computer > 20 # Count how many failed logins were reported on the domain controller.
   timeframe: 30m
 falsepositives:

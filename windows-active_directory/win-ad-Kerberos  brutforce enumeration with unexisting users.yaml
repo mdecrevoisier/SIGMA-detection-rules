@@ -18,7 +18,8 @@ detection:
       - 4768
     Status: '0x6' # KDC_ERR_C_PRINCIPAL_UNKNOWN
   filter:
-    IpAddress: '%domain_controllers_ips%' # reduce amount of false positives
+    - IpAddress: '%domain_controllers_ips%' # reduce amount of false positives
+    - TicketOptions: 0x50800000             # covered by Kerbrute rule
   condition: selection and not filter | count(TargetUserName) by Computer > 20 # Count how many failed logins with non existing users were reported on the domain controller.
   timeframe: 30m
 falsepositives:

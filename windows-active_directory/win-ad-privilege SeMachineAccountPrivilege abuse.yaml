@@ -1,0 +1,33 @@
+title: Privilege SeMachineAccountPrivilege abuse
+description: Detects scenarios where an attacker abuse the SeMachineAccountPrivilege which allows per default any authenticated user to join a computer to the domain. Later on, this computer account can be manipulated in order to elevate privileges.
+requirements: despite of this event marked as a "sensitive privilege", I was only able to trigger it by having the audit for "non sensitive privileges" activated.
+correlation: correlate with ID 4741 (computer created) using field SubjectLogonId. See rule "Computer account created with privileges" for advance correlation.
+references:
+https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1068-Exploitation%20for%20Privilege%20Escalation
+- https://exploit.ph/cve-2021-42287-cve-2021-42278-weaponisation.html
+- https://www.thehacker.recipes/ad/movement/kerberos/samaccountname-spoofing
+- https://support.microsoft.com/en-us/topic/kb5008380-authentication-updates-cve-2021-42287-9dafac11-e0d0-4cb8-959a-143bd0201041
+- https://github.com/WazeHell/sam-the-admin
+- https://github.com/cube0x0/noPac
+tags:
+- attack.privilege_escalation
+- attack.t1068
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4673
+    PrivilegeList: SeMachineAccountPrivilege
+    ProcessName|endswith: \Windows\System32\lsass.exe
+  filter:
+    - SubjectUserSid: "S-1-5-18"
+    - SubjectUserName: '%admin_acounts%'
+  condition: selection and not filter
+falsepositives:
+- Users (shouldn't) or administrators joining a computer to the domain, server provisionning software
+level: medium

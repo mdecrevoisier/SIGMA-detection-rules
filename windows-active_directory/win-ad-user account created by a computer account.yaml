@@ -4,7 +4,9 @@ references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4741
 tags:
 - attack.persistence
-- attack.t1136
+- attack.t1136 # user creation
+- attack.defense_evesion
+- attack.t0136 # masquerading
 author: mdecrevoisier
 status: experimental
 logsource:
