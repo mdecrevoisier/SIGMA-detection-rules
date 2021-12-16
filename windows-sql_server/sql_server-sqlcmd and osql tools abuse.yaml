@@ -4,6 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505.001-SQL%20Stored%20Procedures
 - https://blog.netspi.com/when-databases-attack-hacking-with-the-osql-utility/
 - http://travisaltman.com/pen-test-and-hack-microsoft-sql-server-mssql/
+- https://thedfirreport.com/2021/12/13/diavol-ransomware/
 tags:
 - attack.persistence
 - attack.t1505.001

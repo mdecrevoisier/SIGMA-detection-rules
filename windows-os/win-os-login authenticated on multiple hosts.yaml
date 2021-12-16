@@ -1,4 +1,4 @@
-title: Multiple authenticated logins performed from a single source
+title: Multiple network logins performed to multiple targets
 description: Detects scenarios where an attacker would attempt to enumerate hosts resources and execute a payload with a compromised account. Vulnerability scanners, enumeration software or tool like SharepHound/CrackMapexec may generate such behavior.
 references:
 - https://medium.com/@Shorty420/enumerating-ad-98e0821c4c78
@@ -6,7 +6,9 @@ references:
 - https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html
 tags:
 - attack.discovery
-- attack.t1046
+- attack.t1046 # network service scanning
+- attack.initial_access
+- attack.t1078 # valid accounts
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -20,7 +22,7 @@ detection:
   filter:
     IpAddress:
       - '%vulnerability_scanners%'
-      - '%admin_netork_administration%'
+      - '%admin_jump_hosts%'
       - '127.0.0.1'
       - '::1'
   condition: selection and not filter | count(Computer) by IpAddress > 20 # Count of many computer are reporting connection attemps from a single source IP

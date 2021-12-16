@@ -9,6 +9,7 @@ https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privile
 - https://support.microsoft.com/en-us/topic/kb5008380-authentication-updates-cve-2021-42287-9dafac11-e0d0-4cb8-959a-143bd0201041
 - https://github.com/WazeHell/sam-the-admin
 - https://github.com/cube0x0/noPac
+- https://github.com/ly4k/Pachine
 - https://cloudbrothers.info/en/exploit-kerberos-samaccountname-spoofing/
 tags:
 - attack.privilege_escalation
