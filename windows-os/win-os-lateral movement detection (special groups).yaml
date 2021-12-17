@@ -11,6 +11,8 @@ references:
 tags:
 - attack.defense_evasion
 - attack.t1078
+- attack.lateral_movement
+- attack.t1021.002
 author: mdecrevoisier
 status: experimental
 logsource:

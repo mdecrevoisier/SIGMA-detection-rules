@@ -1,19 +1,21 @@
-title: Netsh port forwarding abuse via proxy
+title: RDP tunneling via port forwarding
 description: Detects scenarios where an attacker configure port forwarding on a host to redirect traffic to a C&C target.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0011-Command%20and%20Control/T1090-Proxy
-- https://www.fireeye.com/blog/hreat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html
+- https://www.mandiant.com/resources/bypassing-network-restrictions-through-rdp-tunneling
 - https://embracethered.com/blog/posts/2020/windows-port-forward/
 - https://davidhamann.de/2019/06/20/setting-up-portproxy-netsh/
 - https://parsiya.net/blog/2016-06-07-windows-netsh-interface-portproxy/
 tags:
 - attack.command_and_control
-- attack.t1090
+- attack.t1572 # tunneling
+- attack.lateral_movement
+- attack.t1021.001 # remote services: RDP
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: process_creation
+  category: process_creation
 detection:
   selection_event:
     EventID: 4688

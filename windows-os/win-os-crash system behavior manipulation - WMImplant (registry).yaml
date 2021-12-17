@@ -5,7 +5,6 @@ references:
 - https://github.com/FortyNorthSecurity/WMImplant/
 - https://docs.microsoft.com/en-us/windows/client-management/system-failure-recovery-options
 - https://mathieubuisson.github.io/crash-behaviour-with-powershell/
-- https://www.fireeye.com/blog/threat-research/2017/03/wmimplant_a_wmi_ba.html
 - https://fortynorthsecurity.com/blog/an-introduction-to-wmimplant-post-exploitation/
 - https://fr.slideshare.net/CTruncer/blackhat-usa-2019-wmimplant-an-offensive-use-case-of-wmi
 - https://securityaffairs.co/wordpress/117001/ics-scada/ot-network-hack-smart-meters.html
@@ -21,7 +20,9 @@ logsource:
   category: registry_event
 detection: # full command: "wmic recoveros set AutoReboot = False"
   selection:
-    EventID: 13
+    EventID:
+      - 12 # RegistryEvent (Object create and delete)
+      - 13 # RegistryEvent (Value Set)
     Image|endswith: \wmiprvse.exe
     EventType: SetValue
     TargetObject|endswith:

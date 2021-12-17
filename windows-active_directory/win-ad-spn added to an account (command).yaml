@@ -10,7 +10,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: process_creation
+  category: process_creation
 detection: # SetSPN -a MSSQLSvc/srv01.demo.lan demo\srv01
   selection:
     EventID: 4688

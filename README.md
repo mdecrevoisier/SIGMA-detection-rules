@@ -29,8 +29,9 @@ Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple 
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116 | 
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login denied due to account policy restrictions | 4625 | 
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login failure from a single source with a disabled account | 33205 | 
-TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Multiple authenticated logins performed from a single source | 4624 | 
+TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Multiple success logins performed to multiple hosts | 4624 | 
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Success login on OpenSSH server | 4624/4 | SSH server
+TA0001-Initial access | T1078-Valid accounts | RDP reconnaissance with valid credentials performed to multiple hosts | 4624/1149 | 
 TA0002-Execution | T1047-Windows Management Instrumentation | Impacket WMIexec process execution | 4688 | WMIexec
 TA0002-Execution | T1053.005-Scheduled Task | Interactive shell triggered by scheduled task (at, deprecated) | 4688 | 
 TA0002-Execution | T1053.005-Scheduled Task | Persistent scheduled task with SYSTEM privileges creation | 4688 | 
@@ -215,6 +216,7 @@ TA0006-Credential Access | T1558.001-Golden Ticket | SMB Admin share accessed wi
 TA0006-Credential Access | T1558.001-Golden Ticket | Success login impersonation with forged Golden ticket | 4624 | Golden ticket
 TA0006-Credential Access | T1558.003-Kerberoasting | KerberOAST ticket (TGS) request detected (low encryption) | 4769 | Kerberoast
 TA0006-Credential Access | T1558.004-Steal or Forge Kerberos Tickets: AS-REP Roasting | Kerberos AS-REP Roasting ticket request detected | 4768 | AS-REP Roasting
+TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Kerberos ticket without a trailing $  | 4768-4769 | CVE-2021-42278/42287 & SAM-the-admin
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Susipicious Kerberos ticket (TGS) with constrained delegation (S4U2Proxy) | 4769 | 
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Susipicious Kerberos ticket (TGS) with unconstrained delegation (TrustedForDelegation) | 4769 | 
 TA0007-Discovery | T1016-System Network Configuration Discovery | Firewall configuration enumerated (command) | 4688 | 
@@ -222,6 +224,7 @@ TA0007-Discovery | T1016-System Network Configuration Discovery | Firewall confi
 TA0007-Discovery | T1016-System Network Configuration Discovery | Tentative of zone transfer from a non DNS server detected | 6004(DNSserver) | 
 TA0007-Discovery | T1018-Remote System Discovery | DNS hosts file accessed via network share | 5145 | 
 TA0007-Discovery | T1046-Network Service Scanning | Multiple anonymous login from a single source | 4624 | 
+TA0007-Discovery | T1046-Network Service Scanning | RDP discovery performed on multiple hosts | 4625/131 | 
 TA0007-Discovery | T1046-Network Service Scanning | Suspicious anonymous login | 4624 | 
 TA0007-Discovery | T1069.001-Discovery domain groups | Local domain group enumeration via RID brutforce | 4661 | CME
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated | 4799 | SharpHound
@@ -243,7 +246,7 @@ TA0007-Discovery | T1135-Network Share Discovery | Network share manipulation vi
 TA0007-Discovery | T1201-Password Policy Discovery | Domain password policy enumeration | 4661 | CME
 TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery via commandline | 4688 | 
 TA0007-Discovery | T1482-Domain Trust Discovery | Active Directory Forest PowerShell class called from a non administrative host | 800/4103/4104 | 
-TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP authentication with valid credentials | 4825 | 
+TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP login with valid credentials | 4825 | 
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Admin share accessed via SMB (basic) | 5140/5145 | 
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Impacket WMIexec execution via SMB admin share | 5145 | WMIexec
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Lateral movement by mounting a network share - net use (command) | 4688/4648 | 
@@ -261,5 +264,7 @@ TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral move
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | LSASS dump via process access | 10 | Mimikatz
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | Pass-the-hash login | 4624 | Mimikatz
 TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 4688 | 
-TA0011-Command and control | T1090-Proxy | Netsh port forwarding abuse via proxy | 4688 | 
+TA0009-Collection | T1125-Video capture | RDP shadow session started (command) | 4688 | 
+TA0009-Collection | T1125-Video capture | RDP shadow session started (native) | 20503/04/08 | 
+TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling via port forwarding | 4688 | 
 TA0040-Impact | T1565-Data manipulation | DNS hosts file modified | 11 | 

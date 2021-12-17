@@ -10,7 +10,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: process_creation
+  category: process_creation
 detection: # Full command: wevtutil el | Foreach-Object {Write-Host "Clearing $_"; wevtutil cl "$_"}
   selection:
     EventID: 4688

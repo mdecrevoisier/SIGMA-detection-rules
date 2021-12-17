@@ -3,7 +3,7 @@ description: Detects scenarios where an attacker calls the stickey key and execu
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection
 - https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
-- https://www.fireeye.com/blog/threat-research/2017/03/apt29_domain_frontin.html
+- https://www.mandiant.com/resources/apt29-domain-frontin
 - https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
 requirements: have an up to date inventory for CMD hashes of your environment
 tags:

@@ -10,7 +10,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: process_creation
+  category: process_creation
 detection: # Full command: "powershell -command "Get-Service "seg243" | select -Expand DisplayName |out-file -append tmp_payload.txt""
   selection:
     EventID: 4688

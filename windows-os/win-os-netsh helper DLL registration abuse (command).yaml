@@ -15,7 +15,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: process_creation
+  category: process_creation
 detection:
   selection:
     EventID: 4688

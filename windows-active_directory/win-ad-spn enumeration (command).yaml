@@ -15,7 +15,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: process_creation
+  category: process_creation
 detection: # full command : 'setspn -T my_domain -Q */*'
   selection:
     EventID: 4688

@@ -1,0 +1,29 @@
+title: RDP shadow session started (native)
+description: Detects scenarios where an attacker has initiated a RDP shadow session.
+references:
+- http://woshub.com/rds-shadow-how-to-connect-to-a-user-session-in-windows-server-2012-r2/
+- https://www.elastic.co/guide/en/security/current/potential-remote-desktop-shadowing-activity.html
+- https://bitsadm.in/blog/spying-on-users-using-rdp-shadowing
+- https://swarm.ptsecurity.com/remote-desktop-services-shadowing/
+tags:
+- attack.lateral_movement
+- attack.t1021.001 # remote services: RDP
+- attack.collection
+- attack.t1113 # screen capture
+- attack.t1125 # video capture
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: rdp
+detection:
+  selection:
+    EventID:
+      - 20503 # Shadow View Session Started
+      - 20504 # Shadow View Session Stopped
+      - 20508 # Shadow View Permission Granted
+    Channel: Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational
+  condition: selection
+falsepositives:
+- target host where shadowing is performed
+level: medium

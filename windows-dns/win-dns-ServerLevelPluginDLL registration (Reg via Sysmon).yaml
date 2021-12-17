@@ -20,7 +20,9 @@ logsource:
   category: registry_event
 detection:
   selection:
-    EventID: 13
+    EventID:
+      - 12 # RegistryEvent (Object create and delete)
+      - 13 # RegistryEvent (Value Set)
     TargetObject|endswith: '\services\DNS\Parameters\ServerLevelPluginDll'
   condition: selection
 falsepositives:
