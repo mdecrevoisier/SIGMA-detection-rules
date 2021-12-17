@@ -1,0 +1,27 @@
+title: RDP session hijack via TSCON abuse command
+description: Detects scenarios where an attacker attempts to create a service that triggers TSCON in order to preform local RDP session hijack.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.001-Remote%20Desktop%20Protocol
+- https://www.ired.team/offensive-security/lateral-movement/t1076-rdp-hijacking-for-lateral-movement
+- https://www.csoonline.com/article/3566917/rdp-hijacking-attacks-explained-and-how-to-mitigate-them.html
+- https://gist.github.com/bohops/f722f1a54d9ac1070350bdcaf2da618b
+- https://doublepulsar.com/rdp-hijacking-how-to-hijack-rds-and-remoteapp-sessions-transparently-to-move-through-an-da2a1e73a5f6
+- https://twitter.com/bohops/status/992232940900962304
+tags:
+- attack.lateral_movement
+- attack.t1563.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    CommandLine|contains|all: # full command "sc.exe create random_service binpath= "cmd.exe /k tscon 2 /dest:rdp-tcp#5""
+      - tscon
+      - 'dest:rdp-'
+  condition: selection
+falsepositives:
+- None
+level: high

@@ -1,0 +1,34 @@
+title: RDP session hijack via service creation abuse
+description: Detects scenarios where an attacker create a service that triggers TSCON in order to preform local RDP session hijack.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://www.ired.team/offensive-security/lateral-movement/t1076-rdp-hijacking-for-lateral-movement
+- https://www.csoonline.com/article/3566917/rdp-hijacking-attacks-explained-and-how-to-mitigate-them.html
+- https://gist.github.com/bohops/f722f1a54d9ac1070350bdcaf2da618b
+- https://doublepulsar.com/rdp-hijacking-how-to-hijack-rds-and-remoteapp-sessions-transparently-to-move-through-an-da2a1e73a5f6
+- https://twitter.com/bohops/status/992232940900962304
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection1:
+    EventID: 4697 # Security channel
+    ServiceFileName|contains|all: # Full command: "cmd.exe /k tscon 2 /dest:rdp-tcp#5"
+      - 'tscon '
+      - '/dest:rdp-' # can also be UDP (rarely)
+
+  selection2:
+    EventID: 7045 # System channel
+    ImagePath|contains|all:
+      - 'tscon '
+      - '/dest:rdp-' # can also be UDP (rarely)
+
+  condition: 1 of selection*
+falsepositives:
+- None
+level: high

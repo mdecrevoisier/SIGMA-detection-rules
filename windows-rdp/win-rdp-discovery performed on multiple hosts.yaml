@@ -1,0 +1,45 @@
+title: RDP discovery performed on multiple hosts
+description: Detects scenarios where an attacker attempts to discover active RDP services via tools like Hydra. Note that this event doesn't provide any information about login outcome (success or failure) as well as user information.
+correlation: for further correlation, ID 4624/4625 (logon type 3, 7 or 10) as well as ID 1149 should be used.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1046-Network%20Service%20Scanning
+- https://github.com/mehranexpert/Crazy-RDP
+- https://github.com/3gstudent/SharpRDPCheck
+- https://www.fireeye.com/blog/threat-research/2018/04/establishing-a-baseline-for-remote-desktop-protocol.html
+- https://ponderthebits.com/2018/02/windows-rdp-related-event-logs-identification-tracking-and-investigation/
+- https://purerds.org/remote-desktop-security/auditing-remote-desktop-services-logon-failures-1/
+- http://woshub.com/rdp-connection-logs-forensics-windows/
+- https://jpcertcc.github.io/ToolAnalysisResultSheet/details/mstsc.htm
+- https://github.com/AndrewRathbun/DFIRMindMaps/tree/main/OSArtifacts/Windows/RDP_Authentication_Artifacts
+- https://github.com/TonyPhipps/SIEM/blob/master/Notable-Event-IDs.md#microsoft-windows-remotedesktopservices-rdpcoretsoperational
+- https://dfironthemountain.wordpress.com/2019/02/15/rdp-event-log-dfir/
+- https://nullsec.us/windows-event-id-1029-hashes/
+- https://www.13cubed.com/downloads/rdp_flowchart.pdf
+- https://nullsec.us/windows-rdp-related-event-logs-the-client-side-of-the-story/
+tags:
+- attack.discovery
+- attack.t1046 # network service scanning
+- attack.credential_access
+- attack.t1110 # brutforce
+- attack.lateral_movement
+- attack.t1021.001 # remote services: RDP
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: rdp
+detection:
+  selection:
+    EventID: 131 # The server accepted a new TCP connection from client <ip>:<port>.
+    Channel: Microsoft-Windows-RemoteDesktopServices-RdpCoreTS/Operational
+  filter:
+    IpAddress: # In ID 131, IP address is provided in "ClientIP.split(":")[0]
+      - '%vulnerability_scanners%'
+      - '%admin_jump_hosts%'
+      - '127.0.0.1'
+      - '::1'
+  condition: selection and not filter | count(Computer) by IpAddress > 20 # Count of many computer are reporting connection attemps from a single source IP
+  timeframe: 5m
+falsepositives:
+- VAS scanners, administrator jump host
+level: high
