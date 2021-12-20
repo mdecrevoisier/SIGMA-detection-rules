@@ -1,0 +1,29 @@
+title: RDP shadow session configuration enabled (registry)
+description: Detects scenarios where an attacker would enable shadow configuratin via registry. Note that this alert does not report the created Key and that further verification on hosts will be required to confirm the behavior.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0009-Collection/T1125-Video%20capture
+- http://woshub.com/rds-shadow-how-to-connect-to-a-user-session-in-windows-server-2012-r2/
+- https://www.elastic.co/guide/en/security/current/potential-remote-desktop-shadowing-activity.html
+- https://bitsadm.in/blog/spying-on-users-using-rdp-shadowing
+- https://swarm.ptsecurity.com/remote-desktop-services-shadowing/
+tags:
+- attack.lateral_movement
+- attack.t1021.001 # remote services: RDP
+- attack.collection
+- attack.t1113 # screen capture
+- attack.t1125 # video capture
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: registry_event
+detection: # reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v Shadow /t REG_DWORD /d 4
+  selection:
+    EventID:
+      - 12 # RegistryEvent (Object create and delete)
+      - 13 # RegistryEvent (Value Set)
+    TargetObject|endswith: \SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+  condition: selection
+falsepositives:
+- administrator changing RDP configuration
+level: high

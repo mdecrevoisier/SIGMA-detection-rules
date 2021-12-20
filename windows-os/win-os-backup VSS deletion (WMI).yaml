@@ -1,0 +1,28 @@
+title: VSS backup deletion (WMI)
+description: Detects scenarios where an attacker attempts to delete existing VSS backup.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery
+- https://www.picussecurity.com/resource/blog/how-to-beat-nefilim-ransomware-attacks
+- https://www.itechtics.com/volume-shadow-copies/
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin
+- https://www.picussecurity.com/resource/blog/technique-to-delete-volume-shadow-copies-deviceiocontrol
+tags:
+- attack.impact
+- attack.t1490
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection: # wmic shadowcopy delete /nointeractive
+    EventID: 4688
+    NewProcessName|endswith: \Windows\System32\wbem\WMIC.exe
+    CommandLine|contains|all:
+      - wmic
+      - shadowcopy
+      - delete
+  condition: selection
+falsepositives:
+- administrator cleaning outdated backup
+level: high

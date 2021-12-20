@@ -1,0 +1,26 @@
+title: Windows native backup size re-configuration
+description: Detects scenarios where an attacker attempts to delete existing Windows native backup by reducing the allocated backup storage.
+references:
+- https://www.picussecurity.com/resource/blog/how-to-beat-nefilim-ransomware-attacks
+- https://www.itechtics.com/volume-shadow-copies/
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin
+- https://www.picussecurity.com/resource/blog/technique-to-delete-volume-shadow-copies-deviceiocontrol
+tags:
+- attack.impact
+- attack.t1490
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection: # vssadmin resize shadowstorage /for=c: /on=c: /maxsize=401MB
+    EventID: 4688
+    NewProcessName|endswith: \Windows\System32\vssadmin.exe
+    CommandLine|contains|all:
+      - resize
+      - shadowstorage
+  condition: selection
+falsepositives:
+- administrator cleaning outdated backup
+level: high

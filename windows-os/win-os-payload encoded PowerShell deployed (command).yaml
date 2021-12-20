@@ -20,6 +20,7 @@ detection:
       - \cmd.exe
       - \powershell.exe
       - \pwsh.exe # PowerShell v6
+      - \powershell_ise.exe # Development GUI
     CommandLine|contains|all:
       - 'powershell.exe'
       - '[System.Convert]::'
