@@ -1,0 +1,48 @@
+title: Backdoor introduction via registry permission change through WMI (DAMP)
+description: Detects scenarios where an attacker modifies registry permissions on a local or remote target in order to introduce a backdoor and dump hashes and credentials.
+correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4674 to identify the source of the change.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1112-Modify%20registry
+- https://github.com/HarmJ0y/DAMP
+- https://threathunterplaybook.com/notebooks/windows/07_discovery/WIN-190625024610.html
+- http://www.harmj0y.net/blog/activedirectory/remote-hash-extraction-on-demand-via-host-security-descriptor-modification/
+- https://github.com/mitre/microsoft-windows-2012r2-memberserver-stig-baseline/blob/master/controls/V-1152.rb
+- https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
+tags:
+- attack.defense_evasion
+- attack.t1112
+- attack.credential_access
+- attack.t1003.002 # SAM
+- attack.t1003.004 # LSA Secrets
+- attack.t1003.005 # Cached Domain Credentials
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4674
+    ProcessName|endswith: '\System32\wbem\WmiPrvSE.exe'
+    ObjectServer: Security
+    ObjectType: Key
+    ObjectName|startswith:
+      - '\REGISTRY\MACHINE\SYSTEM\ControlSet001\Control\SecurePipeServers\winreg' # controls access to remote registry
+      - '\REGISTRY\MACHINE\SYSTEM\ControlSet001\Control\Lsa\Data'  # required to calculate SysKey/bootkey
+      - '\REGISTRY\MACHINE\SYSTEM\ControlSet001\Control\Lsa\GBG'   # required to calculate SysKey/bootkey
+      - '\REGISTRY\MACHINE\SYSTEM\ControlSet001\Control\Lsa\JD'    # required to calculate SysKey/bootkey
+      - '\REGISTRY\MACHINE\SYSTEM\ControlSet001\Control\Lsa\Skew1' # required to calculate SysKey/bootkey
+      - '\REGISTRY\MACHINE\SECURITY\Policy\Accounts'
+      - '\REGISTRY\MACHINE\SECURITY\Policy\Pol'
+      - '\REGISTRY\MACHINE\SECURITY\Policy\Secrets'   # contains the encrypted machine account hash in \SECURITY\Policy\Secrets\$MACHINE.ACC\CurrVal
+      - '\REGISTRY\MACHINE\SECURITY\Policy\PolEKList' # contains the encrypted LSA key
+      - '\REGISTRY\MACHINE\SECURITY\Cache'            # Contains domain cached credentials
+      - '\REGISTRY\MACHINE\SAM\SAM\DOMAINS\Account'   # contains local user hashes
+      - '\REGISTRY\MACHINE\SAM\SAM\DOMAINS\Builtin'
+  filter:
+    SubjectUserName|endswith: $
+  condition: selection and not filter | count(ObjectName) by Computer > 10
+  timeframe: 5m
+falsepositives:
+- None
+level: high

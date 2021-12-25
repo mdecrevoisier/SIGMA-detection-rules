@@ -1,4 +1,4 @@
-title: Multiple anonymous logins performed from a single source
+title: Anonymous access performed to multiple targets
 description: Detects scenarios where an attacker would attempt to enumerate hosts and collect relevant information using anonymous access. Vulnerability scanners, enumeration software or tool like CrackMapexec may generate such behavior.
 references:
 - https://medium.com/@Shorty420/enumerating-ad-98e0821c4c78

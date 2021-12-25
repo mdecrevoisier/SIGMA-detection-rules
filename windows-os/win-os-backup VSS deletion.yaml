@@ -12,7 +12,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  category: process_creation
 detection:
   selection: # vssadmin.exe delete shadows /all /quiet
     EventID: 4688

@@ -1,0 +1,26 @@
+title: Kerberos key list attack for credential dumping
+description: Detects scenarios where an attacker attempts to forge a special Kerberos service ticket in order to extract credentials from Read Only Domain Controllers (RODC).
+references:
+- https://www.secureauth.com/blog/the-kerberos-key-list-attack-the-return-of-the-read-only-domain-controllers/
+- https://www.tarlogic.com/blog/how-to-attack-kerberos/
+tags:
+- attack.credential_access
+- attack.t1003 # credential dumping
+- attack.t1558 # forget ticket
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4769
+    Status: 0x0 # Success
+    TicketOptions: '0x10000' # proxiable ticket
+  filter:
+    - IpAddress: '%domain_controllers_ips%'     # reduce amount of false positives
+    - TargetUserName: '%account_allowed_proxy%' # accounts allowed to perform proxiable requests
+  condition: selection and not filter
+falsepositives:
+- Applications or services performing delegation activities, ADFS servers
+level: high

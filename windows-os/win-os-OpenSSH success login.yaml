@@ -1,5 +1,5 @@
 title: Success login attempt on a Windows OpenSSH server
-description: Detects scenarios where an attacker attempts to connect to a Windows host using the SSH protocol. 
+description: Detects scenarios where an attacker attempts to connect to a Windows host using the SSH protocol.
 remarks: This requires to have previously enabled the builtin OpenSSH server or to have installed the "OpenSSH-Win64" component. IpAddress or Workstation fields may be empty. In case Workstation field is not empty, be aware that it may wrongly report the source host. Moreover, the 1st initial connection attempt (before SSH credentials prompt) will be reported with event ID 4624, logon type 5 (service) and target user "sshd_*". Following authenticated events will be with logon type 3 (network) and 8 (clear text). For reliable source IP information, use the logs from the OpenSSH channel, event ID 4.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts

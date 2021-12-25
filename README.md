@@ -92,6 +92,7 @@ TA0003-Persistence | T1505.001-SQL Stored Procedures | SQL Server: started in si
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent injection via configuration file | 11 | 
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts (PowerShell) | 800/4103/4104 | 
 TA0003-Persistence | T1505.002-Server Software Component: Transport Agent | Exchange transport agent installation artifacts | 1/6 | 
+TA0003-Persistence | T1505.004-Server Software Component: IIS Components | Webserver IIS module installed | 4688 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Encoded PowerShell payload deployed via service installation | 7045/4697 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Impacket SMBexec service registration (native) | 7045/4697 | SMBexec
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Mimikatz service driver installation detected | 7045/4697 | Mimikatz
@@ -105,7 +106,7 @@ TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service |
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (command) | 4688 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (PowerShell) | 800/4103/4104 | 
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | System crash behavior manipulation  (registry) | 13 | WMImplant
-TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800,4103,4104 | 
+TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800/4103/4104 | 
 TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration | 19,20,21 | 
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse | 4688 | 
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL registry abuse | 12/13 | 
@@ -121,7 +122,7 @@ TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions w
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (registry) | 4688 | 
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (service) | 4688 | 
 TA0004-Privilege Escalation | T1068-Exploitation for Privilege Escalation | Privilege SeMachineAccountPrivilege abuse | 4673 | CVE-2021-42278/42287 & SAM-the-admin
-TA0004-Privilege Escalation | T1134.001- Access Token Manipulation: Token Impersonation/Theft | Anonymous login (RottenPotatoNG) | 4624/4688 | 
+TA0004-Privilege Escalation | T1134.001- Access Token Manipulation: Token Impersonation/Theft | Anonymous login | 4624/4688 | RottenPotatoNG
 TA0004-Privilege Escalation | T1134.002- Access Token Manipulation: Create Process with Token | Privilege escalation via runas (command) | 4688/4648/4624 | 
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717 | 
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | User right granted to an account by a standard user | 4704 | 
@@ -134,13 +135,16 @@ TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features | Sticky key IFEO command for registry change | 4688 | Sticky key
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features | Sticky key IFEO registry changed | 12/13 | Sticky key
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features | Sticky key sethc command for replacement by CMD | 4688 | Sticky key
-TA0004-Privilege Escalation | T1547.010-Port Monitors | Print spooler privilege escalation via printer added | 800/4103/4104 | CVE-2020-1048
-TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Printer spool driver from Mimikatz installed  | 808 / 354 / 321 | 
-TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Spool process spawned a CMD shell (PrintNightmare) | 4688 / 1  | 
+TA0004-Privilege Escalation | T1547.010-Port Monitors | Print spooler privilege escalation via printer added | 800/4103/4104 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
+TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | External printer mapped | 4688/4648 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
+TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Printer spool driver from Mimikatz installed  | 808 / 354 / 321 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
+TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | proxi | 6416 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
+TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Spool process spawned a CMD shell | 4688/1 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0005-Defense Evasion | T1027-Obfuscated Files or Information | Payload obfuscated transfer via service name | 4688 | Tchopper
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Event log file(s) cleared | 104/1102 | 
-TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 4688 | 
-TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected | 800/4103/4104 | 
+TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected (command) | 4688 | 
+TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected (PowerShell) | 800/4103/4104 | 
+TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected (wmi) | 4688 | 
 TA0005-Defense Evasion | T1070.006-Timestomp | System time changed (PowerShell) | 800/4103/4104 | 
 TA0005-Defense Evasion | T1070.006-Timestomp | System time changed | 4616 | 
 TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | Audit policy disabled | 4719 | 
@@ -197,6 +201,7 @@ TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configura
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM password reset | 4794 | 
 TA0006-Credential Access | T1003.006-DCSync | Member added to a sensitive Exchange security group to perform DCsync attack | 4756 | DCSync
 TA0006-Credential Access | T1003.006-DCSync | Replication privileges granted to perform DCSync attack | 5136 | DCSync
+TA0006-Credential Access | T1003-Credential dumping | Backdoor introduction via registry permission change through WMI (DAMP) | 4674 | DAMP
 TA0006-Credential Access | T1003-Credential dumping | Diskshadow abuse | 4688 | 
 TA0006-Credential Access | T1040-Network sniffing | Windows native sniffing tool Pktmon usage | 4688 | 
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce enumeration on Windows OpenSSH server with non existing user | 4625/4 | SSH server
@@ -216,6 +221,7 @@ TA0006-Credential Access | T1558.001-Golden Ticket | SMB Admin share accessed wi
 TA0006-Credential Access | T1558.001-Golden Ticket | Success login impersonation with forged Golden ticket | 4624 | Golden ticket
 TA0006-Credential Access | T1558.003-Kerberoasting | KerberOAST ticket (TGS) request detected (low encryption) | 4769 | Kerberoast
 TA0006-Credential Access | T1558.004-Steal or Forge Kerberos Tickets: AS-REP Roasting | Kerberos AS-REP Roasting ticket request detected | 4768 | AS-REP Roasting
+TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Kerberos key list attack for credential dumping | 4769 | Kerberos key list
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Kerberos ticket without a trailing $  | 4768-4769 | CVE-2021-42278/42287 & SAM-the-admin
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Susipicious Kerberos ticket (TGS) with constrained delegation (S4U2Proxy) | 4769 | 
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Susipicious Kerberos ticket (TGS) with unconstrained delegation (TrustedForDelegation) | 4769 | 
@@ -226,9 +232,9 @@ TA0007-Discovery | T1018-Remote System Discovery | DNS hosts file accessed via n
 TA0007-Discovery | T1046-Network Service Scanning | Multiple anonymous login from a single source | 4624 | 
 TA0007-Discovery | T1046-Network Service Scanning | RDP discovery performed on multiple hosts | 4625/131 | 
 TA0007-Discovery | T1046-Network Service Scanning | Suspicious anonymous login | 4624 | 
-TA0007-Discovery | T1069.001-Discovery domain groups | Local domain group enumeration via RID brutforce | 4661 | CME
+TA0007-Discovery | T1069.001-Discovery domain groups | Local domain group enumeration via RID brutforce | 4661 | CrackMapExec
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local administrator group enumerated | 4799 | SharpHound
-TA0007-Discovery | T1069.002-Discovery domain groups | Domain group enumeration | 4661 | CME
+TA0007-Discovery | T1069.002-Discovery domain groups | Domain group enumeration | 4661 | CrackMapExec
 TA0007-Discovery | T1069.002-Discovery domain groups | Honeypot object (container, computer, group, user) enumerated | 4662 | SharpHound
 TA0007-Discovery | T1069.002-Discovery domain groups | Massive SAM domain users & groups discovery | 4661 | 
 TA0007-Discovery | T1069.002-Discovery domain groups | Sensitive SAM domain user & groups discovery | 4661 | 
@@ -243,7 +249,7 @@ TA0007-Discovery | T1087-Account discovery | User enumeration via commandline | 
 TA0007-Discovery | T1135-Network Share Discovery | Host performing advanced named pipes enumeration on different hosts via SMB | 5145 | SharpHound
 TA0007-Discovery | T1135-Network Share Discovery | Network share discovery and/or connection via commandline | 4688 | 
 TA0007-Discovery | T1135-Network Share Discovery | Network share manipulation via commandline | 4688 | 
-TA0007-Discovery | T1201-Password Policy Discovery | Domain password policy enumeration | 4661 | CME
+TA0007-Discovery | T1201-Password Policy Discovery | Domain password policy enumeration | 4661 | CrackMapExec
 TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery via commandline | 4688 | 
 TA0007-Discovery | T1482-Domain Trust Discovery | Active Directory Forest PowerShell class called from a non administrative host | 800/4103/4104 | 
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP login with valid credentials | 4825 | 
@@ -254,7 +260,7 @@ TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | New file share cr
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Psexec remote execution via SMB | 5145 | 
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote service creation over SMB | 5145 | 
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Remote shell execuction via SMB admin share | 5145 | 
-TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Shared printer creation (PrintNightMare) | 5142 | 
+TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Shared printer creation | 5142 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0008-Lateral Movement | T1021.003-DCOM | DCOM lateral movement (via MMC20) | 4104 | 
 TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec privilege abuse | 4674 | 
 TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec process abuse via MMC | 4688 | 
@@ -266,5 +272,11 @@ TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass 
 TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 4688 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (command) | 4688 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (native) | 20503/04/08 | 
+TA0009-Collection | T1125-Video capture | RDP shadow session started (registry) | 13 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling via port forwarding | 4688 | 
+TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion (PowerShell) | 800/4103/4104 | 
+TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion (WMI) | 4688 | 
+TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion | 4688 | 
+TA0040-Impact | T1490-Inhibit System Recovery | Windows native backup deletion | 4688 | 
+TA0040-Impact | T1490-Inhibit System Recovery | Windows native backup size re-configuration | 4688 | 
 TA0040-Impact | T1565-Data manipulation | DNS hosts file modified | 11 | 

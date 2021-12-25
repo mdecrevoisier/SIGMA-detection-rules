@@ -1,4 +1,4 @@
-title: Multiple network logins performed to multiple targets
+title: Network login performed to multiple targets
 description: Detects scenarios where an attacker would attempt to enumerate hosts resources and execute a payload with a compromised account. Vulnerability scanners, enumeration software or tool like SharepHound/CrackMapexec may generate such behavior.
 references:
 - https://medium.com/@Shorty420/enumerating-ad-98e0821c4c78

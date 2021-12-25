@@ -2,6 +2,7 @@ title: Suspicious permissions modification on a network share
 description: Detects scenarios where an attacker modifies network share permissions in order to facilitate lateral movement and avoid detection by creating new network shares
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
+- https://medium.com/falconforce/falconfriday-monitoring-for-public-shares-0xff1a-ece14fe137e1
 tags:
 - attack.defense_evasion
 - attack.t1222.001
@@ -14,10 +15,11 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 5143
-  filter: # If both Security descriptor are the same, no permission changes were done.
-    # OldSD == NewSD # (comparing 2 fields is not possible in SIGMA language)
+    EventID: 5143  # modified share
+    OldSD != NewSD # Comparing 2 fields is not possible in SIGMA language
+  filter:
+    Computer: '%domain_controllers%'
   condition: selection and not filter
 falsepositives:
-- Administrator modification on network shares
+- Administrator modification on network shares, SCCM servers, DFS shares, printer servers
 level: medium

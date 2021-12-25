@@ -1,0 +1,29 @@
+title: SystemNightmare by GentilKiwi - New external device added (CVE-2021-1675 / CVE-2021-34527)
+description: Detects scenarios where an attacker exploit the PrintNightmare vulnerability by abusing the Windows print spooler using the service exposed by Gentilkiwi
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1574-DLL%20side-loading
+- https://github.com/GossiTheDog/SystemNightmare
+- https://github.com/outflanknl/PrintNightmare
+- https://github.com/cube0x0/CVE-2021-1675
+- https://www.theregister.com/2021/09/21/microsoft_printnightmare/
+- https://www.exabeam.com/information-security/detecting-the-printnightmare-cve-2021-1675-34527-vulnerability-using-exabeam/
+tags:
+- attack.privilege_escalation
+- attack.t1574.002
+- attack.t1547.010
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection: # net use \\printnightmare.gentilkiwi.com\ipc$ /user:gentilguest password
+  selection:
+    EventID: 6416
+    DeviceDescription|contains: # original: '\\printnightmare.gentilkiwi.com\Kiwi Legit Printer'
+      - printnightmare
+      - gentil
+      - kiwi
+  condition: selection
+falsepositives:
+- pentest
+level: high

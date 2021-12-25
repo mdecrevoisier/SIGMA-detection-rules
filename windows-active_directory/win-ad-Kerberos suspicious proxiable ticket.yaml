@@ -22,7 +22,7 @@ detection:
     EventID: 4768
     Status: 0x0 # Success
     ServiceSid|endswith: '-502' # Krbtgt account SID
-    TicketOptions: '0x50800000' # proxiable ticket
+    TicketOptions: '0x50800000' # Forwardable, Proxiable, Renewable ticket
   filter:
     - IpAddress: '%domain_controllers_ips%'     # reduce amount of false positives
     - TargetUserName: '%account_allowed_proxy%' # accounts allowed to perform proxiable requests
