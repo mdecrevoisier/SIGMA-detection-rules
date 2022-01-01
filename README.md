@@ -18,7 +18,7 @@ The SIGMA rules can be used in different ways together with your SIEM:
 * Windows Defender
 * SYSMON v11 and higher
 * Exchange 2016
-* Internet Information Services (IIS web server) -- *planned*
+* Internet Information Services (IIS web server)
 
 ## SIGMA rules content
 

@@ -1,0 +1,29 @@
+title: Webserver IIS module installed
+description: Detects scenarios where an attacker attempts to deploy an IIS module for malicious purposes.
+references:
+- https://securelist.com/owowa-credential-stealer-and-remote-access/105219/
+- https://www.oreilly.com/library/view/internet-information-services/9780735624412/ch07s07.html
+- https://www.microsoft.com/security/blog/2021/11/08/threat-actor-dev-0322-exploiting-zoho-manageengine-adselfservice-plus/
+tags:
+- attack.persistence
+- attack.t1505.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # C:\Windows\System32\inetsrv\appcmd.exe install module /name:MyNativeModule /image:c:\mymodule.dll
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \System32\inetsrv\appcmd.exe
+    CommandLine|contains|all:
+      - appcmd
+      - module
+    CommandLine|contains:
+      - add
+      - install
+      #- ExtenderControl # related to the malicious module
+  condition: selection
+falsepositives:
+- New modules deployed on IIS Web servers, but also Exchange and ADCS servers
+level: high
