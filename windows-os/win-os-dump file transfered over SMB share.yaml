@@ -1,4 +1,4 @@
-title: Suspicious dump file accessed via SMB share
+title: Suspicious dump file transfered via SMB share
 description: Detects scenarios where an attacker would access and/or transfer a dump file containing potential sensitive information (LSASS dump).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping

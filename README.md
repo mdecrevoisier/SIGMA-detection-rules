@@ -211,6 +211,7 @@ TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce with not ex
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 33205 | 
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 4625 | 
 TA0006-Credential Access | T1555.003-Credentials from Password Stores: Credentials from Web Browsers | User browser credentials dump via network share | 5145 | DonPapi, Lazagne
+TA0006-Credential Access | T1555.004-Windows Credential Manager | DPAPI credentials dump via network share | 5145 | DonPapi, Lazagne
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662 | 
 TA0006-Credential Access | T1555-Credentials from Password Stores | User application credentials dump via network share  | 5145 | DonPapi, Lazagne
 TA0006-Credential Access | T1555-Credentials from Password Stores | User files dump via network share | 5145 | DonPapi, Lazagne
