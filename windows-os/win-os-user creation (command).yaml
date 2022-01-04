@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker attempts to create a user via c
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
 - https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
+- https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
 - https://attack.mitre.org/software/S0039/
 - https://regex101.com/r/S6vTNM/1
 tags:

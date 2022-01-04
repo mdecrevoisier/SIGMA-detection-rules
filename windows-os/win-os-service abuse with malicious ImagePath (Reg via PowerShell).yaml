@@ -17,26 +17,23 @@ detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xbox
   selection_powershell_native:
     EventID: 800
     EventData|contains|all:
-      - Set-ItemProperty
+      - '-ItemProperty' # Can be New-* or Set-*
       - '\SYSTEM\CurrentControlSet\Services\'
       - ImagePath
-      #- path # parameter is optional
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
-      - Set-ItemProperty
+      - '-ItemProperty' # Can be New-* or Set-*
       - '\SYSTEM\CurrentControlSet\Services\'
       - ImagePath
-      #- path # parameter is optional
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
-      - Set-ItemProperty
+      - '-ItemProperty' # Can be New-* or Set-*
       - '\SYSTEM\CurrentControlSet\Services\'
       - ImagePath
-      #- path # parameter is optional
 
   condition: 1 of selection*
 falsepositives:

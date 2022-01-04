@@ -3,6 +3,7 @@ description: Detects scenarios where a threat exclusion is added to the antiviru
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
 tags:
 - attack.defense_evasion
 - attack.t1562.001
@@ -15,6 +16,7 @@ detection:
   selection1_powershell_native:
     EventID: 800
     EventData|contains|all:
+      - Add-MpPreference
       - Set-MpPreference
     EventData|contains:
       - ExclusionPath
@@ -24,6 +26,7 @@ detection:
   selection2_powershell_modern:
     EventID: 4103
     Payload|contains|all:
+      - Add-MpPreference
       - Set-MpPreference
     Payload|contains:
       - ExclusionPath
@@ -33,6 +36,7 @@ detection:
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
+      - Add-MpPreference
       - Set-MpPreference
     ScriptBlockText|contains:
       - ExclusionPath

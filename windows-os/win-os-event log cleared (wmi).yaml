@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker attempts to clear the event log
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
 - https://www.windows-commandline.com/backup-delete-event-log-files/
+- https://lolbas-project.github.io/lolbas/Binaries/Wmic/
 tags:
 - attack.defense_evasion
 - attack.t1070.001

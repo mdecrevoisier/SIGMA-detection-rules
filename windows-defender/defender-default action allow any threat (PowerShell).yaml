@@ -7,6 +7,7 @@ references:
 - https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
 - https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
 tags:
 - attack.defense_evasion
 - attack.t1562.001
@@ -20,34 +21,42 @@ detection:
     EventID: 800
     EventData|contains|all:
       - Set-MpPreference
-      - '6' # MP_THREAT_ACTION_ALLOW
+      - Add-MpPreference
+    EventData|contains: '6' # MP_THREAT_ACTION_ALLOW
     EventData|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference"
 
   selection2_powershell_modern:
     EventID: 4103
     Payload|contains|all:
       - Set-MpPreference
+      - Add-MpPreference
+    Payload|contains:
       - '6' # MP_THREAT_ACTION_ALLOW
     Payload|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference"
 
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Set-MpPreference
+      - Add-MpPreference
+    ScriptBlockText|contains:
       - '6' # MP_THREAT_ACTION_ALLOW
     ScriptBlockText|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference"
 
   condition: 1 of selection*
 falsepositives:

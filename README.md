@@ -58,6 +58,7 @@ TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings c
 TA0003-Persistence | T1098.xxx-Account manipulation | Kerberos account password reset | 4723/4724 | Golden ticket
 TA0003-Persistence | T1098.xxx-Account Manipulation | Medium risk local-domain local group membership change | 4732 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to a built-in Exchange security group | 4756 | 
+TA0003-Persistence | T1098.xxx-Account manipulation | Member added to a group (command) | 4688 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to DNSadmin group for DLL abuse | 4732 | DNS DLL abuse
 TA0003-Persistence | T1098.xxx-Account manipulation | New admin (or likely) created by a non administrative account | 4720 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account (Directory Services) | 5136 | DCShadow
@@ -77,9 +78,10 @@ TA0003-Persistence | T1098.xxx-Account manipulation | User account with password
 TA0003-Persistence | T1098.xxx-Account manipulation | User password change using current hash password - ChangeNTLM | 4723 | Mimikatz
 TA0003-Persistence | T1098.xxx-Account manipulation | User password change without previous password known - SetNTLM | 4724 | Mimikatz
 TA0003-Persistence | T1098.xxx-Account Manipulation | User performing massive group membership changes on multiple differents groups | 4728,4756 | 
+TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin account activated (command) | 4688 | 
+TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin account activated | 4722 | 
 TA0003-Persistence | T1098-Account Manipulation | New member added to administration group related to OCS/Lync/Skype4B  | 4732/4756 | 
 TA0003-Persistence | T1098-Account Manipulation | SPN added to an account (command) | 4688/1 | 
-TA0003-Persistence | T1136.001-Create account-Local account | Disbled Guest (and support_388945a0) accounts enabled | 4722 | 
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205 | 
 TA0003-Persistence | T1136.001-Create account-Local account | User account created by a computer account | 4720 | 
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741 | 
@@ -275,6 +277,9 @@ TA0009-Collection | T1125-Video capture | RDP shadow session started (command) |
 TA0009-Collection | T1125-Video capture | RDP shadow session started (native) | 20503/04/08 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (registry) | 13 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling via port forwarding | 4688 | 
+TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker feature configuration (Reg via command) | 4688 | 
+TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker server feature activation (PowerShell) | 800/4103/4104 | 
+TA0040-Impact | T1489-Service Stop  | Massive service deactivation before ransomware execution | 4688 | 
 TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion (PowerShell) | 800/4103/4104 | 
 TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion (WMI) | 4688 | 
 TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion | 4688 | 

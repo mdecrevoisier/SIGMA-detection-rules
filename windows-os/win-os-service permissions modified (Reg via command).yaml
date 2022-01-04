@@ -21,14 +21,8 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith: \reg.exe # 'C:\Windows\System32\reg.exe'
+    CommandLine|contains: 'REG ADD'
     CommandLine|re: '\\SYSTEM\\CurrentControlSet\\Services\\.*\\Security' # HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xboxsvc\Security
-    CommandLine|contains|all:
-      - REG ADD
-      - /t # Registry entry type
-      - /v # Value to add
-      - Security
-      - /d # Data to add
-      #- /f # Add without prompt
   condition: selection
 falsepositives:
 - administrator reconfiguring service

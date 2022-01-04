@@ -15,7 +15,7 @@ detection:
   selection:
     EventID: 5007
     SourceName: Microsoft-Windows-Windows Defender
-    New Value|startswith: HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions\
+    New Value|startswith: 'HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions\'
   condition: selection
 falsepositives:
 - Unknown

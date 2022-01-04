@@ -1,0 +1,27 @@
+title: BitLocker feature configuration (Reg via command)
+description: Detects scenarios where an attacker configures BitLocker for ransomware purposes.
+references:
+- https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
+- https://admx.help/?Category=MDOP&Policy=Microsoft.Policies.BitLockerManagement::BMSOSDEncryptionPolicy
+tags:
+- attack.impact
+- attack.t1486
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \reg.exe
+    CommandLine|contains|all: # Full command: "REG  ADD HKLM\SOFTWARE\Policies\Microsoft\FVE /v EnableBDEWithNoTPM /t REG_DWORD /d 1 /f"
+      - REG ADD
+      - '\SOFTWARE\Policies\Microsoft\FVE'
+    #CommandLine|contains:
+    #  - '1'
+    #  - '2'
+  condition: selection
+falsepositives:
+- Initial BitLocker configuration via GPO
+level: high

@@ -1,0 +1,40 @@
+title: BitLocker server feature activation (PowerShell)
+description: Detects scenarios where an attacker enables BitLocker for ransomware purposes.
+references:
+- https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
+- https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server
+tags:
+- attack.impact
+- attack.t1486
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection: # command: powershell  -c "Import-Module ServerManager; Add-WindowsFeature BitLocker -Restart"
+
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains:
+      - Add-WindowsFeature
+      - Install-WindowsFeature
+    EventData|contains: BitLocker
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Add-WindowsFeature
+      - Install-WindowsFeature
+    Payload|contains: BitLocker
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains:
+      - Add-WindowsFeature
+      - Install-WindowsFeature
+    ScriptBlockText|contains: BitLocker
+
+  condition: 1 of selection
+falsepositives:
+- Initial BitLocker installation
+level: high

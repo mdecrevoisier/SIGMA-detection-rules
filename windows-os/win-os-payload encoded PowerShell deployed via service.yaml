@@ -17,7 +17,7 @@ detection:
   selection1:
     EventID: 4697 # security logs
     ServiceFileName|contains|all:
-      - 'powershell.exe'
+      - 'powershell'
       - '[System.Convert]::'
       - 'FromBase64String'
       # - hidden
@@ -29,7 +29,7 @@ detection:
   selection2:
     EventID: 7045 # system logs
     ImagePath|contains|all:
-      - 'powershell.exe'
+      - 'powershell'
       - '[System.Convert]::'
       - 'FromBase64String'
       # - hidden

@@ -6,6 +6,7 @@ references:
 - https://embracethered.com/blog/posts/2020/windows-port-forward/
 - https://davidhamann.de/2019/06/20/setting-up-portproxy-netsh/
 - https://parsiya.net/blog/2016-06-07-windows-netsh-interface-portproxy/
+- https://www.real-sec.com/2019/04/bypassing-network-restrictions-through-rdp-tunneling/
 tags:
 - attack.command_and_control
 - attack.t1572 # tunneling

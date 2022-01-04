@@ -1,11 +1,11 @@
-title: Guest or builtin account activated
-description: Detects scenarios where an attacker enable a builtin account.
+title: Disabled guest or builtin account activated
+description: Detects scenarios where an attacker enables a disabled builtin account.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
 - https://www.stigviewer.com/stig/windows_xp/2013-03-14/finding/V-3369
 tags:
 - attack.persistence
-- attack.t1136.001
+- attack.t1098
 author: mdecrevoisier
 status: experimental
 logsource:

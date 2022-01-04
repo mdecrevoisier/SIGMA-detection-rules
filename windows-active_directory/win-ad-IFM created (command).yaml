@@ -7,6 +7,7 @@ references:
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
 - https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc753343(v=ws.11)
 - https://twitter.com/JohnLaTwC/status/1416382178380767233?s=09
+- https://thedfirreport.com/2021/10/04/bazarloader-and-the-conti-leaks/
 tags:
 - attack.credential_dumping
 - attack.t1003.003
@@ -39,7 +40,7 @@ detection:
   selection_activation_obfuscated:
     CommandLine|contains|all:
       - ' ac ' # activate
-      - ' i '  # instance
+      - ' in '  # instance
       - ntds
 
   condition: root_event and 1 of selection_*

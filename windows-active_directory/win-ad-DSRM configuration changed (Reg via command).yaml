@@ -22,11 +22,7 @@ detection:
     CommandLine|contains|all:
       - REG ADD
       - '\SYSTEM\CurrentControlSet\Control\Lsa'
-      - /t # Registry entry type
-      - /v # Value to add
       - DsrmAdminLogonBehavior
-      - /d # Data to add
-      #- /f # Add without prompt
   condition: selection
 falsepositives:
 - Disaster recovery situation

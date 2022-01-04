@@ -1,5 +1,5 @@
-title: VSS backup deletion (Powershell)
-description: Detects scenarios where an attacker attempts to delete existing VSS backup.
+title: VSS backup deletion via WMI (Powershell)
+description: Detects scenarios where an attacker attempts to delete existing VSS backup via WMI.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery
 - https://www.picussecurity.com/resource/blog/how-to-beat-nefilim-ransomware-attacks
@@ -22,8 +22,9 @@ detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.
       - Get-WmiObject
       - Gwmi
       - Get-CimInstance
+      - Gcim
     EventData|contains: Win32_Shadowcopy
-    EventData|contains|all:
+    EventData|contains:
       - Delete
       - Remove-WmiObject
       - rwmi
@@ -36,8 +37,9 @@ detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.
       - Get-WmiObject
       - Gwmi
       - Get-CimInstance
+      - Gcim
     Payload|contains: Win32_Shadowcopy
-    Payload|contains|all:
+    Payload|contains:
       - Delete
       - Remove-WmiObject
       - rwmi
@@ -50,8 +52,9 @@ detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.
       - Get-WmiObject
       - Gwmi
       - Get-CimInstance
+      - Gcim
     ScriptBlockText|contains: Win32_Shadowcopy
-    ScriptBlockText|contains|all:
+    ScriptBlockText|contains:
       - Delete
       - Remove-WmiObject
       - rwmi

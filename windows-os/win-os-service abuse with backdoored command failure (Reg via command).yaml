@@ -20,11 +20,7 @@ detection:
     CommandLine|contains|all: # Full command: REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v FailureCommand /t REG_SZ /d "C:\tmp\pentestlab.exe"
       - REG ADD
       - '\SYSTEM\CurrentControlSet\Services\'
-      - /t # Registry entry type
-      - /v # Value to add
       - FailureCommand
-      - /d # Data to add
-      #- /f # Add without prompt
   condition: selection
 falsepositives:
 - administrator reconfiguring service
