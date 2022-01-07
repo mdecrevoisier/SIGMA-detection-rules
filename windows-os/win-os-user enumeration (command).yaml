@@ -19,8 +19,8 @@ detection:
       - \net1.exe
       - \net.exe
     CommandLine|contains:
-      - user
       - net
+      - user
   filter:
     CommandLine|contains: add # refers to another use case for user creation via commandline
   condition: selection and not filter

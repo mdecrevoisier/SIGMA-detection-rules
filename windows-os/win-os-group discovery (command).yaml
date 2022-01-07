@@ -23,7 +23,9 @@ detection:
     CommandLine|contains:
       - group
       - localgroup
-  condition: selection
+  filter:
+    CommandLine|contains: add # refers to another use case for groupe membership change creation via commandline
+  condition: selection and not filter
 falsepositives:
 - Pentest
 - Administrator activity

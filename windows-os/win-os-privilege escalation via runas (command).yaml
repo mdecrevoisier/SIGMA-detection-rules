@@ -27,7 +27,7 @@ detection: # Full command: 'runas /user:<domain>\<user> cmd.exe'
     EventID: 4624
     LogonType: 2
     LogonProcessName: seclogo
-    AuthenticationPackageName: Negotiate
+    #AuthenticationPackageName: Negotiate
     ProcessName|endswith: '\svchost.exe'
     IpAddress: '::1'
 

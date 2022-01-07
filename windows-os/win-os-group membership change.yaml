@@ -16,9 +16,10 @@ detection:
     NewProcessName|endswith:
       - \net1.exe
       - \net.exe
-    CommandLine|contains|all:
+    CommandLine|contains:
+      - group
       - localgroup
-      - add
+    CommandLine|contains: add
   condition: selection
 falsepositives:
 - Pentest
