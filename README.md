@@ -43,6 +43,8 @@ TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Enc
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Interactive PipeShell over SMB named pipe | 800/4103/4104 | 
 TA0002-Execution | T1059.003-Windows Command Shell | Encoded PowerShell payload deployed via process execution | 4688 | 
 TA0002-Execution | T1059.003-Windows Command Shell | SQL Server payload injectection for reverse shell (MSF) | 4688 | 
+TA0002-Execution | T1204-User execution | Edge abuse for payload download via console | 4688 | 
+TA0002-Execution | T1204-User execution | Edge/Chrome headless feature abuse for payload download | 4688 | 
 TA0002-Execution | T1569.002-Service Execution | PSexec installation detected | 4688 | 
 TA0002-Execution | T1569.002-Service Execution | Service massive failures (native) | 7000/7009 | Tchopper
 TA0002-Execution | T1569.002-Service Execution | Service massive installation (native) | 7045/4697 | Tchopper
@@ -213,9 +215,9 @@ TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce with not ex
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 33205 | 
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 4625 | 
 TA0006-Credential Access | T1555.003-Credentials from Password Stores: Credentials from Web Browsers | User browser credentials dump via network share | 5145 | DonPapi, Lazagne
-TA0006-Credential Access | T1555.004-Windows Credential Manager | DPAPI credentials dump via network share | 5145 | DonPapi, Lazagne
+TA0006-Credential Access | T1555.004-Windows Credential Manager | Credentials (protected by DPAPI) dump via network share | 5145 | DonPapi, Lazagne
+TA0006-Credential Access | T1555-Credentials from Password Stores | Azure AD Connect credentials dump via network share | 5145 | AdConnectDump
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662 | 
-TA0006-Credential Access | T1555-Credentials from Password Stores | User application credentials dump via network share  | 5145 | DonPapi, Lazagne
 TA0006-Credential Access | T1555-Credentials from Password Stores | User files dump via network share | 5145 | DonPapi, Lazagne
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay | Discovery for print spooler bug abuse via named pipe | 5145 | 
 TA0006-Credential Access | T1557.001-MiM:LLMNR/NBT-NS Poisoning and SMB Relay | Exchange server impersonation via PrivExchange relay attack | 4624 | PrivExchange
@@ -228,6 +230,7 @@ TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Kerberos key 
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Kerberos ticket without a trailing $  | 4768-4769 | CVE-2021-42278/42287 & SAM-the-admin
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Susipicious Kerberos ticket (TGS) with constrained delegation (S4U2Proxy) | 4769 | 
 TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Susipicious Kerberos ticket (TGS) with unconstrained delegation (TrustedForDelegation) | 4769 | 
+TA0006-Credential Access | T1558-Steal or Forge Kerberos Tickets | Suspicious Kerberos proxiable ticket | 4768 | CVE-2021-42278/42287 & SAM-the-admin
 TA0007-Discovery | T1016-System Network Configuration Discovery | Firewall configuration enumerated (command) | 4688 | 
 TA0007-Discovery | T1016-System Network Configuration Discovery | Firewall configuration enumerated (PowerShell) | 800/4103/4104 | 
 TA0007-Discovery | T1016-System Network Configuration Discovery | Tentative of zone transfer from a non DNS server detected | 6004(DNSserver) | 
