@@ -1,0 +1,43 @@
+title: Privilege escalation via RunasCS
+description: Detects scenarios where attack attempts to elevate privileges via customize Runas tool.
+correlation: correlation with ID 4648 can be done over SubjectLogonId in order to get more context.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
+- https://github.com/antonioCoco/RunasCs
+- https://twitter.com/SBousseaden/status/1478373779642400783
+tags:
+- attack.privilege_escalation
+- attack.t1134.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+
+  selection_process: # optional parameter with suspicious behavior reported by SBousseaden
+    EventID: 4688
+    TargetUserSid: S-1-0-0 # everyone
+
+  filter_user_process:
+    - TargetUserName:
+      - 'LOCAL SERVICE'
+      - 'Network Service'
+      - 'DWM-*'
+      - 'UMFD-*'
+      - 'sshd_*'
+      - '*$'
+      - 'DefaultAppPool'
+      - '-'
+    - TargetDomainName:
+      - 'NT Service'
+      - 'NT AUTHORITY'
+      - 'Font Driver Host'
+      - 'Window Manager'
+      - 'IIS APPPOOL'
+      - 'VIRTUAL USERS'
+
+  condition: selection_process and not filter_user_process
+falsepositives:
+- Administrator activity
+level: low

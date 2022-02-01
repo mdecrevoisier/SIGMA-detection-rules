@@ -1,0 +1,31 @@
+title: Wdigest authentication enabled (Reg via command)
+description: Detects scenarios where an attacker attempts to enable Wdgiest authention so passwords are stored in clear text and can be dumped.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/
+- https://thedfirreport.com/2021/08/16/trickbot-leads-up-to-fake-1password-installation/
+- https://www.ired.team/offensive-security/credential-access-and-credential-dumping/forcing-wdigest-to-store-credentials-in-plaintext
+- https://www.hackingarticles.in/credential-dumping-wdigest/
+- https://stealthbits.com/blog/wdigest-clear-text-passwords-stealing-more-than-a-hash/
+- https://github.com/HarmJ0y/Misc-PowerShell/blob/master/Invoke-WdigestDowngrade.ps1
+tags:
+- attack.credential_access
+- attack.t1003
+- attack.defense_evasion
+- attack.t1562
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \reg.exe
+    CommandLine|contains|all:
+      - REG ADD
+      - '\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest'
+      - UseLogonCredential
+  condition: selection
+falsepositives:
+- None
+level: high

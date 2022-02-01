@@ -1,0 +1,23 @@
+title: RDP tunneling detected
+description: Detects scenarios where an attacker uses RDP tunneling to redirect traffic to a C&C target.
+references:
+- https://github.com/sbousseaden/Slides/blob/master/Windows%20DFIR%20Events.pdf
+tags:
+- attack.command_and_control
+- attack.t1572 # tunneling
+- attack.lateral_movement
+- attack.t1021.001 # remote services: RDP
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: rdp
+detection:
+  selection:
+    EventID: 1149 # 'User authentication succeeded': DOES NOT indicate a successful user authentication !!!
+    Channel: Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational
+    IpAddress: '127.0.0.1' # In ID 1149, IP address is provided in "EventXML.Param3"
+  condition: selection
+falsepositives:
+- None
+level: high

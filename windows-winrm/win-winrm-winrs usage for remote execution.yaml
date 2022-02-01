@@ -1,0 +1,31 @@
+title: WinRS abuse
+description: Detects scenarios where an attacker enumerates different remote WinRM listeners for lateral movement purposes.
+references:
+- https://www.rapid7.com/blog/post/2012/11/08/abusing-windows-remote-management-winrm-with-metasploit/
+- https://securethelogs.com/2019/08/30/hacking-windows-remote-management-winrm/
+- https://www.ired.team/offensive-security/lateral-movement/winrs-for-lateral-movement
+- https://www.redcanary.com/blog/lateral-movement-winrm-wmi/
+- https://bohops.com/2020/05/12/ws-management-com-another-approach-for-winrm-lateral-movement/
+- https://github.com/bohops/WSMan-WinRM
+- https://github.com/mez-0/CSharpWinRM
+- https://github.com/antonioCoco/RogueWinRM
+tags:
+- attack.lateral_movement
+- attack.t1021.006
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection: # Full command example: 'winrs -r:<dst_ip> -u:domain\user -p:<psw> 'whoami /priv''
+    EventID: 4688
+    NewProcessName|endswith: \winrs.exe
+    CommandLine|contains|all:
+      - winrs
+      - -r* # remote target
+      - -u* # user
+      - -p* # password
+  condition: selection
+falsepositives:
+- Pentest, Administrator activity
+level: high

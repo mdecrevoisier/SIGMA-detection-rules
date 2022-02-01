@@ -1,0 +1,25 @@
+title: RDP BlueeKeep connection closed (CVE-2019-0708)
+description: Detects scenarios where an attacker attempts to exploit the BlueKeep vulnerability.
+references:
+- https://github.com/sbousseaden/Slides/blob/master/Windows%20DFIR%20Events.pdf
+- https://corelight.com/blog/2019/05/23/how-to-use-corelight-and-zeek-logs-to-mitigate-rds-rdp-vulnerabilities
+- https://www.cyberark.com/resources/threat-research-blog/explain-like-i-m-5-remote-desktop-protocol-rdp
+tags:
+- attack.lateral_movement
+- attack.t1021.001 # remote services: RDP
+- attack.privilege_escalation
+- attack.t1021.001 # exploit for privilege escalation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: rdp
+detection:
+  selection:
+    EventID: 148 # Channel X has been closed between the server and the client on transport tunnel: Y.
+    Channel: Microsoft-Windows-RemoteDesktopServices-RdpCoreTS/Operational
+    ChannelName: "ms_t120"
+  condition: selection
+falsepositives:
+- none
+level: high

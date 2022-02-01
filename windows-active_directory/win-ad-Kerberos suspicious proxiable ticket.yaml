@@ -1,7 +1,7 @@
 title: Suspicious Kerberos proxiable/S4U2self ticket (CVE-2021-42278/42287)
 description: Detects scenarios where an attacker attempts to request a proxiable ticket. This action may trigger while attempting to identify a vulnerable target or using some offsensive Kerberos tools like Kerbrute, Impacket...
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
 - https://exploit.ph/cve-2021-42287-cve-2021-42278-weaponisation.html
 - https://www.thehacker.recipes/ad/movement/kerberos/samaccountname-spoofing
 - https://support.microsoft.com/en-us/topic/kb5008380-authentication-updates-cve-2021-42287-9dafac11-e0d0-4cb8-959a-143bd0201041
@@ -10,8 +10,10 @@ references:
 - https://github.com/ly4k/Pachine
 - https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf
 tags:
-- attack.xxxx
-- attack.txxxxxx
+- attack.credential_access
+- attack.t1558 # forged ticket
+- attack.privilege_escalation
+- attack.t1068 # exploitation for privilege escalation
 author: mdecrevoisier
 status: experimental
 logsource:

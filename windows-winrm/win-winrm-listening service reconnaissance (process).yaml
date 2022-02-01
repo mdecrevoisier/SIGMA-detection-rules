@@ -1,0 +1,33 @@
+title: WinRM listening service reconnaissance (process)
+description: Detects scenarios where an attacker enumerates different remote WinRM listeners for lateral movement purposes.
+correlation: correlate TargetLogonId from event ID 4688 with TargetLogonId from event ID 4624 to identify the source host.
+references:
+- https://www.rapid7.com/blog/post/2012/11/08/abusing-windows-remote-management-winrm-with-metasploit/
+- https://securethelogs.com/2019/08/30/hacking-windows-remote-management-winrm/
+- https://www.ired.team/offensive-security/lateral-movement/winrs-for-lateral-movement
+- https://www.redcanary.com/blog/lateral-movement-winrm-wmi/
+- https://bohops.com/2020/05/12/ws-management-com-another-approach-for-winrm-lateral-movement/
+- https://threathunterplaybook.com/notebooks/windows/02_execution/WIN-190511223310.html
+- https://jpcertcc.github.io/ToolAnalysisResultSheet/details/WinRM.htm
+- https://github.com/bohops/WSMan-WinRM
+- https://github.com/mez-0/CSharpWinRM
+- https://github.com/antonioCoco/RogueWinRM
+tags:
+- attack.lateral_movement
+- attack.t1021.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: \wsmprovhost.exe
+  filter:
+    TargetUserName|endswith: '*$'
+  condition: selection and not filter | count(Computer) > 30
+  timeframe: 15m
+falsepositives:
+- Administrator activity, Windows Server Manager, applications using WinRM
+level: medium

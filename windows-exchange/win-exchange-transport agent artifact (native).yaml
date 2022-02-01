@@ -11,13 +11,13 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category: application
+  service: msexchange-management
 detection:
   selection:
+    Channel: 'MSExchange Management'
     EventID:
       - 1 # success
       - 6 # failure
-    Channel: 'MSExchange Management'
     EventData|contains:
       - Enable-TransportAgent
       - Install-TransportAgent
