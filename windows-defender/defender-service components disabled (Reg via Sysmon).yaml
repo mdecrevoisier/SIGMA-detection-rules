@@ -1,0 +1,35 @@
+title: Microsoft Defender service components status disabled (Registry via Sysmon)
+description: Detects scenarios where an attacker attempts to disable Defender security features by modifying service configuration in registry.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://www.securityartwork.es/2021/09/27/trustedinstaller-parando-windows-defender/
+- https://github.com/lab52io/StopDefender
+- https://github.com/APTortellini/DefenderSwitch
+tags:
+- attack.defense_evasion
+- attack.t1562.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 13 # registry value set
+    EventType: SetValue
+    TargetObject|endswith:
+      - \SYSTEM\CurrentControlSet\Services\wscsvc\Start
+      - \SYSTEM\CurrentControlSet\Services\SecurityHealthService\Start
+      - \SYSTEM\CurrentControlSet\Services\Sense\Start
+      - \SYSTEM\CurrentControlSet\Services\WdBoot\Start
+      - \SYSTEM\CurrentControlSet\Services\WdFilter\Start
+      - \SYSTEM\CurrentControlSet\Services\WdNisDrv\Start
+      - \SYSTEM\CurrentControlSet\Services\WdNisSvc\Start
+      - \SYSTEM\CurrentControlSet\Services\WinDefend\Start
+    Details|contains:
+      - '0x00000003' # Manual
+      - '0x00000004' # Disabled
+  condition: selection
+falsepositives:
+- None
+level: high

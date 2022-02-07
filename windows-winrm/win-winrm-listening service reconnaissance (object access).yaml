@@ -27,7 +27,7 @@ detection:
     EventID: 4656 # Other Object Access Events
     ObjectServer: 'WS-Management Listener'
   filter:
-    SubjectUserName|endswith: '*$'
+    SubjectUserName|endswith: '$'
   condition: selection and not filter | count(Computer) > 30
   timeframe: 15m
 falsepositives:
