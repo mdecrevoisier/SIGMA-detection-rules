@@ -39,8 +39,9 @@ TA0002-Execution | T1053.005-Scheduled Task | Remote schedule task creation via 
 TA0002-Execution | T1053.005-Scheduled Task | Schedule task created and deleted in a short period of time | 4698-4699 | 
 TA0002-Execution | T1053.005-Scheduled Task | Schedule task fastly created and deleted | 4698,4699 | Atexec
 TA0002-Execution | T1053.005-Scheduled Task | Scheduled task creation | 4688 | 
-TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Encoded PowerShell payload deployed (PowerShell) | 800/4103/4104 | 
+TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Encoded PowerShell payload deployed | 800/4103/4104 | 
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Interactive PipeShell over SMB named pipe | 800/4103/4104 | 
+TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Payload downloaded via PowerShell | 800/4103/4104 | 
 TA0002-Execution | T1059.003-Windows Command Shell | Encoded PowerShell payload deployed via process execution | 4688 | 
 TA0002-Execution | T1059.003-Windows Command Shell | SQL Server payload injectection for reverse shell (MSF) | 4688 | 
 TA0002-Execution | T1204-User execution | Edge abuse for payload download via console | 4688 | 
@@ -84,6 +85,7 @@ TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin acco
 TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin account activated | 4722 | 
 TA0003-Persistence | T1098-Account Manipulation | New member added to administration group related to OCS/Lync/Skype4B  | 4732/4756 | 
 TA0003-Persistence | T1098-Account Manipulation | SPN added to an account (command) | 4688/1 | 
+TA0003-Persistence | T1136.001-Create account-Local account | Hidden account creation (with fast deletion) | 4720/4726 | 
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205 | 
 TA0003-Persistence | T1136.001-Create account-Local account | User account created by a computer account | 4720 | 
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741 | 
@@ -128,6 +130,7 @@ TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions w
 TA0004-Privilege Escalation | T1068-Exploitation for Privilege Escalation | Privilege SeMachineAccountPrivilege abuse | 4673 | CVE-2021-42278/42287 & SAM-the-admin
 TA0004-Privilege Escalation | T1134.001- Access Token Manipulation: Token Impersonation/Theft | Anonymous login | 4624/4688 | RottenPotatoNG
 TA0004-Privilege Escalation | T1134.002- Access Token Manipulation: Create Process with Token | Privilege escalation via runas (command) | 4688/4648/4624 | 
+TA0004-Privilege Escalation | T1134.002- Access Token Manipulation: Create Process with Token | Privilege escalation via RunasCS | 4688 | 
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | New access rights granted to an account by a standard user | 4717 | 
 TA0004-Privilege Escalation | T1134-Access Token Manipulation | User right granted to an account by a standard user | 4704 | 
 TA0004-Privilege Escalation | T1484.001-Domain Policy Modification-Group Policy Modification | Modification of a sensitive Group Policy  | 5136 | 
@@ -179,6 +182,7 @@ TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Def
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: exclusion added (PowerShell) | 800/4103/4104 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: security component disabled (command) | 4688/1 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: security component disabled (PowerShell) | 800/4103/4104 | 
+TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: service component status disabled (Registry via Sysmon) | 13 | 
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall | Firewall deactivation (cmd) | 4688 | 
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall | Firewall deactivation (firewall) | 2003/4950 | 
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall | Firewall deactivation (PowerShell) | 800/4103/4104 | 
@@ -204,9 +208,13 @@ TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configura
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via PowerShell) | 800/4103/4104 | 
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM password reset | 4794 | 
 TA0006-Credential Access | T1003.006-DCSync | Member added to a sensitive Exchange security group to perform DCsync attack | 4756 | DCSync
+TA0006-Credential Access | T1003.006-DCSync | Netsync attack |  | NetSync
 TA0006-Credential Access | T1003.006-DCSync | Replication privileges granted to perform DCSync attack | 5136 | DCSync
 TA0006-Credential Access | T1003-Credential dumping | Backdoor introduction via registry permission change through WMI (DAMP) | 4674 | DAMP
 TA0006-Credential Access | T1003-Credential dumping | Diskshadow abuse | 4688 | 
+TA0006-Credential Access | T1003-Credential dumping | Wdigest authentication enabled (Reg via command) | 4688 | 
+TA0006-Credential Access | T1003-Credential dumping | Wdigest authentication enabled (Reg via Sysmon) | 12/13 | 
+TA0006-Credential Access | T1003-OS Credential dumping | Group Managed Service Accounts password dump | 4662 | GoldenGMSA
 TA0006-Credential Access | T1040-Network sniffing | Windows native sniffing tool Pktmon usage | 4688 | 
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce enumeration on Windows OpenSSH server with non existing user | 4625/4 | SSH server
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce on Windows OpenSSH server with valid user | 4625/4 | SSH server
@@ -259,6 +267,7 @@ TA0007-Discovery | T1201-Password Policy Discovery | Domain password policy enum
 TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery via commandline | 4688 | 
 TA0007-Discovery | T1482-Domain Trust Discovery | Active Directory Forest PowerShell class called from a non administrative host | 800/4103/4104 | 
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP login with valid credentials | 4825 | 
+TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | DP BlueeKeep connection closed | 148 | CVE-2019-0708
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Admin share accessed via SMB (basic) | 5140/5145 | 
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Impacket WMIexec execution via SMB admin share | 5145 | WMIexec
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Lateral movement by mounting a network share - net use (command) | 4688/4648 | 
@@ -272,6 +281,8 @@ TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec privilege abuse | 4674 |
 TA0008-Lateral Movement | T1021.003-DCOM | DCOMexec process abuse via MMC | 4688 | 
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH native server feature installation | 800/4103/4104 | SSH server
 TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Windows activation/configuration detected | 800/4103/4104 | SSH server
+TA0008-Lateral Movement | T1021.006-Windows Remote Management | WinRM listening service reconnaissance | 4656 | 
+TA0008-Lateral Movement | T1021.006-Windows Remote Management | WinRS usage for remote execution | 4688 | 
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47** | 
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | LSASS dump via process access | 10 | Mimikatz
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | Pass-the-hash login | 4624 | Mimikatz
@@ -279,7 +290,8 @@ TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON
 TA0009-Collection | T1125-Video capture | RDP shadow session started (command) | 4688 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (native) | 20503/04/08 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (registry) | 13 | 
-TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling via port forwarding | 4688 | 
+TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling configuration enabled for port forwarding | 4688 | 
+TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling detected | 1149 | 
 TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker feature configuration (Reg via command) | 4688 | 
 TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker server feature activation (PowerShell) | 800/4103/4104 | 
 TA0040-Impact | T1489-Service Stop  | Massive service deactivation before ransomware execution | 4688 | 

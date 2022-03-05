@@ -1,7 +1,7 @@
 title: WinRM listening service reconnaissance (WS-Management)
 description: Detects scenarios where an attacker enumerates different remote WinRM listeners for lateral movement purposes.
 correlation: correlate SubjectLogonId from event ID 4656 with TargetLogonId from event ID 4624 to identify the source host.
-auditing: requires 'Object Access' > 'Other Object Access Events' to be enabled. Note that event is produced only if the login via WinRM is successful.
+auditing: requires 'Object Access'> 'Other Object Access Events' to be enabled. Note that event is produced only if the login via WinRM is successful.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.006-Windows%20Remote%20Management
 - https://www.rapid7.com/blog/post/2012/11/08/abusing-windows-remote-management-winrm-with-metasploit/
@@ -12,7 +12,7 @@ references:
 - https://threathunterplaybook.com/notebooks/windows/02_execution/WIN-190511223310.html
 - https://jpcertcc.github.io/ToolAnalysisResultSheet/details/WinRM.htm
 - https://github.com/bohops/WSMan-WinRM
-- https://github.com/mez-0/CSharpWinRM
+- https://github.com/mez-0/CSharpWinR
 - https://github.com/antonioCoco/RogueWinRM
 tags:
 - attack.lateral_movement
@@ -21,7 +21,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  service: winrm
 detection:
   selection:
     EventID: 4656 # Other Object Access Events
