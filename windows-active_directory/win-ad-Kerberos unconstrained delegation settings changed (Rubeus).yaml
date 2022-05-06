@@ -10,6 +10,8 @@ references:
 - https://www.guidepointsecurity.com/delegating-like-a-boss-abusing-kerberos-delegation-in-active-directory/
 - https://stealthbits.com/blog/what-is-kerberos-delegation-an-overview-of-kerberos-delegation/
 - https://posts.specterops.io/hunting-in-active-directory-unconstrained-delegation-forests-trusts-71f2b33688e1
+- https://pentestlab.blog/2022/03/21/unconstrained-delegation/
+- https://www.thehacker.recipes/ad/movement/kerberos/delegations#talk
 tags:
 - attack.persistence
 - attack.t1098

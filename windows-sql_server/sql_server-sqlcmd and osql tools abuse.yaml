@@ -5,6 +5,7 @@ references:
 - https://blog.netspi.com/when-databases-attack-hacking-with-the-osql-utility/
 - http://travisaltman.com/pen-test-and-hack-microsoft-sql-server-mssql/
 - https://thedfirreport.com/2021/12/13/diavol-ransomware/
+- https://twitter.com/TheDFIRReport/status/1498804631090208777?t=TKMbiJINaLoJqQqXIF5mCA&s=09
 tags:
 - attack.persistence
 - attack.t1505.001

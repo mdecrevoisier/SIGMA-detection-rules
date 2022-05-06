@@ -19,7 +19,7 @@ logsource:
 detection: # full command: mstsc /shadow:1 /v:<computer_name> /control /noConsentPrompt
   selection:
     EventID: 4688
-    NewProcessName|endswith: \System32\mstsc.exe
+    NewProcessName|endswith: \mstsc.exe
     CommandLine|contains|all:
     - mstsc
     - '/shadow'

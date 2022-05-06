@@ -12,7 +12,7 @@ status: experimental
 logsource:
   product: windows
   category: process_creation
-detection: # full command: wmic nteventlog where filename="security" cleareventlog
+detection: # full command: "wmic nteventlog where filename="security" cleareventlog"
   selection:
     EventID: 4688
     NewProcessName|endswith: \Windows\System32\wbem\WMIC.exe

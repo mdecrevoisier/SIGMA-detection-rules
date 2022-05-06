@@ -7,6 +7,7 @@ references:
 - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-kerberos-constrained-delegation
 - https://www.guidepointsecurity.com/delegating-like-a-boss-abusing-kerberos-delegation-in-active-directory/
 - https://stealthbits.com/blog/what-is-kerberos-delegation-an-overview-of-kerberos-delegation/
+- https://www.thehacker.recipes/ad/movement/kerberos/delegations#talk
 tags:
 - attack.credential_access
 - attack.t1558
