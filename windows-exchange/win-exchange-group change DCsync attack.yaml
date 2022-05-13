@@ -15,7 +15,10 @@ logsource:
   service: security
 detection:
   selection:
-    EventID: 4756 # Security universal group
+    EventID:
+      - 4728 # security global group member added
+      - 4756 # universal group member added > groups below are per default with this group type
+      - 4732 # local and domain local group member added
     TargetUserName:
       - Exchange Trusted Subsystem
       - Exchange Windows Permissions

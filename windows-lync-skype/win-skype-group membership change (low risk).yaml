@@ -15,9 +15,9 @@ logsource:
 detection:
   selection:
     EventID:
-      - 4756 # Universal group
-      - 4732 # Local / domain local group
-      - 4728 # Global group  selection:
+      - 4728 # security global group member added
+      - 4756 # universal group member added
+      - 4732 # local and domain local group member added
     TargetUserName:
       - CSHelpDesk
       - CSLocationAdministrator
