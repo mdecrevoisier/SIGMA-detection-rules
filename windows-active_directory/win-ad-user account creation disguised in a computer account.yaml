@@ -14,12 +14,16 @@ logsource:
   product: windows
   service: security
 detection:
-  selection:
-    EventID:
-      - 4720 # User account creation
-      - 4781 # User account name change
+
+  selection_creation:
+    EventID: 4720 # User account creation
     TargetUserName|endswith: '$'
-  condition: selection
+
+  selection_renamed:
+    EventID: 4781 # User account name change
+    NewTargetUserName|endswith: '$' 
+
+  condition: selection_creation or selection_renamed
 falsepositives:
 - None
 level: high

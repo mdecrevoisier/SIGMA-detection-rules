@@ -15,10 +15,9 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith: '\auditpol.exe'
-    CommandLine|contains|all: # full command "Auditpol.exe /get /category:* "
-      - auditpol
+    CommandLine|contains: # full command "Auditpol.exe /get /category:* " OR "Auditpol /backup /file:C:\Audit.ini"
       - get
-      - category
+      - backup
   condition: selection
 falsepositives:
 - Administrator debugging audit policy

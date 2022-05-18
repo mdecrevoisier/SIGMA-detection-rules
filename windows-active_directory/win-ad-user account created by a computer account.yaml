@@ -16,10 +16,10 @@ detection:
   selection:
     EventID: 4720
     SubjectUserName|endswith: '$' # Computer account
-    SubjectUserSid|startswith: 'S-1-5-21-' # SYSTEM account 'S-5-18' would trigger a false positive
+    SubjectUserSid|startswith: 'S-1-5-21-' # SYSTEM account 'S-1-5-18' would trigger a false positive
   filter:
     TargetUserName|endswith: '$' # covered in another rule: User account creation disguised in a computer account
   condition: selection
 falsepositives:
-- None
+- Exchange servers
 level: high
