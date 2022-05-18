@@ -24,6 +24,7 @@ The SIGMA rules can be used in different ways together with your SIEM:
 
 Att@ck Tactic	| Att@ck  Technique	| Description | 	Event IDs   |			Threat name / Tool / CVE
 |:-------------------------|:------------------|:-------------------------|:------------------|:------------------|
+Github
 Antivirus | Antivirus | Defender: antivirus not up to date | 1151 | 
 Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple hosts | 1116 | 
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116 | 
@@ -54,15 +55,19 @@ TA0003-Persistence | T1078.002-Valid accounts-Domain accounts | Account renamed 
 TA0003-Persistence | T1098.xxx-Account manipulation | Computer account created with privileges | 4741 | CVE-2021-42278/42287 & SAM-the-admin
 TA0003-Persistence | T1098.xxx-Account manipulation | Computer account renamed without a trailing $ | 4781 | CVE-2021-42278/42287 & SAM-the-admin
 TA0003-Persistence | T1098.xxx-Account Manipulation | High risk domain group membership change | 4728/4756 | 
+TA0003-Persistence | T1098.xxx-Account manipulation | High risk Exchange group membership change | 4728,4756,4732 | 
 TA0003-Persistence | T1098.xxx-Account Manipulation | High risk local-domain local group membership change | 4732 | 
+TA0003-Persistence | T1098.xxx-Account manipulation | High risk Skype/Lync/OCS group membership change | 4728,4756,4732 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings changed for potential abuse (any protocol) | 4742 | Rubeus
 TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings changed for potential abuse (any service, Kerberos only) | 4742 | Rubeus
 TA0003-Persistence | T1098.xxx-Account manipulation | Host delegation settings changed for potential abuse (Kerberos only) | 4742 | Rubeus
 TA0003-Persistence | T1098.xxx-Account manipulation | Kerberos account password reset | 4723/4724 | Golden ticket
+TA0003-Persistence | T1098.xxx-Account manipulation | Low risk Skype/Lync/OCS group membership change | 4728,4756,4732 | 
+TA0003-Persistence | T1098.xxx-Account manipulation | Medium risk Exchange group membership change | 4728,4756,4732 | 
 TA0003-Persistence | T1098.xxx-Account Manipulation | Medium risk local-domain local group membership change | 4732 | 
-TA0003-Persistence | T1098.xxx-Account manipulation | Member added to a built-in Exchange security group | 4756 | 
+TA0003-Persistence | T1098.xxx-Account manipulation | Medium risk Skype/Lync/OCS group membership change | 4728,4756,4732 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to a group (command) | 4688 | 
-TA0003-Persistence | T1098.xxx-Account manipulation | Member added to DNSadmin group for DLL abuse | 4732 | DNS DLL abuse
+TA0003-Persistence | T1098.xxx-Account manipulation | Member added to DNSadmins group for DLL abuse | 4728,4756,4732 | DNS DLL abuse
 TA0003-Persistence | T1098.xxx-Account manipulation | New admin (or likely) created by a non administrative account | 4720 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account (Directory Services) | 5136 | DCShadow
 TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account | 4742 | 
@@ -83,7 +88,6 @@ TA0003-Persistence | T1098.xxx-Account manipulation | User password change witho
 TA0003-Persistence | T1098.xxx-Account Manipulation | User performing massive group membership changes on multiple differents groups | 4728,4756 | 
 TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin account activated (command) | 4688 | 
 TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin account activated | 4722 | 
-TA0003-Persistence | T1098-Account Manipulation | New member added to administration group related to OCS/Lync/Skype4B  | 4732/4756 | 
 TA0003-Persistence | T1098-Account Manipulation | SPN added to an account (command) | 4688/1 | 
 TA0003-Persistence | T1136.001-Create account-Local account | Hidden account creation (with fast deletion) | 4720/4726 | 
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205 | 
@@ -111,9 +115,9 @@ TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service |
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service created for RDP session hijack | 7045/4697 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (command) | 4688 | 
 TA0003-Persistence | T1543.003-Create or Modify System Process-Windows Service | Service creation (PowerShell) | 800/4103/4104 | 
-TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | System crash behavior manipulation  (registry) | 13 | WMImplant
-TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800/4103/4104 | 
-TA0003-Persistence | T1546.003 -Windows Management Instrumentation Event Subscription | WMI registration | 19,20,21 | 
+TA0003-Persistence | T1546.003-Windows Management Instrumentation Event Subscription | System crash behavior manipulation  (registry) | 13 | WMImplant
+TA0003-Persistence | T1546.003-Windows Management Instrumentation Event Subscription | WMI registration (PowerShell) | 800/4103/4104 | 
+TA0003-Persistence | T1546.003-Windows Management Instrumentation Event Subscription | WMI registration | 19,20,21 | 
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse | 4688 | 
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL registry abuse | 12/13 | 
 TA0003-Persistence | T1546-Event Triggered Execution | AdminSDHolder container permissions modified | 5136 | 
@@ -144,8 +148,8 @@ TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility
 TA0004-Privilege Escalation | T1546.008-Event Triggered Execution: Accessibility Features | Sticky key sethc command for replacement by CMD | 4688 | Sticky key
 TA0004-Privilege Escalation | T1547.010-Port Monitors | Print spooler privilege escalation via printer added | 800/4103/4104 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | External printer mapped | 4688/4648 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
+TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | New external device added  | 6416 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Printer spool driver from Mimikatz installed  | 808 / 354 / 321 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
-TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | proxi | 6416 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Spool process spawned a CMD shell | 4688/1 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0005-Defense Evasion | T1027-Obfuscated Files or Information | Payload obfuscated transfer via service name | 4688 | Tchopper
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Event log file(s) cleared | 104/1102 | 
@@ -154,14 +158,6 @@ TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clea
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected (wmi) | 4688 | 
 TA0005-Defense Evasion | T1070.006-Timestomp | System time changed (PowerShell) | 800/4103/4104 | 
 TA0005-Defense Evasion | T1070.006-Timestomp | System time changed | 4616 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | Audit policy disabled | 4719 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object deleted | 33205 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit object disabled | 33205 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit specifications deleted | 33205 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Audit specifications disabled | 33205 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Database audit specifications deleted | 33205 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | SQL Server: Database audit specifications disabled | 33205 | 
-TA0005-Defense Evasion | T1070.xxx-Audit policy disabled | Tentative of disabling or clearing audit policy by commandline | 4688 | 
 TA0005-Defense Evasion | T1078.002-Valid accounts-Domain accounts | Login from a user member of a "special group" detected (special logon) | 4964 | 
 TA0005-Defense Evasion | T1112-Modify registry | Impacket SMBexec service registration (registry) | 13 | SMBexec
 TA0005-Defense Evasion | T1197-BITS job | Command execution related to a suspicious BITS activity detected | 4688 | 
@@ -183,6 +179,14 @@ TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Def
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: security component disabled (command) | 4688/1 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: security component disabled (PowerShell) | 800/4103/4104 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: service component status disabled (Registry via Sysmon) | 13 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | Audit policy disabled | 4719 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit object deleted | 33205 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit object disabled | 33205 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit specifications deleted | 33205 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit specifications disabled | 33205 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Database audit specifications deleted | 33205 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Database audit specifications disabled | 33205 | 
+TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | Tentative of disabling or clearing audit policy by commandline | 4688 | 
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall | Firewall deactivation (cmd) | 4688 | 
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall | Firewall deactivation (firewall) | 2003/4950 | 
 TA0005-Defense Evasion | T1562.004-Disable or Modify System Firewall | Firewall deactivation (PowerShell) | 800/4103/4104 | 
@@ -207,7 +211,7 @@ TA0006-Credential Access | T1003.003-NTDS | IFM created from command line | 4688
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via command) | 4688 | 
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM configuration changed (Reg via PowerShell) | 800/4103/4104 | 
 TA0006-Credential Access | T1003.003-OS Credential-Dumping NTDS | DSRM password reset | 4794 | 
-TA0006-Credential Access | T1003.006-DCSync | Member added to a sensitive Exchange security group to perform DCsync attack | 4756 | DCSync
+TA0006-Credential Access | T1003.006-DCSync | Member added to a Exchange DCsync related group  | 4728,4756,4732 | DCSync
 TA0006-Credential Access | T1003.006-DCSync | Netsync attack |  | NetSync
 TA0006-Credential Access | T1003.006-DCSync | Replication privileges granted to perform DCSync attack | 5136 | DCSync
 TA0006-Credential Access | T1003-Credential dumping | Backdoor introduction via registry permission change through WMI (DAMP) | 4674 | DAMP
