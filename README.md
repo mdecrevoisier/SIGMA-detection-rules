@@ -24,7 +24,6 @@ The SIGMA rules can be used in different ways together with your SIEM:
 
 Att@ck Tactic	| Att@ck  Technique	| Description | 	Event IDs   |			Threat name / Tool / CVE
 |:-------------------------|:------------------|:-------------------------|:------------------|:------------------|
-Github
 Antivirus | Antivirus | Defender: antivirus not up to date | 1151 | 
 Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple hosts | 1116 | 
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116 | 
@@ -121,10 +120,10 @@ TA0003-Persistence | T1546.003-Windows Management Instrumentation Event Subscrip
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL command abuse | 4688 | 
 TA0003-Persistence | T1546.007-Netsh Helper DLL | Netsh helper DLL registry abuse | 12/13 | 
 TA0003-Persistence | T1546-Event Triggered Execution | AdminSDHolder container permissions modified | 5136 | 
-TA0003-Persistence | T1546-Event Triggered Execution | localizationDisplayId attribute abuse for backdoor introduction | 5136 | 
-TA0003-Persistence | T1547.008-Boot or Logon Autostart Execution: LSASS Driver | win-os-security package (SSP) loaded into LSA (native) | 4622 | 
+TA0003-Persistence | T1546-Event Triggered Execution | Extended rights backdoor obfuscation (via localizationDisplayId) | 5136 | 
+TA0003-Persistence | T1547.008-Boot or Logon Autostart Execution: LSASS Driver | Security package (SSP) loaded into LSA (native) | 4622 | 
 TA0003-Persistence | T1547.008-Boot or Logon Autostart Execution: LSASS Driver | win-os-security package (SSP) reference added to registry | 4688 | 
-TA0003-Persistence | T1574.002-DLL Side-Loading | DNS DLL "serverlevelplugindll" command execution (+registry set) | 1/13 | DNS DLL abuse
+TA0003-Persistence | T1574.002-DLL Side-Loading | DNS DLL "serverlevelplugindll" command execution | 1/13 | DNS DLL abuse
 TA0003-Persistence | T1574.002-DLL Side-Loading | Failed DLL loaded by DNS server | 150 | DNS DLL abuse
 TA0003-Persistence | T1574.002-DLL Side-Loading | Success DLL loaded by DNS server | 770 | DNS DLL abuse
 TA0003-Persistence | T1574.010-Hijack execution flow: service file permissions weakness | Service permissions modified (PowerShell) | 800/4103/4104 | 
