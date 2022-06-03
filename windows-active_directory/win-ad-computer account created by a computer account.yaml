@@ -15,7 +15,7 @@ detection:
   selection:
     EventID: 4741
     SubjectUserName|endswith: '$'
-    SubjectUserSid|startswith: 'S-1-5-21-' # SYSTEM account 'S-5-18' would trigger a false positive
+    SubjectUserSid|startswith: 'S-1-5-21-' # SYSTEM account 'S-1-5-18' would trigger a false positive
     TargetUserName|endswith: '$'
   condition: selection
 falsepositives:

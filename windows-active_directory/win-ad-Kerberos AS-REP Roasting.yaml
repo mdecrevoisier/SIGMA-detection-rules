@@ -3,9 +3,9 @@ description: Detects scenarios where an attacker abuse an account with UAC setti
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
 - https://github.com/HarmJ0y/ASREPRoast
+- https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/as-rep-roasting-using-rubeus-and-hashcat
 - https://m0chan.github.io/2019/07/31/How-To-Attack-Kerberos-101.html#as-rep-roasting
 - https://medium.com/@jsecurity101/ioc-differences-between-kerberoasting-and-as-rep-roasting-4ae179cdf9ec
-- https://www.harmj0y.net/blog/activedirectory/roasting-as-reps/
 - https://rioasmara.com/2020/07/04/kerberoasting-as-req-pre-auth-vs-non-pre-auth/
 - https://www.hackingarticles.in/as-rep-roasting/
 tags:
@@ -20,10 +20,10 @@ detection:
   selection:
     EventID: 4768
     Status: 0x0 # Success
-    ServiceName: krbtgt
+    ServiceSid|endswith: '-502'
     PreAuthType: 0  # Logon without Pre-Authentication.
     #TicketOptions:
-    #  - 0x40800010 # triggered by ASREPRoast
+    #  - 0x40800010 # triggered by ASREPRoast & Rubeus
     #  - 0x50800000 # user enumeration triggered by Kerbrute (proxiable ticket)
   filter:
     - IpAddress: '%domain_controllers_ips%' # reduce amount of false positives

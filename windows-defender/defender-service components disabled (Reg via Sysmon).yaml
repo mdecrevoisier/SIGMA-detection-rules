@@ -5,6 +5,7 @@ references:
 - https://www.securityartwork.es/2021/09/27/trustedinstaller-parando-windows-defender/
 - https://github.com/lab52io/StopDefender
 - https://github.com/APTortellini/DefenderSwitch
+- https://twitter.com/malwarelab_eu/status/1531536165458825219
 tags:
 - attack.defense_evasion
 - attack.t1562.001

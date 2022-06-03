@@ -1,12 +1,13 @@
-title: AdminSDholder backdoor obfuscation (via localizationDisplayId attribute abuse)
+title: Extended rights backdoor obfuscation (via localizationDisplayId attribute)
 description: Detects scenarios where an attacker modifies the "configuration" partition in order to obfuscate sneaky changes that will allow him to introduce a stealthy AdminSDholder backdoor.
-requirements: auditing SACL ("Write all properties") must be placed on the "configuration" partition using the ADSI console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
+correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4662 to identify the source of the change.
+requirements: auditing SACL ("Write all properties") must be placed on the "configuration" partition using the ADSI console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html). More precisely, you need to browse to Configuration > CN=Configuration > CN=ExtendedRights.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
 - https://adds-security.blogspot.com/2017/08/adminsdholder-backdoor-via-substitution.html
 tags:
-- attack.persistence
-- attack.t1546
+- attack.defense_evasion
+- attack.t1564
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -17,7 +18,7 @@ detection:
     EventID: 5136
     OperationType: '%%14674' # Value added
     AttributeLDAPDisplayName: localizationDisplayId
-    ObjectDN|startswith: CN=User-Force-Change-Password
+    ObjectDN|contains: "CN=Extended-Rights,CN=Configuration"
   filter:
     SubjectUserName|endswith: '$'
   condition: selection and not filter

@@ -7,6 +7,7 @@ references:
 - https://stealthbits.com/blog/20170619persistence-using-adminsdholder-and-sdprop/
 - https://attack.stealthbits.com/adminsdholder-modification-ad-persistence
 - https://adds-security.blogspot.com/2017/08/adminsdholder-backdoor-via-substitution.html
+- https://www.netwrix.com/adminsdholder_modification_ad_persistence.html
 tags:
 - attack.persistence
 - attack.t1546
