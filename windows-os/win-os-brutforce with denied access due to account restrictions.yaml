@@ -6,8 +6,6 @@ references:
 tags:
 - attack.privilege_escalation
 - attack.t1078
-- attack.credential_access
-- attack.t1110
 author: mdecrevoisier
 status: experimental
 logsource:

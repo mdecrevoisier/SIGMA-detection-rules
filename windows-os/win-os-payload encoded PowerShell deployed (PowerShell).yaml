@@ -17,11 +17,11 @@ detection:
   selection_powershell_native:
     EventID: 800
     EventData|contains|all:
-      - '[System.Convert]::'
+      #- '[System.Convert]::'
       - 'FromBase64String'
-      - 'System.IO.StreamReader'
-      - 'System.IO.Compression.'
-      - 'System.Diagnostics.Process'
+      - 'IO.StreamReader'
+      - 'IO.Compression.'
+      #- 'System.Diagnostics.Process'
       #- hidden
       #- '-nop'
       #- '-noni'

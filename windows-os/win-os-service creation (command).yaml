@@ -15,7 +15,7 @@ detection:
   selection:
     EventID: 4688
     NewProcessName|endswith: \sc.exe
-    CommandLine|contains|all: #  CommandLine sc \\fs02\ create hacker-testl binPath="virus.exe"
+    CommandLine|contains|all: #  CommandLine "sc \\fs02\ create hacker-testl binPath='virus.exe'
       - sc
       - create
   condition: selection

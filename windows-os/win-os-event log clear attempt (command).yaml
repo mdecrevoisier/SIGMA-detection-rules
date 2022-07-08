@@ -14,7 +14,7 @@ logsource:
 detection: # Full command: wevtutil el | Foreach-Object {Write-Host "Clearing $_"; wevtutil cl "$_"}
   selection:
     EventID: 4688
-    NewProcessName|endswith: \Windows\System32\wevtutil.exe
+    NewProcessName|endswith: \wevtutil.exe
     CommandLine|contains:
       - wevtutil
     CommandLine|contains:
