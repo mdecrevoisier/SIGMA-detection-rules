@@ -1,0 +1,30 @@
+title: DoT (DNS over TLS) activation (command)
+description: Detects scenarios where an attacker attempts to enable DNS over TLS in order to evade detection for command and control purposes.
+references:
+- https://techcommunity.microsoft.com/t5/networking-blog/dns-over-tls-available-to-windows-insiders/ba-p/3565859
+- http://woshub.com/enable-dns-over-https-windows/
+tags:
+- attack.defense_evasion
+- attack.command_and_control
+- attack.t1071.004 
+author: mdecrevoisier
+status: stable
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_baseline:
+    EventID: 4688
+    NewProcessName|endswith: '\netsh.exe' # Full path "C:\Windows\system32\netsh.exe"
+    CommandLine|contains: add
+
+  selection_enable: # full command: "netsh dns add global dot=yes"
+    CommandLine|contains: 'dot=yes'
+
+  selection_add_server: # full command: "netsh dns add encryption server=<resolver_ip> dothost=: autoupgrade=yes"
+    CommandLine|contains: 'dothost='
+
+  condition: selection_baseline and (selection_enable OR selection_add_server)
+falsepositives:
+- Legitimate DoT activation by administrators 
+level: medium

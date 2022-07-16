@@ -1,0 +1,40 @@
+title: DoT (DNS over TLS) activation (PowerShell)
+description: Detects scenarios where an attacker attempts to enable DNS over TLS in order to evade detection for command and control purposes.
+references:
+- https://techcommunity.microsoft.com/t5/networking-blog/dns-over-tls-available-to-windows-insiders/ba-p/3565859
+- http://woshub.com/enable-dns-over-https-windows/
+tags:
+- attack.defense_evasion
+- attack.command_and_control
+- attack.t1071.004 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: powershell
+detection: # "HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters"
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - '-ItemProperty' # Can be New-* or Set-*
+      - '\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters'
+      - 'EnableAutoDoh'
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - '-ItemProperty' # Can be New-* or Set-*
+      - '\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters'
+      - 'EnableAutoDoh'
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - '-ItemProperty' # Can be New-* or Set-*
+      - '\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters'
+      - 'EnableAutoDoh'
+
+  condition: 1 of selection*
+falsepositives:
+- Legitimate DoT activation by administrators 
+level: medium

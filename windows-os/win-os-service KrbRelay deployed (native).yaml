@@ -1,0 +1,22 @@
+title: KrbRelayUp service installation (native)
+description: Detects scenarios where an attacker attempts to escalate privileges while abusing KrbRelayUp attack.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution
+- https://www.hub.trimarcsecurity.com/post/webcast-top-10-ways-to-improve-active-directory-security-quickly
+- https://github.com/Dec0ne/KrbRelayUp/blob/main/README.md
+tags:
+- attack.execution
+- attack.t1569
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    EventID: 7045 # service installation
+    ServiceName: 'KrbSCM'
+  condition: selection
+falsepositives:
+- None
+level: high
