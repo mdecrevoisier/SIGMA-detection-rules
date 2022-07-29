@@ -4,6 +4,8 @@ references:
 - https://securelist.com/owowa-credential-stealer-and-remote-access/105219/
 - https://www.oreilly.com/library/view/internet-information-services/9780735624412/ch07s07.html
 - https://www.microsoft.com/security/blog/2021/11/08/threat-actor-dev-0322-exploiting-zoho-manageengine-adselfservice-plus/
+- https://www.welivesecurity.com/2021/08/06/anatomy-native-iis-malware/
+- https://i.blackhat.com/USA21/Wednesday-Handouts/us-21-Anatomy-Of-Native-Iis-Malware-wp.pdf
 tags:
 - attack.persistence
 - attack.t1505.004

@@ -42,6 +42,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
       - DisableBlockAtFirstSeen
       - DisableCpuThrottleOnIdleScans
       - DisableDatagramProcessing
+      - SignatureDisableUpdateOnStartupWithoutEngine
   condition: selection
 falsepositives:
 - None

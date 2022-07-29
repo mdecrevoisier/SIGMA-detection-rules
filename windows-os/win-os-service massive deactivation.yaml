@@ -18,7 +18,7 @@ detection:
       - '\net1.exe'
       - '\sc.exe'
     CommandLine|contains: stop
-  condition: selection | count(EventRecordID) by Computer > 10
+  condition: selection | count(EventRecordID) by Computer > 1
 falsepositives:
-- None
+- Administrator activity
 level: high

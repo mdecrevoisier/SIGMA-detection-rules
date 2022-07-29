@@ -18,15 +18,15 @@ detection:
       - 4756 # universal group member added
       - 4732 # local and domain local group member added
     TargetUserName:
-      #- Exchange Trusted Subsystem > See related rule for DC sync group change
-      #- Exchange Windows Permissions > See related rule for DC sync group change
-      - Exchange Organization Administrators
-      - Exchange Public Folder Administrators
-      - Exchange Recipient Administrators
-      - Security Administrator
-      - Exchange Domain Servers
-      - Exchange Enterprise Servers
-      - Exchange Servers
+      #- 'Exchange Trusted Subsystem' > See related rule for DC sync group change
+      #- 'Exchange Windows Permissions' > See related rule for DC sync group change
+      - 'Exchange Organization Administrators'
+      - 'Exchange Public Folder Administrators'
+      - 'Exchange Recipient Administrators'
+      - 'Security Administrator'
+      - 'Exchange Domain Servers'
+      - 'Exchange Enterprise Servers'
+      - 'Exchange Servers'
   condition: selection
 falsepositives:
 - Exchange administrator updating server configuration

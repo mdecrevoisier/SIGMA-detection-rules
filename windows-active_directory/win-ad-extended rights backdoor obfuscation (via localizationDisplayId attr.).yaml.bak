@@ -1,5 +1,6 @@
 title: Extended rights backdoor obfuscation (via localizationDisplayId attribute)
 description: Detects scenarios where an attacker modifies the "configuration" partition in order to obfuscate sneaky changes that will allow him to introduce a stealthy AdminSDholder backdoor.
+correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4662 to identify the source of the change.
 requirements: auditing SACL ("Write all properties") must be placed on the "configuration" partition using the ADSI console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html). More precisely, you need to browse to Configuration > CN=Configuration > CN=ExtendedRights.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution

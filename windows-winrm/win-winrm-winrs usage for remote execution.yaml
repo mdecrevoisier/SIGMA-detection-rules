@@ -15,8 +15,8 @@ detection:
     EventID: 4688
     NewProcessName|endswith: \winrs.exe
     CommandLine|contains:
-      - '-r*'
-      - '/r*'
+      - '-r:'
+      - '/r:'
   condition: selection
 falsepositives:
 - Pentest, Administrator activity

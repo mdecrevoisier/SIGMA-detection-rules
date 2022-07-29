@@ -24,7 +24,7 @@ detection:
       - '-551' # Backup Operators
       - '-578' # Hyper-V Administrators
   filter:
-    SubjectUserName|endswith: '$'
+    SubjectUserName|endswith: '$' # LAPS or others IAM solutions may trigger this as a false positive
   condition: selection and not filter
 falsepositives:
 - Administrator activity

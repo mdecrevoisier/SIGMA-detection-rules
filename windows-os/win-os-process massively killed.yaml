@@ -1,0 +1,23 @@
+title: Massive processes killed before ransomware execution
+description: Detects scenarios where an attacker attempts to kill multiples processes on a host. Attacker may target more specifically services related to databases or system backup (Veeam, Symantec, Acronis ...).
+references:
+- https://www.microsoft.com/security/blog/2020/03/05/human-operated-ransomware-attacks-a-preventable-disaster/
+tags:
+- attack.impact
+- attack.t1489
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection: # net  stop "taskkill /f /im sql"
+    EventID: 4688
+    NewProcessName|endswith: '\taskkill.exe'
+    CommandLine|contains:
+      - '/f'
+      - '-f'
+  condition: selection | count(EventRecordID) by Computer > 1
+falsepositives:
+- Administrator debugging
+level: high
