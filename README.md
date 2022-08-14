@@ -293,6 +293,8 @@ TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON
 TA0009-Collection | T1125-Video capture | RDP shadow session started (command) | 4688 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (native) | 20503/04/08 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (registry) | 13 | 
+TA0011-Command and control | 1071.004- Application Layer Protocol: DNS  | DoT activation (command) | 4688 | 
+TA0011-Command and control | 1071.004- Application Layer Protocol: DNS  | DoT activation (PowerShell) | 800/4103/4104 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling configuration enabled for port forwarding | 4688 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling detected | 1149 | 
 TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker feature configuration (Reg via command) | 4688 | 

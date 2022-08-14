@@ -10,6 +10,7 @@ references:
 - https://www.darkoperator.com/blog/2009/4/11/abusing-the-scheduler-with-meterpreter.html
 - https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
 - https://strontic.github.io/xcyclopedia/library/schtasks.exe-5BD86A7193D38880F339D4AFB1F9B63A.html
+- https://nasbench.medium.com/behind-the-detection-schtasks-eb67a33a8710
 tags:
 - attack.execution
 - attack.t1053.005
