@@ -5,6 +5,7 @@ references:
 - https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
 - https://www.mandiant.com/resources/apt29-domain-frontin
 - https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
+- https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html?m=1
 tags:
 - attack.privilege_escalation
 - attack.t1546.008

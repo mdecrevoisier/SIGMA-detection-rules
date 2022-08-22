@@ -1,10 +1,10 @@
-title: Windows Subsystem for Linux installation (WSL)
+title: Windows Subsystem for Linux (WSL) installation (command)
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
- - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts
- - https://docs.microsoft.com/en-us/windows/wsl/install-win10
- - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
- - https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts
+- https://docs.microsoft.com/en-us/windows/wsl/install-win10
+- https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
+- https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
 tags:
 - attack.defense_evasion
 - attack.t1564.006
@@ -17,9 +17,9 @@ detection:
   selection_event:
       EventID: 4688
 
-  selection_wsl_activation: # dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+  selection_wsl_activation_deprecated: # dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    NewProcessName|endswith: '\dism.exe'
     CommandLine|contains|all:
-      - dism.exe
       - enable-feature
       - Microsoft-Windows-Subsystem-Linux
 
@@ -27,7 +27,7 @@ detection:
     NewProcessName|endswith: '\wsl.exe'
     CommandLine|contains: '--set-default-version'
 
-  condition: selection_event and (selection_wsl_activation or selection_wsl_configuration)
+  condition: selection_event and 1 of selection_wsl_*
 falsepositives:
 - Unknown
 level: medium

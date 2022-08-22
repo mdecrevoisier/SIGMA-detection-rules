@@ -7,6 +7,7 @@ references:
 - https://www.welivesecurity.com/2021/08/06/anatomy-native-iis-malware/
 - https://i.blackhat.com/USA21/Wednesday-Handouts/us-21-Anatomy-Of-Native-Iis-Malware-wp.pdf
 - https://securelist.com/the-sessionmanager-iis-backdoor/106868/
+- https://www.mdsec.co.uk/2020/02/iis-raid-backdooring-iis-using-native-modules/
 tags:
 - attack.persistence
 - attack.t1505.004
@@ -19,13 +20,10 @@ detection: # C:\Windows\System32\inetsrv\appcmd.exe install module /name:MyNativ
   selection:
     EventID: 4688
     NewProcessName|endswith: '\appcmd.exe'
-    CommandLine|contains|all:
-      - appcmd
-      - module
     CommandLine|contains:
-      - add
       - install
-      #- ExtenderControl # related to the malicious module
+      - add
+    CommandLine|contains: module
   condition: selection
 falsepositives:
 - New modules deployed on IIS Web servers, but also Exchange and ADCS servers
