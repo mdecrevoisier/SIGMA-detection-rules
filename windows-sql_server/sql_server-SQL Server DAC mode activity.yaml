@@ -1,0 +1,26 @@
+title: SQL Server Dedicated Admin Connection (DAC) suspicious activity
+description: Detects scenarios where an attacker enabled the DAC mode in order to bypass access controls, logon triggers, perform brute force attacks or run unauthorized queries.
+references:
+- https://josephpierini.blogspot.com/2012/07/microsoft-sql-dedicated-admin.html
+- https://www.mssqltips.com/sqlservertip/1801/enable-sql-server-dedicated-administrator-connection/
+- https://docs.microsoft.com/en-us/sql/relational-databases/errors-events/database-engine-events-and-errors?view=sql-server-ver16
+tags:
+- attack.persistence
+- attack.t1505.001
+author: mdecrevoisier
+status: stable
+logsource:
+  product: windows
+  category: application
+detection:
+  selection:
+    EventID:
+      - 17199 # DAC is disabled
+      - 17200 # DAC settings changed
+      - 17201 # DAC mode enabled to listen on
+      - 17202 # DAC connection established
+      - 17810 # DAC max connections reached
+  condition: selection
+falsepositives:
+- Admin attempting to debug or recover a SQL Server
+level: high

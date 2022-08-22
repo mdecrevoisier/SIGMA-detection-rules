@@ -13,14 +13,17 @@ logsource:
   product: windows
   category: application
 detection:
-  selection:
+  selection_basic:
+    EventID: 18470
+
+  selection_advanced:
     EventID: 33205
     action_id:
       - LGFL # FAILED_LOGIN_GROUP
       - LGIF # LOGIN FAILED
     class_type: LX # LOGIN
     additional_information|contains: "<state>7</state>" # User account is disabled
-  condition: selection
+  condition: selection_basic or selection_advanced
 falsepositives:
 - Miss configured accounts or scripts
 level: medium
