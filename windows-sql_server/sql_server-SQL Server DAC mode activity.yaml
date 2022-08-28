@@ -11,7 +11,7 @@ author: mdecrevoisier
 status: stable
 logsource:
   product: windows
-  category: application
+  service: application
 detection:
   selection:
     EventID:

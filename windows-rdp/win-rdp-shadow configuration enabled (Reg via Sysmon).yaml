@@ -22,7 +22,7 @@ detection: # reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\
     EventID:
       - 12 # RegistryEvent (Object create and delete)
       - 13 # RegistryEvent (Value Set)
-    TargetObject|endswith: \SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+    TargetObject|endswith: '\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
   condition: selection
 falsepositives:
 - administrator changing RDP configuration

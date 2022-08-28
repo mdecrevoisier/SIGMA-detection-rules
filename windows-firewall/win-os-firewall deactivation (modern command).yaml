@@ -27,8 +27,8 @@ detection:
   selection_obfuscated:
     Commandline|contains|all: # full command 'netsh a s <profile> state off'
       - netsh
-      - ' a ' # advfirewall
-      - ' s ' # set
+      - ' a*' # advfirewall
+      - ' s*' # set
       - state
       - 'off'
   condition: selection_event and (selection_command or selection_obfuscated)

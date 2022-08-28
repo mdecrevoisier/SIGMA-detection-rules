@@ -6,6 +6,7 @@ references:
 - https://attack.mitre.org/software/S0160/
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
 - https://www.sentinelone.com/blog/malware-living-off-land-with-certutil/
+- https://thedfirreport.com/2022/07/11/select-xmrig-from-sqlserver/
 tags:
 - attack.defense_evasion
 - attack.t1105

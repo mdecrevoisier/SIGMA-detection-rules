@@ -1,0 +1,22 @@
+title: Webserver IIS configuration edited (SYSMON)
+description: Detects scenarios where an attacker attempts to edit IIS configuration file in order to load a module.
+requirements: requires to update SYSMON configuration to include the IIS application path.
+references:
+- https://www.microsoft.com/security/blog/2022/07/26/malicious-iis-extensions-quietly-open-persistent-backdoors-into-servers/
+- https://docs.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/introduction-to-applicationhostconfig
+tags:
+- attack.persistence
+- attack.t1505.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: file_event
+detection:
+  selection:
+    EventID: 11
+    TargetFilename|endswith: '\inetsrv\config\applicationHost.config'
+  condition: selection
+falsepositives:
+- rare administrator change
+level: high

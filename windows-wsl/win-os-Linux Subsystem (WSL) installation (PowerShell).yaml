@@ -4,6 +4,7 @@ references:
 - https://www.hackers-arise.com/post/linux-basics-for-hackers-part-13-the-windows-subsystem-for-linux-wsl
 - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
 - https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
+- https://docs.microsoft.com/en-us/windows/wsl/install-on-server
 tags:
 - attack.defense_evasion
 - attack.t1564.006
@@ -33,5 +34,5 @@ detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Mi
 
   condition: selection_event and 1 of selection_wsl_*
 falsepositives:
-- Unknown
+- Administrator activity
 level: medium

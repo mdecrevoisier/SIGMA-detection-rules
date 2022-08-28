@@ -7,6 +7,7 @@ references:
 - https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
 - https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://research.nccgroup.com/2022/08/19/back-in-black-unlocking-a-lockbit-3-0-ransomware-attack/
 tags:
 - attack.defense_evasion
 - attack.t1562.001

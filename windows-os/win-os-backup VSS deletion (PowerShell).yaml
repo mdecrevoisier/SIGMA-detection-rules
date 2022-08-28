@@ -20,46 +20,46 @@ detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.
     EventID: 800
     EventData|contains:
       - Get-WmiObject
-      - Gwmi
+      - Gwmi # Shot version of previous object
       - Get-CimInstance
-      - Gcim
+      - Gcim # Shot version of previous object
     EventData|contains: Win32_Shadowcopy
     EventData|contains:
       - Delete
       - Remove-WmiObject
-      - rwmi
+      - Rwmi # Shot version of previous object
       - Remove-CimInstance
-      - rcim
+      - Rcim # Shot version of previous object
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains:
       - Get-WmiObject
-      - Gwmi
+      - Gwmi # Shot version of previous object
       - Get-CimInstance
-      - Gcim
+      - Gcim # Shot version of previous object
     Payload|contains: Win32_Shadowcopy
     Payload|contains:
       - Delete
       - Remove-WmiObject
-      - rwmi
+      - Rwmi # Shot version of previous object
       - Remove-CimInstance
-      - rcim
+      - Rcim # Shot version of previous object
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains:
       - Get-WmiObject
-      - Gwmi
+      - Gwmi # Shot version of previous object
       - Get-CimInstance
-      - Gcim
+      - Gcim # Shot version of previous object
     ScriptBlockText|contains: Win32_Shadowcopy
     ScriptBlockText|contains:
       - Delete
       - Remove-WmiObject
-      - rwmi
+      - Rwmi # Shot version of previous object
       - Remove-CimInstance
-      - rcim
+      - Rcim # Shot version of previous object
 
   condition: 1 of selection*
 falsepositives:

@@ -6,6 +6,7 @@ references:
 - https://adsecurity.org/?p=2398
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
 - https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc753343(v=ws.11)
+- https://www.microsoft.com/security/blog/2021/11/08/threat-actor-dev-0322-exploiting-zoho-manageengine-adselfservice-plus/
 - https://twitter.com/JohnLaTwC/status/1416382178380767233?s=09
 - https://thedfirreport.com/2021/10/04/bazarloader-and-the-conti-leaks/
 - https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html?m=1
