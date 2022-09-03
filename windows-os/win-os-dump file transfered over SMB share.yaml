@@ -17,7 +17,7 @@ detection:
       - '.dmp'
       - '.dump'
   filter:
-  	RelativeTargetName|startswith: Windows # already covered in LSASSY related rule
+  	RelativeTargetName|startswith: 'Windows' # already covered in LSASSY related rule
   condition: selection and not filter
 falsepositives:
 - none
