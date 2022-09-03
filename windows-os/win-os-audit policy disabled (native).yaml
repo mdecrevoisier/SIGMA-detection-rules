@@ -19,7 +19,7 @@ detection:
       - '%%8450' # Failure removed
   filter:
     SubjectUserName|endswith: $ # Excludes system or GPO changes
-  condition: selection and not filter
+  condition: selection_baseline and not filter
 falsepositives:
 - Administrator debugging audit policy
 level: high
