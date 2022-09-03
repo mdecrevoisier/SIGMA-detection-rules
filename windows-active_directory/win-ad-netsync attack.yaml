@@ -1,6 +1,5 @@
 title: NetSYnc attack
-description: Detects scenarios where an attacker 
-NetSync allows an attacker to take the NTLM hash of a Domain Controller (DC) machine account (‘usually’ identified by ending in ‘$’) and using it to obtain the NTLM machine account hash of another machine account through impersonation (similar to, but different from, DCSync). Where DCSync can obtain user account passwords, NetSync is limited to machine accounts. The other main differentiator between DCSync and NetSync is that DCSync will make use of Microsoft’s Directory Replication Service (DRS) Remote Protocol, whereas NetSync uses the older Netlogon Remote Protocol (MS-NRPC)
+description: NetSync allows an attacker to take the NTLM hash of a Domain Controller (DC) machine account ("usually" identified by ending in "$") and using it to obtain the NTLM machine account hash of another machine account through impersonation (similar to, but different from, DCSync). Where DCSync can obtain user account passwords, NetSync is limited to machine accounts. The other main differentiator between DCSync and NetSync is that DCSync will make use of Microsoft's Directory Replication Service (DRS) Remote Protocol, whereas NetSync uses the older Netlogon Remote Protocol (MS-NRPC)
 correlation: ID 5145 SubjectLogonId 0x1f4a6c852 AND ID 4624 TargetLogonId 0x1f4a6c852
 references:
 - https://github.com/Neo23x0/sigma/blob/c56cd2dfff6343f3694ef4fd606a305415599737/rules-unsupported/win_dumping_ntdsdit_via_netsync.yml
