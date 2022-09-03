@@ -3,7 +3,7 @@ description: Detects scenarios where an attacker abuse the SeMachineAccountPrivi
 requirements: despite of this event marked as a "sensitive privilege", I was only able to trigger it by having the audit for "non sensitive privileges" activated.
 correlation: correlate with ID 4741 (computer created) using field SubjectLogonId. See rule "Computer account created with privileges" for advance correlation.
 references:
-https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1068-Exploitation%20for%20Privilege%20Escalation
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1068-Exploitation%20for%20Privilege%20Escalation
 - https://exploit.ph/cve-2021-42287-cve-2021-42278-weaponisation.html
 - https://www.thehacker.recipes/ad/movement/kerberos/samaccountname-spoofing
 - https://support.microsoft.com/en-us/topic/kb5008380-authentication-updates-cve-2021-42287-9dafac11-e0d0-4cb8-959a-143bd0201041
