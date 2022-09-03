@@ -30,7 +30,7 @@ detection:
       #- f0f8ffab-1191-11d0-a060-00aa006c33ed # NTDS-DSA
   filter:
     SubjectUserName|endswith: '$'
-  condition: 1 of selection and not filter
+  condition: selection and not filter
 falsepositives:
 - new domain controller registration
 level: high
