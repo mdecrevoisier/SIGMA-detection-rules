@@ -17,8 +17,8 @@ detection:
       - 2004  # new rule created
       - 2005  # existing rule modified
     Action: 3 # allow
-    LocalPorts: *
-    RemotePorts: *
+    LocalPorts: '*'
+    RemotePorts: '*'
   condition: selection
 falsepositives:
 - Firewall rule debugging
