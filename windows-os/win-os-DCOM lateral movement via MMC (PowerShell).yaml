@@ -14,8 +14,7 @@ status: experimental
 logsource:
   product: windows
   service: powershell
-detection:
-  selection: # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
+detection:  # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
 
   selection_powershell_native:
     EventID: 800
