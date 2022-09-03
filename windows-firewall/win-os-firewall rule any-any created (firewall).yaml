@@ -12,14 +12,21 @@ logsource:
   product: windows
   service: firewall
 detection:
-  selection:
+  selection_basic:
     EventID:
       - 2004  # new rule created
       - 2005  # existing rule modified
     Action: 3 # allow
+
+  selection_any_port:
     LocalPorts: '*'
     RemotePorts: '*'
-  condition: selection
+
+  selection_any_address:
+    LocalAddresses: '*' 
+    RemoteAddresses: '*'
+
+  condition: selection_basic and (selection_any_port or selection_any_address)
 falsepositives:
 - Firewall rule debugging
 level: high
