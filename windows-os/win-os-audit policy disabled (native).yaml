@@ -12,14 +12,14 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_baseline:
+  selection:
     EventID: 4719 # System audit policy was changed.
     AuditPolicyChanges|contains:
       - '%%8448' # Success removed
       - '%%8450' # Failure removed
   filter:
     SubjectUserName|endswith: $ # Excludes system or GPO changes
-  condition: selection_baseline and not filter
+  condition: selection and not filter
 falsepositives:
 - Administrator debugging audit policy
 level: high
