@@ -12,7 +12,7 @@ logsource:
   product: windows
   service: security
 detection:
-  selection_baseline:
+  selection:
     EventID: 4719 # System audit policy was changed.
     AuditPolicyChanges|contains:
       - '%%8448' # Success removed
