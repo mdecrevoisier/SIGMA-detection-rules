@@ -14,8 +14,7 @@ status: experimental
 logsource:
   product: windows
   service: powershell
-detection:
-  selection: # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
+detection: # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
 
   selection_powershell_native:
     EventID: 800
@@ -41,7 +40,7 @@ detection:
       - 'GetTypeFromProgID'
       - 'MMC20.Application'
 
-  condition: 1 of selection*
+  condition: 1 of them
 falsepositives:
 - none
 level: high
