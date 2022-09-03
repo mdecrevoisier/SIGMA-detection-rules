@@ -1,4 +1,4 @@
-title: Massive processes killed before ransomware execution
+title: Massive processes termination burst before breach
 description: Detects scenarios where an attacker attempts to kill multiples processes on a host. Attacker may target more specifically services related to databases or system backup (Veeam, Symantec, Acronis ...).
 references:
 - https://www.microsoft.com/security/blog/2020/03/05/human-operated-ransomware-attacks-a-preventable-disaster/
