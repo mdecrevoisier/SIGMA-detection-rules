@@ -1,0 +1,33 @@
+title: Office 365 email forwarding rule to external domain
+description: Detects scenarios where an attacker creates a forwarding rules to a non company email in order to collect information.
+references:
+- https://redcanary.com/blog/email-forwarding-rules/
+- https://raw.githubusercontent.com/PwC-IR/Business-Email-Compromise-Guide/main/PwC-Business_Email_Compromise-Guide.pdf
+- https://docs.microsoft.com/en-us/microsoft-365/security/defender/alert-grading-playbook-email-forwarding?view=o365-worldwide
+- https://logrhythm.com/blog/detecting-and-preventing-auto-forwarding-and-phishing-attacks-in-office-365/
+tags:
+- attack.collection
+- attack.t1114.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: azure
+  service: office365
+detection:
+  selection:
+    Operation: 
+      - 'New-InboxRule'
+      - 'Set-InboxRule'
+    Parameters.Name: 
+      - 'ForwardAsAttachmentTo'
+      - 'ForwardTo'
+      - 'RedirectTo'
+  filter_internal_emails:
+      - ForwardAsAttachmentTo|contains: '@company-domain.com'
+      - ForwardTo|contains: '@company-domain.com'
+      - RedirectTo|contains: '@company-domain.com'
+  condition: selection and not filter_internal_emails
+falsepositives:
+- users forwarding emails to personal mailbox or third party providers
+level: high
+
