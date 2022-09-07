@@ -34,7 +34,7 @@ detection: # command: powershell  -c "Import-Module ServerManager; Add-WindowsFe
       - Install-WindowsFeature
     ScriptBlockText|contains: BitLocker
 
-  condition: 1 of them
+  condition: 1 of selection*
 falsepositives:
 - Initial BitLocker installation
 level: high
