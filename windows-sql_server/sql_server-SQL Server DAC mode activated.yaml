@@ -11,7 +11,7 @@ tags:
 author: mdecrevoisier
 status: experimental
 logsource:
-  product: windows
+  product: mssql
   service: application
 detection:
   selection:

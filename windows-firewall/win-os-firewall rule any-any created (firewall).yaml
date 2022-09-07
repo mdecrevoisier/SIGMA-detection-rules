@@ -10,7 +10,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: firewall
+  service: firewall-as
 detection:
   selection_basic:
     EventID:

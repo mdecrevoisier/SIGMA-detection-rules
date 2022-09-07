@@ -9,11 +9,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: windowsdefender
+  service: windefend
 detection:
   selection:
     EventID: 1116 # Threat detected, no action taken
-    SourceName: Microsoft-Windows-Windows Defender
   condition: selection | count(ThreatName) by Computer > 5
   timeframe: 30m
 falsepositives:

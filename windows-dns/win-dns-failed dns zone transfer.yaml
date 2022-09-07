@@ -15,7 +15,6 @@ logsource:
 detection:
   selection:
     EventID: 6004
-    Channel: 'DNS Server'
     EventData Name: DNS_EVENT_BAD_ZONE_TRANSFER_REQUEST
   filter:
     param1: '%dns_servers%' # IP list of internal DNS servers

@@ -12,10 +12,9 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: firewall
+  service: firewall-as
 detection:
   selection_event:
-    Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
     EventID: 2004
 
   selection_process: # New firewall rule creation (process focus)

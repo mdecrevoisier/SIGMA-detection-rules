@@ -10,7 +10,7 @@ tags:
 author: mdecrevoisier
 status: experimental
 logsource:
-  product: windows
+  product: mssql
   category: application
 detection:
   selection: # GRANT [Privilege] TO [DEMO\svc-netwrix-db]

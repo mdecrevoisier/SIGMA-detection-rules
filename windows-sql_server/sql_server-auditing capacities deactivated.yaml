@@ -12,7 +12,7 @@ tags:
 author: mdecrevoisier
 status: experimental
 logsource:
-  product: windows
+  product: mssql
   category: application
 detection:
   sql_server_event:

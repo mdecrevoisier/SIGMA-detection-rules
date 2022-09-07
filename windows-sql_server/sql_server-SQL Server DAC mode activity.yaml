@@ -10,7 +10,7 @@ tags:
 author: mdecrevoisier
 status: stable
 logsource:
-  product: windows
+  product: mssql
   service: application
 detection:
   selection:

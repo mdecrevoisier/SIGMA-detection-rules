@@ -20,8 +20,8 @@ detection:
       - 4756 # universal group member added > groups below are per default with this group type
       - 4732 # local and domain local group member added
     TargetUserName:
-      - Exchange Trusted Subsystem
-      - Exchange Windows Permissions
+      - 'Exchange Trusted Subsystem'
+      - 'Exchange Windows Permissions'
   condition: selection
 falsepositives:
 - Exchange administrator updating server configuration

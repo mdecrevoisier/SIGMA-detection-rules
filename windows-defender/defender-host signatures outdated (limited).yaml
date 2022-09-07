@@ -9,11 +9,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: windowsdefender
+  service: windefend
 detection:
   selection_event:
     EventID: 1151
-    SourceName: Microsoft-Windows-Windows Defender
   selection_age : # Signature age in days
     - Last AS signature age
     - Last AV signature age

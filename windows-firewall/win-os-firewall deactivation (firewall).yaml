@@ -10,7 +10,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: firewall
+  service: firewall-as
 detection:
   selection_advanced: # Avanced ID provides the SID of the Subject User
     Channel: 'Microsoft-Windows-Windows Firewall With Advanced Security/Firewall'
