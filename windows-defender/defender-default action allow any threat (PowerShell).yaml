@@ -8,6 +8,7 @@ references:
 - https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
 - https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
 - attack.defense_evasion
 - attack.t1562.001
@@ -16,19 +17,22 @@ status: experimental
 logsource:
   product: windows
   service: powershell
-detection:
+detection: # Set-MpPreference -UnknownThreatDefaultAction Allow -LowThreatDefaultAction Allow -HighThreatDefaultAction Allow  -ModerateThreatDefaultAction Allow   -SevereThreatDefaultAction Allow
   selection1_powershell_native:
     EventID: 800
     EventData|contains|all:
       - Set-MpPreference
       - Add-MpPreference
-    EventData|contains: '6' # MP_THREAT_ACTION_ALLOW
+    EventData|contains:
+      - '6' # MP_THREAT_ACTION_ALLOW
+      - 'Allow'
     EventData|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
-      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference"
+      - UnknownThreatDefaultAction 
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
 
   selection2_powershell_modern:
     EventID: 4103
@@ -37,12 +41,14 @@ detection:
       - Add-MpPreference
     Payload|contains:
       - '6' # MP_THREAT_ACTION_ALLOW
+      - 'Allow'
     Payload|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
-      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference"
+      - UnknownThreatDefaultAction 
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
 
   selection3_powershell_block:
     EventID: 4104
@@ -51,12 +57,14 @@ detection:
       - Add-MpPreference
     ScriptBlockText|contains:
       - '6' # MP_THREAT_ACTION_ALLOW
+      - 'Allow'
     ScriptBlockText|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
-      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference"
+      - UnknownThreatDefaultAction 
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
 
   condition: 1 of selection*
 falsepositives:

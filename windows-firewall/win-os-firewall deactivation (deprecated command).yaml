@@ -27,10 +27,10 @@ detection:
   selection_obfuscated: # full command 'netsh f s o d'
     Commandline|contains|all:
       - netsh
-      - ' f ' # firewall
-      - ' s ' # set
-      - ' o ' # opmode
-      - ' d'  # disable
+      - ' f*' # firewall
+      - ' s*' # set
+      - ' o*' # opmode
+      - ' d*'  # disable
   condition: selection_event and (selection_command or selection_obfuscated)
 falsepositives:
 - Administrator activity

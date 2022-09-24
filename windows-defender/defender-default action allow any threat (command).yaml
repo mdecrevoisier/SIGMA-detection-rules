@@ -7,6 +7,7 @@ references:
 - https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
 - https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
 - attack.defense_evasion
 - attack.t1562.001
@@ -18,14 +19,19 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    CommandLine|contains|all:
+    CommandLine|contains:
+      - Add-MpPreference
       - Set-MpPreference
+    CommandLine|contains:
       - '6' # MP_THREAT_ACTION_ALLOW
+      - 'Allow'
     CommandLine|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
       - LowThreatDefaultAction
       - SevereThreatDefaultAction
+      - UnknownThreatDefaultAction
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
   condition: selection
 falsepositives:
 - None

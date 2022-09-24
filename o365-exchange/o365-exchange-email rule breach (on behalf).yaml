@@ -1,4 +1,4 @@
-title: Office 365 disapearence email rule
+title: Office 365 email rule breach (on behalf)
 description: Detects scenarios where an attacker attempt to hide emails in order to perform phishing attacks by replacing, for example, financial information from the original email with another email containing attacker's financial information. This technique may also be used to avoid specific email notification to be received by end users in case, for example, of an ongoing breach.
 references:
 - https://redcanary.com/blog/email-forwarding-rules/
@@ -20,15 +20,14 @@ detection:
     Operation: 
       - 'New-InboxRule'
       - 'Set-InboxRule'
-    Parameters|contains: 'MoveToFolder'
-    Parameters|contains:
-      - 'RSS*'           # RSS feeds / RSS subscriptions
-      - 'Delete*'        # Deleted items
-      - 'Archive*'
-      - 'Conversation*'  # Conversation history
-      - 'Junk*'          # Junk email
+    Parameters.Name:
   condition: selection
 falsepositives:
-- users deleting emails on purpose
+- 
 level: high
 
+index=* sourcetype="o365:management:activity"  Operation="New-InboxRule"  
+| rex field=UserId "wbag\.onmicrosoft\.com\/(?<source_user>.*)\" (on behalf of|de la part de|im Auftrag von) \"(?<server>.*)\/wbag\.onmicrosoft\.com\/(?<behalf_user>.*)\""
+| rex field=ClientIP "(?<src_ip>.*):(?<src_port>.*)"
+| stats count dc(behalf_user) as dc_user values(*) as * by  source_user 
+| table  _time Workload src_ip Operation count dc_user source_user behalf_user Name

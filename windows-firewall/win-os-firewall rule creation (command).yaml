@@ -1,0 +1,24 @@
+title: Firewall rule creation (command)
+description: Detects scenarios where an attacker attempts to create a firewall rule to allow unauthorized communications.
+references:
+- https://research.checkpoint.com/2022/check-point-research-detects-crypto-miner-malware-disguised-as-google-translate-desktop-and-other-legitimate-applications/
+tags:
+- attack.defense_evasion
+- attack.t1562.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # netsh firewall add portopening TCP 80 "Open Port 80"
+  selection_event:
+    EventID: 4688
+    NewProcessName|endswith: '\netsh.exe' # Full path "C:\Windows\system32\netsh.exe"
+    Commandline|contains|all:
+      - netsh
+      - firewall # covers also advfirewall
+      - add
+  condition: selection
+falsepositives:
+- Administrator activity
+level: medium

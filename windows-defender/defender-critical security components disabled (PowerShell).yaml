@@ -7,6 +7,7 @@ references:
 - https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
 - https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
 - attack.defense_evasion
 - attack.t1562.001

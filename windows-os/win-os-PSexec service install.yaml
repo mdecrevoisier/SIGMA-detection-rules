@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker installs PSexec service.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
 - https://attack.mitre.org/software/S0029/
+- https://pentera.io/blog/135-is-the-new-145/
 tags:
 - attack.privilege_execution
 - attack.t1543.003

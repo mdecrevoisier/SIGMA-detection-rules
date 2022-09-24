@@ -95,6 +95,8 @@ TA0003-Persistence | T1136.002-Create account-Domain account | Computer account 
 TA0003-Persistence | T1136.002-Create account-Domain account | User account creation disguised in a computer account | 4720/4781 | 
 TA0003-Persistence | T1136-Create account | User creation via commandline | 4688 | 
 TA0003-Persistence | T1505.001-SQL Stored Procedures | SQL lateral movement with CLR | 15457 | 
+TA0003-Persistence | T1505.001-SQL Stored Procedures | SQL Server Dedicated Admin Connection (DAC) activity | 17199, 17200, 17201, 17202, 17810 | 
+TA0003-Persistence | T1505.001-SQL Stored Procedures | SQL Server Dedicated Admin Connection (DAC) mode activated | 15457 | 
 TA0003-Persistence | T1505.001-SQL Stored Procedures | SQL Server xp_cmdshell procedure activated | 18457 | 
 TA0003-Persistence | T1505.001-SQL Stored Procedures | SQL Server: sqlcmd & ossql utilities abuse | 4688 | 
 TA0003-Persistence | T1505.001-SQL Stored Procedures | SQL Server: started in single mode for password recovery | 4688 | 
@@ -228,6 +230,7 @@ TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single so
 TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single source with different non existing accounts | 4625 | 
 TA0006-Credential Access | T1555.003-Credentials from Password Stores: Credentials from Web Browsers | User browser credentials dump via network share | 5145 | DonPapi, Lazagne
 TA0006-Credential Access | T1555.004-Windows Credential Manager | Credentials (protected by DPAPI) dump via network share | 5145 | DonPapi, Lazagne
+TA0006-Credential Access | T1555.004-Windows Credential Manager | Vault credentials were read | 5382 | 
 TA0006-Credential Access | T1555-Credentials from Password Stores | Azure AD Connect credentials dump via network share | 5145 | AdConnectDump
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662 | 
 TA0006-Credential Access | T1555-Credentials from Password Stores | User files dump via network share | 5145 | DonPapi, Lazagne

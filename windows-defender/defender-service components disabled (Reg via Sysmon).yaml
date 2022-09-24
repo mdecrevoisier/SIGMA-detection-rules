@@ -6,6 +6,7 @@ references:
 - https://github.com/lab52io/StopDefender
 - https://github.com/APTortellini/DefenderSwitch
 - https://twitter.com/malwarelab_eu/status/1531536165458825219
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
 - attack.defense_evasion
 - attack.t1562.001

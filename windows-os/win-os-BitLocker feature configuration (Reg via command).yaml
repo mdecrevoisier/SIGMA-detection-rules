@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker configures BitLocker for ransom
 references:
 - https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
 - https://admx.help/?Category=MDOP&Policy=Microsoft.Policies.BitLockerManagement::BMSOSDEncryptionPolicy
+- https://www.bleepingcomputer.com/news/microsoft/microsoft-iranian-hackers-encrypt-windows-systems-using-bitlocker/
 tags:
 - attack.impact
 - attack.t1486

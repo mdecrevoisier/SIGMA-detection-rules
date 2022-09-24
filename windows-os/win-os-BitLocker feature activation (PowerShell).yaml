@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker enables BitLocker for ransomwar
 references:
 - https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
 - https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server
+- https://www.bleepingcomputer.com/news/microsoft/microsoft-iranian-hackers-encrypt-windows-systems-using-bitlocker/
 tags:
 - attack.impact
 - attack.t1486
