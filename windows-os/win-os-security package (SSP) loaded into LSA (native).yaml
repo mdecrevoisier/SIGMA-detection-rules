@@ -24,15 +24,15 @@ detection:
     EventID: 4622 # Security package loaded by LSA (Local Security Authority)
   filter:
     SecurityPackageName|contains: # native Windows SSP
-      - \Windows\system32\cloudAP.dll  # CloudAP
-      - \Windows\system32\kerberos.dll # Kerberos
-      - \Windows\system32\lsasrv.dll   # Negotiate
-      - \Windows\system32\msv1_0.dll   # NTLM
-      - \Windows\system32\negoexts.dll # NegoExtender
-      - \Windows\system32\pku2u.dll    # pku2u
-      - \Windows\system32\schannel.dll # Schannel
-      - \Windows\system32\tspkg.dll    # TSSSP
-      - \Windows\system32\wdigest.dll  # WDigest
+      - '\Windows\system32\cloudAP.dll'  # CloudAP
+      - '\Windows\system32\kerberos.dll' # Kerberos
+      - '\Windows\system32\lsasrv.dll'   # Negotiate
+      - '\Windows\system32\msv1_0.dll'   # NTLM
+      - '\Windows\system32\negoexts.dll' # NegoExtender
+      - '\Windows\system32\pku2u.dll'    # pku2u
+      - '\Windows\system32\schannel.dll' # Schannel
+      - '\Windows\system32\tspkg.dll'    # TSSSP
+      - '\Windows\system32\wdigest.dll'  # WDigest
   condition: selection and not filter
 falsepositives:
 - None
