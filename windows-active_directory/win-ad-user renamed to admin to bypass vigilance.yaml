@@ -20,8 +20,8 @@ detection:
       - adm-
       - <customer pattern>
     - NewTargetUserName|endswith:
-      - admin-
-      - adm-
+      - -admin
+      - -adm
       - <customer pattern>
   filter:
     - OldTargetUserName|startswith: # Original target account name should not be already an admin account
@@ -29,8 +29,8 @@ detection:
       - adm-
       - <customer pattern>
     - OldTargetUserName|endswith:
-      - admin-
-      - adm-
+      - -admin
+      - -adm
       - <customer pattern>
     - TargetSid|endswith: '-500' # Exclude default builtin account
   condition: selection_event and selection_pattern and not filter

@@ -8,6 +8,7 @@ references:
 - https://www.picussecurity.com/resource/blog/technique-to-delete-volume-shadow-copies-deviceiocontrol
 - https://lolbas-project.github.io/lolbas/Binaries/Wmic/
 - https://www.mandiant.com/resources/chasing-avaddon-ransomware
+- https://blogs.vmware.com/security/2022/09/threat-report-illuminating-volume-shadow-deletion.html
 tags:
 - attack.impact
 - attack.t1490

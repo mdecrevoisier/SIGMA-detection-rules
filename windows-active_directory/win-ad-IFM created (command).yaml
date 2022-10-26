@@ -1,5 +1,5 @@
 title: IFM creation detected from commandline (installation from media)
-description: Detects scenarios where an attacker attemps to create an IFM for dumping credentials.
+description: Detects scenarios where an attacker attempts to create an IFM image (usually used for deploying domain controllers to reduce replication traffic) for dumping credentials.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
 - https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
@@ -9,7 +9,7 @@ references:
 - https://www.microsoft.com/security/blog/2021/11/08/threat-actor-dev-0322-exploiting-zoho-manageengine-adselfservice-plus/
 - https://twitter.com/JohnLaTwC/status/1416382178380767233?s=09
 - https://thedfirreport.com/2021/10/04/bazarloader-and-the-conti-leaks/
-- https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html?m=1
+- https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html
 tags:
 - attack.credential_dumping
 - attack.t1003.003
@@ -19,21 +19,21 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  root_event:
+  selection_baseline:
     EventID: 4688
     NewProcessName|endswith: '\ntdsutil.exe'
 
-  selection_creation_basic: # full command "ntdsutil "activate instance ntds" ifm "create full c:\data" quit quit"
+  selection_creation_basic: # full command: "ntdsutil "activate instance ntds" ifm "create full c:\data" quit quit"
     CommandLine|contains|all:
       - ifm
       - create
 
-  selection_creation_obfuscated: # full command "ntdsutil.exe " ntdsutil.exe "act i ntds" i "c full c:\hacker" q q"
+  selection_creation_obfuscated:
     CommandLine|contains|all:
       - ' i '  # ifm
       - ' c '  # create
 
-  selection_activation_basic:
+  selection_activation_basic: # full command "ntdsutil.exe " ntdsutil.exe "act i ntds" i "c full c:\hacker" q q"
     CommandLine|contains|all:
       - activate
       - instance
@@ -42,10 +42,10 @@ detection:
   selection_activation_obfuscated:
     CommandLine|contains|all:
       - ' ac' # activate
-      #- ' in ' # instance
       - ntds
 
-  condition: root_event and 1 of selection_*
+  condition: selection_baseline and 1 of selection_*
 falsepositives:
 - Administrator creating a IFM image
+- Backup program or script
 level: high

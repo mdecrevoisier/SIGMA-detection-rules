@@ -1,5 +1,5 @@
 title: IFM detected - ESENT (installation from media)
-description: Detects scenarios where an attacker attemps to create an IFM for dumping credentials.
+description: Detects scenarios where an attacker attempts to create an IFM image (usually used for deploying domain controllers to reduce replication traffic) for dumping credentials.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
 - https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
@@ -19,10 +19,11 @@ detection:
       - 325 # The database engine created a new database
       - 327 # The database engine detached a database
     EventData|contains:
-      - \ntds.dit
+      - '\ntds.dit'
   filter:
-      - <normal backup path>
+      - '<normal backup path>'
   condition: selection and not filter
 falsepositives:
 - Administrator creating a IFM image
+- Backup program or script
 level: high

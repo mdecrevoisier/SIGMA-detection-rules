@@ -5,6 +5,7 @@ references:
  - https://winaero.com/enable-openssh-server-windows-10/
  - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
  - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+ - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 tags:
 - attack.lateral_movement
 - attack.t1021.004

@@ -5,6 +5,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
 - https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
 - https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+- https://www.intrinsec.com/apt27-analysis/
 tags:
 - attack.defense_evasion
 - attack.t1562.001

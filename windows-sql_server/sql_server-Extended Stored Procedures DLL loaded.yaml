@@ -1,0 +1,23 @@
+title: SQL Server 
+description: Detects scenarios where an attacker 
+references:
+- https://medium.com/@DCSO_CyTec/mssql-meet-maggie-898773df3b01
+- https://learn.microsoft.com/en-us/sql/relational-databases/extended-stored-procedures-programming/adding-an-extended-stored-procedure-to-sql-server?view=sql-server-ver16
+tags:
+- attack.
+- attack.t
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: mssql
+  category: application
+detection:
+  sql_server_event:
+    EventID: 33205
+    sp_addextendedproc
+    '.dll'
+
+  condition: 
+falsepositives:
+- administrator activity
+level: high

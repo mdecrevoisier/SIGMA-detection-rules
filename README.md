@@ -231,6 +231,7 @@ TA0006-Credential Access | T1110.xxx-Brut force | Login failure from a single so
 TA0006-Credential Access | T1555.003-Credentials from Password Stores: Credentials from Web Browsers | User browser credentials dump via network share | 5145 | DonPapi, Lazagne
 TA0006-Credential Access | T1555.004-Windows Credential Manager | Credentials (protected by DPAPI) dump via network share | 5145 | DonPapi, Lazagne
 TA0006-Credential Access | T1555.004-Windows Credential Manager | Vault credentials were read | 5382 | 
+TA0006-Credential Access | T1555.004-Windows Credential Manager | Vault credentials were read | 800/4103/4104 | 
 TA0006-Credential Access | T1555-Credentials from Password Stores | Azure AD Connect credentials dump via network share | 5145 | AdConnectDump
 TA0006-Credential Access | T1555-Credentials from Password Stores | Suspicious Active Directory DPAPI attributes accessed | 4662 | 
 TA0006-Credential Access | T1555-Credentials from Password Stores | User files dump via network share | 5145 | DonPapi, Lazagne

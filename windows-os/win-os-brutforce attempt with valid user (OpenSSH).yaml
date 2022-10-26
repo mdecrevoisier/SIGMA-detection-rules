@@ -18,7 +18,9 @@ detection:
   selection:
     EventID: 4625
     SubStatus: '0xc000006A' # invalid password | Failure code can be defined in "Status" or "Substatus" fields. Usually, if Substatus == 0x0, refers to Status.
-    ProcessName|endswith: '\sshd.exe' # Can be "C:\Program Files\OpenSSH-Win64\sshd.exe" or "C:\Windows\system32\OpenSSH\sshd.exe"
+    ProcessName|endswith:   # Can be "C:\Program Files\OpenSSH-Win64\sshd.exe" or "C:\Windows\system32\OpenSSH\sshd.exe"
+      - '\sshd.exe'
+      - '\ssh.exe'
   condition: selection | count(EventRecordID) by Computer > 20 # Count how many failed logins were reported on the host.
   timeframe: 30m
 falsepositives:

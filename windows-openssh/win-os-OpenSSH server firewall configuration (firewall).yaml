@@ -5,6 +5,7 @@ references:
  - https://winaero.com/enable-openssh-server-windows-10/
  - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
  - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+ - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 tags:
 - attack.defense_evasion
 - attack.t1562.004
@@ -20,8 +21,8 @@ detection:
   selection_process: # New firewall rule creation (process focus)
     ApplicationPath|endswith: '\sshd.exe' # full path 'C:\Windows\system32\OpenSSH\sshd.exe'
 
-  selection_port: # New firewall rule creation (port focus)
-    LocalPorts: 22
+  selection_port:  # New firewall rule creation (port focus)
+    LocalPorts: 22 # Attackers may change port 
 
   condition: selection_event and (selection_process or selection_port)
 falsepositives:

@@ -2,13 +2,15 @@ title: Webserver IIS module installed (command)
 description: Detects scenarios where an attacker attempts to deploy an IIS module.
 references:
 - https://securelist.com/owowa-credential-stealer-and-remote-access/105219/
-- https://www.oreilly.com/library/view/internet-information-services/9780735624412/ch07s07.html
+- https://docs.microsoft.com/fr-fr/iis/get-started/introduction-to-iis/iis-modules-overview
 - https://www.microsoft.com/security/blog/2021/11/08/threat-actor-dev-0322-exploiting-zoho-manageengine-adselfservice-plus/
 - https://www.microsoft.com/security/blog/2022/07/26/malicious-iis-extensions-quietly-open-persistent-backdoors-into-servers/
 - https://www.welivesecurity.com/2021/08/06/anatomy-native-iis-malware/
 - https://i.blackhat.com/USA21/Wednesday-Handouts/us-21-Anatomy-Of-Native-Iis-Malware-wp.pdf
 - https://securelist.com/the-sessionmanager-iis-backdoor/106868/
 - https://www.mdsec.co.uk/2020/02/iis-raid-backdooring-iis-using-native-modules/
+- https://github.com/0x09AL/IIS-Raid
+- https://github.com/gtworek/PSBits/blob/master/Misc/Install-PSBackdoor.ps1
 tags:
 - attack.persistence
 - attack.t1505.004
@@ -20,7 +22,7 @@ logsource:
 detection: # C:\Windows\System32\inetsrv\appcmd.exe install module /name:MyNativeModule /image:c:\mymodule.dll
   selection:
     EventID: 4688
-    NewProcessName|endswith: '\appcmd.exe'
+    NewProcessName|endswith: '*\appcmd.exe'
     CommandLine|contains:
       - install
       - add

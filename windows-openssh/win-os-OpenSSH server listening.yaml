@@ -13,11 +13,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: sshd
+  service: openssh # Channel: 'OpenSSH/Operational'
 detection:
   selection:
     EventID: 4
-    Channel: 'OpenSSH/Operational'
     process: sshd
     payload|startswith: 'Server listening on'
   condition: selection

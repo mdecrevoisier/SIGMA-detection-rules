@@ -21,6 +21,7 @@ detection:
       - \net1.exe
       - \net.exe
     CommandLine|contains|all:
+      - net
       - user
       - add
   condition: selection

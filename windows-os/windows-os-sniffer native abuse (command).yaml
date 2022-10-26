@@ -1,0 +1,23 @@
+title: Windows traffic capture abuse
+description: Detects scenarios where an attacker use the native Windows sniffer in order to capture sensitive information or credentials.
+references:
+- https://bakerstreetforensics.com/2022/01/07/quickpcap-capturing-a-pcap-with-powershell/
+tags:
+- attack.credential_access
+- attack.t1040 # Network Sniffing 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    NewProcessName|endswith: '\netsh.exe'
+    CommandLine|contains|all: # full command : 'netsh trace start capture=yes IPv4.Address=192.168.1.167 '
+      - netsh
+      - start
+      - capture
+  condition: selection
+falsepositives:
+- Administrator network troubleshooting
+level: medium
