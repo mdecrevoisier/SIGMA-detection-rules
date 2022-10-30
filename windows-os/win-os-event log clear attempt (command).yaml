@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker attempts to clear the event log
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil
+- https://www.zscaler.com/blogs/security-research/technical-analysis-crytox-ransomware
 tags:
 - attack.defense_evasion
 - attack.t1070.001

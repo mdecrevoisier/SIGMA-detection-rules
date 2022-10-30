@@ -7,6 +7,7 @@ references:
 - https://www.hackingarticles.in/credential-dumping-wdigest/
 - https://stealthbits.com/blog/wdigest-clear-text-passwords-stealing-more-than-a-hash/
 - https://github.com/HarmJ0y/Misc-PowerShell/blob/master/Invoke-WdigestDowngrade.ps1
+- https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 tags:
 - attack.credential_access
 - attack.t1003

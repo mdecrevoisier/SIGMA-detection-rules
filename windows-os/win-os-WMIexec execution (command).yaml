@@ -6,6 +6,7 @@ references:
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py
 - https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
 - https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
+- https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 tags:
 - attack.execution
 - attack.t1047
@@ -20,11 +21,8 @@ detection:
     NewProcessName|endswith: \cmd.exe
     CommandLine|contains|all: # 'cmd.exe /Q /c cd \ 1> \\127.0.0.1\ADMIN$\__1619090610.0007844 2>&1'
       - cmd
-      - \\127.0.0.1\
-      - /Q
-    CommandLine|contains:
-      - /k # Used in FireEye Impacket version instead of /c
-      - /c
+      - '\\127.0.0.1\'
+      - 'ADMIN$'
   condition: selection
 falsepositives:
 - None

@@ -14,12 +14,10 @@ logsource:
   category: registry_event
 detection:
   selection_image:
-    Image|endswith: \reg.exe # 'C:\Windows\System32\reg.exe'
+    Image|endswith: '\reg.exe'
 
   selection_registry_set:
-    EventID:
-      - 12 # RegistryEvent (Object create and delete)
-      - 13 # RegistryEvent (Value Set)
+    EventID: 13 # RegistryEvent (Value Set)
     EventType: 'SetValue'
     TargetObject|endswith: # Sample command: REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /t REG_SZ /v Debugger /d “C:\windows\system32\cmd.exe” /f
       - '\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe\Debugger'

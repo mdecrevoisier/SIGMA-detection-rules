@@ -1,0 +1,26 @@
+title: NTLM downgrade attack (Reg via SYSMON)
+description: Detects scenarios where an attacker modifies the registry configuration in order to enable or downgrade NTLM protocol version, to later on perform relay attacks.
+references:
+- https://www.trustedsec.com/blog/practical-attacks-against-ntlmv1/
+- https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/network-security-lan-manager-authentication-level
+- https://www.praetorian.com/blog/ntlmv1-vs-ntlmv2/
+tags:
+- attack.defense_evasion
+- attack.t1562 # Impair Defenses: Downgrade Attack 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: registry_event
+detection:
+  selection:
+    EventID: 13 # RegistryEvent (Value Set)
+    TargetObject|endswith: '\SYSTEM\CurrentControlSet\Control\Lsa\LmCompatibilityLevel'
+    Details|contains:
+      - '0x00000000' # Send LM & NTLM responses
+      - '0x00000001' # Send LM & NTLM – use NTLMv2 session security if negotiated
+      - '0x00000002' # Send NTLM response only
+  condition: selection
+falsepositives:
+- VPN software
+level: high

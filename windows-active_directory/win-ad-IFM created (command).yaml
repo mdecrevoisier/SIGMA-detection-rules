@@ -10,6 +10,7 @@ references:
 - https://twitter.com/JohnLaTwC/status/1416382178380767233?s=09
 - https://thedfirreport.com/2021/10/04/bazarloader-and-the-conti-leaks/
 - https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html
+- https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 tags:
 - attack.credential_dumping
 - attack.t1003.003

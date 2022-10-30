@@ -6,6 +6,7 @@ references:
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py
 - https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
 - https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
+- https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 tags:
 - attack.execution
 - attack.t1047
@@ -15,26 +16,20 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection_baseline:
-    EventID: 1
+  selection_baseline:  #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat"
     Image|endswith: \cmd.exe
 
-  selection_parent: #full command "C:\Windows\system32\cmd.exe /Q /c echo cd ^> \\127.0.0.1\C$\__output 2^>^&1 > C:\Windows\TEMP\execute.bat & C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat & del C:\Windows\TEMP\execute.bat"
+  selection_parent:
     ParentCommandLine|contains|all:
       - cmd
-      - /Q
-      - \\127.0.0.1\
-    ParentCommandLine|contains:
-      - /k # Used in FireEye Impacket version instead of /c
-      - /c
+      - '\\127.0.0.1\'
+      - 'ADMIN$'
 
   selection_process: # full command: "C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat"
     CommandLine|contains|all:
       - cmd
-      - /Q
-    CommandLine|contains:
-      - /k # Used in FireEye Impacket version instead of /c
-      - /c
+      - '\\127.0.0.1\'
+      - 'ADMIN$'
 
   condition: selection_baseline and (selection_parent or selection_process)
 falsepositives:
