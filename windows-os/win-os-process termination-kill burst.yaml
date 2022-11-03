@@ -1,5 +1,5 @@
-title: Massive processes termination burst before breach
-description: Detects scenarios where an attacker attempts to kill multiples processes on a host. Attacker may target more specifically services related to databases, security products or system backup (Veeam, Symantec, Acronis ...).
+title: Massive processes termination burst
+description: Detects scenarios where an attacker attempts to kill multiples services on a host. Attacker may target services related to databases, security products or backups (Veeam, Symantec, Acronis ...).
 references:
 - https://www.microsoft.com/security/blog/2020/03/05/human-operated-ransomware-attacks-a-preventable-disaster/
 - https://thedfirreport.com/2022/07/11/select-xmrig-from-sqlserver/
@@ -8,15 +8,16 @@ references:
 - https://fourcore.io/blogs/ryuk-ransomware-simulation-mitre-ttp
 tags:
 - attack.impact
-- attack.t1489
+- attack.t1489 # Service Stop 
+- attack.defense_evasion
+- attack.1562.001 # Impair Defenses: Disable or Modify Tools 
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
   category: process_creation
-detection:
-  selection: # "taskkill /f /im sql"  
-    EventID: 4688
+detection: # "taskkill /f /im sql"  
+  selection: 
     NewProcessName|endswith: '\taskkill.exe'
     CommandLine|contains:
       - '/f'

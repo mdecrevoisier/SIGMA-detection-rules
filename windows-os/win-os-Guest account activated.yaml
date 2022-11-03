@@ -18,8 +18,9 @@ detection:
     TargetUserName:
       - Guest
       - DefaultAccount
-      - support_388945a0 # Remote assistance
-      - HelpAssistant    # Managed by Remote Desktop Help Session Manager service
+      - support_388945a0   # Remote assistance
+      - HelpAssistant      # Managed by Remote Desktop Help Session Manager service
+      - WDAGUtilityAccount # Defender Application Guard
   selection_usersid:
     TargetUserSid|endswith:
       - '-501' # Guest account

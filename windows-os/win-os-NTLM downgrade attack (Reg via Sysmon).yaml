@@ -6,7 +6,7 @@ references:
 - https://www.praetorian.com/blog/ntlmv1-vs-ntlmv2/
 tags:
 - attack.defense_evasion
-- attack.t1562 # Impair Defenses: Downgrade Attack 
+- attack.t1562.010 # Impair Defenses: Downgrade Attack 
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -1,0 +1,26 @@
+title: Service deactivation (command)
+description: Detects scenarios where an attacker attempts to disable 
+references:
+- https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/
+tags:
+- attack.impact
+- attack.t1489 # Service Stop 
+- attack.defense_evasion
+- attack.1562.001 # Impair Defenses: Disable or Modify Tools 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    NewProcessName|endswith: '\sc.exe'
+    CommandLine|contains|all:
+      - sc
+      - config
+      - disabled
+  condition: selection
+falsepositives:
+- troubleshooting
+level: high
+
