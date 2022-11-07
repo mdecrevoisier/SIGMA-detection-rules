@@ -22,7 +22,7 @@ logsource:
 detection: # C:\Windows\System32\inetsrv\appcmd.exe install module /name:MyNativeModule /image:c:\mymodule.dll
   selection:
     EventID: 4688
-    NewProcessName|endswith: '*\appcmd.exe'
+    NewProcessName|endswith: '\appcmd.exe'
     CommandLine|contains:
       - install
       - add

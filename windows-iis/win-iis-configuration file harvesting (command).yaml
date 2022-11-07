@@ -1,0 +1,33 @@
+title: IIS Application Pool credential dumping 
+description: Detects scenarios where an attacker 
+references:
+- https://www.netspi.com/blog/technical/network-penetration-testing/decrypting-iis-passwords-to-break-out-of-the-dmz-part-1/
+- https://www.netspi.com/blog/technical/network-penetration-testing/decrypting-iis-passwords-to-break-out-of-the-dmz-part-2/
+- https://www.elastic.co/guide/en/security/current/microsoft-iis-service-account-password-dumped.html
+- https://tdm.socprime.com/tdm/info/3n7KrfogcqRG/#sigma
+- https://twitter.com/0gtweet/status/1588815661085917186
+tags:
+- attack.credential_access
+- attack.t1003
+author: mdecrevoisier (adapted from Tim Rauch and Grzegorz Tworek feedback)
+status: experimental
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_name:
+    - Image|endswith: '\appcmd.exe'
+    - OriginalFilename: 'appcmd.exe'
+  selection_arg:
+    CommandLine|contains|all:
+      - 'list'
+      - 'apppool' # can also be 'apppools'
+    #CommandLine|contains: # use in case of too many false positives
+      #- '/@'
+      #- text
+      #- password
+      #- config
+  condition: selection_name and selection_arg
+falsepositives:
+- Unknown
+level: high

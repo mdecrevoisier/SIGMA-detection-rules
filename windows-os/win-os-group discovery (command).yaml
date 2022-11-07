@@ -8,8 +8,9 @@ references:
 - https://regex101.com/r/S6vTNM/1
 tags:
 - attack.discovery
-- attack.t1069.001
-- attack.t1069.002
+- attack.t1069.001 # Permission Groups Discovery: Local Groups 
+- attack.t1069.002 # Permission Groups Discovery: Domain Groups 
+- attack.t1087.002 # Account Discovery: Domain Account 
 author: mdecrevoisier
 logsource:
   product: windows
@@ -18,8 +19,8 @@ detection:
   selection: # Full command example: 'net group "Domain Admins" /domain'
     EventID: 4688
     NewProcessName|endswith:
-      - \net1.exe
-      - \net.exe
+      - '\net.exe'
+      - '\net1.exe'
     CommandLine|contains:
       - group
       - localgroup

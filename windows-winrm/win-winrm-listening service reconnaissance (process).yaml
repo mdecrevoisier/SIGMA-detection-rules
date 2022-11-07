@@ -25,7 +25,7 @@ detection:
     EventID: 4688
     NewProcessName|endswith: \wsmprovhost.exe
   filter:
-    TargetUserName|endswith: '*$'
+    TargetUserName|endswith: '$'
   condition: selection and not filter | count(Computer) > 30
   timeframe: 15m
 falsepositives:

@@ -9,6 +9,7 @@ references:
 tags:
 - attack.persistence
 - attack.t1505.001
+- 
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -16,16 +17,15 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith:
-      - '\sqlcmd.exe'  # used in recent SQL Server versions
-      - '\osql.exe'    # used in old SQL server version
-    Commandline|contains:
-      - sqlcmd
-      - osql
-    CommandLine|contains: # parameter to specify the database\instance'
+      - '\sqlcmd.exe'     # used in recent SQL Server versions
+      - '\osql.exe'       # used in old SQL server version
+    CommandLine|contains: # specify the database\instance'
       - /S
       - -S
+    CommandLine|contains: # runs a query and immediately exists
+      - /Q
+      - -Q
   condition: selection
 falsepositives:
 - Master database restore procedure

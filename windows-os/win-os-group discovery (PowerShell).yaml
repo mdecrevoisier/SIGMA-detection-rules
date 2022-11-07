@@ -7,8 +7,8 @@ references:
 - https://adamtheautomator.com/get-adgroupmember/
 tags:
 - attack.discovery
-- attack.t1069.001
-- attack.t1069.002
+- attack.t1069.001 # Permission Groups Discovery: Local Groups 
+- attack.t1069.002 # Permission Groups Discovery: Domain Groups 
 author: mdecrevoisier
 logsource:
   product: windows
@@ -32,7 +32,7 @@ detection:
       - Get-LocalGroupMember
       - Get-ADGroupMember
 
-  condition: 1 of selection*
+  condition: 1 of selection* | count(EventRecordID) by Computer > 4
 falsepositives:
 - Pentest
 - Administrator activity

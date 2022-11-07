@@ -15,8 +15,7 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
-    NewProcessName|endswith: \System32\Taskmgr.exe
+    NewProcessName|endswith: '\Taskmgr.exe'
     CommandLine|contains:
       - /4 # Right click on Taskbar + Task Manager
       - /3 # Ctrl + Alt + Del + Click on Task Manager

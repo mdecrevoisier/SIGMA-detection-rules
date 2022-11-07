@@ -1,0 +1,23 @@
+title: Task Manager used for LSASS dump (kernel)
+description: Detects scenarios where an attacker attempt to dump the LSASS process via the Task Manager.
+references:
+- https://superuser.com/questions/753556/taskmgr-exe-called-with-an-argument-by-windows-7
+- https://twitter.com/Cyb3rSn0rlax/status/1462900723402817538?t=oMj76JVcPG72ZIlpVxucPw&s=09
+- https://thedfirreport.com/2021/12/13/diavol-ransomware/
+tags:
+- attack.credential_access
+- attack.t1003.001 # Credential dumping: LSASS
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4663 # Kernel object
+    ProcessName|endswith: '\taskmgr.exe'
+    ObjectName|endswith: '\lsass.exe'
+  condition: selection
+falsepositives:
+- None
+level: high

@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: \sc.exe
+    NewProcessName|endswith: '\sc.exe'
     CommandLine|contains|all:
       - sc
       - config

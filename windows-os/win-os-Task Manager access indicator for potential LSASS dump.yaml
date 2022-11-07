@@ -14,9 +14,9 @@ logsource:
 detection:
   selection:
     EventID: 4688
-    NewProcessName|endswith: \System32\Taskmgr.exe
+    NewProcessName|endswith: '\taskmgr.exe'
     CommandLine|contains:
-      - /4 # Right click on Taskbar + Task Manager
+      - '/4' # Right click on Taskbar + Task Manager
       #- /3 # Ctrl + Alt + Del + Click on Task Manager
       #- /2 # Ctrl + Shift + Escape
       #- /1 # Start a non-elevated Task Manager + click "Show processes from all users" button

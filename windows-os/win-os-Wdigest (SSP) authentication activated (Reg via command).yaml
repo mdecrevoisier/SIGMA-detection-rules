@@ -21,9 +21,9 @@ logsource:
 detection: # reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1
   selection:
     EventID: 4688
-    NewProcessName|endswith: \reg.exe
+    NewProcessName|endswith: '\reg.exe'
     CommandLine|contains|all:
-      - REG ADD
+      - 'REG ADD'
       - '\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest'
       - UseLogonCredential
   condition: selection

@@ -20,7 +20,7 @@ logsource:
 detection:
   selection: # wmic shadowcopy delete /nointeractive
     EventID: 4688
-    NewProcessName|endswith: \WMIC.exe
+    NewProcessName|endswith: \wmic.exe
     CommandLine|contains|all:
       - wmic
       - shadowcopy
