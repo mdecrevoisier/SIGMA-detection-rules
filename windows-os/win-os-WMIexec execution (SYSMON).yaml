@@ -21,13 +21,11 @@ detection:
 
   selection_parent:
     ParentCommandLine|contains|all:
-      - cmd
       - '\\127.0.0.1\'
       - 'ADMIN$'
 
   selection_process: # full command: "C:\Windows\system32\cmd.exe /Q /c C:\Windows\TEMP\execute.bat"
     CommandLine|contains|all:
-      - cmd
       - '\\127.0.0.1\'
       - 'ADMIN$'
 

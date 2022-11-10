@@ -13,9 +13,6 @@ logsource:
   product: windows
   category: process_creation
 detection:
-  selection_event:
-    EventID: 4688
-
   selection_process_child:
     NewProcessName|endswith: \PSEXESVC.exe
 
@@ -23,7 +20,7 @@ detection:
     ParentProcessName|endswith: \PSEXESVC.exe
     Version: 2  # parent process name is available starting Windows 10 / Server 2016 and higher
 
-  condition: selection_event and (selection_process_child or selection_process_parent)
+  condition: selection_process_child or selection_process_parent
 falsepositives:
 - Administrator activity
 level: medium

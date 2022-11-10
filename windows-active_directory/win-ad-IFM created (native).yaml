@@ -17,6 +17,7 @@ detection:
   selection:
     EventID:
       - 325 # The database engine created a new database
+      - 326 # The database engine attached a new database
       - 327 # The database engine detached a database
     EventData|contains:
       - '\ntds.dit'

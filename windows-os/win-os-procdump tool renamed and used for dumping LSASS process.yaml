@@ -1,0 +1,26 @@
+title: Renamed Procdump tool used for dumping LSASS process
+description: Detects scenarios where an attacker attempts to dump the LSASS process content using a renamed version of the Procdump tool.
+references:
+- https://www.intrinsec.com/apt27-analysis/
+- https://learn.microsoft.com/en-us/sysinternals/downloads/procdump
+tags:
+- attack.execution
+- attack.t1569.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_name:
+    - Image|endswith: '\procdump.exe'
+    - OriginalFilename: 'procdump.exe'
+
+  selection_paramters:
+    CommandLine|contains|all:
+      - accepteula
+      - '-ma' # Write a 'Full' dump file.
+  condition: selection_name or selection_paramters
+falsepositives:
+- None 
+level: high
