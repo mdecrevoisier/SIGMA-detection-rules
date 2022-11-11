@@ -1,0 +1,34 @@
+title: SearchIndexer suspicious process activity
+description: Detects scenarios where SearchIndexer spwaned another process with the same name, or when SearchIndexer process exists in an unexpected directory.
+references:
+- https://securityaffairs.co/wordpress/75782/cyber-crime/hacking-hacker-botnet.html
+- https://www.joesandbox.com/analysis/213580/1/html
+- https://www.virustotal.com/gui/file/eb8417d0cf40160474faf587f3e1fdf94a0a2c9636ad1cf32005ff29ef3852dc
+- https://www.filescan.io/uploads/62ad24c8473553ed319b5fe3/reports/104d3e08-1bdb-43ce-beb8-07c5688cef03/details
+- https://any.run/report/eb8417d0cf40160474faf587f3e1fdf94a0a2c9636ad1cf32005ff29ef3852dc/c323438a-a3ec-4dcc-b304-dc47882a1eab
+tags:
+- attack.defense_evasion
+- attack.t1036 # masquerading
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+
+  selection_parent_image:
+    ParentImage|endswith: '\SearchIndexer.exe' 
+
+  selection_image:
+    Image|endswith: '\SearchIndexer.exe'
+
+  selection_image_path:
+    Image: 'C:\WINDOWS\system32\SearchIndexer.exe'
+
+  selection_commandline:
+    CommandLine|contains: 'c1 c2 c3 c4 c5 c6 c7 c8'
+
+  condition: (selection_parent_image and selection_image) or (selection_image and not selection_image_path) or selection_commandline
+falsepositives:
+- None 
+level: medium
