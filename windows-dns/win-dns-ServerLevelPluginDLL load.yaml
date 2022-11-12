@@ -1,4 +1,4 @@
-title: DLL loaded by DNS server - success ("serverlevelplugindll" feature abuse)
+title: DLL ServerLevelPluginDll registration ("serverlevelplugindll" feature abuse)
 description: Detects scenarios where a DLL is loaded by the DNS server in order to escalate privileges or initiate a remote shell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1574-Hijack%20Execution%20Flow
@@ -10,6 +10,7 @@ references:
 - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/from-dnsadmins-to-system-to-domain-compromise
 - http://www.labofapenetrationtester.com/2017/05/abusing-dnsadmins-privilege-for-escalation-in-active-directory.html
 - https://lolbas-project.github.io/lolbas/Binaries/Dnscmd/
+- https://blog.3or.de/hunting-dns-server-level-plugin-dll-injection.html
 tags:
 - attack.persistence
 - attack.t1574.002
@@ -21,7 +22,9 @@ logsource:
 detection:
   selection:
     Channel: 'DNS Server'
-    EventID: 770 # success load
+    EventID: 
+      - 770 # success load
+      - 150 # failed load
   condition: selection
 falsepositives:
 - None

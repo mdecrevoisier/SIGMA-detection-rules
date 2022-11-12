@@ -11,10 +11,9 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category: registry_event
+  category: registry_set
 detection:
   selection:
-    EventID: 13 # RegistryEvent (Value Set)
     TargetObject|endswith: '\SYSTEM\CurrentControlSet\Control\Lsa\LmCompatibilityLevel'
     Details|contains:
       - '0x00000000' # Send LM & NTLM responses

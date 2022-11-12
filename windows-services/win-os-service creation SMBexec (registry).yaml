@@ -15,9 +15,6 @@ logsource:
   category: registry_event
 detection:
   selection:
-    EventID:
-      - 12 # RegistryEvent (Object create and delete)
-      - 13 # RegistryEvent (Value Set)
     TargetObject|contains: \CurrentControlSet\Services\BTOBTO\ # Service name can be changed in the application name
     #Image|endswith: \services.exe
   condition: selection

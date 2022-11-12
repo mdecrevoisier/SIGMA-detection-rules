@@ -17,14 +17,11 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category: registry_event
+  category: registry_set
 detection: # reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1
   selection:
-    EventID:
-      - 12 # RegistryEvent (Object create and delete)
-      - 13 # RegistryEvent (Value Set)
     TargetObject|endswith: '\System\CurrentControlSet\Control\SecurityProviders\WDigest\UseLogonCredential'
-    #Details: 'DWORD (0x00000001)' # Present in ID 13 only
+    Details|contains: '0x00000001'
   condition: selection
 falsepositives:
 - None

@@ -19,9 +19,6 @@ logsource:
   category: registry_event
 detection: # reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v Shadow /t REG_DWORD /d 4
   selection:
-    EventID:
-      - 12 # RegistryEvent (Object create and delete)
-      - 13 # RegistryEvent (Value Set)
     TargetObject|endswith: '\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
   condition: selection
 falsepositives:

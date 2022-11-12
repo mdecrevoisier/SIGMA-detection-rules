@@ -18,9 +18,6 @@ logsource:
   category: registry_event
 detection:
   selection:
-    EventID:
-      - 12 # RegistryEvent (Object create and delete)
-      - 13 # RegistryEvent (Value Set)
     NewProcessName|endswith: '\netsh.exe' # Full path "C:\Windows\system32\netsh.exe"
     TargetObject|endswith: '\SOFTWARE\Microsoft\NetSh'
   condition: selection

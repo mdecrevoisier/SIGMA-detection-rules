@@ -13,8 +13,6 @@ logsource:
   product: windows
   category: registry_event
 detection:
-  selection_image:
-    Image|endswith: '\reg.exe'
 
   selection_registry_set:
     EventID: 13 # RegistryEvent (Value Set)
@@ -38,7 +36,7 @@ detection:
       - '\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\DisplaySwitch.exe'
       - '\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\osk.exe'
 
-  condition: selection_image and (selection_registry_set or selection_object_added)
+  condition: selection_registry_set or selection_object_added
 falsepositives:
 - None
 level: high

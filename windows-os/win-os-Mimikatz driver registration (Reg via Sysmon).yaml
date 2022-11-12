@@ -14,9 +14,6 @@ logsource:
   category: registry_event
 detection:
   selection:
-    EventID:
-      - 12 # RegistryEvent (Object create and delete)
-      - 13 # RegistryEvent (Value Set)
     TargetObject|startswith: 'HKLM\System\CurrentControlSet\Services\mimidrv'
   condition: selection
 falsepositives:

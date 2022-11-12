@@ -21,9 +21,6 @@ logsource:
   category: registry_event
 detection: # full command: "wmic recoveros set AutoReboot = False"
   selection:
-    EventID:
-      - 12 # RegistryEvent (Object create and delete)
-      - 13 # RegistryEvent (Value Set)
     Image|endswith: \wmiprvse.exe
     EventType: SetValue
     TargetObject|endswith:

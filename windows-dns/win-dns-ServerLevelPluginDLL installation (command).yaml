@@ -10,6 +10,7 @@ references:
 - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/from-dnsadmins-to-system-to-domain-compromise
 - http://www.labofapenetrationtester.com/2017/05/abusing-dnsadmins-privilege-for-escalation-in-active-directory.html
 - https://lolbas-project.github.io/lolbas/Binaries/Dnscmd/
+- https://blog.3or.de/hunting-dns-server-level-plugin-dll-injection.html
 tags:
 - attack.persistence
 - attack.t1574.002
