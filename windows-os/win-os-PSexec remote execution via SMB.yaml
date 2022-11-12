@@ -4,6 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
 - https://attack.mitre.org/software/S0029/
 - https://pentera.io/blog/135-is-the-new-145/
+- https://nv2lt.github.io/windows/smb-psexec-smbexec-winexe-how-to/
 tags:
 - attack.lateral_movement
 - attack.t1021.002
