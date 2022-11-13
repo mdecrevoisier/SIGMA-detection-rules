@@ -28,7 +28,7 @@ detection:
   selection_commandline:
     CommandLine|contains: 'c1 c2 c3 c4 c5 c6 c7 c8'
 
-  condition: (selection_parent_image and selection_image) or (selection_image and not selection_image_path) or selection_commandline
+  condition: (selection_parent_image and selection_image) or (selection_image and not selection_image_path) or (selection_image and selection_commandline)
 falsepositives:
 - None 
 level: medium

@@ -153,6 +153,7 @@ TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | New external device a
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Printer spool driver from Mimikatz installed  | 808 / 354 / 321 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0004-Privilege Escalation | T1574.002-DLL Side-Loading | Spool process spawned a CMD shell | 4688/1 | PrintNightmare (CVE-2021-1675 / CVE-2021-34527)
 TA0005-Defense Evasion | T1027-Obfuscated Files or Information | Payload obfuscated transfer via service name | 4688 | Tchopper
+TA0005-Defense Evasion | T1036-Masquerading | SearchIndex process suspicious activity | 4688/1 | 
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Event log file(s) cleared | 104/1102 | 
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected (command) | 4688 | 
 TA0005-Defense Evasion | T1070.001-Indicator Removal on Host | Tentative of clearing event log file(s) detected (PowerShell) | 800/4103/4104 | 
@@ -207,6 +208,7 @@ TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credentia
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS dump indicator via Task Manager access | 4688 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS process accessed by a non system account | 4656/4663 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | SAM database user credential dump | 4661 | Mimikatz
+TA0006-Credential Access | T1003.001-Credential dumping: LSASS | Task manager used to dump LSASS process | 4663 | 
 TA0006-Credential Access | T1003.002-Security Account Manager | Password dump over SMB ADMIN$ | 5145 | Secretdump
 TA0006-Credential Access | T1003.002-Security Account Manager | SAM database access during DCshadow | 4661 | DCShadow
 TA0006-Credential Access | T1003.003-NTDS | IFM created | 325/327 | 
