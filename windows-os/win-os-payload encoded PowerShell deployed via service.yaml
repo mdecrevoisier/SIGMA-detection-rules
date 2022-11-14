@@ -3,6 +3,11 @@ description: Detects scenarios where an attacker deployed a service pointing to 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
+- https://www.fortinet.com/blog/threat-research/newly-discovered-function-in-darkside-ransomware-variant-targets-disk-partitions
+- https://www.huntress.com/blog/from-powershell-to-payload-an-analysis-of-weaponized-malware
+- https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
+- https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
+- https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
 tags:
 - attack.privilege_execution
 - attack.t1543.003

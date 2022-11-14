@@ -1,0 +1,24 @@
+title: BitLocker feature activation on multiple hosts (native)
+description: Detects scenarios where an attacker enable or reconfigure BitLocker on multiple hosts for ransomware purposes.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1486-Data%20Encrypted%20for%20Impact
+- https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
+- https://www.bleepingcomputer.com/news/microsoft/microsoft-iranian-hackers-encrypt-windows-systems-using-bitlocker/
+tags:
+- attack.impact
+- attack.t1486 # Data Encrypted for Impact 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: bitlocker
+detection:
+  selection:
+    Channel: 'Microsoft-Windows-BitLocker/BitLocker Management'
+    EventID: 
+      - 768 # BitLocker encryption was started for volume [volume] using [encryption] algorithm.
+      - 775 # A BitLocker key protector was created.
+  condition: selection | count(Hostname) by SecurityUserID > 10
+falsepositives:
+- Initial BitLocker configuration
+level: high

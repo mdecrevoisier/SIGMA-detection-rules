@@ -11,7 +11,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # command: powershell  -c "Import-Module ServerManager; Add-WindowsFeature BitLocker -Restart"
 
   selection_powershell_native:

@@ -1,0 +1,37 @@
+title: Massive services termination burst
+description: Detects scenarios where an attacker attempts to stop multiples services on a host. Attacker may target services related to databases, security products or backups (Veeam, Symantec, Acronis ...).
+references:
+- https://www.microsoft.com/security/blog/2020/03/05/human-operated-ransomware-attacks-a-preventable-disaster/
+- https://fourcore.io/blogs/ryuk-ransomware-simulation-mitre-ttp
+- https://thedfirreport.com/2021/12/13/diavol-ransomware/
+- https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/
+tags:
+- attack.impact
+- attack.t1489 # Service Stop 
+- attack.defense_evasion
+- attack.1562.001 # Impair Defenses: Disable or Modify Tools 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # net stop <service> | sc stop <service>
+  selection_net_stop:  
+    NewProcessName|endswith:
+      - '\net1.exe'
+      - '\net.exe'
+    CommandLine|contains|all:
+      - net
+      - stop
+  
+  selection_sc_stop:
+    NewProcessName|endswith: '\sc.exe'
+    CommandLine|contains|all:
+      - sc
+      - stop
+
+  condition: selection_net_stop or selection_sc_stop | count(EventRecordID) by Computer > 2
+  timeframe: 1m
+falsepositives:
+- Administrator debugging
+level: high

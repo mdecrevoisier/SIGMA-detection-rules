@@ -11,17 +11,22 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith: \reg.exe
     CommandLine|contains|all: # Full command: "REG  ADD HKLM\SOFTWARE\Policies\Microsoft\FVE /v EnableBDEWithNoTPM /t REG_DWORD /d 1 /f"
       - REG ADD
       - '\SOFTWARE\Policies\Microsoft\FVE'
-    #CommandLine|contains:
-    #  - '1'
-    #  - '2'
+    CommandLine|contains:
+      - UseTPM
+      - UseTPMKey
+      - UseTPMPIN
+      - UseTPMKeyPIN
+      - RecoveryKeyMessage
+      - EnableBDEWithNoTPM
+      - UseAdvancedStartup
+      - RecoveryKeyMessageSource
   condition: selection
 falsepositives:
 - Initial BitLocker configuration via GPO

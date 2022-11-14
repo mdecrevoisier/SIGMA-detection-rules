@@ -12,7 +12,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: powershell
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Microsoft-Subsystem-Linux"
   selection1_powershell_native:
     EventID: 800

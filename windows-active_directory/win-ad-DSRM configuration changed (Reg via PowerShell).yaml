@@ -14,7 +14,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: powershell
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CONTROL\LSA" -name DsrmAdminLogonBehavior -value 2'
   selection_powershell_native:
     EventID: 800

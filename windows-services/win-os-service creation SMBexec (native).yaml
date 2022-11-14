@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker attempts to register the SMBexe
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/smbexec.py
+- https://nv2lt.github.io/windows/smb-psexec-smbexec-winexe-how-to/
 tags:
 - attack.defense_evasion
 - attack.t1112

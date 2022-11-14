@@ -11,7 +11,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: powershell
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False"
   selection_powershell_native:
     EventID: 800

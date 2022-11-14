@@ -22,7 +22,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: powershell
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # Full command: 'Start-BitsTransfer -Priority foreground -Source https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1197/T1197.md -Destination C:\Users\bits.ps1'
   selection1_powershell_native:
     EventID: 800

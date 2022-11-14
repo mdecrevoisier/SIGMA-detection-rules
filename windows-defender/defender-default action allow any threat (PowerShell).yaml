@@ -16,7 +16,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: powershell
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # Set-MpPreference -UnknownThreatDefaultAction Allow -LowThreatDefaultAction Allow -HighThreatDefaultAction Allow  -ModerateThreatDefaultAction Allow   -SevereThreatDefaultAction Allow
   selection1_powershell_native:
     EventID: 800

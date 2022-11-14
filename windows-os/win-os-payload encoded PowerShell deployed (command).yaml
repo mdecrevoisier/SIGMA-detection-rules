@@ -3,6 +3,11 @@ description: Detects scenarios where an attacker deployed an encoded PowerShell 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
+- https://www.fortinet.com/blog/threat-research/newly-discovered-function-in-darkside-ransomware-variant-targets-disk-partitions
+- https://www.huntress.com/blog/from-powershell-to-payload-an-analysis-of-weaponized-malware
+- https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
+- https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
+- https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
 tags:
 - attack.execution
 - attack.t1059.003
@@ -15,7 +20,6 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith:
       - \cmd.exe
       - \powershell.exe

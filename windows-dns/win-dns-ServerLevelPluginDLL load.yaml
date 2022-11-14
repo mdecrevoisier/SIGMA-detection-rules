@@ -21,7 +21,6 @@ logsource:
   service: dns-server
 detection:
   selection:
-    Channel: 'DNS Server'
     EventID: 
       - 770 # success load
       - 150 # failed load
