@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker attempts to register a SIP or t
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1553-%20Subvert%20Trust%20Controls
 - https://github.com/mattifestation/PoCSubjectInterfacePackage
+- https://github.com/gtworek/PSBits/tree/master/SIP
 - https://posts.specterops.io/code-sgning-certificate-cloning-attacks-and-defenses-6f98657fc6ec
 - https://specterops.io/assets/resources/SpecterOps_Subverting_Trust_in_Windows.pdf
 - https://www.ired.team/offensive-security/persistence/t1198-trust-provider-hijacking
@@ -10,7 +11,7 @@ references:
 tags:
 - attack.defense_evasion
 - attack.t1553.003 # Subvert Trust Controls: SIP and Trust Provider Hijacking 
-author: mdecrevoisier
+author: mdecrevoisier (adapted from Nasreddine Bencherchali)
 status: experimental
 logsource:
   product: windows
@@ -18,9 +19,14 @@ logsource:
 detection: # path sample: "HKLM\SOFTWARE\Microsoft\Cryptography\OID\EncodingType 0\CryptSIPDllVerifyIndirectData\{xxxx-xxxx-xxxx-xxxxx}"
   selection:
     TargetObject|contains:
-      - '\SOFTWARE\Microsoft\Cryptography\OID\EncodingType 0\CryptSIPDll'
-      - '\SOFTWARE\WOW6432Node\Microsoft\Cryptography\OID\EncodingType 0\CryptSIPDll'
-    Details|endswith: .dll 
+      - '\SOFTWARE\Microsoft\Cryptography\Providers\'
+      - '\SOFTWARE\Microsoft\Cryptography\OID\EncodingType'
+      - '\SOFTWARE\WOW6432Node\Microsoft\Cryptography\Providers\'
+      - '\SOFTWARE\WOW6432Node\Microsoft\Cryptography\OID\EncodingType'
+    Details|contains:
+      - '.dll' 
+      - '\dll'
+      - '\$dll'
   condition: selection
 falsepositives:
 - None 

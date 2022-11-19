@@ -1,0 +1,27 @@
+title: Certutil root certificate installation
+description: Detects scenarios where an attacker attempts to alter certificate chain validation by installing a root CA.
+references:
+- https://twitter.com/Alh4zr3d/status/1592925753984880641
+- https://specterops.io/wp-content/uploads/sites/3/2022/06/Certified_Pre-Owned.pdf
+- https://posts.specterops.io/code-signing-certificate-cloning-attacks-and-defenses-6f98657fc6ec
+- https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-security/import-third-party-ca-to-enterprise-ntauth-store#method-2---import-a-certificate-by-using-certutilexe
+- https://strontic.github.io/xcyclopedia/library/certutil.exe-138DC8312317ED386C1CB62E19EA9269.html
+tags:
+- attack.defense_evasion
+- attack.t1553.004 # Subvert Trust Controls: Install Root Certificate 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # certutil.exe -dspublish -f C:\rogue.crt NTAuthCA
+  selection:
+    NewProcessName|endswith: '\certutil.exe'
+    Commandline|contains|all:
+      - '-dspublish'
+      - '.crt'
+      - NTAuthCA
+  condition: selection
+falsepositives:
+- Administrator manually adding a root CA
+level: high

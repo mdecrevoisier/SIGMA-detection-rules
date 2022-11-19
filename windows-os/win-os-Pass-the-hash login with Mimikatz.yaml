@@ -4,6 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1550-Use%20Alternate%20Authentication%20Material
 - https://stealthbits.com/blog/passing-the-hash-with-mimikatz/
 - https://s3cur3th1ssh1t.github.io/Named-Pipe-PTH/
+- https://thedfirreport.com/2022/11/14/bumblebee-zeros-in-on-meterpreter/
 tags:
 - attack.lateral_movement
 - attack.t1550.002
@@ -18,11 +19,11 @@ detection: # command: 'privilege::debug' + 'sekurlsa::pth /user:<user> /domain:<
     LogonType: 9 # New credentials
     LogonProcessName: seclogo
     AuthenticationPackageName: Negotiate
-    ProcessName|endswith: '\Windows\System32\svchost.exe'
+    ProcessName: 'C:\Windows\System32\svchost.exe'
     IpAddress: '::1'
-  filter: # if 'token::elevate' command is used, both Subject and Target will be related to SYSTEM account. Therefore the filter needs to be removed.
-    SubjectUserName|endswith: '$'
-    TargetUserName|endswith: '$'
+  #filter: # if 'token::elevate' command is used, both Subject and Target will be related to SYSTEM account. Therefore the filter needs to be removed.
+    #SubjectUserName|endswith: '$'
+    #TargetUserName|endswith: '$'
   condition: selection and not filter
 falsepositives:
 - None

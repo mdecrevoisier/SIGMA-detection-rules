@@ -2,7 +2,7 @@ title: Windows Subsystem for Linux (WSL) installation (command)
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts
-- https://docs.microsoft.com/en-us/windows/wsl/install-win10
+- https://learn.microsoft.com/en-us/windows/wsl/install-manual
 - https://learn.microsoft.com/en-us/windows/wsl/install
 - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
 - https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
@@ -26,12 +26,8 @@ detection:
     CommandLine|contains:
       - VirtualMachinePlatform
       - Microsoft-Windows-Subsystem-Linux
-
-  selection_wsl_configuration: # C:\WINDOWS\system32\wsl.exe" --set-default-version 2
-    NewProcessName|endswith: '\wsl.exe'
-    CommandLine|contains: '--set-default-version'
-
-  condition: selection_wsl_activation_deprecated or selection_wsl_configuration
+      
+  condition: selection_wsl_activation_modern or selection_wsl_activation_deprecated
 falsepositives:
 - developer computer
 level: medium

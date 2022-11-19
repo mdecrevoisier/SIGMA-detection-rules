@@ -6,6 +6,7 @@ references:
 - https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
 - https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 - https://www.intrinsec.com/apt27-analysis/
+- https://cybersecuritynews-com.cdn.ampproject.org/c/s/cybersecuritynews.com/u-s-federal-network-hacked/?amp
 tags:
 - attack.defense_evasion
 - attack.t1562.001

@@ -2,9 +2,8 @@ title: Windows Subsystem for Linux (WSL) installation (PowerShell)
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
 - https://www.hackers-arise.com/post/linux-basics-for-hackers-part-13-the-windows-subsystem-for-linux-wsl
-- https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/
+- https://linuxhint.com/enable-wsl-optional-component/
 - https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
-- https://docs.microsoft.com/en-us/windows/wsl/install-on-server
 tags:
 - attack.defense_evasion
 - attack.t1564.006
@@ -35,7 +34,7 @@ detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Mi
       - 'Enable-windowsOptionalFeature'
       - 'Microsoft-Subsystem-Linux'
 
-  condition: selection_event and 1 of selection_wsl_*
+  condition: 1 of selection*
 falsepositives:
 - Administrator activity
 level: medium

@@ -172,6 +172,8 @@ TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification |
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | OCSP security settings changed | 5124(OCSP) | 
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Permissions changed on a GPO | 5136 | 
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Sensitive GUID related to "Replicate directory changes" detected  | 4662 | DCSync
+TA0005-Defense Evasion | T1553.003- Subvert Trust Controls: SIP and Trust Provider Hijacking  | Suspicious SIP or trust provider registration | 12-13 | 
+TA0005-Defense Evasion | T1553.004-Subvert Trust Controls: Install Root Certificate  | Certutil root certificat install (command) | 4688 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: critical security component disabled (command) | 4688/1 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: critical security component disabled (PowerShell) | 800/4103/4104 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: default action set to allow any threat (command) | 4688/1 | 
@@ -181,6 +183,7 @@ TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Def
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: security component disabled (command) | 4688/1 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: security component disabled (PowerShell) | 800/4103/4104 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: service component status disabled (Registry via Sysmon) | 13 | 
+TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Massive processes termination burst | 4688 | 
 TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | Audit policy disabled | 4719 | 
 TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit object deleted | 33205 | 
 TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit object disabled | 33205 | 
@@ -306,8 +309,9 @@ TA0011-Command and control | 1071.004- Application Layer Protocol: DNS  | DoT ac
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling configuration enabled for port forwarding | 4688 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling detected | 1149 | 
 TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker feature configuration (Reg via command) | 4688 | 
+TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker massive feature activation (native) | 768 | 
 TA0040-Impact | T1486-Data Encrypted for Impact  | BitLocker server feature activation (PowerShell) | 800/4103/4104 | 
-TA0040-Impact | T1489-Service Stop  | Massive service deactivation before ransomware execution | 4688 | 
+TA0040-Impact | T1489-Service Stop  | Massive services termination burst | 4688 | 
 TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion (PowerShell) | 800/4103/4104 | 
 TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion (WMI) | 4688 | 
 TA0040-Impact | T1490-Inhibit System Recovery | VSS backup deletion | 4688 | 
