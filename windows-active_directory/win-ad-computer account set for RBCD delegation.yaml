@@ -1,0 +1,28 @@
+title: Computer account manipulation for delegation (RBCD)
+description: Detects scenarios where an attacker manipulate a computer object and updates its attribute 'msDS-AllowedToActOnBehalfOfOtherIdentity' to enable a resource to impersonate and authenticate any domain user.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/resource-based-constrained-delegation
+- https://pentestlab.blog/2021/10/18/resource-based-constrained-delegation/
+- https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/resource-based-constrained-delegation-ad-computer-object-take-over-and-privilged-code-execution
+- https://blog.netwrix.com/2022/09/29/resource-based-constrained-delegation-abuse/
+- https://www.fortalicesolutions.com/posts/hunting-resource-based-constrained-delegation-in-active-directory
+requirements: auditing SACL ("Write all properties") must be placed on the "domain" partition.
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5136
+    DSType: '%%14676' # value added 
+    ObjectClass: computer 
+    AttributeLDAPDisplayName: 'msDS-AllowedToActOnBehalfOfOtherIdentity'
+  condition: selection
+falsepositives:
+- Computer account set for delegation by a sysadmin
+level: high

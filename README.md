@@ -1,7 +1,7 @@
 # SIGMA detection rules
 
 ## Project purpose:
-**SIGMA detection rules** provides a free set of >200 advanced correlation rules to be used for suspicious hunting activities.
+**SIGMA detection rules** provides a free set of >320 advanced correlation rules to be used for suspicious hunting activities.
 
 ## How to use the rules:
 The SIGMA rules can be used in different ways together with your SIEM:
@@ -85,6 +85,7 @@ TA0003-Persistence | T1098.xxx-Account manipulation | User account with password
 TA0003-Persistence | T1098.xxx-Account manipulation | User password change using current hash password - ChangeNTLM | 4723 | Mimikatz
 TA0003-Persistence | T1098.xxx-Account manipulation | User password change without previous password known - SetNTLM | 4724 | Mimikatz
 TA0003-Persistence | T1098.xxx-Account Manipulation | User performing massive group membership changes on multiple differents groups | 4728,4756 | 
+TA0003-Persistence | T1098-Account Manipulation | Computer account set for RBCD delegation | 5136 | 
 TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin account activated (command) | 4688 | 
 TA0003-Persistence | T1098-Account Manipulation | Disabled guest or builtin account activated | 4722 | 
 TA0003-Persistence | T1098-Account Manipulation | SPN added to an account (command) | 4688/1 | 
@@ -298,6 +299,7 @@ TA0008-Lateral Movement | T1021.004-Remote services: SSH | OpenSSH server for Wi
 TA0008-Lateral Movement | T1021.006-Windows Remote Management | WinRM listening service reconnaissance | 4656 | 
 TA0008-Lateral Movement | T1021.006-Windows Remote Management | WinRS usage for remote execution | 4688 | 
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement | 4624/4625/47** | 
+TA0008-Lateral Movement | T1210-Exploitation of Remote Services  | Remote domain controller password reset (Zerologon) | 4742/4724 | 
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | LSASS dump via process access | 10 | Mimikatz
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | Pass-the-hash login | 4624 | Mimikatz
 TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 4688 | 
