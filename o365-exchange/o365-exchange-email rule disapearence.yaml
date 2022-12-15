@@ -22,7 +22,7 @@ detection:
       - 'Set-InboxRule'
     Parameters|contains: 'MoveToFolder'
     Parameters|contains:
-      - 'RSS*'           # RSS feeds / RSS subscriptions
+      - 'RSS*'           # RSS feeds / RSS-feeds / RSS subscriptions
       - 'Delete*'        # Deleted items
       - 'Archive*'
       - 'Conversation*'  # Conversation history

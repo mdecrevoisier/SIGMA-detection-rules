@@ -18,9 +18,7 @@ logsource:
   category: process_creation
 detection: # full command : 'setspn -T my_domain -Q */*'
   selection:
-    EventID: 4688
     NewProcessName|endswith: \setspn.exe
-    #CommandLine|contains: setspn
     CommandLine|contains: # Perform query on the specified domain
       - /T
       - -T

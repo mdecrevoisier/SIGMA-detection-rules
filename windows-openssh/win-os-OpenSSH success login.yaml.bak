@@ -18,7 +18,7 @@ logsource:
 detection:
   selection_event:
     EventID: 4624
-    ProcessName|endswith: '\sshd.exe'
+    ProcessName|endswith: '\sshd.exe' # Can be "C:\Program Files\OpenSSH-Win64\sshd.exe" or "C:\Windows\system32\OpenSSH\sshd.exe"
   filter_user:
     TargetUserSid|startswith: 'S-1-5-111-' # Exclude "sshd_*" system events
   filter_ssh_servers:

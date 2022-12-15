@@ -25,7 +25,7 @@ detection:
   selection:
     EventID: 4673
     PrivilegeList: SeMachineAccountPrivilege
-    ProcessName|endswith: \Windows\System32\lsass.exe
+    #ProcessName|endswith: \Windows\System32\lsass.exe
   filter:
     - SubjectUserSid: "S-1-5-18"
     - SubjectUserName: '%admin_acounts%'

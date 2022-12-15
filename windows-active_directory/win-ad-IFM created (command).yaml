@@ -11,6 +11,7 @@ references:
 - https://thedfirreport.com/2021/10/04/bazarloader-and-the-conti-leaks/
 - https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html
 - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
+- https://blog.sekoia.io/lucky-mouse-incident-response-to-detection-engineering/
 tags:
 - attack.credential_dumping
 - attack.t1003.003
@@ -21,7 +22,6 @@ logsource:
   category: process_creation
 detection:
   selection_baseline:
-    EventID: 4688
     NewProcessName|endswith: '\ntdsutil.exe'
 
   selection_creation_basic: # full command: "ntdsutil "activate instance ntds" ifm "create full c:\data" quit quit"

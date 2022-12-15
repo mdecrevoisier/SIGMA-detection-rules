@@ -3,12 +3,11 @@ description: Detects scenarios where an attacker downloads a payload by abusing 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs
 - https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
-- https://docs.microsoft.com/en-us/windows/win32/bits/bitsadmin-tool
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bitsadmin-examples
-- https://attack.mitre.org/software/S0190/
 - https://www.microsoft.com/security/blog/2019/12/12/multi-stage-downloader-trojan-sload-abuses-bits-almost-exclusively-for-malicious-activities/
 - https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
 - https://www.hackingarticles.in/windows-for-pentester-bitsadmin/
+- https://blog.talosintelligence.com/breaking-the-silence-recent-truebot-activity/
 tags:
 - attack.exfiltration
 - attack.t1048 # Exfiltration Over Alternative Protocol
@@ -25,12 +24,10 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\bitsadmin.exe'
-    CommandLine|contains|all:
-    - bitsadmin
-    - /transfer
-    - /download
+    CommandLine|contains:
+    - '/transfer'
+    - '/download'
   condition: selection
 falsepositives:
 - None

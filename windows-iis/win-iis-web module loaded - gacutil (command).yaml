@@ -11,6 +11,7 @@ references:
 - https://www.mdsec.co.uk/2020/02/iis-raid-backdooring-iis-using-native-modules/
 - https://github.com/0x09AL/IIS-Raid
 - https://github.com/gtworek/PSBits/blob/master/Misc/Install-PSBackdoor.ps1
+- https://www.microsoft.com/en-us/security/blog/2022/12/12/iis-modules-the-evolution-of-web-shells-and-how-to-detect-them/
 tags:
 - attack.persistence
 - attack.t1505.004
@@ -26,7 +27,6 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\gacutil.exe'
     CommandLine|contains:
       - '-i'

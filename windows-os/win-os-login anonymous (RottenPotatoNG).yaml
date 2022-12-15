@@ -26,8 +26,7 @@ detection:
   selection_process:
     EventID: 4688
     SubjectUserSid: S-1-5-18
-    NewProcessName|endswith: \System32\cmd.exe
-    CommandLine|endswith: \System32\cmd.exe
+    NewProcessName|endswith: '\cmd.exe'
 
   condition: selection_login and selection_process
 falsepositives:

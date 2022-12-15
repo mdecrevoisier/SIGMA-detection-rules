@@ -12,6 +12,7 @@ references:
 - https://strontic.github.io/xcyclopedia/library/schtasks.exe-5BD86A7193D38880F339D4AFB1F9B63A.html
 - https://redcanary.com/blog/microsoft-exchange-attacks/
 - https://nasbench.medium.com/behind-the-detection-schtasks-eb67a33a8710
+- https://www.linkedin.com/pulse/lolbin-attacks-scheduled-tasks-t1503005-how-detect-them-v%C3%B6gele
 tags:
 - attack.execution
 - attack.t1053.005

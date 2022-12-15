@@ -1,8 +1,7 @@
 title: Suspicious computer account created by a computer account
-description: Detects scenarios where an attacker abuse MachineAccountQuota privilege while realying host credentials to escalate privileges on the relayed host.
+description: Detects scenarios where an attacker abuse MachineAccountQuota privilege and pre-create a computer object for abusing RBCD delegation.
 references:
 - https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4741
 tags:
 - attack.persistence
 - attack.t1136
@@ -19,5 +18,6 @@ detection:
     TargetUserName|endswith: '$'
   condition: selection
 falsepositives:
-- None
+- Offline domain join host  
+- Windows Autopilot Hybrid Azure AD Join
 level: high

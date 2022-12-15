@@ -2,6 +2,7 @@ title: Computer account manipulation for delegation (RBCD)
 description: Detects scenarios where an attacker manipulate a computer object and updates its attribute 'msDS-AllowedToActOnBehalfOfOtherIdentity' to enable a resource to impersonate and authenticate any domain user.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://www.microsoft.com/en-us/security/blog/2022/05/25/detecting-and-preventing-privilege-escalation-attacks-leveraging-kerberos-relaying-krbrelayup/
 - https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/resource-based-constrained-delegation
 - https://pentestlab.blog/2021/10/18/resource-based-constrained-delegation/
 - https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/resource-based-constrained-delegation-ad-computer-object-take-over-and-privilged-code-execution

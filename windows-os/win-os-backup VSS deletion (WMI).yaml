@@ -22,7 +22,6 @@ detection:
     EventID: 4688
     NewProcessName|endswith: \wmic.exe
     CommandLine|contains|all:
-      - wmic
       - shadowcopy
       - delete
   condition: selection
