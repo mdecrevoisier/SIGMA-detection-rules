@@ -5,6 +5,7 @@ references:
 - https://medium.com/palantir/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4717
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment
+- https://medium.com/falconforce/falconfriday-detecting-lsass-dumping-with-debug-privileges-0xff1f-328fdb78f5be
 tags:
 - attack.privilege_escalation
 - attack.t1134

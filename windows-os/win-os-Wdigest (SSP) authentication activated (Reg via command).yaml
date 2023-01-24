@@ -8,6 +8,8 @@ references:
 - https://stealthbits.com/blog/wdigest-clear-text-passwords-stealing-more-than-a-hash/
 - https://github.com/HarmJ0y/Misc-PowerShell/blob/master/Invoke-WdigestDowngrade.ps1
 - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
+- https://www.sentinelone.com/blog/how-attackers-exploit-security-support-provider-ssp-for-credential-dumping/
+
 tags:
 - attack.credential_access
 - attack.t1003
@@ -20,7 +22,6 @@ logsource:
   category: process_creation
 detection: # reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\reg.exe'
     CommandLine|contains|all:
       - 'REG ADD'

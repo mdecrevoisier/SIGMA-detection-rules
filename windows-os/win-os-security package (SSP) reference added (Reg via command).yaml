@@ -10,6 +10,7 @@ references:
 - https://securityintelligence.com/posts/hunting-evidence-dll-side-loading-powershell-sysmon/
 - https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
 - https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet#custom-ssp
+- https://www.sentinelone.com/blog/how-attackers-exploit-security-support-provider-ssp-for-credential-dumping/
 tags:
 - attack.persistence
 - attack.t1547.008
@@ -17,13 +18,12 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
-detection:
+  category: process_creation
+detection:  # reg add "hklm\system\currentcontrolset\control\lsa\" /v "Security Packages" /d "kerberos\0msv1_0\0schannel\0wdigest\0tspkg\0pku2u\0mimilib" /t REG_MULTI_SZ
   selection:
-    EventID: 4688
-    NewProcessName|endswith: \reg.exe
-    CommandLine|contains|all: # Full command: reg add "hklm\system\currentcontrolset\control\lsa\" /v "Security Packages" /d "kerberos\0msv1_0\0schannel\0wdigest\0tspkg\0pku2u\0mimilib" /t REG_MULTI_SZ
-      - REG ADD
+    NewProcessName|endswith: '\reg.exe'
+    CommandLine|contains|all:
+      - 'REG ADD'
       - '\SYSTEM\CurrentControlSet\Control\Lsa'
       - 'Security Packages'
   condition: selection

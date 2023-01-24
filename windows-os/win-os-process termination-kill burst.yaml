@@ -6,6 +6,7 @@ references:
 - https://research.nccgroup.com/2022/08/19/back-in-black-unlocking-a-lockbit-3-0-ransomware-attack/
 - http://woshub.com/killing-windows-services-that-hang-on-stopping/
 - https://fourcore.io/blogs/ryuk-ransomware-simulation-mitre-ttp
+- https://www.trendmicro.com/en_us/research/22/e/avoslocker-ransomware-variant-abuses-driver-file-to-disable-anti-Virus-scans-log4shell.html
 tags:
 - attack.impact
 - attack.t1489 # Service Stop 

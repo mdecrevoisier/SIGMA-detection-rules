@@ -8,6 +8,7 @@ references:
 - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
 - https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
 - https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
+- https://unit42.paloaltonetworks.com/threat-brief-OWASSRF/
 tags:
 - attack.execution
 - attack.t1059.001

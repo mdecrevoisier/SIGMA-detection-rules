@@ -27,5 +27,5 @@ detection:
       - decodehex
   condition: selection
 falsepositives:
-- None
+- CSAT Cyber Security Assessment Tool
 level: high

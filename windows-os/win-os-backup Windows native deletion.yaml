@@ -16,8 +16,7 @@ logsource:
   category: process_creation
 detection:
   selection: # wbadmin delete backup -backupTarget:G:\ -deleteOldest
-    EventID: 4688
-    NewProcessName|endswith: \Windows\System32\wbadmin.exe
+    NewProcessName|endswith: '\wbadmin.exe'
     CommandLine|contains:
       - wbadmin
       - delete

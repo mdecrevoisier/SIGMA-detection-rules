@@ -18,6 +18,8 @@ references:
 - https://m365internals.com/2021/11/08/kerberoast-with-opsec/
 - https://redcanary.com/blog/marshmallows-and-kerberoasting/
 - https://www.semperis.com/blog/new-attack-paths-as-requested-sts/
+- https://www.trustedsec.com/blog/the-art-of-bypassing-kerberoast-detections-with-orpheus/
+- https://nored0x.github.io/red-teaming/Kerberos-Attacks-Kerbroasting/
 tags:
 - attack.credential_access
 - attack.t1558.003

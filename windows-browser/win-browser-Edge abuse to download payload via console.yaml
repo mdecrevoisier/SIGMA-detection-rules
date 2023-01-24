@@ -18,7 +18,8 @@ detection:
     ParentProcessName|endswith:
       - \cmd.exe
       - \powershell.exe
-      - \pwsh.exe
+      - \pwsh.exe # PowerShell v6
+      - \powershell_ise.exe # Development GUI
     NewProcessName|endswith: \msedge.exe
     CommandLine|contains:
       - 'http://'

@@ -24,4 +24,5 @@ detection:
 falsepositives:
 - Pentest
 - Administrator activity
+- Splunk UF agent installation
 level: high

@@ -19,8 +19,8 @@ detection: # Full command: "powershell -command "Get-Service "seg243" | select -
     #  - \cmd.exe
     #Version: 2
     NewProcessName|endswith:
-      - \cmd.exe        # Process spawned by \services.exe
-      - \powershell.exe # Process spwaned by \cmd.exe
+      - '\cmd.exe'        # Process spawned by \services.exe
+      - '\powershell.exe' # Process spwaned by \cmd.exe
     CommandLine|contains|all:
       - powershell
       - command

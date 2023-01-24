@@ -5,6 +5,7 @@ references:
 - https://fourcore.io/blogs/ryuk-ransomware-simulation-mitre-ttp
 - https://thedfirreport.com/2021/12/13/diavol-ransomware/
 - https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/
+- https://www.trendmicro.com/en_us/research/22/h/ransomware-actor-abuses-genshin-impact-anti-cheat-driver-to-kill-antivirus.html
 tags:
 - attack.impact
 - attack.t1489 # Service Stop 

@@ -21,7 +21,6 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\dnscmd.exe'
     CommandLine|contains|all: # full command 'dnscmd.exe /config /serverlevelplugindll "C:\mimilib.dll"'
       - dnscmd
