@@ -6,7 +6,7 @@ references:
 - https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf
 tags:
 - attack.persistence
-- attack.t1505.002
+- attack.t1505.002 # Server Software Component: Transport Agent 
 author: mdecrevoisier
 status: experimental
 logsource:

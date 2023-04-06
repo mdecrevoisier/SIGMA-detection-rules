@@ -8,6 +8,7 @@ references:
 - https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
 - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 - https://blog.sekoia.io/lucky-mouse-incident-response-to-detection-engineering/
+- https://thedfirreport.com/2023/01/09/unwrapping-ursnifs-gifts/
 tags:
 - attack.execution
 - attack.t1047

@@ -1,0 +1,24 @@
+title: Number of oustanding SMB requests increased
+description: Detects scenarios where an attacker (specially Blackcat) increase the number of oufstanding requests to distribute malware payloads.
+references:
+- https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
+- https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc960259(v=technet.10)
+tags:
+- attack.persistence
+- attack.t1021.002 # Remote Services: SMB/Windows Admin Shares 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:  # reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services \LanmanServer\Parameters /v MaxMpxCt /d 65535 /t REG_DWORD /f
+  selection:
+    NewProcessName|endswith: '\reg.exe'
+    CommandLine|contains|all:
+      - 'REG ADD'
+      - '\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters'
+      - 'MaxMpxCt'
+  condition: selection
+falsepositives:
+- system administrator activity or debugging
+level: medium

@@ -22,9 +22,8 @@ detection:
 
   selection_wsl_activation_deprecated: # dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
     NewProcessName|endswith: '\dism.exe'
-    CommandLine|contains: enable-feature
-    CommandLine|contains:
-      - VirtualMachinePlatform
+    CommandLine|contains|all: 
+      - Enable-feature
       - Microsoft-Windows-Subsystem-Linux
       
   condition: selection_wsl_activation_modern or selection_wsl_activation_deprecated

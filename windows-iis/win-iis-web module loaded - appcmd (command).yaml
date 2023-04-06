@@ -12,6 +12,7 @@ references:
 - https://github.com/0x09AL/IIS-Raid
 - https://github.com/gtworek/PSBits/blob/master/Misc/Install-PSBackdoor.ps1
 - https://www.microsoft.com/en-us/security/blog/2022/12/12/iis-modules-the-evolution-of-web-shells-and-how-to-detect-them/
+- https://www.splunk.com/en_us/blog/security/fantastic-iis-modules-and-how-to-find-them.html
 tags:
 - attack.persistence
 - attack.t1505.004

@@ -7,7 +7,7 @@ references:
 - https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
 tags:
 - attack.execution
-- attack.t1053.005
+- attack.t1053.005 # Scheduled Task/Job: Scheduled Task 
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -16,7 +16,7 @@ detection:
   selection:
     EventID: 1149 # 'User authentication succeeded': DOES NOT indicate a successful user authentication !!!
     Channel: Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational
-    IpAddress: '127.0.0.1' # In ID 1149, IP address is provided in "EventXML.Param3"
+    EventXML.Param3: '127.0.0.1' # In ID 1149, IP address is provided in "EventXML.Param3"
   condition: selection
 falsepositives:
 - None

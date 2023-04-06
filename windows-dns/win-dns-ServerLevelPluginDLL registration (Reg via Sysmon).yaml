@@ -17,7 +17,7 @@ author: Florian Roth (shortly adapted my mdecrevoisier)
 status: experimental
 logsource:
   product: windows
-  category: registry_set
+  category: registry_set # 13
 detection:
   selection:
     TargetObject|endswith: '\services\DNS\Parameters\ServerLevelPluginDll'

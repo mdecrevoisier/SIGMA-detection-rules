@@ -4,6 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil
 - https://www.zscaler.com/blogs/security-research/technical-analysis-crytox-ransomware
+- https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
 tags:
 - attack.defense_evasion
 - attack.t1070.001
@@ -15,11 +16,9 @@ logsource:
 detection: # Full command: wevtutil el | Foreach-Object {Write-Host "Clearing $_"; wevtutil cl "$_"}
   selection:
     EventID: 4688
-    NewProcessName|endswith: \wevtutil.exe
+    NewProcessName|endswith: '\wevtutil.exe'
     CommandLine|contains:
-      - wevtutil
-    CommandLine|contains:
-      - clear-log
+      - 'clear-log'
       - cl # reduced command
   condition: selection
 falsepositives:

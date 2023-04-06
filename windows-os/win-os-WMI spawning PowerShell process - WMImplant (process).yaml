@@ -22,11 +22,16 @@ detection:
     NewProcessName|endswith:
       - \powershell.exe
       - \pwsh.exe # PowerShell v6
+      - \powershell_ise.exe # Development GUI
+
 
   selection_sysmon:
     EventID: 1
     ParentImage|endswith: \WmiPrvSE.exe
-    Image|endswith: \powershell.exe
+    Image|endswith|endswith:
+      - \powershell.exe
+      - \pwsh.exe # PowerShell v6
+      - \powershell_ise.exe # Development GUI
 
   filter:
     CommandLine: "-" # Exclude empty command line

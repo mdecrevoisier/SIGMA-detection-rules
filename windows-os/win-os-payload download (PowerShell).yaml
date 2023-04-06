@@ -20,7 +20,10 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
     EventData|contains:
       - ".DownloadString("
       - ".DownloadFile("
-    #EventData|contains: 'http'
+    EventData|contains: 
+      - 'http://'
+      - 'https://'
+      - 'ftp://'
 
   selection_powershell_modern:
     EventID: 4103
@@ -28,7 +31,10 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
     Payload|contains:
       - ".DownloadString("
       - ".DownloadFile("
-    #Payload|contains: 'http'
+    Payload|contains: 
+      - 'http://'
+      - 'https://'
+      - 'ftp://'
 
   selection_powershell_block:
     EventID: 4104
@@ -36,7 +42,10 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
     ScriptBlockText|contains:
       - ".DownloadString("
       - ".DownloadFile("
-    #ScriptBlockText|contains: 'http'
+    ScriptBlockText|contains: 
+      - 'http://'
+      - 'https://'
+      - 'ftp://'
 
   condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
 falsepositives:

@@ -20,9 +20,7 @@ logsource:
 detection:
   selection_sdset: # full command (native commmand): "sc sdset XblGameSave "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)"
     NewProcessName|endswith: '\sc.exe'
-    CommandLine|contains|all:
-      - 'sc'
-      - 'sdset'
+    CommandLine|contains: sdset
 
   selection_subinACL: # full command (3rd party tool): subinacl.exe /service Spooler /grant=contoso\tuser=PTO
     CommandLine|contains|all:

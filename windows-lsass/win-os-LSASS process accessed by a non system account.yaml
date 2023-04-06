@@ -13,8 +13,8 @@ logsource:
 detection:
   selection:
     EventID:
-      - 4656 # A handle to an object was requested.
-      - 4663 # An attempt was made to access an object.
+      - 4656 # A handle to an object was requested. / Kernel object
+      - 4663 # An attempt was made to access an object / Kernel object
     ObjectType: Process
     ObjectServer: Security
     ObjectName|endswith: '\System32\lsass.exe'

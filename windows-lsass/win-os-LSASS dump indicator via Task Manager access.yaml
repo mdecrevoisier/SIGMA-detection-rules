@@ -5,6 +5,7 @@ references:
 - https://superuser.com/questions/753556/taskmgr-exe-called-with-an-argument-by-windows-7
 - https://twitter.com/Cyb3rSn0rlax/status/1462900723402817538?t=oMj76JVcPG72ZIlpVxucPw&s=09
 - https://thedfirreport.com/2021/12/13/diavol-ransomware/
+- https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
 tags:
 - attack.credential_access
 - attack.t1003.001

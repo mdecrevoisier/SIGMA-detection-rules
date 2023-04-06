@@ -1,0 +1,35 @@
+title: Remote local admin group enumeration via SharpHound
+description: Detects scenarios where an attacker enumerates local administratos group on multiple hosts via SharpHound.
+correlation: correlate SubjectLogonId from ID 4799 with TargetLogonId from ID 4624 to identify the source of the enumeration.
+requirements: Windows 10 / Server 2016 and higher
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
+- https://docs.google.com/presentation/d/1OdufXKGYPgoV1d5jDrMYSe-SYKZ7lcA4w2MFn8AkUWE/edit
+- https://www.youtube.com/watch?v=_GJDkbUTSLY
+- https://community.rsa.com/t5/rsa-netwitness-platform-blog/keeping-an-eye-on-your-hounds/ba-p/519889
+- https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html
+- https://twitter.com/SBousseaden/status/1617856006255673345
+tags:
+- attack.discovery
+- attack.t1069.001 # Permission Groups Discovery: Local Groups 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4799 # Local group membership enumeration
+    SubjectUserSid|startswith: 'S-1-5-21-' # Exclude false positives like local system accounts (eg: S-1-5-19 for Local Service)
+    TargetSid:
+      - 'S-1-5-32-544' # Administrators
+      - 'S-1-5-32-555' # Remote Desktop Users
+      - 'S-1-5-32-580' # Remote Management Users
+    CallerProcessName: '-'  # Process is empty when call is done remotely. Process ID can also be used for the same purpose when it equals to '0x0'.
+  filter:
+    SubjectUserName|endswith: '$'
+  condition: selection and not filter | count(Computer) by SubjectUserSid > 20 # Count on how many hosts this event was produced.
+falsepositives:
+- Administrators
+- Azure Advanced Threat Protection (ATP) sensor
+level: medium

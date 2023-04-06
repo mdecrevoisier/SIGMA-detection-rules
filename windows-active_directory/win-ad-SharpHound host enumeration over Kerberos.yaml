@@ -18,9 +18,10 @@ detection:
     ServiceName|endswith: '$'
     Status: 0x0
   filter:
-    IpAddress:
+    - IpAddress:
       - '::1'
       - '%domain_controllers_ip%'
+    - TargetUserName|contains: "$@" # excludes computer accounts
   condition: selection and not filter | count(ServiceName) by IpAddress > 20
   timeframe: 5m
 falsepositives:

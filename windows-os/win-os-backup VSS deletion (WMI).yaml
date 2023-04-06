@@ -19,7 +19,6 @@ logsource:
   category: process_creation
 detection:
   selection: # wmic shadowcopy delete /nointeractive
-    EventID: 4688
     NewProcessName|endswith: \wmic.exe
     CommandLine|contains|all:
       - shadowcopy
