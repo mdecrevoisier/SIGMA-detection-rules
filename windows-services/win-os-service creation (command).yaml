@@ -5,6 +5,7 @@ references:
 - https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc990289(v=ws.11)
 - https://news.sophos.com/en-us/2022/12/13/signed-driver-malware-moves-up-the-software-trust-chain/
 - https://www.trendmicro.com/en_us/research/22/e/avoslocker-ransomware-variant-abuses-driver-file-to-disable-anti-Virus-scans-log4shell.html
+- https://www.loldrivers.io/
 tags:
 - attack.persistence
 - attack.t1543.003

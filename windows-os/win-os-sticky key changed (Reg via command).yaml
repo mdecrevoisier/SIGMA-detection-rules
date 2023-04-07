@@ -6,6 +6,7 @@ references:
 - https://www.mandiant.com/resources/apt29-domain-frontin
 - https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign-v1.pdf
 - https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html?m=1
+- https://www.bleepingcomputer.com/news/security/winrar-sfx-archives-can-run-powershell-without-being-detected/
 tags:
 - attack.privilege_escalation
 - attack.t1546.008
