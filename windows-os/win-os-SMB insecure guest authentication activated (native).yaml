@@ -1,0 +1,24 @@
+title: SMB insecure guest authentication activated (native)
+description: Detects scenarios where an attacker attempts to enable insecure guest authentication in order to access a remote storage device (NAS) in order to perform some data exfiltration or lateral movement.
+references:
+- https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-workstationservice-allowinsecureguestauth
+tags:
+- attack.lateral_movement
+- attack.t1021.002 # Remote Services: SMB/Windows Admin Shares 
+- attack.defense_evasion
+- attack.t1562.010 # Impair Defenses: Downgrade Attack  
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Channel: Microsoft-Windows-SMBClient/Security
+    EventID: 31018
+    RegName: AllowInsecureGuestAuth
+    RegValue: 1
+  condition: selection
+falsepositives:
+- Admin activity (backup configuration) 
+level: medium

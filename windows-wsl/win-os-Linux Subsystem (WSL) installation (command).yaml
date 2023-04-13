@@ -1,4 +1,4 @@
-title: Windows Subsystem for Linux (WSL) package turned on (native)
+title: Windows Subsystem for Linux (WSL) installation (command)
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts
@@ -14,16 +14,20 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: setup
+  category: process_creation
 detection:
-  selection:
-    Channel: Setup
-    Provider: Microsoft-Windows-Servicing
-    EventID: 9 # "Selectable update Microsoft-Windows-Subsystem-Linux of package Microsoft-Windows-Lxss-Optional was successfully turned on.""
-    UpdateName: 
+  selection_wsl_activation_modern: # wsl --install
+    CommandLine|contains|all:
+      - wsl
+      - '--install'
+
+  selection_wsl_activation_deprecated: # dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    NewProcessName|endswith: '\dism.exe'
+    CommandLine|contains|all: 
+      - Enable-feature
       - Microsoft-Windows-Subsystem-Linux
-      - VirtualMachinePlatform 
-  condition: selection
+      
+  condition: selection_wsl_activation_modern or selection_wsl_activation_deprecated
 falsepositives:
 - developer computer
 level: medium
