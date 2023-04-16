@@ -1,0 +1,19 @@
+title: NTFS hard link creation
+description: Detects scenarios where an attacker attempts to create a hard link.
+references:
+- https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4664
+tags:
+- attack.persistence
+- attack.t1547.009 # Boot or Logon Autostart Execution: Shortcut Modification 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 4664
+  condition: selection
+falsepositives:
+- admin activity on file server
+level: medium

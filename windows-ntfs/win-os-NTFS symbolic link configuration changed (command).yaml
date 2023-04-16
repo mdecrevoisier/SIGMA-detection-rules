@@ -1,0 +1,24 @@
+title: NTFS symbolic link configuration change
+description: Detects scenarios where an attacker attempts to modify the type of symbolic link than can be created.
+references:
+- https://news.sophos.com/en-us/2022/08/10/lockbit-hive-and-blackcat-attack-automotive-supplier-in-triple-ransomware-attack/
+- https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
+- https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior
+tags:
+- attack.persistence
+- attack.t1547.009 # Boot or Logon Autostart Execution: Shortcut Modification 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # 'fsutil behavior set SymlinkEvaluation R2L:1'
+  selection:
+    NewProcessName|endswith: '\fsutil.exe'
+    CommandLine|contains|all:
+      - behavior
+      - set
+  condition: selection
+falsepositives:
+- admin activity on file server
+level: medium

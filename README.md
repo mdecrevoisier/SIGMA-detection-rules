@@ -126,6 +126,9 @@ TA0003-Persistence | T1546-Event Triggered Execution | AdminSDHolder container p
 TA0003-Persistence | T1546-Event Triggered Execution | Extended rights backdoor obfuscation (via localizationDisplayId) | 5136 | 
 TA0003-Persistence | T1547.008-Boot or Logon Autostart Execution: LSASS Driver | Security package (SSP) loaded into LSA (native) | 4622 | 
 TA0003-Persistence | T1547.008-Boot or Logon Autostart Execution: LSASS Driver | win-os-security package (SSP) reference added to registry | 1 or 4688 | 
+TA0003-Persistence | T1547.009-Boot or Logon Autostart Execution: Shortcut Modification  | NTFS hard link creation | 4664 | 
+TA0003-Persistence | T1547.009-Boot or Logon Autostart Execution: Shortcut Modification  | NTFS symbolic link configuration change | 1 or 4688 | 
+TA0003-Persistence | T1547.009-Boot or Logon Autostart Execution: Shortcut Modification  | NTFS symbolic link creation | 1 or 4688 | 
 TA0003-Persistence | T1574.002-DLL Side-Loading | DNS DLL "serverlevelplugindll" command execution | 1 or 4688 | DNS DLL abuse
 TA0003-Persistence | T1574.002-DLL Side-Loading | Failed DLL loaded by DNS server | 150 | DNS DLL abuse
 TA0003-Persistence | T1574.002-DLL Side-Loading | Success DLL loaded by DNS server | 770 | DNS DLL abuse
@@ -203,6 +206,7 @@ TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH serv
 TA0005-Defense Evasion | T1562.004-Disable/modify firewall (rule) | OpenSSH server firewall configuration (PowerShell) | 800 or 4103 or 4104 | SSH server
 TA0005-Defense Evasion | T1562-Impair defense | NTLM downgrade attack | 13 | 
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance | WSL for Windows installation detected (command) | 1 or 4688 | 
+TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance | WSL for Windows installation detected (native) | 9 | 
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance | WSL for Windows installation detected (PowerShell) | 800 or 4103 or 4104 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (kernel) | 4656 or 4663 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (PowerShell) | 800 or 4103 or 4104 | 

@@ -1,0 +1,29 @@
+title: Network proxy configuration changed
+description: Detects scenarios where an attacker attempts to modify proxy configuration in order to bypass network restrictions.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack
+tags:
+- attack.command_and_control
+- attack.t1090 # proxy
+- attack.t0884 # connection proxy
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: proxy_configuration
+detection:
+  selection_baseline:
+    Channel: Microsoft-Windows-WinINet-Config/ProxyConfigChanged
+    EventID: 5600
+  selection_proxy:
+    - pwszAutoConfigUrl|startswith: http
+    - pwszProxy|startswith: http
+    - pwszProxyBypass|startswith: http
+  filter:
+    - pwszAutoConfigUrl: #<http://your_company_url_proxy.lan>
+    - pwszProxy: #<http://your_company_url_proxy.lan>
+  condition: selection_baseline and selection_proxy and not filter
+falsepositives:
+- admin proxy debugging
+- new proxy configuration applied 
+level: medium
