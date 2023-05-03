@@ -6,7 +6,7 @@ tags:
 - attack.persistence
 - attack.t1136 # user creation
 - attack.defense_evesion
-- attack.t0136 # masquerading
+- attack.t1036 # masquerading
 author: mdecrevoisier
 status: experimental
 logsource:

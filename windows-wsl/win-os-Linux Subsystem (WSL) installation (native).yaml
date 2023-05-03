@@ -19,11 +19,12 @@ detection:
   selection:
     Channel: Setup
     Provider: Microsoft-Windows-Servicing
-    EventID: 9 # "Selectable update Microsoft-Windows-Subsystem-Linux of package Microsoft-Windows-Lxss-Optional was successfully turned on.""
+    EventID: 9 # "Selectable update Microsoft-Windows-Subsystem-Linux of package Microsoft-Windows-Lxss-Optional was successfully turned on."
     UpdateName: 
       - Microsoft-Windows-Subsystem-Linux
       - VirtualMachinePlatform 
   condition: selection
 falsepositives:
 - developer computer
+- administrator activation
 level: medium

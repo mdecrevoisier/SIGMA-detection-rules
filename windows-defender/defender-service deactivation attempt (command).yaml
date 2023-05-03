@@ -14,7 +14,6 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\sc.exe'
     CommandLine|contains|all:
       - sc

@@ -12,7 +12,9 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  service: 
+    - system
+    - security
 detection:
   selection_service_install:
     EventID:

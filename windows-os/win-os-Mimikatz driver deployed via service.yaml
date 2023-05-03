@@ -11,6 +11,9 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
+  service: 
+    - system
+    - security
 detection:
   selection:
     EventID:

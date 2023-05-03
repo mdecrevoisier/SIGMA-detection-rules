@@ -17,7 +17,9 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: security
+  service: 
+    - system
+    - security
 detection:
   selection1:
     EventID: 4697 # security logs
