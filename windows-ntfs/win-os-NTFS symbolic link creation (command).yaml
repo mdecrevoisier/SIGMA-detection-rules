@@ -12,7 +12,7 @@ logsource:
   category: process_creation
 detection:
   selection:
-    NewProcessName|endswith: '\mklink .exe'
+    NewProcessName|endswith: '\mklink.exe'
     CommandLine|contains:
       - '/h' # hard link
       - '/d' # directory symbolic link
