@@ -5,6 +5,7 @@ references:
 - https://attack.mitre.org/software/S0029/
 - https://pentera.io/blog/135-is-the-new-145/
 - https://nv2lt.github.io/windows/smb-psexec-smbexec-winexe-how-to/
+- https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
 tags:
 - attack.lateral_movement
 - attack.t1021.002

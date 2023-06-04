@@ -13,17 +13,13 @@ logsource:
   category: process_creation
 detection:
   selection_baseline:
-    EventID: 4688
     NewProcessName|endswith: '\auditpol.exe'
 
-  selection_clear_audit:
-    CommandLine|contains|all: # full command "auditpol /clear /y"
-      - auditpol
-      - clear
+  selection_clear_audit: # full command "auditpol /clear /y"
+    CommandLine|contains: clear
 
   selection_disable_audit:
     CommandLine|contains|all: # full command: "auditpol /set /category:* /success:disable /failure:disable"
-      - auditpol
       - disable
       - set
 

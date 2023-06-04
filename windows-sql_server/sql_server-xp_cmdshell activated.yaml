@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker enable the xp_cmdshell in order
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505.001-SQL%20Stored%20Procedures
 - https://thedfirreport.com/2022/07/11/select-xmrig-from-sqlserver/
+- https://asec.ahnlab.com/en/52479/
 tags:
 - attack.persistence
 - attack.T1505

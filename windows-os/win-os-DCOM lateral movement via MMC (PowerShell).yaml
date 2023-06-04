@@ -6,6 +6,7 @@ references:
 - https://enigma0x3.net/2017/01/05/lateral-movement-using-the-mmc20-application-com-object/
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/dcomexec.py
 - https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
+- https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
 tags:
 - attack.lateral_movement
 - attack.t1021.003

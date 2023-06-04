@@ -12,6 +12,7 @@ references:
 - https://blog.talosintelligence.com/2022/08/recent-cyber-attack.html
 - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 - https://blog.sekoia.io/lucky-mouse-incident-response-to-detection-engineering/
+- https://media.defense.gov/2023/May/24/2003229517/-1/-1/0/CSA_Living_off_the_Land.PDF
 tags:
 - attack.credential_dumping
 - attack.t1003.003

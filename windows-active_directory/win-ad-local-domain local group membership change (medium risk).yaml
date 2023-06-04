@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     EventID: 4732 # local and domain local group
-    TargetSid|startswith: 'S-1-5-32-'
+    TargetSid|startswith: 'S-1-5-32'
     TargetSid|endswith:
       - '-546'  # Guests
       - '-550'  # Print Operators
@@ -31,8 +31,9 @@ detection:
       - '-579'  # Access Control Assistance Operators
       - '-580'  # Remote Management Users
       - '-582'  # Storage Replica Administrators
+      # add DnsAdmins group but has no default RID
   filter:
-    SubjectUserName|endswith: '$'
+    SubjectUserSid: 'S-1-5-18' # LAPS or others IAM solutions may trigger this as a false positive
   condition: selection and not filter
 falsepositives:
 - Administrator activity

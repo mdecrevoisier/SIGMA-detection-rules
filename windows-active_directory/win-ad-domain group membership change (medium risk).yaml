@@ -1,0 +1,29 @@
+title: Medium risk Active Directory group membership change
+description: Detects scenarios where a suspicious group membership is changed.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://ss64.com/nt/syntax-groups.html
+- https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/security-identifiers
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+      - 4728 # security global group member added
+      - 4756 # universal group member added
+      #- 4732 # local and domain local group are covered in another rule
+    TargetSid|startswith: 'S-1-5-21-'
+    TargetSid|endswith:
+      - '-514' # Domain Guests
+      - '-517' # Cert Publishers
+      - '-520' # Group Policy Creator Owners
+  condition: selection
+falsepositives:
+- Administrator activity
+level: medium

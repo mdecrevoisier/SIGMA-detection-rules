@@ -15,7 +15,7 @@ logsource:
 detection:
   selection:
     EventID: 4732 # local and domain local group
-    TargetSid|startswith: 'S-1-5-32-'
+    TargetSid|startswith: 'S-1-5-32'
     TargetSid|endswith:
       - '-544' # Administrators
       - '-547' # Power Users
@@ -24,7 +24,7 @@ detection:
       - '-551' # Backup Operators
       - '-578' # Hyper-V Administrators
   filter:
-    SubjectUserName|endswith: '$' # LAPS or others IAM solutions may trigger this as a false positive
+    SubjectUserSid: 'S-1-5-18' # LAPS or others IAM solutions may trigger this as a false positive
   condition: selection and not filter
 falsepositives:
 - Administrator activity

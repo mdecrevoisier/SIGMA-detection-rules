@@ -4,6 +4,8 @@ references:
 - https://twitter.com/malmoeb/status/1519710302820089857
 - https://twitter.com/Purp1eW0lf/status/1624073100420677633
 - https://www.mandiant.com/resources/blog/bypassing-network-restrictions-through-rdp-tunneling
+- https://www.huntress.com/blog/abusing-ngrok-hackers-at-the-end-of-the-tunnel
+- https://www.logpoint.com/en/blog/a-deep-look-at-the-darkside-ransomware-operators-and-their-affiliates/#
 tags:
 - attack.command_and_control
 - attack.t1572 # tunneling
