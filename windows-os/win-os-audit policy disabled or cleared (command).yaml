@@ -18,10 +18,8 @@ detection:
   selection_clear_audit: # full command "auditpol /clear /y"
     CommandLine|contains: clear
 
-  selection_disable_audit:
-    CommandLine|contains|all: # full command: "auditpol /set /category:* /success:disable /failure:disable"
-      - disable
-      - set
+  selection_disable_audit: # full command: "auditpol /set /category:* /success:disable /failure:disable"
+    CommandLine|contains|all: 'disable'
 
   condition: selection_baseline and (selection_clear_audit or selection_disable_audit)
 falsepositives:

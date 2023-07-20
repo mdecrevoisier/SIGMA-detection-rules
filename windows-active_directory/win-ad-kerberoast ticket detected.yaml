@@ -3,9 +3,8 @@ description: Detects scenarios where an attacker requests a Kerberoast ticket wi
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
 - https://www.trustedsec.com/blog/the-art-of-bypassing-kerberoast-detections-with-orpheus/
-- https://www.trustedsec.com/2018/05/art_of_kerberoast/
-- https://www.harmj0y.net/blog/redteaming/kerberoasting-revisited/
-- https://www.harmj0y.net/blog/powershell/kerberoasting-without-mimikatz/
+- https://blog.harmj0y.net/redteaming/kerberoasting-revisited/
+- https://blog.harmj0y.net/powershell/kerberoasting-without-mimikatz/
 - https://www.hackingarticles.in/as-rep-roasting/
 - https://adsecurity.org/?p=2293
 - https://adsecurity.org/?p=3458
@@ -40,6 +39,7 @@ detection:
     Status: 0x0 # Success
   filter:
     - ServiceName|endswith: '$'     # Exclude computer account services
+    - ServiceSid: 'S-1-5-21-*-0'    # Exclude domain Service
     - ServiceSid|endswith: '-502'   # Exclude Krbrtg service
     - TargetUserName|contains: '$@' # Exclude computer accounts requests
     - IpAddress:

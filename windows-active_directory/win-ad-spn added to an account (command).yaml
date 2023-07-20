@@ -20,4 +20,5 @@ detection: # SetSPN -a MSSQLSvc/srv01.demo.lan demo\srv01
   condition: selection
 falsepositives:
 - Administrators adding SPN
+- SPN linked to a load balancer
 level: high

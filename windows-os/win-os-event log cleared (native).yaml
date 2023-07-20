@@ -4,7 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
 tags:
 - attack.defense_evasion
-- attack.t1070.001
+- attack.t1070.001 # Indicator Removal: Clear Windows Event Logs 
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -17,5 +17,5 @@ detection:
       - 104  # Other event log cleared (reported in System channel).
   condition: selection
 falsepositives:
-- None
+- Exchange Servers
 level: high

@@ -6,7 +6,9 @@ references:
 - https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters
 tags:
 - attack.execution
-- attack.t1059.001
+- attack.t1059.001 # Command and Scripting Interpreter: PowerShell 
+- attack.command_and_control
+- attack.t1105 # Ingress Tool Transfer 
 logsource:
   product: windows
   category:

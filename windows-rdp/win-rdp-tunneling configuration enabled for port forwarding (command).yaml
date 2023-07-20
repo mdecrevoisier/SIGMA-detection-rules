@@ -8,6 +8,7 @@ references:
 - https://parsiya.net/blog/2016-06-07-windows-netsh-interface-portproxy/
 - https://www.real-sec.com/2019/04/bypassing-network-restrictions-through-rdp-tunneling/
 - https://media.defense.gov/2023/May/24/2003229517/-1/-1/0/CSA_Living_off_the_Land.PDF
+- https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/
 tags:
 - attack.command_and_control
 - attack.t1572 # tunneling
@@ -24,7 +25,6 @@ detection:
 
   selection_command: # full command 'netsh interface portproxy add v4tov4 listenport=8001 listenaddress=0.0.0.0 connectport=3389 connectaddress=1.1.1.1'
     Commandline|contains|all:
-      - netsh
       - interface
       - portproxy
     Commandline|contains:
@@ -33,12 +33,11 @@ detection:
 
   selection_obfuscated: # full command: 'netsh i p a v l=8001 listena=0.0.0.0 connectp=3389 c=1.1.1.1'
     Commandline|contains|all:
-      - netsh
-      - ' i*' # interface
-      - ' p*' # portproxy
+      - 'i ' # interface
+      - 'p ' # portproxy
     Commandline|contains:
-      - ' a*' # add forwarding
-      - ' r*'  # reset configuration
+      - 'a ' # add forwarding
+      - 'r '  # reset configuration
 
   condition: selection_event and (selection_command or selection_obfuscated)
 falsepositives:

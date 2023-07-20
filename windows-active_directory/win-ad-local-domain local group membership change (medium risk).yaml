@@ -32,9 +32,12 @@ detection:
       - '-580'  # Remote Management Users
       - '-582'  # Storage Replica Administrators
       # add DnsAdmins group but has no default RID
-  filter:
+  filter_sytem:
     SubjectUserSid: 'S-1-5-18' # LAPS or others IAM solutions may trigger this as a false positive
-  condition: selection and not filter
+  filter_iis:
+    TargetSid: "S-1-5-32-568" # IIS_IUSRS
+    MemberSid: "S-1-5-20"     # Network service account
+  condition: selection and not (filter_sytem OR filter_iis)
 falsepositives:
 - Administrator activity
 level: high

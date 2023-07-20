@@ -17,9 +17,7 @@ logsource:
 detection:
   selection:
     NewProcessName|endswith: \sc.exe
-    CommandLine|contains|all: #  CommandLine "sc \\fs02\ create hacker-testl binPath='virus.exe'
-      - sc
-      - create
+    CommandLine|contains: create #  CommandLine "sc \\fs02\ create hacker-testl binPath='virus.exe'
   condition: selection
 falsepositives:
 - administrator deplying service
