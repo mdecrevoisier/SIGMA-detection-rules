@@ -7,6 +7,7 @@ references:
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
 - https://www.sentinelone.com/blog/malware-living-off-land-with-certutil/
 - https://thedfirreport.com/2022/07/11/select-xmrig-from-sqlserver/
+- https://www.recordedfuture.com/five-common-ransomware-techniques
 tags:
 - attack.defense_evasion
 - attack.t1105
@@ -17,7 +18,6 @@ logsource:
   category: process_creation
 detection: # Full command: "certutil -urlcache -split -f [serverURL] virus.exe"
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\certutil.exe'
     CommandLine|contains:
       - urlcache

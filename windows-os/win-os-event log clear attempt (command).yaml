@@ -15,7 +15,6 @@ logsource:
   category: process_creation
 detection: # Full command: wevtutil el | Foreach-Object {Write-Host "Clearing $_"; wevtutil cl "$_"}
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\wevtutil.exe'
     CommandLine|contains:
       - 'clear-log'

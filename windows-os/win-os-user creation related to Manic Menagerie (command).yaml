@@ -1,0 +1,25 @@
+title: User enumeration and creation related to Manic Menagerie 2.0 (via cmdline)
+description: Detects user enumeration and/or creation performed by Manic Menagerie.
+references:
+- https://unit42.paloaltonetworks.com/manic-menagerie-targets-web-hosting-and-it/
+- https://www.cyber.gov.au/sites/default/files/2023-03/report_manic_menagerie.pdf
+- https://csl.com.co/rid-hijacking/
+tags:
+- attack.persistence
+- attack.t1136.001
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    Image|endswith:
+      - \net1.exe
+      - \net.exe
+    CommandLine|contains:
+      - iis_uses
+      - iis_user
+  condition: selection
+falsepositives:
+- Administrator activity 
+level: medium

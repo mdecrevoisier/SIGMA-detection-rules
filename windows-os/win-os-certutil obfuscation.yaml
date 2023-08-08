@@ -17,7 +17,6 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID: 4688
     NewProcessName|endswith: '\certutil.exe'
     CommandLine|contains:
       #- urlcache # see other related rule

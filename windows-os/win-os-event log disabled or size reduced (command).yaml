@@ -1,0 +1,27 @@
+title: Event log deactivation or size reduction (command)
+description: Detects scenarios where an attacker disable or reduce the size of an event log.
+references:
+- https://www.recordedfuture.com/five-common-ransomware-techniques
+- https://www.cybereason.com/blog/research/cybereason-vs.-ransomexx-ransomware
+- https://research.splunk.com/endpoint/236e7c8e-c9d9-11eb-a824-acde48001122/
+tags:
+- attack.defense_evasion
+- attack.t1562.002 # Disable Windows Event Logging 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection: # Full command: wevtutil.exe” sl Security /e:false
+  selection:
+    NewProcessName|endswith: '\wevtutil.exe'
+    CommandLine|contains:
+      - 'set-log'
+      - sl # reduced command
+    CommandLine|contains:
+      - '/e:false' # <Enabled> - Does not work with all channel
+      - '/ms:'     # <MaxSize> - suspicious if low value (min is 64Kb)
+  condition: selection
+falsepositives:
+- None
+level: high

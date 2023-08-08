@@ -1,0 +1,30 @@
+title: SQL Server database's table enumeration
+description: Detects scenarios where an attacker attempts to enumerate local SQL Server tables (specially Veeam Backup).
+references:
+- https://labs.withsecure.com/publications/fin7-target-veeam-servers
+- https://blog.checkymander.com/red%20team/veeam/decrypt-veeam-passwords/
+tags:
+- attack.discovery
+- attack.t1518 # Software discovery
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection: # sqlcmd.exe -S localhos\VEEAMSQL2016 -E -Q "use VeeamBackup SELECT top 100 * FROM Ssh_creds;"
+    NewProcessName|endswith: '\sqlcmd.exe'
+    CommandLine|contains: # specify the database\instance'
+      - /S
+      - -S
+    CommandLine|contains:
+      - select
+      - use
+      - top
+      - from
+  condition: selection | count() by Computer > 20
+  timeframe: 5m
+falsepositives:
+- maintenance script
+- backup process 
+level: medium

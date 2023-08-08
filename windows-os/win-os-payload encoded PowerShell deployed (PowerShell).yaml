@@ -3,8 +3,8 @@ description: Detects scenarios where an attacker deployed a service pointing to 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
 - https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
-- https://www.fortinet.com/blog/threat-research/newly-discovered-function-in-darkside-ransomware-variant-targets-disk-partitions
 - https://www.huntress.com/blog/from-powershell-to-payload-an-analysis-of-weaponized-malware
+- https://www.huntress.com/blog/malware-deep-dive-examining-a-powershell-payload
 - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
 - https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
 - https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
@@ -26,38 +26,32 @@ detection:
   selection_powershell_native:
     EventID: 800
     EventData|contains|all:
-      #- '[System.Convert]::'
       - 'FromBase64String'
       - 'IO.StreamReader'
       - 'IO.Compression.'
+      #- '[System.Convert]::'
+      # - '[Convert]'
       #- 'System.Diagnostics.Process'
-      #- hidden
-      #- '-nop'
-      #- '-noni'
 
   selection_powershell_modern:
     EventID: 4103
     Payload|contains|all:
-      - '[System.Convert]::'
       - 'FromBase64String'
-      - 'System.IO.StreamReader'
-      - 'System.IO.Compression.'
-      - 'System.Diagnostics.Process'
-      #- hidden
-      #- '-nop'
-      #- '-noni'
+      - 'IO.StreamReader'
+      - 'IO.Compression.'
+      #- '[System.Convert]::'
+      # - '[Convert]'
+      #- 'System.Diagnostics.Process'
 
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
-      - '[System.Convert]::'
       - 'FromBase64String'
-      - 'System.IO.StreamReader'
-      - 'System.IO.Compression.'
-      - 'System.Diagnostics.Process'
-      #- hidden
-      #- '-nop'
-      #- '-noni'
+      - 'IO.StreamReader'
+      - 'IO.Compression.'
+      #- '[System.Convert]::'
+      # - '[Convert]'
+      #- 'System.Diagnostics.Process'
 
   condition: 1 of selection*
 falsepositives:

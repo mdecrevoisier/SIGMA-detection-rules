@@ -4,6 +4,7 @@ references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
 - https://thedfirreport.com/2021/08/16/trickbot-leads-up-to-fake-1password-installation/
 - https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters
+- https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-resident-campaign
 tags:
 - attack.execution
 - attack.t1059.001 # Command and Scripting Interpreter: PowerShell 
@@ -21,6 +22,7 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
     EventData|contains: 'WebClient'
     EventData|contains:
       - ".DownloadString("
+      - ".DownloadStringAsync("
       - ".DownloadFile("
       - ".DownloadData("
     EventData|contains: 
@@ -33,6 +35,7 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
     Payload|contains: 'WebClient'
     Payload|contains:
       - ".DownloadString("
+      - ".DownloadStringAsync("
       - ".DownloadFile("
       - ".DownloadData("
     Payload|contains: 
@@ -45,6 +48,7 @@ detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http:/
     ScriptBlockText|contains: 'WebClient'
     ScriptBlockText|contains:
       - ".DownloadString("
+      - ".DownloadStringAsync("
       - ".DownloadFile("
       - ".DownloadData("
     ScriptBlockText|contains: 

@@ -42,6 +42,7 @@ TA0002-Execution | T1053.005-Scheduled Task | Scheduled task creation | 1 or 468
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Encoded PowerShell payload deployed | 800 or 4103 or 4104 | 
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Interactive PipeShell over SMB named pipe | 800 or 4103 or 4104 | 
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Payload downloaded via PowerShell | 800 or 4103 or 4104 | 
+TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Vice Society directory crawling script for data exfiltration | 4104 | 
 TA0002-Execution | T1059.003-Windows Command Shell | Encoded PowerShell payload deployed via process execution | 1 or 4688 | 
 TA0002-Execution | T1059.003-Windows Command Shell | SQL Server payload injectection for reverse shell (MSF) | 1 or 4688 | 
 TA0002-Execution | T1204-User execution | Edge abuse for payload download via console | 1 or 4688 | 
@@ -66,7 +67,7 @@ TA0003-Persistence | T1098.xxx-Account manipulation | Medium risk Exchange group
 TA0003-Persistence | T1098.xxx-Account Manipulation | Medium risk local-domain local group membership change | 4732 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Medium risk Skype/Lync/OCS group membership change | 4728 or 4756 or 4732 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Member added to a group (command) | 1 or 4688 | 
-TA0003-Persistence | T1098.xxx-Account manipulation | Member added to DNSadmins group for DLL abuse | 4728 or 4756 or 4732 | DNS DLL abuse
+TA0003-Persistence | T1098.xxx-Account manipulation | Member added to DNSadmins group for DLL abuse | 4732 | DNS DLL abuse
 TA0003-Persistence | T1098.xxx-Account manipulation | New admin (or likely) created by a non administrative account | 4720 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account (Directory Services) | 5136 | DCShadow
 TA0003-Persistence | T1098.xxx-Account manipulation | SPN modification of a computer account | 4742 | 
@@ -92,6 +93,7 @@ TA0003-Persistence | T1098-Account Manipulation | SPN added to an account (comma
 TA0003-Persistence | T1136.001-Create account-Local account | Hidden account creation (with fast deletion) | 4720 and 4726 | 
 TA0003-Persistence | T1136.001-Create account-Local account | SQL Server: disabled SA account enabled | 33205 | 
 TA0003-Persistence | T1136.001-Create account-Local account | User account created by a computer account | 4720 | 
+TA0003-Persistence | T1136.001-Create account-Local account | User creation related to Manic Menagerie (command) | 1 or 4688 | 
 TA0003-Persistence | T1136.002-Create account-Domain account | Computer account created by a computer account | 4741 | 
 TA0003-Persistence | T1136.002-Create account-Domain account | User account creation disguised in a computer account | 4720 or 4781 | 
 TA0003-Persistence | T1136-Create account | User creation via commandline | 1 or 4688 | 
@@ -178,6 +180,7 @@ TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification |
 TA0005-Defense Evasion | T1222.001-File and Directory Permissions Modification | Sensitive GUID related to "Replicate directory changes" detected  | 4662 | DCSync
 TA0005-Defense Evasion | T1553.003- Subvert Trust Controls: SIP and Trust Provider Hijacking  | Suspicious SIP or trust provider registration | 12 or 12 | 
 TA0005-Defense Evasion | T1553.004-Subvert Trust Controls: Install Root Certificate  | Certutil root certificat install (command) | 1 or 4688 | 
+TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender real time protection failure | 3002 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: critical security component disabled (command) | 1 or 4688 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: critical security component disabled (PowerShell) | 800 or 4103 or 4104 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: default action set to allow any threat (command) | 1 or 4688 | 
@@ -188,6 +191,7 @@ TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Def
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: security component disabled (PowerShell) | 800 or 4103 or 4104 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Defender: service component status disabled (Registry via Sysmon) | 13 | 
 TA0005-Defense Evasion | T1562.001-Impair Defenses-Disable or modify tools | Massive processes termination burst | 1 or 4688 | 
+TA0005-Defense Evasion | T1562.002-Disable Windows Event Logging  | Event log disabled or size reduced | 1 or 4688 | 
 TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | Audit policy disabled | 4719 | 
 TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit object deleted | 33205 | 
 TA0005-Defense Evasion | T1562.002-Impair Defenses: Disable Windows Event Logging  | SQL Server: Audit object disabled | 33205 | 
@@ -285,6 +289,7 @@ TA0007-Discovery | T1135-Network Share Discovery | Network share manipulation vi
 TA0007-Discovery | T1201-Password Policy Discovery | Domain password policy enumeration | 4661 | CrackMapExec
 TA0007-Discovery | T1201-Password Policy Discovery | Password policy discovery via commandline | 1 or 4688 | 
 TA0007-Discovery | T1482-Domain Trust Discovery | Active Directory Forest PowerShell class called from a non administrative host | 800 or 4103 or 4104 | 
+TA0007-Discovery | T1518-Software discovery | SQL Server database's table enumeration | 1 or 4688 | 
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | Denied RDP login with valid credentials | 4825 | 
 TA0008-Lateral Movement | T1021.001-Remote Desktop Protocol | DP BlueeKeep connection closed | 148 | CVE-2019-0708
 TA0008-Lateral Movement | T1021.002-SMB Windows Admin Shares | Admin share accessed via SMB (basic) | 5140 or 5145 | 
@@ -312,8 +317,10 @@ TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON
 TA0009-Collection | T1125-Video capture | RDP shadow session started (command) | 1 or 4688 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (native) | 20503 or 04 or 08 | 
 TA0009-Collection | T1125-Video capture | RDP shadow session started (registry) | 13 | 
+TA0011-Command and control |  | Winlogon process contact to C2 (Blacklotus) | 3 | 
 TA0011-Command and control | 1071.004- Application Layer Protocol: DNS  | DoT activation (command) | 1 or 4688 | 
 TA0011-Command and control | 1071.004- Application Layer Protocol: DNS  | DoT activation (PowerShell) | 800 or 4103 or 4104 | 
+TA0011-Command and control | T1090-Proxy | Proxy configuration changed | 5600 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling configuration enabled for port forwarding | 1 or 4688 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling detected | 1149 | 
 TA0011-Command and control | T1572-Protocol tunneling | RDP tunneling detected via ngrok | 21 or 25 or 1149 | 
