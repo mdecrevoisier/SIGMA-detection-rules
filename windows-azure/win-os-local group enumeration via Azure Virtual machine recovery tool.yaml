@@ -1,0 +1,20 @@
+title: Local group enumeration triggered by Azure Virtual machine recovery tool
+description: Detects scenarios where an attacker having compromised a virtual machine via serial cable attempts to enumerate local groups.
+references:
+- https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+tags:
+- attack.discovery
+- attack.t1069.001 # Permission Groups Discovery: Local Groups 
+author: mdecrevoisier
+status: stable
+logsource:
+  product: windows
+  service: security
+detection:
+  selection: # C:\Packages\Plugins\Microsoft.Compute.VMAccessAgent\2.4.8\bin\JsonVMAccessExtension.exe
+    EventID: 4799
+    CallerProcessName|contains: 'Microsoft.Compute.VMAccessAgent'
+  condition: selection
+falsepositives:
+- Virtual machine recovery by administrator 
+level: high

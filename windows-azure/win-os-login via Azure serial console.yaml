@@ -1,0 +1,24 @@
+title: Azure Windows virtual machine login via serial console
+description: Detects if an attacker logs on using the serial console.
+references:
+- https://msrc.microsoft.com/blog/2023/08/azure-serial-console-attack-and-defense-part-1/
+- https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/serial-console-cmd-ps-commands
+- https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+tags:
+- attack.initial_access
+- attack.privilege_escalation
+- attack.t1078 # valid accounts
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4624
+    LogonProcess|contains: 'sacsess.exe'
+    LogonType: 2
+  condition: selection
+falsepositives:
+- Virtual machine recovery by administrator
+level: high
