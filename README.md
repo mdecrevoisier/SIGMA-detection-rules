@@ -29,9 +29,11 @@ Antivirus | Antivirus | Defender: massive malware outbreak detected on multiple 
 Antivirus | Antivirus | Defender: massive malwares detected on a single host | 1116 | 
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login denied due to account policy restrictions | 4625 | 
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login failure from a single source with a disabled account | 33205 | 
+TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Login failure from a single source with a disabled account | 4624 | 
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Multiple success logins performed to multiple hosts | 4624 | 
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Success login on OpenSSH server | 4 | SSH server
 TA0001-Initial access | T1078.002-Valid accounts-Domain accounts | Success login on OpenSSH server | 4624 | SSH server
+TA0001-Initial access | T1078-Valid accounts | Login via Azure serial console | 4624 | 
 TA0001-Initial access | T1078-Valid accounts | RDP reconnaissance with valid credentials performed to multiple hosts | 4624 or 1149 | 
 TA0002-Execution | T1047-Windows Management Instrumentation | Impacket WMIexec process execution | 1 or 4688 | WMIexec
 TA0002-Execution | T1053.005-Scheduled Task | Interactive shell triggered by scheduled task (at, deprecated) | 1 or 4688 | 
@@ -43,6 +45,7 @@ TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Enc
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Interactive PipeShell over SMB named pipe | 800 or 4103 or 4104 | 
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Payload downloaded via PowerShell | 800 or 4103 or 4104 | 
 TA0002-Execution | T1059.001-Command and Scripting Interpreter: PowerShell | Vice Society directory crawling script for data exfiltration | 4104 | 
+TA0002-Execution | T1059.003-Command and Scripting Interpreter: Windows Command Shell  | CMD shell via serial cable (command) | 1 or 4688 | 
 TA0002-Execution | T1059.003-Windows Command Shell | Encoded PowerShell payload deployed via process execution | 1 or 4688 | 
 TA0002-Execution | T1059.003-Windows Command Shell | SQL Server payload injectection for reverse shell (MSF) | 1 or 4688 | 
 TA0002-Execution | T1204-User execution | Edge abuse for payload download via console | 1 or 4688 | 
@@ -270,6 +273,7 @@ TA0007-Discovery | T1046-Network Service Scanning | Multiple anonymous login fro
 TA0007-Discovery | T1046-Network Service Scanning | RDP discovery performed on multiple hosts | 131 | 
 TA0007-Discovery | T1046-Network Service Scanning | Suspicious anonymous login | 4624 | 
 TA0007-Discovery | T1069.001-Discovery domain groups | Local domain group enumeration via RID brutforce | 4661 | CrackMapExec
+TA0007-Discovery | T1069.001-Discovery domain groups | Local group enumeration via Azure Virtual machine recovery tool. | 4799 | 
 TA0007-Discovery | T1069.001-Discovery local groups | Remote local group enumeration (SharpeHound) | 4799 | SharpHound
 TA0007-Discovery | T1069.002-Discovery domain groups | Domain group enumeration | 4661 | CrackMapExec
 TA0007-Discovery | T1069.002-Discovery domain groups | Honeypot object (container, computer, group, user) enumerated | 4662 | SharpHound
