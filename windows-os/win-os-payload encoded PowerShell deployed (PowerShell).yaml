@@ -29,9 +29,6 @@ detection:
       - 'FromBase64String'
       - 'IO.StreamReader'
       - 'IO.Compression.'
-      #- '[System.Convert]::'
-      # - '[Convert]'
-      #- 'System.Diagnostics.Process'
 
   selection_powershell_modern:
     EventID: 4103
@@ -39,9 +36,6 @@ detection:
       - 'FromBase64String'
       - 'IO.StreamReader'
       - 'IO.Compression.'
-      #- '[System.Convert]::'
-      # - '[Convert]'
-      #- 'System.Diagnostics.Process'
 
   selection_powershell_block:
     EventID: 4104
@@ -49,11 +43,15 @@ detection:
       - 'FromBase64String'
       - 'IO.StreamReader'
       - 'IO.Compression.'
-      #- '[System.Convert]::'
-      # - '[Convert]'
-      #- 'System.Diagnostics.Process'
 
   condition: 1 of selection*
 falsepositives:
 - Unknown
 level: high
+
+#- 'FromBase64String'
+#- 'IO.StreamReader'
+#- 'IO.Compression.'
+#- '[System.Convert]::'
+#- '[Convert]'
+#- 'System.Diagnostics.Process'

@@ -1,0 +1,23 @@
+title: Active Directory federated trust added
+description: Detects scenarios where an federated trust is added by an attacker.
+references:
+- https://www.inversecos.com/2021/11/how-to-detect-azure-active-directory.html
+- https://www.mandiant.com/resources/blog/remediation-and-hardening-strategies-for-microsoft-365-to-defend-against-unc2452
+- https://www.mandiant.com/sites/default/files/2022-08/remediation-hardening-strategies-for-m365-defend-against-apt29-white-paper.pdf 
+tags:
+  - attack.defense_evasion
+  - attack.privilege_escalation
+  - attack.t1484.002 # Domain Policy Modification: Domain Trust Modification
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: azure
+  service: office365
+detection:
+  selection:
+    Operation: "Set domain authentication."
+    ModifiedProperties.NewValue|contains: federated
+  condition: selection
+falsepositives:
+- New federated trust added
+level: high

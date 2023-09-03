@@ -5,6 +5,7 @@ references:
 - https://thedfirreport.com/2021/08/16/trickbot-leads-up-to-fake-1password-installation/
 - https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters
 - https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-resident-campaign
+- https://unit42.paloaltonetworks.com/mallox-ransomware/
 tags:
 - attack.execution
 - attack.t1059.001 # Command and Scripting Interpreter: PowerShell 

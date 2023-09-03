@@ -1,0 +1,23 @@
+title: Massive services deletion burst
+description: Detects scenarios where an attacker attempts to delete multiples services on a host. Attacker may target services related to databases, security products or backups (Veeam, Symantec, Acronis ...).
+references:
+- https://unit42.paloaltonetworks.com/mallox-ransomware/
+tags:
+- attack.impact
+- attack.t1489 # Service Stop 
+- attack.defense_evasion
+- attack.1562.001 # Impair Defenses: Disable or Modify Tools 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    NewProcessName|endswith: '\sc.exe'
+    CommandLine|contains: delete
+  condition: selection | count(EventRecordID) by Computer > 2
+  timeframe: 1m
+falsepositives:
+- Product uninstallation
+level: high

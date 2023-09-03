@@ -7,6 +7,7 @@ references:
 - http://woshub.com/killing-windows-services-that-hang-on-stopping/
 - https://fourcore.io/blogs/ryuk-ransomware-simulation-mitre-ttp
 - https://www.trendmicro.com/en_us/research/22/e/avoslocker-ransomware-variant-abuses-driver-file-to-disable-anti-Virus-scans-log4shell.html
+- https://unit42.paloaltonetworks.com/mallox-ransomware/
 tags:
 - attack.impact
 - attack.t1489 # Service Stop 

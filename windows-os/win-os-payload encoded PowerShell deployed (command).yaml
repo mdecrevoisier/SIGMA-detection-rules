@@ -8,6 +8,7 @@ references:
 - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
 - https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
 - https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
+- https://research.splunk.com/endpoint/8acbc04c-c882-11eb-b060-acde48001122/
 tags:
 - attack.execution
 - attack.t1059.003
@@ -25,16 +26,11 @@ detection:
       - \powershell.exe
       - \pwsh.exe # PowerShell v6
       - \powershell_ise.exe # Development GUI
-    CommandLine|contains|all:
-      - 'powershell.exe'
+    CommandLine|contains:
       - '[System.Convert]::'
       - 'FromBase64String'
-      # - hidden
-      # - '-nop'
-      # - '-noni'
-      # - 'System.IO.StreamReader'
-      # - 'System.IO.Compression.'
-      # - 'System.Diagnostics.Process'
+      - 'IO.StreamReader'
+      - 'IO.Compression.'
   condition: selection
 falsepositives:
   - none

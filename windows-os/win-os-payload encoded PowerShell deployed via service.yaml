@@ -23,28 +23,14 @@ logsource:
 detection:
   selection1:
     EventID: 4697 # security logs
-    ServiceFileName|contains|all:
-      - 'powershell'
-      - '[System.Convert]::'
+    ServiceFileName|contains:
       - 'FromBase64String'
-      # - hidden
-      # - '-nop'
-      # - '-noni'
-      # - 'System.IO.StreamReader'
-      # - 'System.IO.Compression.'
-      # - 'System.Diagnostics.Process'
+      - 'gnirtS46esaBmorF'
   selection2:
     EventID: 7045 # system logs
-    ImagePath|contains|all:
-      - 'powershell'
-      - '[System.Convert]::'
+    ImagePath|contains: 
       - 'FromBase64String'
-      # - hidden
-      # - '-nop'
-      # - '-noni'
-      # - 'System.IO.StreamReader'
-      # - 'System.IO.Compression.'
-      # - 'System.Diagnostics.Process'
+      - 'gnirtS46esaBmorF'
   condition: selection1 or selection2
 falsepositives:
 - None
