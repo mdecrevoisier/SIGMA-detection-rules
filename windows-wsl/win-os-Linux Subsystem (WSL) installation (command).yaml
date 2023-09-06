@@ -29,5 +29,6 @@ detection:
       
   condition: selection_wsl_activation_modern or selection_wsl_activation_deprecated
 falsepositives:
-- developer computer
+- developer computer (with Visual Studio Code)
+- administrator activity
 level: medium

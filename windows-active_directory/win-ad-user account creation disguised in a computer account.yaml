@@ -2,6 +2,7 @@ title: User account creation disguised in a computer account
 description: Detects scenarios where an attacker creates a user account that fakes a computer account.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://www.securonix.com/blog/securonix-threat-labs-security-advisory-threat-actors-target-mssql-servers-in-dbjammer-to-deliver-freeworld-ransomware/
 tags:
 - attack.persistence
 - attack.t1098 # account manipulation

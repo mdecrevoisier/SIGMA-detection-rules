@@ -5,6 +5,7 @@ references:
 - https://stealthbits.com/blog/passing-the-hash-with-mimikatz/
 - https://s3cur3th1ssh1t.github.io/Named-Pipe-PTH/
 - https://thedfirreport.com/2022/11/14/bumblebee-zeros-in-on-meterpreter/
+- https://thedfirreport.com/2023/06/12/a-truly-graceful-wipe-out/
 tags:
 - attack.lateral_movement
 - attack.t1550.002

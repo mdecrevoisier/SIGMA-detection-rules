@@ -36,5 +36,6 @@ detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Mi
 
   condition: 1 of selection*
 falsepositives:
-- Administrator activity
+- developer computer (with Visual Studio Code)
+- administrator activity
 level: medium

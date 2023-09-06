@@ -1,0 +1,42 @@
+title: Domain group membership change
+description: Detects if a member is added to a domain group via PowerShell.
+references:
+- 
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
+detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
+  selection1_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - 'Add-ADGroupMember'
+      - '-Identity'
+      - '-Members'
+
+  selection2_powershell_modern:
+    EventID: 4103
+      - 'Add-ADGroupMember'
+      - '-Identity'
+      - '-Members'
+  
+  selection3_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - 'Add-ADGroupMember'
+      - '-Identity'
+      - '-Members'
+
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+- Splunk UF agent installation
+level: high

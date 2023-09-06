@@ -6,6 +6,7 @@ references:
 - https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters
 - https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-resident-campaign
 - https://unit42.paloaltonetworks.com/mallox-ransomware/
+- https://thedfirreport.com/2023/08/28/html-smuggling-leads-to-domain-wide-ransomware/
 tags:
 - attack.execution
 - attack.t1059.001 # Command and Scripting Interpreter: PowerShell 

@@ -9,7 +9,7 @@ references:
 - https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
 tags:
 - attack.defense_evasion
-- attack.t1564.006
+- attack.t1564.006 # Hide Artifacts: Run Virtual Instance 
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -25,6 +25,6 @@ detection:
       - VirtualMachinePlatform 
   condition: selection
 falsepositives:
-- developer computer
-- administrator activation
+- developer computer (with Visual Studio Code)
+- administrator activity
 level: medium

@@ -23,6 +23,7 @@ detection:
 
   selection2_powershell_modern:
     EventID: 4103
+    Payload|contains|all:
       - New-Service
       - Name
 

@@ -1,0 +1,42 @@
+title: Local group membership change
+description: Detects if a member is added to a local group via PowerShell.
+references:
+- 
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
+detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
+  selection1_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - 'Add-LocalGroupMember'
+      - '-Group'
+      - '-Member'
+
+  selection2_powershell_modern:
+    EventID: 4103
+      - 'Add-LocalGroupMember'
+      - '-Group'
+      - '-Member'
+  
+  selection3_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - 'Add-LocalGroupMember'
+      - '-Group'
+      - '-Member'
+
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+- Splunk UF agent installation
+level: high
