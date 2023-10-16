@@ -57,6 +57,7 @@ TA0002-Execution | T1569.002-Service Execution | Service massive remote creation
 TA0003-Persistence | T1078.002-Valid accounts-Domain accounts | Account renamed to "admin" (or likely) | 4781 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | Computer account created with privileges | 4741 | CVE-2021-42278/42287 & SAM-the-admin
 TA0003-Persistence | T1098.xxx-Account manipulation | Computer account renamed without a trailing $ | 4781 | CVE-2021-42278/42287 & SAM-the-admin
+TA0003-Persistence | T1098.xxx-Account manipulation | Custom sensitive account password reset  | 4723 or 4724 | 
 TA0003-Persistence | T1098.xxx-Account Manipulation | High risk domain group membership change | 4728 or 4756 | 
 TA0003-Persistence | T1098.xxx-Account manipulation | High risk Exchange group membership change | 4728 or 4756 or 4732 | 
 TA0003-Persistence | T1098.xxx-Account Manipulation | High risk local-domain local group membership change | 4732 | 
@@ -215,6 +216,7 @@ TA0005-Defense Evasion | T1562-Impair defense | NTLM downgrade attack | 13 |
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance | WSL for Windows installation detected (command) | 1 or 4688 | 
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance | WSL for Windows installation detected (native) | 9 | 
 TA0005-Defense Evasion | T1564.006-Hide Artifacts: Run Virtual Instance | WSL for Windows installation detected (PowerShell) | 800 or 4103 or 4104 | 
+TA0005-Defense Evasion | T564.006-Hide Artifacts: Run Virtual Instance  | Default Windows host name pattern detected in login attempt | 4624 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (kernel) | 4656 or 4663 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (PowerShell) | 800 or 4103 or 4104 | 
 TA0006-Credential Access | T1003.001-Credential dumping: LSASS | LSASS credential dump with LSASSY (process) | 1 or 4688 | 
@@ -240,6 +242,7 @@ TA0006-Credential Access | T1003-Credential dumping | Wdigest authentication ena
 TA0006-Credential Access | T1003-Credential dumping | Wdigest authentication enabled (Reg via Sysmon) | 12 or 12 | 
 TA0006-Credential Access | T1003-OS Credential dumping | Group Managed Service Accounts password dump | 4662 | GoldenGMSA
 TA0006-Credential Access | T1040-Network sniffing | Windows native sniffing tool Pktmon usage | 1 or 4688 | 
+TA0006-Credential Access | T1110.xxx-Brut force | Bruteforce via password reset | 4723 or 4724 | 
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce enumeration on Windows OpenSSH server with non existing user | 4625 or 4 | SSH server
 TA0006-Credential Access | T1110.xxx-Brut force | Brutforce on Windows OpenSSH server with valid user | 4625 or 4 | SSH server
 TA0006-Credential Access | T1110.xxx-Brut force | Kerberos brutforce enumeration with existing/unexsting users (Kerbrute) | 4771 or 4768 | 
@@ -314,7 +317,6 @@ TA0008-Lateral Movement | T1021.006-Windows Remote Management | WinRM listening 
 TA0008-Lateral Movement | T1021.006-Windows Remote Management | WinRS usage for remote execution | 1 or 4688 | 
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement (failure) | 4625 | 
 TA0008-Lateral Movement | T1021-Remote Services | Honeypot used for lateral movement (success) | 4624 or 47** | 
-TA0008-Lateral Movement | T1210-Exploitation of Remote Services  | Remote domain controller password reset (Zerologon) | 4742 and 4724 | 
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | LSASS dump via process access | 10 | Mimikatz
 TA0008-Lateral Movement | T1550.002-Use Alternate Authentication Material: Pass the Hash | Pass-the-hash login | 4624 | Mimikatz
 TA0008-Lateral Movement | T1563.002-RDP hijacking | RDP session hijack via TSCON abuse command | 1 or 4688 | 

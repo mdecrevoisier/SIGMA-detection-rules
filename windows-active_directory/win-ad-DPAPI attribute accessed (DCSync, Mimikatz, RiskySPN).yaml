@@ -8,10 +8,11 @@ references:
 - https://stealthbits.com/blog/detecting-persistence-through-active-directory-extended-rights/
 - https://cqureacademy.com/blog/extracting-roamed-private-keys
 - https://www.harmj0y.net/blog/redteaming/operational-guidance-for-offensive-user-dpapi-abuse/
+- https://www.mandiant.com/resources/blog/apt29-windows-credential-roaming
 - https://www.dsinternals.com/en/retrieving-dpapi-backup-keys-from-active-directory/
 tags:
 - attack.credential_access
-- attack.t1555
+- attack.t1555.004 # Credentials from Password Stores: Windows Credential Manager 
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -24,7 +25,7 @@ detection:
       - 612cb747-c0e8-4f92-9221-fdd5f15b550d # unixUserPassword
       - 6617e4ac-a2f1-43ab-b60c-11fbd1facf05 # ms-PKI-RoamingTimeStamp / Indicates the time of the last synchronization
       - b3f93023-9239-4f7c-b99c-6745d87adbc2 # ms-PKI-DPAPIMasterKeys / Stores the DPAPI Master Keys. These symmetric keys encrypt the private keys and are themselves encrypted.
-      - b7ff5a38-0818-42b0-8110-d3d154c97f24 # ms-PKI-Credential-Roaming-Tokens
+      - b7ff5a38-0818-42b0-8110-d3d154c97f24 # ms-PKI-Credential-Roaming-Tokens > see Mandiant link
       - b8dfa744-31dc-4ef1-ac7c-84baf7ef9da7 # ms-PKI-AccountCredentials / Stores certificates, certificate signing requests, private keys and saved passwords.
   filter:
     SubjectUserName|endswith: '$'

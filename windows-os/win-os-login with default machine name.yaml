@@ -1,0 +1,28 @@
+title: Detection of default a Windows host name in login attempts
+description: Detects scenarios where a default Windows host name pattern (WIN-...) is detected during a login attempt. Having a host with a default name may be an indicator of a fresh machine deployed by an attacker to evade detection and perform malicious activities.
+references:
+- https://cybercx.com.au/blog/akira-ransomware/
+- https://www.techtarget.com/searchenterprisedesktop/blog/Windows-Enterprise-Desktop/Win10-ComputerName-Generation
+tags:
+- attack.defense_evasion
+- attack.t1564.006 # Hide Artifacts: Run Virtual Instance 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 
+      - 4624 
+      - 4625
+      - 4776
+    WorkstationName|startswith:
+      - 'WIN-'
+      - 'DESKTOP-'
+      - 'PC-'
+      - 'WORKSTATION-'
+  condition: selection
+falsepositives:
+- companies using these default patterns
+level: medium

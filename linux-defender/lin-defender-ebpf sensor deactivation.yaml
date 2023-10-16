@@ -1,0 +1,22 @@
+title: Defender for Endpoint eBPF sensor deactivation
+id:
+description: Detects if the eBPF sensor of Defender for Endpoint (Linux) is deactivated to evade detections.
+references:
+- https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/linux-support-ebpf?view=o365-worldwide&WT.mc_id=AZ-MVP-5004810
+- https://techcommunity.microsoft.com/t5/microsoft-defender-for-endpoint/use-the-new-ebpf-based-sensor-for-defender-for-endpoint-on-linux/ba-p/3873720
+tags:
+- attack.defense_evasion
+- attack.t1562.006 # Impair Defenses: Indicator Blocking
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: linux
+detection:
+  selection:
+    - mdatp 
+    - ebpf-supplementary-event-provider
+    - disabled
+  condition: selection
+falsepositives:
+- Troubleshooting / Migration 
+level: high

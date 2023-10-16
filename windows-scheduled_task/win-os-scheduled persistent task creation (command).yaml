@@ -23,10 +23,8 @@ logsource:
   category: process_creation
 detection: # Full command: "schtasks /create /sc minute /mo 1 /tn eviltask /tr C:\tools\shell.cmd /ru SYSTEM"
   selection:
-    EventID: 4688
     NewProcessName|endswith: \schtasks.exe
     CommandLine|contains|all:
-      - schtasks
       - create
       - ru      # Run with privileges from user X
       - SYSTEM  # Run with SYSTEM privileges
