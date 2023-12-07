@@ -15,9 +15,9 @@ detection:
   selection:
     EventID: 4742
   filter:
-    ServicePrincipalNames:
-      - '-'    # exclude empty SPN
-      - 'GC/*' # covered by similar rule dedicated to DCshadow
+    SubjectUserName|endswith: '$'
+    ServicePrincipalNames: '-'
+    ServicePrincipalNames|contains: 'GC/' # covered by dedicated DCshadow rule
   condition: selection and not filter
 falsepositives:
 - Rare administrator modifications on computer objects

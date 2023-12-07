@@ -14,7 +14,7 @@ references:
 - https://book.hacktricks.xyz/windows/active-directory-methodology/dcshadow
 tags:
 - attack.persistence
-- attack.t1098
+- attack.t1098 # Account Manipulation 
 author: mdecrevoisier
 status: experimental
 logsource:

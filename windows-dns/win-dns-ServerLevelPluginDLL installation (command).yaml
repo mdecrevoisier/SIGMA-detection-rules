@@ -13,7 +13,7 @@ references:
 - https://blog.3or.de/hunting-dns-server-level-plugin-dll-injection.html
 tags:
 - attack.persistence
-- attack.t1574.002
+- attack.t1574.002 # Hijack Execution Flow: DLL Side-Loading 
 author: Florian Roth (shortly adapted my mdecrevoisier)
 status: experimental
 logsource:
@@ -23,9 +23,8 @@ detection:
   selection:
     NewProcessName|endswith: '\dnscmd.exe'
     CommandLine|contains|all: # full command 'dnscmd.exe /config /serverlevelplugindll "C:\mimilib.dll"'
-      - dnscmd
-      - config
-      - serverlevelplugindll
+      - /config
+      - /serverlevelplugindll
   condition: selection
 falsepositives:
 - None

@@ -17,6 +17,7 @@ detection:
     EventID:
       - 4771
       - 4768
+    Status: '0x6' # KDC_ERR_C_PRINCIPAL_UNKNOWN
     TicketOptions: 0x50800000
   filter:
     - IpAddress: '%domain_controllers_ips%'     # reduce amount of false positives

@@ -2,7 +2,6 @@ title: IFM detected - ESENT (installation from media)
 description: Detects scenarios where an attacker attempts to create an IFM image (usually used for deploying domain controllers to reduce replication traffic) for dumping credentials.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
-- https://blog.menasec.net/2019/11/forensics-traces-of-ntdsdit-dumping.html
 - https://adsecurity.org/?p=2398
 - https://www.ired.team/offensive-security/credential-access-and-credential-dumping/ntds.dit-enumeration
 tags:

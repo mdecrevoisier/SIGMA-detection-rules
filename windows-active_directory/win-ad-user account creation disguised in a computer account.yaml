@@ -24,7 +24,10 @@ detection:
     EventID: 4781 # User account name change
     NewTargetUserName|endswith: '$' 
 
-  condition: selection_creation or selection_renamed
+  filter:
+    OldTargetUserName|endswith: '$' 
+
+  condition: selection_creation or (selection_renamed and not filter)
 falsepositives:
 - None
 level: high

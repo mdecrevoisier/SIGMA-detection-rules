@@ -5,23 +5,19 @@ references:
 - https://searchitchannel.techtarget.com/feature/Using-AuditPol-to-audit-Windows-users-and-set-policies
 tags:
 - attack.defense_evasion
-- attack.t1562.002
+- attack.t1562.002 # Impair Defenses: Disable Windows Event Logging 
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
   category: process_creation
 detection:
-  selection_baseline:
+  selection:
     NewProcessName|endswith: '\auditpol.exe'
-
-  selection_clear_audit: # full command "auditpol /clear /y"
-    CommandLine|contains: clear
-
-  selection_disable_audit: # full command: "auditpol /set /category:* /success:disable /failure:disable"
-    CommandLine|contains|all: 'disable'
-
-  condition: selection_baseline and (selection_clear_audit or selection_disable_audit)
+    CommandLine|contains:
+      - clear   # "auditpol /clear /y"
+      - disable # "auditpol /set /category:* /success:disable /failure:disable"
+  condition: selection
 falsepositives:
 - Administrator debugging audit policy
 level: high

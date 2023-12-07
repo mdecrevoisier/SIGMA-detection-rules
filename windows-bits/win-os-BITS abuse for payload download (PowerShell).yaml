@@ -9,6 +9,7 @@ references:
 - https://www.microsoft.com/security/blog/2019/12/12/multi-stage-downloader-trojan-sload-abuses-bits-almost-exclusively-for-malicious-activities/
 - https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
 - https://www.hackingarticles.in/windows-for-pentester-bitsadmin/
+- https://thedfirreport.com/2023/09/25/from-screenconnect-to-hive-ransomware-in-61-hours/
 tags:
 - attack.exfiltration
 - attack.t1048 # Exfiltration Over Alternative Protocol

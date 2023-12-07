@@ -8,9 +8,7 @@ references:
 - https://adsecurity.org/?p=3458
 tags:
 - attack.account_discovery
-- attack.t1087.002
-- attack.credential_access
-- attack.t1558.003
+- attack.t1087.002 # Account Discovery: Domain Account
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -20,8 +18,8 @@ detection: # full command : 'setspn -T my_domain -Q */*'
   selection:
     NewProcessName|endswith: \setspn.exe
     CommandLine|contains: # Perform query on the specified domain
-      - /T
-      - -T
+      - '/Q'
+      - '-Q'
   condition: selection
 falsepositives:
 - Administrators

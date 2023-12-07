@@ -15,8 +15,10 @@ detection: # SetSPN -a MSSQLSvc/srv01.demo.lan demo\srv01
   selection:
     NewProcessName|endswith: '\setspn.exe'
     CommandLine|contains:
-      - /a
-      - -a
+      - '/a ' # in 2012: Replaced references to using the –A parameter with reference to use –S instead.
+      - '-a '
+      - '/s ' # -S will verify that there are no duplicate SPNs
+      - '-s '
   condition: selection
 falsepositives:
 - Administrators adding SPN

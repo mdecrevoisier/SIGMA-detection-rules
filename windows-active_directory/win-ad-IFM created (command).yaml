@@ -36,7 +36,7 @@ detection:
       - ' i '  # ifm
       - ' c '  # create
 
-  selection_activation_basic: # full command "ntdsutil.exe " ntdsutil.exe "act i ntds" i "c full c:\hacker" q q"
+  selection_activation_basic: # full command "ntdsutil.exe "act i ntds" i "c full c:\hacker" q q"
     CommandLine|contains|all:
       - activate
       - instance

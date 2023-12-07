@@ -5,7 +5,7 @@ references:
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-get
 tags:
 - attack.discovery
-- attack.t1082
+- attack.t1082 # System Information Discovery
 author: mdecrevoisier
 status: experimental
 logsource:
