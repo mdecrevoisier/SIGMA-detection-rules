@@ -26,8 +26,8 @@ detection: # Full command: "schtasks /create /sc minute /mo 1 /tn eviltask /tr C
     NewProcessName|endswith: \schtasks.exe
     CommandLine|contains|all:
       - create
-      - ru      # Run with privileges from user X
-      - SYSTEM  # Run with SYSTEM privileges
+      #- ru      # Run with privileges from user X
+      #- SYSTEM  # Run with SYSTEM privileges
       - tr      # Program, path or command to run
       - sc      # Run task every X minutes
   condition: selection

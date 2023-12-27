@@ -1,0 +1,39 @@
+title: Event log cleared using Diagnostics (via PowerShell)
+description: Detects scenarios where an attacker attempts to clear the event logs.
+references:
+- hhttps://www.linkedin.com/feed/update/urn:li:activity:7143833994139283456/
+- https://dscottraynsford.wordpress.com/2015/04/09/clear-all-windows-event-logs/
+tags:
+- attack.defense_evasion
+- attack.t1070.001
+author: mdecrevoisier
+status: stable
+logsource:
+  product: windows
+  category:
+    - ps_module
+    - ps_classic_script
+    - ps_script
+detection: # full command: "get-winevent -ListLog * | % { [System.Diagnostics.Eventing.Reader.EventLogSession]::GlobalSession.ClearLog($_.LogName) }"
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains|all:
+      - System.Diagnostics.Eventing.Reader.EventLogSession
+      - ClearLog
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - System.Diagnostics.Eventing.Reader.EventLogSession
+      - ClearLog
+
+  selection_powershell_block:
+    EventID: 4104
+    ScriptBlockText|contains|all:
+      - System.Diagnostics.Eventing.Reader.EventLogSession
+      - ClearLog
+
+  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+falsepositives:
+- None
+level: high

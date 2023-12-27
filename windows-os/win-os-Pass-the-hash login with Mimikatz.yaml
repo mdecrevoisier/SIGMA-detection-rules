@@ -27,5 +27,5 @@ detection: # command: 'privilege::debug' + 'sekurlsa::pth /user:<user> /domain:<
     #TargetUserName|endswith: '$'
   condition: selection and not filter
 falsepositives:
-- None
+- Runas.exe executed with /netonly parameter
 level: high

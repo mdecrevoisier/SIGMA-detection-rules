@@ -19,7 +19,9 @@ logsource:
 detection: # Set-MpPreference -DisableArchiveScanning $true
   selection:
     EventID: 4688
-    CommandLine|contains: Set-MpPreference
+    EventData|contains|all:
+      - Set-MpPreference
+      - Add-MpPreference
     CommandLine|contains:
       - '1'
       - '$true'

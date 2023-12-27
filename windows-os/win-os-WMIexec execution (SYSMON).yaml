@@ -3,15 +3,17 @@ description: Detects scenarios where an attacker attempts to execute WMIexec in 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation
 - https://riccardoancarani.github.io/2020-05-10-hunting-for-impacket/#wmiexecpy
+- https://labs.withsecure.com/publications/attack-detection-fundamentals-discovery-and-lateral-movement-lab-5
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py
 - https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
 - https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
 - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 - https://blog.sekoia.io/lucky-mouse-incident-response-to-detection-engineering/
 - https://thedfirreport.com/2023/01/09/unwrapping-ursnifs-gifts/
+- https://thedfirreport.com/2023/10/30/netsupport-intrusion-results-in-domain-compromise/
 tags:
 - attack.execution
-- attack.t1047
+- attack.t1047 # Windows Management Instrumentation 
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -27,8 +27,8 @@ detection: # Full command: "schtasks" /create /sc minute /mo 1 /tn eviltask /tr 
     CommandLine|contains: create
   filter:
     CommandLine|contains|all: # See schedule persistent rule with SYSTEM privileges
-      - ru      # Run with privileges from user X
-      - SYSTEM  # Run with SYSTEM privileges
+        #- ru      # Run with privileges from user X
+        #- SYSTEM  # Run with SYSTEM privileges
       - tr      # Program, path or command to run
       - sc      # Run task every X minutes
   condition: selection and not filter

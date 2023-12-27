@@ -14,6 +14,7 @@ references:
 - https://blog.sekoia.io/lucky-mouse-incident-response-to-detection-engineering/
 - https://media.defense.gov/2023/May/24/2003229517/-1/-1/0/CSA_Living_off_the_Land.PDF
 - https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/
+- https://thedfirreport.com/2023/10/30/netsupport-intrusion-results-in-domain-compromise/
 tags:
 - attack.credential_dumping
 - attack.t1003.003
