@@ -26,8 +26,8 @@ falsepositives:
 - 
 level: high
 
-index=* sourcetype="o365:management:activity"  Operation="New-InboxRule"  
-| rex field=UserId "wbag\.onmicrosoft\.com\/(?<source_user>.*)\" (on behalf of|de la part de|im Auftrag von) \"(?<server>.*)\/wbag\.onmicrosoft\.com\/(?<behalf_user>.*)\""
-| rex field=ClientIP "(?<src_ip>.*):(?<src_port>.*)"
-| stats count dc(behalf_user) as dc_user values(*) as * by  source_user 
-| table  _time Workload src_ip Operation count dc_user source_user behalf_user Name
+#index=* sourcetype="o365:management:activity"  Operation="New-InboxRule"  
+#| rex field=UserId "wbag\.onmicrosoft\.com\/(?<source_user>.*)\" (on behalf of|de la part de|im Auftrag von) \"(?<server>.*)\/wbag\.onmicrosoft\.com\/(?<behalf_user>.*)\""
+#| rex field=ClientIP "(?<src_ip>.*):(?<src_port>.*)"
+#| stats count dc(behalf_user) as dc_user values(*) as * by  source_user 
+#| table  _time Workload src_ip Operation count dc_user source_user behalf_user Name
