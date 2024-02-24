@@ -1,6 +1,7 @@
 title: Exchange transport agent injection via configuration file
 description: Detects scenarios where an attacker attempts to load an artifact in the Exchange transport agent.
-requirements: requires to update SYSMON configuration to include the transport agent path (eg: '<TargetFilename condition="begin with">C:\Exchange2016\TransportRoles\Shared</TargetFilename>')
+requirements: |
+ requires to update SYSMON configuration to include the transport agent path (eg: '<TargetFilename condition="begin with">C:\Exchange2016\TransportRoles\Shared</TargetFilename>')
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505-Server%20Software%20Component
 - https://speakerdeck.com/heirhabarov/hunting-for-persistence-via-microsoft-exchange-server-or-outlook
