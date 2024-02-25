@@ -10,6 +10,7 @@ references:
 tags:
 - attack.privilege_escalation
 - attack.t1546.008
+author: mdecrevoisier
 status: experimental
 logsource:
   product: windows

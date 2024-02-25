@@ -16,7 +16,7 @@ logsource:
 detection:
   selection:
     EventID: 5143  # modified share
-    OldSD != NewSD # Comparing 2 fields is not possible in SIGMA language
+    #OldSD != NewSD # Comparing 2 fields is not possible in SIGMA language
   filter:
     Computer: '%domain_controllers%'
   condition: selection and not filter
