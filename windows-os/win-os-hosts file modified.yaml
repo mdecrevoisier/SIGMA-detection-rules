@@ -3,6 +3,7 @@ description: Detects scenarios where an attacker attempts to modify the Hosts fi
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1565-Data%20manipulation
 - https://www.elastic.co/guide/en/security/current/hosts-file-modified.html
+- https://www.crowdstrike.com/blog/anatomy-of-alpha-spider-ransomware/
 tags:
 - attack.impact
 - attack.t1565

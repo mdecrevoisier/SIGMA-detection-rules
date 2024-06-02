@@ -4,6 +4,7 @@ references:
 - https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
 - https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server
 - https://www.bleepingcomputer.com/news/microsoft/microsoft-iranian-hackers-encrypt-windows-systems-using-bitlocker/
+- https://securelist.com/ransomware-abuses-bitlocker/112643/
 tags:
 - attack.impact
 - attack.t1486
@@ -17,28 +18,27 @@ logsource:
     - ps_script
 detection: # command: powershell  -c "Import-Module ServerManager; Add-WindowsFeature BitLocker -Restart"
 
-  selection_powershell_native:
-    EventID: 800
-    EventData|contains:
-      - Add-WindowsFeature
-      - Install-WindowsFeature
-    EventData|contains: BitLocker
-
-  selection_powershell_modern:
+  selection_powershell_activation_modern:
     EventID: 4103
     Payload|contains|all:
-      - Add-WindowsFeature
-      - Install-WindowsFeature
-    Payload|contains: BitLocker
+      - WindowsFeature # Install-WindowsFeature / Add-WindowsFeature
+      - BitLocker
 
-  selection_powershell_block:
+  selection_powershell_activation_block:
     EventID: 4104
-    ScriptBlockText|contains:
-      - Add-WindowsFeature
-      - Install-WindowsFeature
-    ScriptBlockText|contains: BitLocker
+    ScriptBlockText|contains|all:
+      - WindowsFeature # Install-WindowsFeature / Add-WindowsFeature
+      - BitLocker
 
-  condition: 1 of selection*
+  selection_powershell_configuration_modern:
+    EventID: 4103
+    Payload|contains: Enablee-BitLocker
+
+  selection_powershell_configuration_block:
+    EventID: 4104
+    ScriptBlockText|contains|contains: Enablee-BitLocker
+
+  condition: 1 of selection_powershell_activation_* OR selection_powershell_configuration_*
 falsepositives:
 - Initial BitLocker installation
 level: high

@@ -13,6 +13,7 @@ references:
 - https://nasbench.medium.com/behind-the-detection-schtasks-eb67a33a8710
 - https://redcanary.com/threat-detection-report/techniques/scheduled-task/
 - https://www.linkedin.com/pulse/lolbin-attacks-scheduled-tasks-t1503005-how-detect-them-v%C3%B6gele
+- https://www.elastic.co/security-labs/invisible-miners-unveiling-ghostengine
 tags:
 - attack.execution
 - attack.t1053.005

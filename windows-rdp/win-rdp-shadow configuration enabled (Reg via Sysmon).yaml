@@ -6,6 +6,7 @@ references:
 - https://www.elastic.co/guide/en/security/current/potential-remote-desktop-shadowing-activity.html
 - https://bitsadm.in/blog/spying-on-users-using-rdp-shadowing
 - https://swarm.ptsecurity.com/remote-desktop-services-shadowing/
+- https://red.c3r3br4t3.com/red-team-operations/lateral-movement/shadowrdp
 tags:
 - attack.lateral_movement
 - attack.t1021.001 # remote services: RDP

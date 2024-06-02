@@ -18,7 +18,6 @@ logsource:
   category: process_creation
 detection: # full command: mstsc /shadow:1 /v:<computer_name> /control /noConsentPrompt
   selection:
-    EventID: 4688
     NewProcessName|endswith: \mstsc.exe
     CommandLine|contains|all:
     - mstsc

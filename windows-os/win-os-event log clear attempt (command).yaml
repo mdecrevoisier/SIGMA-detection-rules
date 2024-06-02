@@ -5,6 +5,7 @@ references:
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil
 - https://www.zscaler.com/blogs/security-research/technical-analysis-crytox-ransomware
 - https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
+- https://www.elastic.co/security-labs/invisible-miners-unveiling-ghostengine
 tags:
 - attack.defense_evasion
 - attack.t1070.001

@@ -3,6 +3,7 @@ description: Detect if a source host is requesting multiple Kerberos Service tic
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
+- https://www.splunk.com/en_us/blog/security/sharing-is-not-caring-hunting-for-file-share-discovery.html
 tags:
 - attack.discovery
 - attack.t1069.002

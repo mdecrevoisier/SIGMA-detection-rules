@@ -15,6 +15,7 @@ references:
 - https://media.defense.gov/2023/May/24/2003229517/-1/-1/0/CSA_Living_off_the_Land.PDF
 - https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/
 - https://thedfirreport.com/2023/10/30/netsupport-intrusion-results-in-domain-compromise/
+- https://medium.com/@simone.kraus/part-2-sensor-mapping-reverse-engineering-ntds-a73bde69031e
 tags:
 - attack.credential_dumping
 - attack.t1003.003
@@ -25,7 +26,9 @@ logsource:
   category: process_creation
 detection:
   selection_baseline:
-    NewProcessName|endswith: '\ntdsutil.exe'
+    NewProcessName|endswith: 
+      - '\ntdsutil.exe'
+      - '\dsdbutil.exe'
 
   selection_creation_basic: # full command: "ntdsutil "activate instance ntds" ifm "create full c:\data" quit quit"
     CommandLine|contains|all:
