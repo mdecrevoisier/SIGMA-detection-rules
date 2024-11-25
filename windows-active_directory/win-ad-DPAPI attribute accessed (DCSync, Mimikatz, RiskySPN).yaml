@@ -1,18 +1,19 @@
 title: Suspicious Active Directory DPAPI attributes accessed (Mimikatz, DCSync, RiskySPN)
+name: dpapi_access # Rule Reference
 description: Detects scenarios where an attacker attempts to extract sensitive DPAPI information from Active Directory (RiskySPN PowerShell tool, DCSync and Mimikatz may also trigger this rule).
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1555-Credentials%20from%20Password%20Stores
-- https://docs.microsoft.com/en-us/windows/win32/adschema/extended-rights
-- https://github.com/PSGumshoe/PSGumshoe/blob/master/DirectoryService/PrivateFunctions.ps1
-- https://stealthbits.com/blog/detecting-persistence-through-active-directory-extended-rights/
-- https://cqureacademy.com/blog/extracting-roamed-private-keys
-- https://www.harmj0y.net/blog/redteaming/operational-guidance-for-offensive-user-dpapi-abuse/
-- https://www.mandiant.com/resources/blog/apt29-windows-credential-roaming
-- https://www.dsinternals.com/en/retrieving-dpapi-backup-keys-from-active-directory/
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1555-Credentials%20from%20Password%20Stores
+  - https://docs.microsoft.com/en-us/windows/win32/adschema/extended-rights
+  - https://github.com/PSGumshoe/PSGumshoe/blob/master/DirectoryService/PrivateFunctions.ps1
+  - https://stealthbits.com/blog/detecting-persistence-through-active-directory-extended-rights/
+  - https://cqureacademy.com/blog/extracting-roamed-private-keys
+  - https://www.harmj0y.net/blog/redteaming/operational-guidance-for-offensive-user-dpapi-abuse/
+  - https://www.mandiant.com/resources/blog/apt29-windows-credential-roaming
+  - https://www.dsinternals.com/en/retrieving-dpapi-backup-keys-from-active-directory/
 tags:
-- attack.credential_access
-- attack.t1555.004 # Credentials from Password Stores: Windows Credential Manager 
+  - attack.credential_access
+  - attack.t1555.004 # Credentials from Password Stores: Windows Credential Manager
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -28,9 +29,22 @@ detection:
       - b7ff5a38-0818-42b0-8110-d3d154c97f24 # ms-PKI-Credential-Roaming-Tokens > see Mandiant link
       - b8dfa744-31dc-4ef1-ac7c-84baf7ef9da7 # ms-PKI-AccountCredentials / Stores certificates, certificate signing requests, private keys and saved passwords.
   filter:
-    SubjectUserName|endswith: '$'
-  condition: selection and not filter | count(ObjectName) by Computer > 5 # count the amount of different AD objects reporting DPAPI accessed
-  timeframe: 30m
+    SubjectUserName|endswith: "$"
+  condition: selection and not filter
 falsepositives:
-- Active Directory Backup solutions
+  - Active Directory Backup solutions
+level: informational
+
+---
+title: Suspicious Active Directory DPAPI attributes accessed Count
+correlation:
+  type: value_count
+  rules:
+    - dpapi_access # Referenced here
+  group-by:
+    - Computer
+  timespan: 30m
+  condition:
+    gte: 5
+    field: ObjectName
 level: high
