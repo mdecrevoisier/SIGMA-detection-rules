@@ -46,6 +46,6 @@ correlation:
     - Computer
   timespan: 5m
   condition:
-    gte: 10
+    gte: 5
     field: ObjectName
 level: high
