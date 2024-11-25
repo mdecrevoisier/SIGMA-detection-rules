@@ -31,10 +31,9 @@ detection:
   filter:
     SubjectUserName|endswith: "$"
   condition: selection and not filter
-  timeframe: 30m
 falsepositives:
   - Active Directory Backup solutions
-level: high
+level: informational
 
 ---
 title: Suspicious Active Directory DPAPI attributes accessed Count
@@ -44,7 +43,7 @@ correlation:
     - dpapi_access # Referenced here
   group-by:
     - Computer
-  timespan: 5m
+  timespan: 30m
   condition:
     gte: 5
     field: ObjectName
