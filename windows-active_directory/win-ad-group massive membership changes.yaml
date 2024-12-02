@@ -1,10 +1,11 @@
 title: Massive group membership changes detected
-description: Detects scenarios where an attacker will add a compromised account into different domain groups in order to gain access to all the assets under the control of those concerned groups. 
+name: massive_group_changes
+description: Detects scenarios where an attacker will add a compromised account into different domain groups in order to gain access to all the assets under the control of those concerned groups.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
 tags:
-- attack.persistence
-- attack.t1098
+  - attack.persistence
+  - attack.t1098
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -16,8 +17,22 @@ detection:
       - 4728 # security global group member added
       - 4756 # universal group member added
       - 4732 # local and domain local group member added
-  condition: selection | count(TargetSid) by SubjectUserSid > 20 # Count how many different groups had a member added in a short period by the same user
-  timeframe: 15m
+  condition: selection
 falsepositives:
-- Automatic scripts, provisionning accounts
+  - Automatic scripts, provisionning accounts
 level: medium
+
+---
+title: Massive group membership changes detected Count
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - massive_group_changes # Referenced here
+  group-by:
+    - SubjectUserSid
+  timespan: 15m
+  condition:
+    gte: 20
+    field: TargetSid # Count how many different groups had a member added in a short period by the same user
+level: high

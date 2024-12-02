@@ -1,13 +1,14 @@
 title: SharpHound host enumeration over Kerberos
+name: sharphound_enumeration_kerberos
 description: Detect if a source host is requesting multiple Kerberos Service tickets (TGS) for different assets in a short period of time.
 references:
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
-- https://www.splunk.com/en_us/blog/security/sharing-is-not-caring-hunting-for-file-share-discovery.html
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
+  - https://www.splunk.com/en_us/blog/security/sharing-is-not-caring-hunting-for-file-share-discovery.html
 tags:
-- attack.discovery
-- attack.t1069.002
-- attack.t1087.002
+  - attack.discovery
+  - attack.t1069.002
+  - attack.t1087.002
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -16,15 +17,29 @@ logsource:
 detection:
   selection:
     EventID: 4769
-    ServiceName|endswith: '$'
+    ServiceName|endswith: "$"
     Status: 0x0
   filter:
     - IpAddress:
-      - '::1'
-      - '%domain_controllers_ip%'
+        - "::1"
+        - "%domain_controllers_ip%"
     - TargetUserName|contains: "$@" # excludes computer accounts
-  condition: selection and not filter | count(ServiceName) by IpAddress > 20
-  timeframe: 5m
+  condition: selection and not filter
 falsepositives:
-- Administrator activity, backup software
+  - Administrator activity, backup software
 level: medium
+
+---
+title: SharpHound host enumeration over Kerberos Count
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - sharphound_enumeration_kerberos
+  group-by:
+    - ServiceName
+  timespan: 5m
+  condition:
+    gte: 20
+    field: IpAddress
+level: high

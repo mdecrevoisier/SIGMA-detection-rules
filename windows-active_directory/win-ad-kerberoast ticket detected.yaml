@@ -1,27 +1,28 @@
 title: Kerberoast ticket request detected
+name: kerberoast_ticket_request
 description: Detects scenarios where an attacker requests a Kerberoast ticket with low encryption to perform offline brutforce and forge a new ticket to get access to the targeted resource.
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
-- https://www.trustedsec.com/blog/the-art-of-bypassing-kerberoast-detections-with-orpheus/
-- https://blog.harmj0y.net/redteaming/kerberoasting-revisited/
-- https://blog.harmj0y.net/powershell/kerberoasting-without-mimikatz/
-- https://www.hackingarticles.in/as-rep-roasting/
-- https://adsecurity.org/?p=2293
-- https://adsecurity.org/?p=3458
-- https://blog.stealthbits.com/extracting-service-account-passwords-with-kerberoasting/
-- https://blogs.technet.microsoft.com/motiba/2018/02/23/detecting-kerberoasting-activity-using-azure-security-center/
-- https://github.com/nidem/kerberoast
-- https://github.com/skelsec/kerberoast
-- https://posts.specterops.io/capability-abstraction-fbeaeeb26384
-- https://www.trimarcsecurity.com/single-post/TrimarcResearch/Detecting-Kerberoasting-Activity
-- https://m365internals.com/2021/11/08/kerberoast-with-opsec/
-- https://redcanary.com/blog/marshmallows-and-kerberoasting/
-- https://www.semperis.com/blog/new-attack-paths-as-requested-sts/
-- https://www.trustedsec.com/blog/the-art-of-bypassing-kerberoast-detections-with-orpheus/
-- https://nored0x.github.io/red-teaming/Kerberos-Attacks-Kerbroasting/
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets
+  - https://www.trustedsec.com/blog/the-art-of-bypassing-kerberoast-detections-with-orpheus/
+  - https://blog.harmj0y.net/redteaming/kerberoasting-revisited/
+  - https://blog.harmj0y.net/powershell/kerberoasting-without-mimikatz/
+  - https://www.hackingarticles.in/as-rep-roasting/
+  - https://adsecurity.org/?p=2293
+  - https://adsecurity.org/?p=3458
+  - https://blog.stealthbits.com/extracting-service-account-passwords-with-kerberoasting/
+  - https://blogs.technet.microsoft.com/motiba/2018/02/23/detecting-kerberoasting-activity-using-azure-security-center/
+  - https://github.com/nidem/kerberoast
+  - https://github.com/skelsec/kerberoast
+  - https://posts.specterops.io/capability-abstraction-fbeaeeb26384
+  - https://www.trimarcsecurity.com/single-post/TrimarcResearch/Detecting-Kerberoasting-Activity
+  - https://m365internals.com/2021/11/08/kerberoast-with-opsec/
+  - https://redcanary.com/blog/marshmallows-and-kerberoasting/
+  - https://www.semperis.com/blog/new-attack-paths-as-requested-sts/
+  - https://www.trustedsec.com/blog/the-art-of-bypassing-kerberoast-detections-with-orpheus/
+  - https://nored0x.github.io/red-teaming/Kerberos-Attacks-Kerbroasting/
 tags:
-- attack.credential_access
-- attack.t1558.003
+  - attack.credential_access
+  - attack.t1558.003
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -31,24 +32,38 @@ detection:
   selection:
     EventID: 4769
     #TicketOptions: # depending on the source/tool, the options may change.
-      #- 0x40810000
-      #- 0x40800000
-      #- 0x40810010
-      #- 0x40800010
+    #- 0x40810000
+    #- 0x40800000
+    #- 0x40810010
+    #- 0x40800010
     TicketEncryptionType: 0x17 # RC4-HMAC
     Status: 0x0 # Success
   filter:
-    - ServiceName|endswith: '$'     # Exclude computer account services
-    - ServiceSid: 'S-1-5-21-*-0'    # Exclude domain Service
-    - ServiceSid|endswith: '-502'   # Exclude Krbtgt service
-    - TargetUserName|contains: '$@' # Exclude computer accounts requests
+    - ServiceName|endswith: "$" # Exclude computer account services
+    - ServiceSid: "S-1-5-21-*-0" # Exclude domain Service
+    - ServiceSid|endswith: "-502" # Exclude Krbtgt service
+    - TargetUserName|contains: "$@" # Exclude computer accounts requests
     - IpAddress:
-      - '::1'
-      - '127.0.0.1'
-      - '%domain_controllers_ips%'
+        - "::1"
+        - "127.0.0.1"
+        - "%domain_controllers_ips%"
     #- ServiceName NOT IN TargetUserName (NOT SUPPORTED BY ALL SIEM)
-  condition: selection and not filter | count(ServiceName) by IpAddress > 2
-  timeframe: 30m 
+  condition: selection and not filter
 falsepositives:
-- Applications using RC4 encryption (SAP, Azure AD, legacy applications...)
+  - Applications using RC4 encryption (SAP, Azure AD, legacy applications...)
+level: high
+
+---
+title: Kerberoast ticket request detected Count
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - kerberoast_ticket_request
+  group-by:
+    - ServiceName
+  timespan: 30m
+  condition:
+    gte: 2
+    field: IpAddress
 level: high

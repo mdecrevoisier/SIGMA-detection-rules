@@ -1,13 +1,13 @@
 title: Massive SAM users/groups enumeration (native)
-description: Detects scenarios where an attacker attempts to enumerate sensitive domain users/groups settings and membership.
-correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
+name: SAM_enumeration_user_group
+description: Detects scenarios where an attacker attempts to enumerate sensitive domain users/groups settings and membership. Correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
-- https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
+  - https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html
 tags:
-- attack.discovery
-- attack.t1069.002
+  - attack.discovery
+  - attack.t1069.002
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -17,7 +17,7 @@ detection: # net group <domain_group> /domain
   selection:
     EventID: 4661
     ProcessName|endswith: '\lsass.exe'
-    ObjectServer: 'Security Account Manager'
+    ObjectServer: "Security Account Manager"
     ObjectName|startswith:
       - S-1-5-32- # refers to builtin domain local groups
       - S-1-5-21- # refers to domain users and groups
@@ -25,13 +25,27 @@ detection: # net group <domain_group> /domain
       - SAM_USER
       - SAM_GROUP
   filter:
-    - SubjectUserName|endswith: '$'
+    - SubjectUserName|endswith: "$"
     - ObjectName|endswith: # already covered in a separated rule for sensitive user & group enumeration
-      - '-500' # local administrator
-      - '-512' # Domain Admins
-      - '-513' # Domain users (less critical)
-  condition: selection and not filter | count(ObjectName) by Computer > 30
-  timeframe: 15m
+        - "-500" # local administrator
+        - "-512" # Domain Admins
+        - "-513" # Domain users (less critical)
+  condition: selection and not filter
 falsepositives:
-- Administrator activity
+  - Administrator activity
+level: informational
+
+---
+title: Massive SAM users/groups enumeration (native)
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - SAM_enumeration_user_group
+  group-by:
+    - Computer
+  timespan: 15m
+  condition:
+    gte: 30
+    field: ObjectName
 level: high
