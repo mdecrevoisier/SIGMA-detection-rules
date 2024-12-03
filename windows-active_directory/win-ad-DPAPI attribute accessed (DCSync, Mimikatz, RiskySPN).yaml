@@ -37,6 +37,7 @@ level: informational
 
 ---
 title: Suspicious Active Directory DPAPI attributes accessed Count
+status: experimental
 correlation:
   type: value_count
   rules:

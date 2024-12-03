@@ -1,11 +1,12 @@
 title: Brutforce with denied access due to account restrictions policies
+name: bruteforce_denied_account_restriction_policies
 description: Detects scenarios where an attacker attemps to use a comprimised account but failed to login due to account restrictions policies (permissions, time restrictions, workstation, logon type, ...)
 references:
-- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4625
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4625
 tags:
-- attack.privilege_escalation
-- attack.t1078
+  - attack.privilege_escalation
+  - attack.t1078
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -15,14 +16,28 @@ detection:
   selection:
     EventID: 4625
     Status: # Failure code can be defined in "Status" or "Substatus" fields. Usually, if Substatus == 0x0, refers to Status.
-      - '0xc0000022' # STATUS_ACCESS_DENIED - A process has requested access to an object, but has not been granted those access rights.
-      - '0xC0000413' # STATUS_AUTHENTICATION_FIREWALL_FAILED - Account is not allowed to authenticate to the machine
-      - '0xC000006E' # STATUS_ACCOUNT_RESTRICTION - Indicates a referenced user name and authentication information are valid, but some user account restriction has prevented successful authentication (such as time-of-day restrictions).
-      - '0xC000006F' # STATUS_INVALID_LOGON_HOURS - The user account has time restrictions and cannot be logged onto at this time.
-      - '0xC0000070' # STATUS_INVALID_WORKSTATION - The user account is restricted so that it cannot be used to log on from the source workstation.
-      - '0xC000015B' # STATUS_LOGON_TYPE_NOT_GRANTED - A user has requested a type of logon (for example, interactive or network) that has not been granted. An administrator has control over who can logon interactively and through the network.
-  condition: selection | count(EventRecordID) by Computer > 10
-  timeframe: 30m
+      - "0xc0000022" # STATUS_ACCESS_DENIED - A process has requested access to an object, but has not been granted those access rights.
+      - "0xC0000413" # STATUS_AUTHENTICATION_FIREWALL_FAILED - Account is not allowed to authenticate to the machine
+      - "0xC000006E" # STATUS_ACCOUNT_RESTRICTION - Indicates a referenced user name and authentication information are valid, but some user account restriction has prevented successful authentication (such as time-of-day restrictions).
+      - "0xC000006F" # STATUS_INVALID_LOGON_HOURS - The user account has time restrictions and cannot be logged onto at this time.
+      - "0xC0000070" # STATUS_INVALID_WORKSTATION - The user account is restricted so that it cannot be used to log on from the source workstation.
+      - "0xC000015B" # STATUS_LOGON_TYPE_NOT_GRANTED - A user has requested a type of logon (for example, interactive or network) that has not been granted. An administrator has control over who can logon interactively and through the network.
+  condition: selection
 falsepositives:
-- missconfigured accounts
+  - missconfigured accounts
 level: medium
+
+---
+title: Brutforce with denied access due to account restrictions policies Count
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - bruteforce_denied_account_restriction_policies # Referenced here
+  group-by:
+    - Computer
+  timespan: 30m
+  condition:
+    gte: 10
+    field: EventRecordID
+level: high
