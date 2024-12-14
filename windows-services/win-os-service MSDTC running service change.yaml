@@ -1,0 +1,28 @@
+title: Possible impact of 'SMOKEDHAM backdoor' with MSDTC service privilege escalation via command line
+id: 726e148b-a091-4786-8f4e-3066d69608e1
+description: This rule detects activity related to 'SMOKEDHAM backdoor' which manipulate the default running service accounf of the MSDTC service in order to DLL side-load a malicious binary.
+references:
+- https://medium.com/trac-labs/who-ordered-the-smokedham-backdoor-delicacies-in-the-wild-87f51e2e5bd2
+tags:
+- attack.privilege_escalation
+- attack.t1574.002 # Hijack Execution Flow: DLL Side-Loading 
+- attack.privilege_escalation
+- attack.t1543.003 # Create or Modify System Process: Windows Service 
+author: mdecrevoisier
+status: production
+logsource:
+  product: windows
+  category: process_creation
+detection:
+    selection_img:
+        - Image|endswith: '\sc.exe'
+        - OriginalFileName: 'sc.exe'
+    selection_cli:
+        CommandLine|contains:
+            - 'config'
+            - 'msdtc'
+            - 'LocalSystem'
+    condition: all of selection_*
+falsepositives:
+- None  (administrators should not change the service account for MSDTC service)
+level: medium

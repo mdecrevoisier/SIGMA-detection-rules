@@ -5,6 +5,7 @@ references:
 - https://raw.githubusercontent.com/PwC-IR/Business-Email-Compromise-Guide/main/PwC-Business_Email_Compromise-Guide.pdf
 - https://docs.microsoft.com/en-us/microsoft-365/security/defender/alert-grading-playbook-email-forwarding?view=o365-worldwide
 - https://logrhythm.com/blog/detecting-and-preventing-auto-forwarding-and-phishing-attacks-in-office-365/
+- https://www.huntress.com/blog/business-email-compromise-via-azure-administrative-privileges
 tags:
 - attack.collection
 - attack.t1114
@@ -17,17 +18,9 @@ logsource:
   service: office365
 detection:
   selection:
-    Operation: 
+    Operation:
       - 'New-InboxRule'
       - 'Set-InboxRule'
     Parameters.Name:
   condition: selection
-falsepositives:
-- 
 level: high
-
-#index=* sourcetype="o365:management:activity"  Operation="New-InboxRule"  
-#| rex field=UserId "wbag\.onmicrosoft\.com\/(?<source_user>.*)\" (on behalf of|de la part de|im Auftrag von) \"(?<server>.*)\/wbag\.onmicrosoft\.com\/(?<behalf_user>.*)\""
-#| rex field=ClientIP "(?<src_ip>.*):(?<src_port>.*)"
-#| stats count dc(behalf_user) as dc_user values(*) as * by  source_user 
-#| table  _time Workload src_ip Operation count dc_user source_user behalf_user Name

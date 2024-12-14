@@ -4,6 +4,7 @@ references:
 - https://www.hackers-arise.com/post/linux-basics-for-hackers-part-13-the-windows-subsystem-for-linux-wsl
 - https://linuxhint.com/enable-wsl-optional-component/
 - https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
+- https://learn.microsoft.com/en-us/windows/wsl/
 tags:
 - attack.defense_evasion
 - attack.t1564.006
@@ -15,24 +16,18 @@ logsource:
     - ps_module
     - ps_classic_script
     - ps_script
-detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Microsoft-Subsystem-Linux"
-  selection1_powershell_native:
-    EventID: 800
-    EventData|contains:
-      - 'Enable-windowsOptionalFeature'
-      - 'Microsoft-Subsystem-Linux'
-
+detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
   selection2_powershell_modern:
     EventID: 4103
     Payload|contains:
       - 'Enable-windowsOptionalFeature'
-      - 'Microsoft-Subsystem-Linux'
+      - 'Microsoft-Windows-Subsystem-Linux'
 
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains:
       - 'Enable-windowsOptionalFeature'
-      - 'Microsoft-Subsystem-Linux'
+      - 'Microsoft-Windows-Subsystem-Linux'
 
   condition: 1 of selection*
 falsepositives:

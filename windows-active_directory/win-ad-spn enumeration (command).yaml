@@ -6,6 +6,7 @@ references:
 - https://github.com/cyberark/RiskySPN
 - https://pentestlab.blog/2018/06/04/spn-discovery/
 - https://adsecurity.org/?p=3458
+- https://www.security.com/threat-intelligence/us-china-espionage
 tags:
 - attack.account_discovery
 - attack.t1087.002 # Account Discovery: Domain Account

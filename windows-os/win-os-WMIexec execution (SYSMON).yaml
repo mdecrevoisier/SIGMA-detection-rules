@@ -11,6 +11,8 @@ references:
 - https://blog.sekoia.io/lucky-mouse-incident-response-to-detection-engineering/
 - https://thedfirreport.com/2023/01/09/unwrapping-ursnifs-gifts/
 - https://thedfirreport.com/2023/10/30/netsupport-intrusion-results-in-domain-compromise/
+- https://thedfirreport.com/2024/06/10/icedid-brings-screenconnect-and-csharp-streamer-to-alphv-ransomware-deployment
+- https://www.security.com/threat-intelligence/us-china-espionage
 tags:
 - attack.execution
 - attack.t1047 # Windows Management Instrumentation 

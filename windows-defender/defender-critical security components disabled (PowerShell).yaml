@@ -22,9 +22,7 @@ logsource:
 detection: # Set-MpPreference -DisableRealtimeMonitoring $true
   selection1_powershell_native:
     EventID: 800
-    EventData|contains|all:
-      - Set-MpPreference
-      - Add-MpPreference
+    EventData|contains: Set-MpPreference
     EventData|contains:
       - '1'
       - '$true'
@@ -37,9 +35,7 @@ detection: # Set-MpPreference -DisableRealtimeMonitoring $true
 
   selection2_powershell_modern:
     EventID: 4103
-    EventData|contains|all:
-      - Set-MpPreference
-      - Add-MpPreference
+    EventData|contains: Set-MpPreference
     Payload|contains:
       - '1'
       - '$true'
@@ -52,9 +48,7 @@ detection: # Set-MpPreference -DisableRealtimeMonitoring $true
 
   selection3_powershell_block:
     EventID: 4104
-    EventData|contains|all:
-      - Set-MpPreference
-      - Add-MpPreference
+    EventData|contains: Set-MpPreference
     ScriptBlockText|contains:
       - '1'
       - '$true'

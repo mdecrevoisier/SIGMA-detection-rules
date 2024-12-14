@@ -29,6 +29,7 @@ detection:
       - ExclusionPath
       - ExclusionExtension
       - ExclusionProcess
+      - ExclusionIpAddress 
 
   selection2_powershell_modern:
     EventID: 4103
@@ -39,6 +40,7 @@ detection:
       - ExclusionPath
       - ExclusionExtension
       - ExclusionProcess
+      - ExclusionIpAddress 
 
   selection3_powershell_block:
     EventID: 4104
@@ -49,6 +51,7 @@ detection:
       - ExclusionPath
       - ExclusionExtension
       - ExclusionProcess
+      - ExclusionIpAddress 
 
   condition: 1 of selection*
 falsepositives:

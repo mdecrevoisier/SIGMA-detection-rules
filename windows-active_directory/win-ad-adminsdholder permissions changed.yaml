@@ -23,7 +23,7 @@ detection:
     EventID: 5136
     OperationType: '%%14674' # Value added
     AttributeLDAPDisplayName: nTSecurityDescriptor
-    ObjectDN|startswith: CN=AdminSDHolder
+    ObjectDN|startswith: CN=AdminSDHolder,CN=System,*
   condition: selection
 falsepositives:
 - Unknown

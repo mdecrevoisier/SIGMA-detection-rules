@@ -21,12 +21,12 @@ detection:
       - support_388945a0   # Remote assistance
       - HelpAssistant      # Managed by Remote Desktop Help Session Manager service
       - WDAGUtilityAccount # Defender Application Guard
-  selection_usersid:
+  selection_user_sid:
     TargetUserSid|endswith:
       - '-501' # Guest account
-      - '-503' # Default System Managed Account (DSMA) starting Windows 10.1607
+      - '-503' # DefaultAccount (DSMA) starting Windows 10.1607
       - '1001' # support_388945a0
-  condition: selection_event and (selection_username or selection_usersid)
+  condition: selection_event and (selection_username or selection_user_sid)
 falsepositives:
 - SYSPREP deployement
 - Usage of Remote assistance

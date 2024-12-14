@@ -2,6 +2,7 @@ title: EAP service activation by Liontail framework for DLL sideloading (via com
 description: Detects scenarios where an attacker enable the Eaphost component in order to perform a DLL sideloading attack.
 references:
 - https://research.checkpoint.com/2023/from-albania-to-the-middle-east-the-scarred-manticore-is-listening/
+- https://securelist.com/incident-response-interesting-cases-2023/113611/
 tags:
 - attack.privilege_escalation
 - attack.t1543.003 # Create or Modify System Process: Windows Service

@@ -1,0 +1,35 @@
+title: Host set with constrained delegation
+description: Detects scenarios where an attacker modifies host delegation settings for privilege escalation.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
+- https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/
+- https://www.alsid.com/crb_article/kerberos-delegation/
+- https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
+- https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html
+- https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-kerberos-constrained-delegation
+- https://www.guidepointsecurity.com/delegating-like-a-boss-abusing-kerberos-delegation-in-active-directory/
+- https://stealthbits.com/blog/what-is-kerberos-delegation-an-overview-of-kerberos-delegation/
+- https://posts.specterops.io/hunting-in-active-directory-unconstrained-delegation-forests-trusts-71f2b33688e1
+- https://www.thehacker.recipes/ad/movement/kerberos/delegations#talk
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection: # Delegation to specified service, any protocol
+    EventID: 4742
+  
+  selection1:
+    UserAccountControl: '%%2098' # Enable option "Approved for authenticated delegation"
+  
+  selection2:
+    AllowedToDelegateTo: '-' # Can be: "cifs/srv01 cifs/srv02.demo.lan dcom/dc03..."
+    
+  condition: selection and (selection1 OR NOT selection2) 
+falsepositives:
+- Rare administrator modifying host delegation settings
+level: high

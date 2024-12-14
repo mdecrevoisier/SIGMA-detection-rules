@@ -22,8 +22,7 @@ logsource:
 detection: # Set-MpPreference -DisableArchiveScanning $true
   selection1_powershell_native:
     EventID: 800
-    EventData|contains|all:
-      - Set-MpPreference
+    EventData|contains: Set-MpPreference
       - Add-MpPreference
     EventData|contains:
       - '1'
@@ -53,8 +52,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
 
   selection2_powershell_modern:
     EventID: 4103
-    EventData|contains|all:
-      - Set-MpPreference
+    EventData|contains: Set-MpPreference
       - Add-MpPreference
     Payload|contains:
       - '1'
@@ -83,8 +81,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
 
   selection3_powershell_block:
     EventID: 4104
-    EventData|contains|all:
-      - Set-MpPreference
+    EventData|contains: Set-MpPreference
       - Add-MpPreference
     ScriptBlockText|contains:
       - '1'

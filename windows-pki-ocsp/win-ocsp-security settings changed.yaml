@@ -1,5 +1,5 @@
 title: OCSP responder security settings changed
-description: Dtects scenarios where an attacker would attempt to escalate privileges by changing the security settings of the responder.
+description: Detects scenarios where an attacker would attempt to escalate privileges by changing the security settings of the responder.
 requirements: requires to have the OCSP role installed and to have enabled auditing in the responder properties.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
