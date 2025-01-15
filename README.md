@@ -1,7 +1,7 @@
 # SIGMA detection rules
 
 ## Project purpose:
-**SIGMA detection rules** provides a free set of >320 advanced correlation rules to be used for suspicious hunting activities.
+**SIGMA detection rules** provides a free set of >350 advanced correlation rules to be used for suspicious hunting activities.
 
 ## How to use the rules:
 The SIGMA rules can be used in different ways together with your SIEM:
