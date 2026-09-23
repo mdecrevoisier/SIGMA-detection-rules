@@ -1,4 +1,5 @@
 title: Active Directory Forest PowerShell class called from a non administrative host
+id: aa155c0c-2e5f-49f6-922b-21c9e96bdd67
 description: Detects scenarios where an attacker attempts to call the Active Directory Forest PowerShell class on a non administrative host in order to enumerate trusts, forests, domains, sites and subnet information.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery

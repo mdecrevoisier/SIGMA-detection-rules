@@ -1,4 +1,5 @@
 title: Windows Subsystem for Linux (WSL) installation (PowerShell)
+id: 3c27ef03-ec12-4ea3-871a-dff830def5b3
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
 - https://www.hackers-arise.com/post/linux-basics-for-hackers-part-13-the-windows-subsystem-for-linux-wsl

@@ -1,4 +1,5 @@
 title: Permissions changed on a Group Policy (GPO)
+id: a7902cc8-3de9-4026-a2cc-28cd10b24267
 description: Detects scenarios where an attacker will attempt to take control over a group policy.
 requirements: auditing SACL "Modify permissions" must be placed on the "Policies" container using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:

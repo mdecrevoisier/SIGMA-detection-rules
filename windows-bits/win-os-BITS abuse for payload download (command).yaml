@@ -1,4 +1,5 @@
 title: BITS payload downloaded via commandline
+id: b7357ce8-756e-484f-afc0-0b5cbf8b23a7
 description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs

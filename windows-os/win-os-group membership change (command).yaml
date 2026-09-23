@@ -1,4 +1,5 @@
 title: User added to a group via commandline
+id: cd9cbf54-f556-41db-8331-3c37e697f9be
 description: Detects scenarios where an attacker attempts to escalate privilege by adding a user to a group via commandline.
 references:
 - https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html

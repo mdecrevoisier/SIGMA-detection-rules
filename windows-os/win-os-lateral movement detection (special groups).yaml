@@ -1,4 +1,5 @@
 title: Lateral movement detection (based on "special groups" feature)
+id: de4a9f31-c6d3-4518-974b-b5a51fb5ddd6
 description: Detects scenarios where a user of a predefined set of group(s) logs on a target machine.
 requirements: registry configuration has to be pushed per GPO to specify the groups to be monitored. See links below for more detailed information.
 references:

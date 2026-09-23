@@ -1,4 +1,5 @@
 title: Exchange transport agent installation artifacts (PowerShell)
+id: c2a2611b-8f7f-4e1e-9486-c3ea7d8d37e1
 description: Detects scenarios where an attacker attempts to load an artifact in the Exchange transport agent.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505-Server%20Software%20Component

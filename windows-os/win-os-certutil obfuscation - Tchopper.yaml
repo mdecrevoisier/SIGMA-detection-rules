@@ -1,4 +1,5 @@
 title: Certutil payload obfuscation - Tchopper (command)
+id: bebd7bae-0674-422a-9eb5-7a89c0838071
 description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload using the Tchopper tool.
 references:
 - https://github.com/lawrenceamer/TChopper

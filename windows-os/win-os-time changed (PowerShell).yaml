@@ -1,4 +1,5 @@
 title: System time changed (PowerShell)
+id: 79493c7a-df55-4e38-857a-22d1ed9f0cae
 description: Detects scenarios where an attacker attempts to change the system time to evade defense.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.006-Timestomp

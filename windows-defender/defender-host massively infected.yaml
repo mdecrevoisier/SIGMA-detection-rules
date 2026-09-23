@@ -1,4 +1,5 @@
 title: Microsoft Defender massive host infection
+id: 31e162e6-d79d-4929-a453-c0c02643e0aa
 description: Detects scenarios where multiple suspicious threats are detected on a single host
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus

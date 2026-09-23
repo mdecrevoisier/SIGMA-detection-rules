@@ -1,4 +1,5 @@
 title: Impacket SMBexec service creation (registry)
+id: 13e4744b-c279-47a1-9e7d-27e5e3ff212d
 description: Detects scenarios where an attacker attempts to register the SMBexec service to estasblish persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1112-Modify%20registry

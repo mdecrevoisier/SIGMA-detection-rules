@@ -1,4 +1,5 @@
 title: Network proxy configuration changed
+id: 853f269f-f30e-4255-93be-d577120bfcda
 description: Detects scenarios where an attacker attempts to modify proxy configuration in order to bypass network restrictions.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack

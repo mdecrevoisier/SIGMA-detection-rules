@@ -1,4 +1,5 @@
 title: Exchange server impersonation via PrivExchange relay attack
+id: 63c6cf61-a6a9-480c-9f86-96d07dd9c803
 description: Detects scenarios where an attacker relays Exchange server authentication to abuse Exchange servers permissions and escalate privileges.
 references:
 - https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/

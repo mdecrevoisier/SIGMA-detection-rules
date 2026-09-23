@@ -1,4 +1,5 @@
 title: Spool process spawned a CMD shell (PrintNightmare vulnerability - CVE-2021-36958)
+id: aec4ec25-a827-4099-a1a3-0aff8124e1bd
 description: Detects scenarios where an attacker exploits the PrintNightmare vulnerability and obtained a CMD shell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1574-DLL%20side-loading

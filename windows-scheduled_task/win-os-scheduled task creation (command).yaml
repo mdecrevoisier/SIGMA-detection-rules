@@ -1,4 +1,5 @@
 title: Scheduled task creation with command line
+id: e604434a-0aa4-4a5c-bbdb-9c1431aa5e44
 description: Detects scenarios where an attacker creates a scheduled task via commmand line.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task

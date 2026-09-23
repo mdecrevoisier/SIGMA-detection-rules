@@ -1,4 +1,5 @@
 title: Service permissions hijacked for privileges abuse (PowerShell)
+id: 99a68008-b142-4539-998b-daadb1bb5757
 description: Detects scenarios where an attacker modify the permissions of a service using native PowerShell commands in order to abuse its privileges. Note that it requires PowerShell 7 or higher.
 references:
 - http://woshub.com/set-permissions-on-windows-service/

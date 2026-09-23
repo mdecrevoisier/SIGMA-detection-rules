@@ -1,4 +1,5 @@
 title: RDP tunneling via ngrok detected
+id: 48780193-fed3-4bf5-b0e8-ecb56307a427
 description: Detects scenarios where an attacker uses RDP tunneling to redirect traffic to a C&C target.
 references:
 - https://twitter.com/malmoeb/status/1519710302820089857

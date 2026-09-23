@@ -1,4 +1,5 @@
 title: Disabled guest or builtin account activated (command)
+id: 35a9460f-010e-46e5-97d1-802e289836ed
 description: Detects scenarios where an attacker enables a disabled builtin account via command line.
 references:
 - https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/

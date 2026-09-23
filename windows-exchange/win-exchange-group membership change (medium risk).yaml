@@ -1,4 +1,5 @@
 title: New member added to an Exchange administration group (medium risk)
+id: a96a25ef-0b31-4e1f-b904-da61f2f81453
 description: Detects scenarios where a new member is added to a sensitive group related to Exchange server
 references:
 - https://msexchangeguru.com/2015/12/18/rbac-2016/

@@ -1,4 +1,5 @@
 title: Failed DNS server zone transfer for enumeration purposes
+id: 619af59a-abf2-40f7-b4fe-e624568bf3b3
 description: Detects scenarios where an attacker attempts to exploit DNS server missconfiguration to trigger a DNS zone transfer and enumerate list of valid IP and hostnames.
 references:
 - https://capec.mitre.org/data/definitions/291.html

@@ -1,4 +1,5 @@
 title: Webserver IIS module installed (PowerShell)
+id: d04af20e-3b57-4b4f-9a0e-4fc4cdf5124d
 description: Detects scenarios where an attacker attempts to deploy an IIS module via PowerShell.
 references:
 - https://www.splunk.com/en_us/blog/security/fantastic-iis-modules-and-how-to-find-them.html

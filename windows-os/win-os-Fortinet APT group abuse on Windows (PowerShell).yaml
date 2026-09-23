@@ -1,4 +1,5 @@
 title: Vault credentials manager accessed
+id: 4be2b707-e2b6-4304-a4d8-379372b13273
 description: Detects scenarios where an attacker attempts to access vault credentials.
 correlation: correlate ClientProcessId from ID 5382 with Process PID from event ID 4688 to identify the origin of the access.
 references:

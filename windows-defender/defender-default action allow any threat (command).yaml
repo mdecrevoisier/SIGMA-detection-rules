@@ -1,4 +1,5 @@
 title: Microsoft Defender default action changed to allow any threat (command)
+id: abb0e120-6721-4d44-bf4d-c8392e317ddc
 description: Detects scenarios where an attacker attempts to change Defender default action to allow any threats
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool

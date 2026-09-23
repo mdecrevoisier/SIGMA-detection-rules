@@ -1,4 +1,5 @@
 title: User account creation disguised in a computer account
+id: 9c16d03b-f646-4460-bcf0-6aa49c1db63e
 description: Detects scenarios where an attacker creates a user account that fakes a computer account.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account

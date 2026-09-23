@@ -1,4 +1,5 @@
 title: Mimikatz Pass-the-hash login
+id: 30a9da43-41ce-479f-85f1-eb5ffc6e5f1d
 description: Detects scenarios where an attacker uses the Mimikatz Pass-the-hash feature to move laterally. Correlation with others event IDs can be done in the following way:| ID 4624 TargetLogonId + ID 4672 SubjectLogonId + ID 4688 TargetLogonId. Having those 3 elements together allows to bring in light what was exactly done.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1550-Use%20Alternate%20Authentication%20Material

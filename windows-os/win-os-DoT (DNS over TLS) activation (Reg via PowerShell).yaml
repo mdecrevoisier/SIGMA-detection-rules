@@ -1,4 +1,5 @@
 title: DoT (DNS over TLS) activation (PowerShell)
+id: ef6efae5-21d3-478e-a583-edb1d1abe77a
 description: Detects scenarios where an attacker attempts to enable DNS over TLS in order to evade detection for command and control purposes.
 references:
 - https://techcommunity.microsoft.com/t5/networking-blog/dns-over-tls-available-to-windows-insiders/ba-p/3565859

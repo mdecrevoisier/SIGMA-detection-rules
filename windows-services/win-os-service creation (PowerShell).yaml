@@ -1,4 +1,5 @@
 title: Service creation (PowerShell)
+id: 0ea3c9e6-510f-4440-aecf-aedfe3f7b6e0
 description: Detects scenarios where an attacker attempts to create a service for persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

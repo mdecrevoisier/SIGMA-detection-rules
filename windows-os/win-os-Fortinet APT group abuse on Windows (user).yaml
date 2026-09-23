@@ -1,4 +1,5 @@
 title: Fortinet APT group abuse on Windows (user)
+id: 5e1bb0bc-7264-4ab9-8c72-2fbff9893474
 description: Detects scenarios where APT actors exploits Fortinet vulnerabilities to gain access into Windows infrastructure.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/EVTX_full_APT_attack_steps

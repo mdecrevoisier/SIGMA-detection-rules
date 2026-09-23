@@ -1,4 +1,5 @@
 title: Stickey key called CMD via command execution
+id: 64f4125a-5a7b-4a3c-af67-00d894238de7
 description: Detects scenarios where an attacker calls the stickey key and execute CMD.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection
