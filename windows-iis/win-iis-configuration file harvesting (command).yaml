@@ -1,4 +1,8 @@
 title: IIS Application Pool credential dumping 
+id: 0934b726-bd7e-4412-a649-853523906888
+related:
+  - id: 2d3cdeec-c0db-45b4-aa86-082f7eb75701
+    type: similar
 description: Detects scenarios where an attacker 
 references:
 - https://www.netspi.com/blog/technical/network-penetration-testing/decrypting-iis-passwords-to-break-out-of-the-dmz-part-1/

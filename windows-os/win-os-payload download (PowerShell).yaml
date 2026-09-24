@@ -1,4 +1,8 @@
 title: Payload downloaded via PowerShell
+id: 4b65234e-afc7-49d7-8f34-aa54db5a7fdf
+related:
+  - id: b9dc502f-040b-404a-a1e6-51a9960e000c
+    type: similar
 description: Detects scenarios where an attacker download a payload using PowerShell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell

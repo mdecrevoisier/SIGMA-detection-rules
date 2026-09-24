@@ -1,4 +1,10 @@
 title: Firewall deactivation (deprecated command)
+id: 4d99aed7-55a6-403b-904c-d1399216a546
+related:
+  - id: 57c4bf16-227f-4394-8ec7-1b745ee061c3
+    type: similar
+  - id: a46ca012-25af-42b1-9f47-9891db83348a
+    type: similar
 description: Detects scenarios where an attacker disabled the Windows Firewall to evade defense.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall

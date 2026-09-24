@@ -1,4 +1,5 @@
 title: Member added to DNSadmin group
+id: 0888db27-aa58-4259-8dd0-2d860d633f8e
 description: Detects scenarios where a suspicious change is done on DNSadmin group in order to abuse DNSadmin privileges for DLL load.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

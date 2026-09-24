@@ -1,4 +1,8 @@
 title: Massive processes termination burst
+id: eb0dc378-375e-4cd2-8851-99491c5fc25b
+related:
+  - id: 86085955-ea48-42a2-9dd3-85d4c36b167d
+    type: similar
 description: Detects scenarios where an attacker attempts to kill multiples services on a host. Attacker may target services related to databases, security products or backups (Veeam, Symantec, Acronis ...).
 references:
 - https://www.microsoft.com/security/blog/2020/03/05/human-operated-ransomware-attacks-a-preventable-disaster/

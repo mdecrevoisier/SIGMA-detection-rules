@@ -1,4 +1,5 @@
 title: Privilege SeMachineAccountPrivilege abuse
+id: 7d0b4bba-fa36-4cfb-8cc4-b9cd7bb49cf1
 description: Detects scenarios where an attacker abuse the SeMachineAccountPrivilege which allows per default any authenticated user to join a computer to the domain. Later on, this computer account can be manipulated in order to elevate privileges.
 requirements: despite of this event marked as a "sensitive privilege", I was only able to trigger it by having the audit for "non sensitive privileges" activated.
 correlation: correlate with ID 4741 (computer created) using field SubjectLogonId. See rule "Computer account created with privileges" for advance correlation.

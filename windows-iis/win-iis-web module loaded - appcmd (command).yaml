@@ -1,4 +1,10 @@
 title: Webserver IIS module installed (command)
+id: e069535c-7457-4996-b462-b4159164036e
+related:
+  - id: 9465ddf4-f9e4-4ebd-8d98-702df3a93239
+    type: similar
+  - id: 043c4b8b-3a54-4780-9682-081cb6b8185c
+    type: similar
 description: Detects scenarios where an attacker attempts to deploy an IIS module.
 references:
 - https://securelist.com/owowa-credential-stealer-and-remote-access/105219/

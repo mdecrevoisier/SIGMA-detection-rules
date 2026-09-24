@@ -1,4 +1,8 @@
 title: SQL Server database's table enumeration
+id: 90030eec-2c00-4afd-9e1e-8ef13cb2b71e
+related:
+  - id: 696bfb54-227e-4602-ac5b-30d9d2053312
+    type: similar
 description: Detects scenarios where an attacker attempts to enumerate local SQL Server tables (specially Veeam Backup).
 references:
 - https://labs.withsecure.com/publications/fin7-target-veeam-servers

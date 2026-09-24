@@ -1,4 +1,5 @@
 title: Microsoft Defender signatures not up to date
+id: 45608097-66f3-4824-8750-df94f58e2b4b
 description: Detects scenarios where Defender signatures are outdated.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus

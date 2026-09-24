@@ -1,4 +1,5 @@
 title: Security package (SSP) added (Reg via command)
+id: 393a763b-3523-4b77-87b6-5abb1ab4a8b3
 description: Detects scenarios where an attacker adds a reference in the registry to a malicious SSP (Security Support Provider). Note that this rule will not work with "in memory" SSP injection (Mimikatz).
 references:
 - https://twitter.com/JohnLaTwC/status/1417106953881497602?s=09

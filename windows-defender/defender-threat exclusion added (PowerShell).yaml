@@ -1,4 +1,10 @@
 title: Microsoft Defender threat exclusion added (PowerShell)
+id: c0382aea-38eb-4a04-9182-13d6c95d9125
+related:
+  - id: c1344fa2-323b-4d2e-9176-84b4d4821c88
+    type: similar
+  - id: 17769c90-230e-488b-a463-e05c08e9d48f
+    type: similar
 description: Detects scenarios where a threat exclusion is added to the antivirus in order to bypass its detection capacities
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus

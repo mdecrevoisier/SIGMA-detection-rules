@@ -1,4 +1,12 @@
 title: Microsoft Defender service deactivation attempt (command)
+id: a17c42b1-39f2-4f98-963b-e5eb9dcae978
+related:
+  - id: f96b49c0-8500-48a0-8569-9fce2f527aef
+    type: similar
+  - id: a7ee1722-c3c5-aeff-3212-c777e4733217
+    type: similar
+  - id: ce72ef99-22f1-43d4-8695-419dcb5d9330
+    type: similar
 description: Detects scenarios where an attacker attempts to disable Defender security service. If tamper protection is enabled, this action may not work.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool

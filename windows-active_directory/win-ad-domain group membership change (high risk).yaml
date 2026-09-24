@@ -1,4 +1,5 @@
 title: High risk Active Directory group membership change
+id: aa917ea4-cb19-4acd-818c-0dcdbcc31a34
 description: Detects scenarios where a suspicious group membership is changed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

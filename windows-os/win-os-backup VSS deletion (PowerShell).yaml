@@ -1,4 +1,12 @@
 title: VSS backup deletion via WMI (Powershell)
+id: 8bdb0a95-35f5-49c7-9cb4-9e3da963dcc5
+related:
+  - id: c1337eb8-921a-4b59-855b-4ba188ddcc42
+    type: similar
+  - id: 21ff4ca9-f13a-41ad-b828-0077b2af2e40
+    type: similar
+  - id: b5277094-f7a4-48c6-8a5f-9787e545a69c
+    type: similar
 description: Detects scenarios where an attacker attempts to delete existing VSS backup via WMI.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery

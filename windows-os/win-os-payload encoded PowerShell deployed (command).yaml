@@ -1,4 +1,8 @@
 title: Encoded PowerShell payload deployed via process execution
+id: 2e0e2237-4c06-43cf-8356-16bcc16a38ef
+related:
+  - id: d06f779e-0b07-44d3-9532-7d3318cfe9d3
+    type: similar
 description: Detects scenarios where an attacker deployed an encoded PowerShell payload via a process execution. Some parameters are commented in case you would like to reduce false positives or make the rule more precise.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell

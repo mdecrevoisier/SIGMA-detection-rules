@@ -1,4 +1,10 @@
 title: LSASS process dump by a non system account
+id: 66a56952-b263-4149-86fd-9b935d47505e
+related:
+  - id: 962fe167-e48d-4fd6-9974-11e5b9a5d6d1
+    type: similar
+  - id: 4a1b6da0-d94f-4fc3-98fc-2d9cb9e5ee76
+    type: similar
 description: Detects scenarios where an attacker will dump the LSASS memory content using tools like Mimikatz, ProcDump, TaskMgr, ...
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping

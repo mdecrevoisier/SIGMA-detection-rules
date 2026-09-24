@@ -1,4 +1,5 @@
 title: Massive service installation - Tchopper
+id: 7fe8524d-101b-4fd3-9e80-e5fdc04e0896
 description: Detects scenarios where an attacker uses the Tchopper tool by abusing the display name of a service as a placeholder to upload an obfuscated payload. Service name may come with very high entropy. Option mode "-m" will not report any service installation, only service failures.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution

@@ -1,4 +1,12 @@
 title: Massive remote service creation via named pipes (TChopper, CME)
+id: 0daf2213-3a25-42e9-acac-c94ac48e4629
+related:
+  - id: 1a0eb388-ac98-4ebc-8555-be233da404e7
+    type: similar
+  - id: cc4aac41-ab53-47d8-9f97-bbae8fb35f05
+    type: similar
+  - id: 586a8d6b-6bfe-4ad9-9d78-888cd2fe50c3
+    type: similar
 description: Detects scenarios where an attacker remotely creates a service over named pipes. Tools like Tchopper or CrackMapExec can trigger this rule.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution

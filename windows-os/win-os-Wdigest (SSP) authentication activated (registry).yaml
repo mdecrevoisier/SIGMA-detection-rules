@@ -1,4 +1,10 @@
 title: Wdigest authentication enabled (registry)
+id: 174973ba-d93f-4a1a-aca3-ddadc6e57b90
+related:
+  - id: 9b8f3416-3f35-432f-9c0b-8de3a73f7a66
+    type: similar
+  - id: d6a9b252-c666-4de6-8806-5561bbbd3bdc
+    type: similar
 description: Detects scenarios where an attacker attempts to enable Wdgiest authention so passwords are stored in clear text and can be dumped.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/ 

@@ -1,4 +1,5 @@
 title: OCSP responder auditing settings changed or disabled
+id: 0d3be1c0-e4aa-4ab5-8e15-0d47e712af33
 description: Detects scenarios where an attacker would attempt to alter or disable OCSP responder auditing settings to evade detection and perform further escalation via ADCS vulnerabilities.
 requirements: requires to have the OCSP role installed and to have enabled auditing in the responder properties.
 references:

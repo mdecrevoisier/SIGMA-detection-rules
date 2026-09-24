@@ -1,4 +1,10 @@
 title: Service abuse with malicious ImagePath (Reg via PowerShell)
+id: 5dfe3be2-e251-4a81-8d14-7b057bb5faca
+related:
+  - id: 9b0b7ac3-6223-47aa-a3fd-e8f211e637db
+    type: similar
+  - id: f585200f-1f31-4393-a962-9a4f0bcdf155
+    type: similar
 description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

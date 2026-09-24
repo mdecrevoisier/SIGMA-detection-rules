@@ -1,4 +1,5 @@
 title: Audit policy enumerated
+id: 30c662f0-aec4-4b3e-98fc-54d72976a8b4
 description: Detects scenarios where an attacker attempts enumerate the audit policy in place.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.xxx-Audit%20policy%20disabled

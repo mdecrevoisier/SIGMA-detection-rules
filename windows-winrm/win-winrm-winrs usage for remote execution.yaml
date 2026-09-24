@@ -1,4 +1,5 @@
 title: WinRS usage for remote execution
+id: 294fa69f-d923-4713-aa6e-002f124476fd
 description: Detects scenarios where an attacker abuses the WinRS capacities for remote execution.
 references:
 - https://www.ired.team/offensive-security/lateral-movement/winrs-for-lateral-movement

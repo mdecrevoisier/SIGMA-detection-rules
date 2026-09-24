@@ -1,4 +1,10 @@
 title: Task Manager access indicator for potential LSASS dump
+id: 1f54f2ad-291a-42c2-8cd7-a3b012281521
+related:
+  - id: ffe8253b-3414-42c0-b19f-82611c378ad2
+    type: similar
+  - id: 583d2a30-7f4c-462a-94cc-c70ea630a4ef
+    type: similar
 description: Provides an indicator of a user accessing the task manager in order to eventually dump the LSASS process content using the "Details" tab > right click on "lsass.exe" > Create a dump file.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping

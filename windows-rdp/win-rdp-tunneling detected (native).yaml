@@ -1,4 +1,10 @@
 title: RDP tunneling detected
+id: b6d3f4a9-7b10-4bbf-968c-715e39366d53
+related:
+  - id: 48780193-fed3-4bf5-b0e8-ecb56307a427
+    type: similar
+  - id: 51e33403-2a37-4d66-a574-1fda1782cc31
+    type: similar
 description: Detects scenarios where an attacker uses RDP tunneling to redirect traffic to a C&C target.
 references:
 - https://github.com/sbousseaden/Slides/blob/master/Windows%20DFIR%20Events.pdf

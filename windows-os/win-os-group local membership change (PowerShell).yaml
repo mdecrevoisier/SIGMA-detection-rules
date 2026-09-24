@@ -1,4 +1,10 @@
 title: Local group membership change
+id: 58b87bbc-aebf-4d88-9c74-f13ebf31a66d
+related:
+  - id: ad720b90-25ad-43ff-9b5e-5c841facc8e5
+    type: similar
+  - id: ffa28e60-bdb1-46e0-9f82-05f7a61cc06e
+    type: similar
 description: Detects if a member is added to a local group via PowerShell.
 references:
 - 

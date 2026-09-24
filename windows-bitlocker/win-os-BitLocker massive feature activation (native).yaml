@@ -1,4 +1,5 @@
 title: BitLocker feature activation on multiple hosts (native)
+id: 3291eb16-72af-48d0-844e-16066d091242
 description: Detects scenarios where an attacker enable or reconfigure BitLocker on multiple hosts for ransomware purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1486-Data%20Encrypted%20for%20Impact

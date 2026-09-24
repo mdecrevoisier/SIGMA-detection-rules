@@ -1,4 +1,8 @@
 title: PSexec service installation
+id: 1c54a4b4-d1a3-4a9a-b5c6-a466c1bd850d
+related:
+  - id: 42c575ea-e41e-41f1-b248-8093c3e82a28
+    type: similar
 description: Detects scenarios where an attacker installs PSexec service.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

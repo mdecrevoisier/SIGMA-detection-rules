@@ -1,4 +1,8 @@
 title: RDP shadow session started (command)
+id: 14328182-ca1e-4e49-8310-7fe2b0d99258
+related:
+  - id: fb8d7d25-5c19-4d7b-ab0d-a97374cc68d5
+    type: similar
 description: Detects scenarios where an attacker would attempt to shadow a RDP session.
 references:
 - http://woshub.com/rds-shadow-how-to-connect-to-a-user-session-in-windows-server-2012-r2/

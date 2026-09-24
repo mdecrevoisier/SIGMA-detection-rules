@@ -1,4 +1,5 @@
 title: Backdoor introduction via registry permission change through WMI (DAMP)
+id: 6d2e4652-eb46-4d38-a802-056f77151fbf
 description: Detects scenarios where an attacker modifies registry permissions on a local or remote target in order to introduce a backdoor and dump hashes and credentials.
 correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4674 to identify the source of the change.
 references:

@@ -1,4 +1,5 @@
 title: SQL Server Dedicated Admin Connection (DAC) mode activated (native)
+id: 1d2f8fbb-6be8-48df-9869-d0a80677fc1f
 description: Detects scenarios where an attacker enabled the DAC mode in order to bypass access controls, logon triggers, perform brute force attacks or run unauthorized queries.
 references:
 - https://josephpierini.blogspot.com/2012/07/microsoft-sql-dedicated-admin.html

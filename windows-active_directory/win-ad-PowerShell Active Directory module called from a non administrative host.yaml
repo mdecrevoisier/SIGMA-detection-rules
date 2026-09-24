@@ -1,4 +1,5 @@
 title: Active Directory PowerShell module called from a non administrative host
+id: 6f173101-ab56-4708-a309-fcbb7fffa8f1
 description: Detects scenarios where an attacker attempts to load the Active Directory PowerShell module on a non administrative host in order to enumerate users, groups, ... Also note that no user information is reported by this event ID and that some correation would be required.
 correlation: correlate EventID 600 with ID 800 using field "HostId" or "RunspaceId" to obtain the user that triggered the action.
 references:

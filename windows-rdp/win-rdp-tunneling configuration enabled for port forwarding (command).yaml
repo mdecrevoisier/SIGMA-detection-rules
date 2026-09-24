@@ -1,4 +1,10 @@
 title: RDP tunneling configuration enabled for port forwarding
+id: 03256d1b-4c5c-42b2-95ba-b1faf50413b4
+related:
+  - id: 322ed9ec-fcab-4f67-9a34-e7c6aef43614
+    type: similar
+  - id: 782d6f3e-4c5d-4b8c-92a3-1d05fed72e63
+    type: similar
 description: Detects scenarios where an attacker configure port forwarding on a host to redirect traffic to a C&C target.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0011-Command%20and%20Control/T1090-Proxy

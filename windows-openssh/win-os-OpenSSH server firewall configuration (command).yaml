@@ -1,4 +1,10 @@
 title: OpenSSH server firewall configuration on Windows (command)
+id: 2177ac3b-d73b-46cb-9bcc-77b94067badc
+related:
+  - id: 0f1dde61-f10b-42c0-9cab-0056b48aa2a4
+    type: similar
+  - id: c32f881c-d936-4de6-aeb5-0340e6350ed2
+    type: similar
 description: Detects scenarios where an attacker configure the Windows firewall to allow incoming connections to perform stealthy lateral movement.
 references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
