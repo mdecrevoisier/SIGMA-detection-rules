@@ -1,4 +1,8 @@
 title: Suspicious SPN enumeration previous to Kerberoasting attack (native commands)
+id: ff5bf278-6798-4c49-8a98-63d64cc743a7
+related:
+  - id: 1eeed653-dbc8-4187-ad0c-eeebb20e6599
+    type: similar
 description: Detects scenarios where an attacker attempts to retrieve SPN using commandline and native tools.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
@@ -8,7 +12,7 @@ references:
 - https://adsecurity.org/?p=3458
 - https://www.security.com/threat-intelligence/us-china-espionage
 tags:
-- attack.account_discovery
+- attack.t1087
 - attack.t1087.002 # Account Discovery: Domain Account
 author: mdecrevoisier
 status: experimental

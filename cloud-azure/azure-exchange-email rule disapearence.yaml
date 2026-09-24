@@ -1,4 +1,8 @@
 title: Office 365 disapearence email rule
+id: c4879bca-6625-4370-825d-0baaf1bf1170
+related:
+  - id: d3577be1-42c9-44a7-b56e-2e8de97349d3
+    type: similar
 description: Detects scenarios where an attacker attempt to hide emails in order to perform phishing attacks by replacing, for example, financial information from the original email with another email containing attacker's financial information. This technique may also be used to avoid specific email notification to be received by end users in case, for example, of an ongoing breach.
 references:
 - https://redcanary.com/blog/email-forwarding-rules/
@@ -9,7 +13,7 @@ references:
 tags:
 - attack.collection
 - attack.t1114
-- attack.initial_access
+- attack.initial-access
 - attack.t1566
 author: mdecrevoisier
 status: experimental
@@ -22,13 +26,14 @@ detection:
       - 'New-InboxRule'
       - 'Set-InboxRule'
     Parameters|contains: 'MoveToFolder'
+  and_selection_2:
     Parameters|contains:
-      - 'RSS*'           # RSS feeds / RSS-feeds / RSS subscriptions
-      - 'Delete*'        # Deleted items
-      - 'Archive*'
-      - 'Conversation*'  # Conversation history
-      - 'Junk*'          # Junk email
-  condition: selection
+      - 'RSS'           # RSS feeds / RSS-feeds / RSS subscriptions
+      - 'Delete'        # Deleted items
+      - 'Archive'
+      - 'Conversation'  # Conversation history
+      - 'Junk'          # Junk email
+  condition: (selection and all of and_selection_*)
 falsepositives:
 - users deleting emails on purpose
 level: high

@@ -1,12 +1,18 @@
 title: Firewall deactivation (modern command)
+id: a46ca012-25af-42b1-9f47-9891db83348a
+related:
+  - id: 4d99aed7-55a6-403b-904c-d1399216a546
+    type: similar
+  - id: 57c4bf16-227f-4394-8ec7-1b745ee061c3
+    type: similar
 description: Detects scenarios where an attacker disabled the Windows Firewall to evade defense.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
 - https://www.winhelponline.com/blog/enable-and-disable-windows-firewall-quickly-using-command-line/
 - https://research.checkpoint.com/2022/check-point-research-detects-crypto-miner-malware-disguised-as-google-translate-desktop-and-other-legitimate-applications/
 tags:
-- attack.defense_evasion
-- attack.t1562.004
+- attack.defense-impairment
+- attack.t1686
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -1,10 +1,14 @@
 title: Winlogon process contact to C2 - Blacklotus (Sysmon)
+id: 6a1ee360-53a2-48a2-bd41-5612f52ac4c6
+related:
+  - id: 7610a4ea-c06d-495f-a2ac-0a696abcfd3b
+    type: similar
 description: Detects Blacklotus HTTP downloader injection into winlogon.exe process.
 requirements: SYSMON configuration from SwiftOnSecurity needs to be adapted in order to audit winlogon.exe connections.
 references:
 - https://www.microsoft.com/en-us/security/blog/2023/04/11/guidance-for-investigating-attacks-using-cve-2022-21894-the-blacklotus-campaign/
 tags:
-- attack.command_and_control
+- attack.command-and-control
 - attack.discovery
 - attack.t1016 # System Network Configuration Discovery 
 author: mdecrevoisier

@@ -1,4 +1,5 @@
-title: DCOM lateral movement (via MMC20)
+title: DCOM lateral movement (via MMC20) - ps_module
+id: f4aa1db1-60af-4864-95a5-868905dd8781
 description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.  
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.003-Distributed%20Component%20Object%20Model%20(DCOM)
@@ -8,16 +9,50 @@ references:
 - https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
 - https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.003
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:  # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
+
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - '[System.Activator]'
+      - 'CreateInstance'
+      - 'GetTypeFromProgID'
+      - 'MMC20.Application'
+
+  condition: 1 of selection*
+falsepositives:
+- none
+level: high
+
+---
+title: DCOM lateral movement (via MMC20) - ps_classic_script
+id: 26a8849f-ca83-47eb-ad76-1fb0c8212166
+related:
+  - id: f4aa1db1-60af-4864-95a5-868905dd8781
+    type: similar
+description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.  
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.003-Distributed%20Component%20Object%20Model%20(DCOM)
+- https://enigma0x3.net/2017/01/23/lateral-movement-via-dcom-round-2/
+- https://enigma0x3.net/2017/01/05/lateral-movement-using-the-mmc20-application-com-object/
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/dcomexec.py
+- https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
+- https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
+tags:
+- attack.lateral-movement
+- attack.t1021.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:  # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
 
   selection_powershell_native:
@@ -28,13 +63,34 @@ detection:  # full command: '[System.Activator]::CreateInstance([type]::GetTypeF
       - 'GetTypeFromProgID'
       - 'MMC20.Application'
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - '[System.Activator]'
-      - 'CreateInstance'
-      - 'GetTypeFromProgID'
-      - 'MMC20.Application'
+  condition: 1 of selection*
+falsepositives:
+- none
+level: high
+
+---
+title: DCOM lateral movement (via MMC20) - ps_script
+id: 1ff3b4df-5064-4362-92d5-0e3b07e3184b
+related:
+  - id: f4aa1db1-60af-4864-95a5-868905dd8781
+    type: similar
+description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.  
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.003-Distributed%20Component%20Object%20Model%20(DCOM)
+- https://enigma0x3.net/2017/01/23/lateral-movement-via-dcom-round-2/
+- https://enigma0x3.net/2017/01/05/lateral-movement-using-the-mmc20-application-com-object/
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/dcomexec.py
+- https://www.ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
+- https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
+tags:
+- attack.lateral-movement
+- attack.t1021.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:  # full command: '[System.Activator]::CreateInstance([type]::GetTypeFromProgID('MMC20.Application.1','target_host'))''
 
   selection_powershell_block:
     EventID: 4104

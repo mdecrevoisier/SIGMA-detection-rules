@@ -1,6 +1,8 @@
 title: Remote local admin group enumeration via SharpHound
+id: 6d403efe-2555-480c-8431-a6ee91430057
+name: win_ad_remote_local_group_enumeration_sharphound
 description: Detects scenarios where an attacker enumerates local administratos group on multiple hosts via SharpHound.
-correlation: correlate SubjectLogonId from ID 4799 with TargetLogonId from ID 4624 to identify the source of the enumeration.
+correlation_note: correlate SubjectLogonId from ID 4799 with TargetLogonId from ID 4624 to identify the source of the enumeration.
 requirements: Windows 10 / Server 2016 and higher
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
@@ -28,8 +30,25 @@ detection:
     CallerProcessName: '-'  # Process is empty when call is done remotely. Process ID can also be used for the same purpose when it equals to '0x0'.
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection and not filter | count(Computer) by SubjectUserSid > 20 # Count on how many hosts this event was produced.
+  condition: selection and not filter # Count on how many hosts this event was produced.
 falsepositives:
 - Administrators
 - Azure Advanced Threat Protection (ATP) sensor
+level: medium
+
+---
+title: Remote local admin group enumeration via SharpHound - count
+id: 0eab350e-df2a-4044-99f1-f0b67f765612
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_ad_remote_local_group_enumeration_sharphound
+  group-by:
+    - SubjectUserSid
+  timespan: 1h # v1 rule had no timeframe: 1h assumed, please adjust
+  condition:
+    gt: 20
+    field: Computer
 level: medium

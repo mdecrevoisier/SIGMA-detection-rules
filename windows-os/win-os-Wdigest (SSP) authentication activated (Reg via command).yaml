@@ -1,4 +1,8 @@
 title: Wdigest authentication enabled (Reg via command)
+id: 9b8f3416-3f35-432f-9c0b-8de3a73f7a66
+related:
+  - id: 174973ba-d93f-4a1a-aca3-ddadc6e57b90
+    type: similar
 description: Detects scenarios where an attacker attempts to enable Wdgiest authention so passwords are stored in clear text and can be dumped.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/
@@ -11,10 +15,10 @@ references:
 - https://www.sentinelone.com/blog/how-attackers-exploit-security-support-provider-ssp-for-credential-dumping/
 
 tags:
-- attack.credential_access
+- attack.credential-access
 - attack.t1003
-- attack.defense_evasion
-- attack.t1562
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:

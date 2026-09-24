@@ -1,4 +1,5 @@
 title: System crash behavior manipulation - WMImplant (registry)
+id: f640d0e5-3921-44f8-883c-5f7280448370
 description: Detects scenarios where an attacker abuses the Windows "system failure and recovery" capacities (CrashControl) to store information or to establish persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
