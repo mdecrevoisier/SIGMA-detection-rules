@@ -1,4 +1,5 @@
 title: Active Directory federated trust added
+id: 466def61-e6e0-4535-8279-844c92ef97e4
 description: Detects scenarios where an federated trust is added by an attacker.
 references:
 - https://www.inversecos.com/2021/11/how-to-detect-azure-active-directory.html

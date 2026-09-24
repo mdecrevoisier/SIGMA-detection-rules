@@ -1,4 +1,5 @@
 title: RDP BlueeKeep connection closed (CVE-2019-0708)
+id: c3a2dd50-ee9e-435d-939d-5893dde52827
 description: Detects scenarios where an attacker attempts to exploit the BlueKeep vulnerability.
 references:
 - https://github.com/sbousseaden/Slides/blob/master/Windows%20DFIR%20Events.pdf

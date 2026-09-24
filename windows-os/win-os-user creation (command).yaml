@@ -1,4 +1,5 @@
 title: User creation via commandline
+id: 10a795e6-5c4d-4522-b6cf-506902adad98
 description: Detects scenarios where an attacker attempts to create a user via commandline.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account

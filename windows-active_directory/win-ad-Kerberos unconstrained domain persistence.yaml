@@ -1,4 +1,5 @@
 title: Rubeus Kerberos unconstrained delegation abuse
+id: c0983ae4-4cdb-4967-b80f-5afbc6a50a5f
 description: Detects scenarios where an attacker abuse Kerberos unconstrained delegation for domain persistence.
 references:
 - https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/

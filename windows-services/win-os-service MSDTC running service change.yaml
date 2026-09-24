@@ -9,7 +9,7 @@ tags:
 - attack.privilege_escalation
 - attack.t1543.003 # Create or Modify System Process: Windows Service 
 author: mdecrevoisier
-status: production
+status: stable
 logsource:
   product: windows
   category: process_creation

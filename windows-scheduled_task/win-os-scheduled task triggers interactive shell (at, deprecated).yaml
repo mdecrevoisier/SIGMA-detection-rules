@@ -1,4 +1,5 @@
 title: Interactive privileged shell triggered by schedule task (deprecated)
+id: a164e55c-7397-407e-878e-2014ea0d68a3
 description: Detects scenarios where an attacker abuse the at command to elevate privilages. Note that at command is deprecated since Windows 8 and replaced by schtask.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task

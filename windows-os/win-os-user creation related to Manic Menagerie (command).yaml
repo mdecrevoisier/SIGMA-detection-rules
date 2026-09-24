@@ -1,4 +1,5 @@
 title: User enumeration and creation related to Manic Menagerie 2.0 (via cmdline)
+id: 6f130271-41f0-4eb0-b49e-ff671aaf6d0c
 description: Detects user enumeration and/or creation performed by Manic Menagerie.
 references:
 - https://unit42.paloaltonetworks.com/manic-menagerie-targets-web-hosting-and-it/

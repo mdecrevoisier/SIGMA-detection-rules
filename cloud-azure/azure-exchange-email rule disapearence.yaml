@@ -1,4 +1,5 @@
 title: Office 365 disapearence email rule
+id: c4879bca-6625-4370-825d-0baaf1bf1170
 description: Detects scenarios where an attacker attempt to hide emails in order to perform phishing attacks by replacing, for example, financial information from the original email with another email containing attacker's financial information. This technique may also be used to avoid specific email notification to be received by end users in case, for example, of an ongoing breach.
 references:
 - https://redcanary.com/blog/email-forwarding-rules/

@@ -1,4 +1,5 @@
 title: Suspicious permissions modification on a network share
+id: ddd9a251-b842-4c8f-bfa5-afba27549f7e
 description: Detects scenarios where an attacker modifies network share permissions in order to facilitate lateral movement and avoid detection by creating new network shares
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification

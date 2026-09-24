@@ -1,4 +1,5 @@
 title: PipeShell exfiltration over named pipes
+id: 389fc761-9a93-43d6-9c8d-951f5e86e14e
 description: Detects scenarios where an attacker establishes "PipeShell" connection(s) between a server and client(s) in order to move laterally or exfiltrate data. The server side will trigger "ServerStream" IOCs meanwhile the client side will trigger "ClientStream" IOCs. The rule works based on this condition, where at least 2 hosts need to trigger one of the condition.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell

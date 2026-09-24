@@ -1,4 +1,5 @@
 title: Impacket WMIexec execution via SMB admin share
+id: 3b6dd704-a0d1-4850-bcd8-b3b11971563f
 description: Detects scenarios where an attacker attempts to remotely execute WMIexec via SMB admin share in order to escalate privileges. 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

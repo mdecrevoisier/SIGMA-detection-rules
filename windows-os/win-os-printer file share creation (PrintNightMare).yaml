@@ -1,4 +1,5 @@
 title: Shared printer creation (PrintNightmare vulnerability - CVE-2021-36958)
+id: 03c380d6-5a8b-4e87-b395-794fa7524b11
 description: Detects scenarios where an attacker exploit the PrintNightmare vulnerability by exposing a vulnerable shared printer. At any case, any new printer share creation should be carefully monitored.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

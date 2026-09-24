@@ -1,4 +1,5 @@
 title: Certutil root certificate installation
+id: 86b86011-29c3-4ecf-934c-a837872c444c
 description: Detects scenarios where an attacker attempts to alter certificate chain validation by installing a root CA.
 references:
 - https://twitter.com/Alh4zr3d/status/1592925753984880641
