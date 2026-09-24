@@ -1,4 +1,5 @@
 title: RDP session hijack via TSCON abuse command
+id: f5d0393d-9f0a-44b5-9180-c4f0007f99ed
 description: Detects scenarios where an attacker attempts to create a service that triggers TSCON in order to preform local RDP session hijack.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.001-Remote%20Desktop%20Protocol

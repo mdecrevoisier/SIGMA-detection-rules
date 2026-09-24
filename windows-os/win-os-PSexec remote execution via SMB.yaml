@@ -1,4 +1,5 @@
 title: PSexec execution over SMB share
+id: f9c35534-b443-4243-8463-6944177a0a59
 description: Detects scenarios where an attacker execute PSexec on a remote host via SMB
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

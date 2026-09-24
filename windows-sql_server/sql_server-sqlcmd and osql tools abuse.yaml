@@ -1,4 +1,5 @@
 title: SQL server sqlcmd utility abuse for privilege escalation
+id: fb680ed9-f225-4209-bac1-90a931ff5eb5
 description: Detects scenarios where an attacker uses sqlcmd utility to escalate privileges or introduce weaknesses.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505.001-SQL%20Stored%20Procedures

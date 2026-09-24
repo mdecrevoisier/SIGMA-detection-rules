@@ -1,4 +1,5 @@
 title: Diskshadow command abuse to expose VSS backup
+id: 5e494019-933e-4118-b8a3-b5633ca5003b
 description: Detects scenarios where an attacker attemps to create an IFM for dumping credentials.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping

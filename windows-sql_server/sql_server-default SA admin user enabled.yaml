@@ -1,4 +1,5 @@
 title: SQL SA admin user enabled
+id: eb0181da-4437-4d99-bbc1-88f8fe20edba
 description: Detects scenarios where an attacker enables the disabled (recommended) SA admin account on the SQL Server instance.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account

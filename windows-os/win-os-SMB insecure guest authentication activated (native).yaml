@@ -1,4 +1,5 @@
 title: SMB insecure guest authentication activated (native)
+id: b9f02cc5-ad9c-4f45-a615-2f2c4303dc63
 description: Detects scenarios where an attacker attempts to enable insecure guest authentication in order to access a remote storage device (NAS) in order to perform some data exfiltration or lateral movement.
 references:
 - https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-workstationservice-allowinsecureguestauth

@@ -1,4 +1,5 @@
 title: Brutforce enumeration with unexisting users (Kerberos)
+id: 2bbb000d-84fc-4fcc-a19d-809f22c741b6
 name: bruteforce_non_existing_users_kerberos
 description: Detects scenarios where an attacker attempts to enumerate potential existing users, resulting in failed Kerberos TGT requests with unexisting or invalid accounts.
 references:
@@ -28,6 +29,7 @@ level: high
 
 ---
 title: Brutforce enumeration with unexisting users (Kerberos) Count
+id: e5c4492d-6537-4474-a2b6-8a4403870d1f
 status: experimental
 correlation:
   type: value_count

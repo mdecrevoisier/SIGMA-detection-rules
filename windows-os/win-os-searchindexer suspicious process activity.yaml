@@ -1,4 +1,5 @@
 title: SearchIndexer suspicious process activity
+id: 7f432ace-4596-4a59-92ec-ad5f3af268aa
 description: Detects scenarios where SearchIndexer spwaned another process with the same name, or when SearchIndexer process exists in an unexpected directory.
 references:
 - https://securityaffairs.co/wordpress/75782/cyber-crime/hacking-hacker-botnet.html

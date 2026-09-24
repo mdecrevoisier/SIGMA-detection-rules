@@ -1,4 +1,5 @@
 title: DLL ServerLevelPluginDll registration ("serverlevelplugindll" feature abuse)
+id: 1eb38cee-9893-4488-acf6-83b7be135916
 description: Detects scenarios where a DLL is loaded by the DNS server in order to escalate privileges or initiate a remote shell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1574-Hijack%20Execution%20Flow

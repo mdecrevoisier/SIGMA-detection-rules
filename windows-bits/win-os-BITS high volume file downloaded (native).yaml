@@ -1,4 +1,5 @@
 title: File with high volume downloaded via BITS
+id: f8923c65-6bb6-4fc8-a062-22abd7d1c4d2
 description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs

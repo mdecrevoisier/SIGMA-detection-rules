@@ -1,4 +1,5 @@
 title: Event log clear attempt (command)
+id: 52f49879-5208-4fc7-857e-12f23cf8a0a1
 description: Detects scenarios where an attacker attempts to clear the event logs.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs

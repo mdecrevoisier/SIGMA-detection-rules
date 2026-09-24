@@ -1,4 +1,5 @@
 title: Netsh helper DLL abuse (process)
+id: 45d2ab13-1c6a-42a1-813f-40a1432fbad8
 description: Detects scenarios where an attacker abuses the Netsh DLL feature to perform some code execution. 
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution

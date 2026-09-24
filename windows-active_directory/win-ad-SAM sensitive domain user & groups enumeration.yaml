@@ -1,4 +1,5 @@
 title: Sensitive SAM domain user & groups discovery (native)
+id: 0cfe09a2-0de5-4427-bccd-ec9e0b8e2b59
 description: Detects scenarios where an attacker attempts to enumerate sensitive domain group settings and membership.
 correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)

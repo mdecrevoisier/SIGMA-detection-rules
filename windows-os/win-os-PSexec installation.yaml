@@ -1,4 +1,5 @@
 title: PSexec application execution
+id: b85f8332-28ec-48a6-8d2d-dd702a7663ae
 description: Detects scenarios where an attacker installs and executes PSexec.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

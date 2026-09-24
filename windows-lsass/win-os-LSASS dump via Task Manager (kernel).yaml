@@ -1,4 +1,5 @@
 title: Task Manager used for LSASS dump (kernel)
+id: 583d2a30-7f4c-462a-94cc-c70ea630a4ef
 description: Detects scenarios where an attacker attempt to dump the LSASS process via the Task Manager.
 references:
 - https://superuser.com/questions/753556/taskmgr-exe-called-with-an-argument-by-windows-7

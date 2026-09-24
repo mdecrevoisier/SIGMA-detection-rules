@@ -1,4 +1,5 @@
-title: WMI registration (PowerShell)
+title: WMI registration (PowerShell) - ps_module
+id: 171fd6fd-3680-45d8-bae1-842ae5c7b00b
 description: Detects scenarios where an attacker createsan instance of a WMI class using tools like WMImplant or PowerLurk.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
@@ -13,10 +14,47 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+
+detection:
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains:
+      - Set-WmiInstance
+      - Swmi
+    Payload|contains:
+      - Class
+      - Namespace
+      - Arguments
+
+  condition: 1 of selection*
+falsepositives:
+- legitimate WMI class registration
+- monitoring products
+- Microsoft System Center or security products
+level: high
+
+---
+title: WMI registration (PowerShell) - ps_classic_script
+id: 6716b5ea-1602-46fb-aee1-f1feb31572e6
+related:
+  - id: 171fd6fd-3680-45d8-bae1-842ae5c7b00b
+    type: similar
+description: Detects scenarios where an attacker createsan instance of a WMI class using tools like WMImplant or PowerLurk.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
+- https://github.com/Sw4mpf0x/PowerLurk
+- https://github.com/FortyNorthSecurity/WMImplant
+- https://www.netspi.com/blog/technical/adversary-simulation/getting-started-wmi-weaponization-part-5/
+- https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
+tags:
+- attack.persistence
+- attack.t1546.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 
 detection:
   selection1_powershell_native:
@@ -29,16 +67,36 @@ detection:
       - Namespace
       - Arguments
 
-  selection2_powershell_modern:
-    EventID: 4103
-    Payload|contains:
-      - Set-WmiInstance
-      - Swmi
-    Payload|contains:
-      - Class
-      - Namespace
-      - Arguments
+  condition: 1 of selection*
+falsepositives:
+- legitimate WMI class registration
+- monitoring products
+- Microsoft System Center or security products
+level: high
 
+---
+title: WMI registration (PowerShell) - ps_script
+id: 14bdde18-e62a-44af-81bf-2319b29f5b47
+related:
+  - id: 171fd6fd-3680-45d8-bae1-842ae5c7b00b
+    type: similar
+description: Detects scenarios where an attacker createsan instance of a WMI class using tools like WMImplant or PowerLurk.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution
+- https://github.com/Sw4mpf0x/PowerLurk
+- https://github.com/FortyNorthSecurity/WMImplant
+- https://www.netspi.com/blog/technical/adversary-simulation/getting-started-wmi-weaponization-part-5/
+- https://www.darkoperator.com/blog/2017/10/14/basics-of-tracking-wmi-activity
+tags:
+- attack.persistence
+- attack.t1546.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+
+detection:
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains:

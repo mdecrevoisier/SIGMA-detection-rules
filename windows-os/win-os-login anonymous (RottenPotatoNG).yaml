@@ -1,4 +1,5 @@
 title: Anonymous login (RottenPotatoNG)
+id: 39a7fef0-a6ca-449c-aab6-c431b3a70a10
 description: Detects scenarios where an attacker abuse RPC, NTLM relay and others components to escalate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation

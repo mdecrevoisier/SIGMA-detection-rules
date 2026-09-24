@@ -1,4 +1,5 @@
 title: Service abuse with malicious ImagePath (Reg via command)
+id: f585200f-1f31-4393-a962-9a4f0bcdf155
 description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

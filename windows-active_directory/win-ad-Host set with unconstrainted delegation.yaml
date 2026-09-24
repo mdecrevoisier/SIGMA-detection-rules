@@ -1,4 +1,5 @@
 title: Host set with unconstrained delegation
+id: 7f2eefe0-e1f7-4ced-8129-671cdcb9d164
 description: Detects scenarios where an attacker modifies host delegation settings for privilege escalation.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

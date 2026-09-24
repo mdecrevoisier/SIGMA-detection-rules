@@ -1,4 +1,5 @@
 title: BitLocker feature configuration (Reg via command)
+id: 952637c2-d7b7-4ed9-ac9c-b0cd149b7d09
 description: Detects scenarios where an attacker configures BitLocker for ransomware purposes.
 references:
 - https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/

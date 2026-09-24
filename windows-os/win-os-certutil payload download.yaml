@@ -1,4 +1,5 @@
 title: Certutil payload download (command)
+id: 15f05904-fc8f-49a6-a3d7-d1e9a0f6778b
 description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload.
 references:
 - https://www.elastic.co/guide/en/security/current/suspicious-certutil-commands.html

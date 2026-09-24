@@ -1,4 +1,5 @@
 title: Detection of default a Windows host name in login attempts
+id: 6597ca5f-6c30-49f9-a0e5-2d66500458cc
 description: Detects scenarios where a default Windows host name pattern (WIN-...) is detected during a login attempt. Having a host with a default name may be an indicator of a fresh machine deployed by an attacker to evade detection and perform malicious activities.
 references:
 - https://cybercx.com.au/blog/akira-ransomware/

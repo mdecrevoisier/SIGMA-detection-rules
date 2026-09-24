@@ -1,4 +1,5 @@
 title: Computer account modifying Active Directory permissions
+id: 43d4d546-1c66-4ba3-b3c8-eedc63300d20
 description: Detects scenarios where an attacker compromise a server with high privileges to perform permissions changes. Note that a dedicated rule for Exchange exists.
 requirements: auditing SACL "Modify permissions" must be placed on the AD root container using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:

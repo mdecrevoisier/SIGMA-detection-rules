@@ -1,4 +1,5 @@
 title: Computer account created with privileges
+id: 107bf857-5abc-4f13-9b78-e0955703865f
 description: Detects scenarios where an attacker creates a computer account with privileges for later exploitation.
 correlation: correlate with ID 4763 (privileges) using field SubjectLogonId. See rule "Privilege SeMachineAccountPrivilege abuse" for advance correlation.
 references:

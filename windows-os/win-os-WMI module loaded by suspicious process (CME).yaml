@@ -1,4 +1,5 @@
 title: WMI module loaded by suspicious process
+id: 2ca9bfeb-0f34-4dca-a05a-9de4da3a5a5d
 description: Detects scenarios where an attacker attempts to load WMI modules from a suspicious process (like PowerShell).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation

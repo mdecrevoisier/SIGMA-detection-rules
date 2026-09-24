@@ -1,4 +1,5 @@
-title: VSS backup deletion via WMI (Powershell)
+title: VSS backup deletion via WMI (Powershell) - ps_module
+id: 8bdb0a95-35f5-49c7-9cb4-9e3da963dcc5
 description: Detects scenarios where an attacker attempts to delete existing VSS backup via WMI.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery
@@ -15,10 +16,51 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.Delete();}"
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains:
+      - Get-WmiObject
+      - Gwmi # Short version of previous object
+      - Get-CimInstance
+      - Gcim # Short version of previous object
+    Payload|contains: Win32_Shadowcopy
+    Payload|contains:
+      - Delete
+      - Remove-WmiObject
+      - Rwmi # Short version of previous object
+      - Remove-CimInstance
+      - Rcim # Short version of previous object
+
+  condition: 1 of selection*
+falsepositives:
+- None
+level: high
+
+---
+title: VSS backup deletion via WMI (Powershell) - ps_classic_script
+id: 89b30e81-22e8-42f4-9c25-e6c125987102
+related:
+  - id: 8bdb0a95-35f5-49c7-9cb4-9e3da963dcc5
+    type: similar
+description: Detects scenarios where an attacker attempts to delete existing VSS backup via WMI.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery
+- https://www.picussecurity.com/resource/blog/how-to-beat-nefilim-ransomware-attacks
+- https://www.itechtics.com/volume-shadow-copies/
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin
+- https://www.picussecurity.com/resource/blog/technique-to-delete-volume-shadow-copies-deviceiocontrol
+- https://www.elastic.co/guide/en/security/current/volume-shadow-copy-deletion-via-powershell.html
+- https://blogs.vmware.com/security/2022/09/threat-report-illuminating-volume-shadow-deletion.html
+tags:
+- attack.impact
+- attack.t1490
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.Delete();}"
   selection_powershell_native:
     EventID: 800
@@ -35,21 +77,35 @@ detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.
       - Remove-CimInstance
       - Rcim # Short version of previous object
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains:
-      - Get-WmiObject
-      - Gwmi # Short version of previous object
-      - Get-CimInstance
-      - Gcim # Short version of previous object
-    Payload|contains: Win32_Shadowcopy
-    Payload|contains:
-      - Delete
-      - Remove-WmiObject
-      - Rwmi # Short version of previous object
-      - Remove-CimInstance
-      - Rcim # Short version of previous object
+  condition: 1 of selection*
+falsepositives:
+- None
+level: high
 
+---
+title: VSS backup deletion via WMI (Powershell) - ps_script
+id: 4121b679-2ce7-4008-8abe-f888a201c125
+related:
+  - id: 8bdb0a95-35f5-49c7-9cb4-9e3da963dcc5
+    type: similar
+description: Detects scenarios where an attacker attempts to delete existing VSS backup via WMI.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery
+- https://www.picussecurity.com/resource/blog/how-to-beat-nefilim-ransomware-attacks
+- https://www.itechtics.com/volume-shadow-copies/
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin
+- https://www.picussecurity.com/resource/blog/technique-to-delete-volume-shadow-copies-deviceiocontrol
+- https://www.elastic.co/guide/en/security/current/volume-shadow-copy-deletion-via-powershell.html
+- https://blogs.vmware.com/security/2022/09/threat-report-illuminating-volume-shadow-deletion.html
+tags:
+- attack.impact
+- attack.t1490
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # full command: "Get-WmiObject Win32_Shadowcopy | ForEach-Object {$_.Delete();}"
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains:
