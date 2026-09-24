@@ -1,4 +1,9 @@
 title: Massive services termination burst
+id: 49c1bba8-22c5-47b6-ae4f-656baa6012ac
+name: win_os_service_termination_burst
+related:
+  - id: 88872991-7445-4a22-90b2-a3adadb0e827
+    type: similar
 description: Detects scenarios where an attacker attempts to stop multiples services on a host. Attacker may target services related to databases, security products or backups (Veeam, Symantec, Acronis ...).
 references:
 - https://www.microsoft.com/security/blog/2020/03/05/human-operated-ransomware-attacks-a-preventable-disaster/
@@ -9,8 +14,8 @@ references:
 tags:
 - attack.impact
 - attack.t1489 # Service Stop 
-- attack.defense_evasion
-- attack.1562.001 # Impair Defenses: Disable or Modify Tools 
+- attack.defense-impairment
+- attack.t1685 # Impair Defenses: Disable or Modify Tools 
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -31,8 +36,23 @@ detection: # net stop <service> | sc stop <service>
       - sc
       - stop
 
-  condition: selection_net_stop or selection_sc_stop | count(EventRecordID) by Computer > 2
-  timeframe: 1m
+  condition: selection_net_stop or selection_sc_stop
 falsepositives:
 - Administrator debugging
+level: high
+
+---
+title: Massive services termination burst - count
+id: 577b73b4-5f01-4272-80bb-9bdb1463a791
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: event_count
+  rules:
+    - win_os_service_termination_burst
+  group-by:
+    - Computer
+  timespan: 1m
+  condition:
+    gt: 2
 level: high

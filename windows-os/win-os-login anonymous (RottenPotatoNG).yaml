@@ -1,4 +1,9 @@
-title: Anonymous login (RottenPotatoNG)
+title: Anonymous login (RottenPotatoNG) - anonymous login
+id: 39a7fef0-a6ca-449c-aab6-c431b3a70a10
+name: win_os_rottenpotatong_anonymous_login
+related:
+  - id: 16f5d8ca-44bd-47c8-acbe-6fc95a16c12f
+    type: similar
 description: Detects scenarios where an attacker abuse RPC, NTLM relay and others components to escalate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
@@ -6,7 +11,7 @@ references:
 - https://jlajara.gitlab.io/others/2020/11/22/Potatoes_Windows_Privesc.html
 - https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/
 tags:
-- attack.privilege_escalation
+- attack.privilege-escalation
 - attack.t1134.001
 author: mdecrevoisier
 status: experimental
@@ -14,7 +19,6 @@ logsource:
   product: windows
   service: security
 detection:
-
   selection_login:
     EventID: 4624
     TargetUserSid: S-1-5-7 # ANONYMOUS LOGON
@@ -22,13 +26,54 @@ detection:
     AuthenticationPackageName: NTLM
     IpAddress: '127.0.0.1'
     #LmPackageName NTLM V1
-
-  selection_process:
-    EventID: 4688
-    SubjectUserSid: S-1-5-18
-    NewProcessName|endswith: '\cmd.exe'
-
-  condition: selection_login and selection_process
+  condition: selection_login
 falsepositives:
 - None
+level: high
+
+---
+title: Anonymous login (RottenPotatoNG) - cmd as system
+id: 223275d7-b8b4-4938-8681-63f384a24293
+name: win_os_rottenpotatong_cmd_as_system
+related:
+  - id: 39a7fef0-a6ca-449c-aab6-c431b3a70a10
+    type: similar
+description: Detects scenarios where an attacker abuse RPC, NTLM relay and others components to escalate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
+- https://github.com/breenmachine/RottenPotatoNG
+- https://jlajara.gitlab.io/others/2020/11/22/Potatoes_Windows_Privesc.html
+- https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/
+tags:
+- attack.privilege-escalation
+- attack.t1134.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_process:
+    Image|endswith: '\cmd.exe'
+    User|contains: # NT AUTHORITY\SYSTEM (S-1-5-18), localized
+      - 'AUTHORI'
+      - 'AUTORI'
+  condition: selection_process
+falsepositives:
+- None
+level: high
+
+---
+title: Anonymous login (RottenPotatoNG)
+id: 071270e0-d158-424e-a229-bf98d0de9872
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: temporal
+  rules:
+    - win_os_rottenpotatong_anonymous_login
+    - win_os_rottenpotatong_cmd_as_system
+  group-by:
+    - Computer
+  timespan: 1m
 level: high

@@ -1,4 +1,5 @@
-title: OpenSSH native server feature installation
+title: OpenSSH native server feature installation - ps_module
+id: 41fa1c10-61b1-4b9f-a426-dbc29f18037a
 description: Detects scenarios where an attacker enables the native OpenSSH server feature on Windows to perform stealthy lateral movement.
 references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
@@ -7,16 +8,47 @@ references:
  - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
  - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.004
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Add-WindowsCapability
+      - OpenSSH.Server
+
+  condition: 1 of selection*
+falsepositives:
+- legitimate administrator installation
+- developer computer
+level: medium
+
+---
+title: OpenSSH native server feature installation - ps_classic_script
+id: b204d356-2a59-4a24-aa0d-ac6747b03a38
+related:
+  - id: 41fa1c10-61b1-4b9f-a426-dbc29f18037a
+    type: similar
+description: Detects scenarios where an attacker enables the native OpenSSH server feature on Windows to perform stealthy lateral movement.
+references:
+ - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
+ - https://winaero.com/enable-openssh-server-windows-10/
+ - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+ - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+ - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
+tags:
+- attack.lateral-movement
+- attack.t1021.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection_powershell_native:
     EventID: 800
@@ -24,12 +56,34 @@ detection:
       - Add-WindowsCapability
       - OpenSSH.Server
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Add-WindowsCapability
-      - OpenSSH.Server
+  condition: 1 of selection*
+falsepositives:
+- legitimate administrator installation
+- developer computer
+level: medium
 
+---
+title: OpenSSH native server feature installation - ps_script
+id: 900cd622-29d7-4e4d-990d-9964e7e0ea64
+related:
+  - id: 41fa1c10-61b1-4b9f-a426-dbc29f18037a
+    type: similar
+description: Detects scenarios where an attacker enables the native OpenSSH server feature on Windows to perform stealthy lateral movement.
+references:
+ - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH
+ - https://winaero.com/enable-openssh-server-windows-10/
+ - https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+ - https://virtualizationreview.com/articles/2020/05/21/ssh-server-on-windows-10.aspx
+ - https://www.microsoft.com/en-us/security/blog/2022/10/18/defenders-beware-a-case-for-post-ransomware-investigations/
+tags:
+- attack.lateral-movement
+- attack.t1021.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

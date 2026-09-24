@@ -1,4 +1,16 @@
 title: Service permissions hijacked for privileges abuse (service)
+id: cbd239c7-7454-4ef1-ba1d-cf166b08b939
+related:
+  - id: 5b7692cb-0f53-45fe-b56b-43d6316457e9
+    type: similar
+  - id: 98c5aeef-32d5-492f-b174-64a691896d25
+    type: similar
+  - id: a537cfc3-4297-4789-92b5-345bfd845ad0
+    type: similar
+  - id: 6c8fbee5-dee8-49bc-851d-c3142d02aa47
+    type: similar
+  - id: 99cf1e02-00fb-4c0d-8375-563f978dfd37
+    type: similar
 description: Detects scenarios where an attacker modify the permissions of a service in order to abuse its privileges
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -35,7 +47,7 @@ detection:
       - 'srv'  # object type
       - 'actn' # action
 
-  condition: selection_sdset OR selection_subinACL OR selection_setACL
+  condition: selection_sdset or selection_subinACL or selection_setACL
 falsepositives:
 - administrator reconfiguring service
 level: high

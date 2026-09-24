@@ -1,4 +1,12 @@
 title: Host set with constrained delegation
+id: 7a9de37b-6310-4961-99b0-c71e91bf503b
+related:
+  - id: 52b17a71-360c-482a-8e29-a36ea03543d8
+    type: similar
+  - id: c621e2ae-0ee6-4fb0-8ddf-0332d1965367
+    type: similar
+  - id: 300bac00-e041-4ee2-9c36-e262656a6ecc
+    type: similar
 description: Detects scenarios where an attacker modifies host delegation settings for privilege escalation.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
@@ -29,7 +37,7 @@ detection:
   selection2:
     AllowedToDelegateTo: '-' # Can be: "cifs/srv01 cifs/srv02.demo.lan dcom/dc03..."
     
-  condition: selection and (selection1 OR NOT selection2) 
+  condition: selection and (selection1 or not selection2) 
 falsepositives:
 - Rare administrator modifying host delegation settings
 level: high

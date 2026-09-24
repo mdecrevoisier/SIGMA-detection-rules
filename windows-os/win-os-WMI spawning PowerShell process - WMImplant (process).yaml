@@ -1,4 +1,8 @@
 title: WMI spwaning PowerShell process - WMImplant
+id: 3529a49b-f66c-4b1a-9ef1-c79a025f96c6
+related:
+  - id: 692f0bec-83ba-4d04-af7e-e884a96059b6
+    type: derived
 description: Detects scenarios where an attacker WMIimplant
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation
@@ -28,7 +32,7 @@ detection:
   selection_sysmon:
     EventID: 1
     ParentImage|endswith: \WmiPrvSE.exe
-    Image|endswith|endswith:
+    Image|endswith:
       - \powershell.exe
       - \pwsh.exe # PowerShell v6
       - \powershell_ise.exe # Development GUI

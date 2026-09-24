@@ -1,4 +1,10 @@
 title: VSS backup deletion (WMI)
+id: b5277094-f7a4-48c6-8a5f-9787e545a69c
+related:
+  - id: c947b146-0abc-4c87-9c64-b17e9d7274a2
+    type: similar
+  - id: 8bdb0a95-35f5-49c7-9cb4-9e3da963dcc5
+    type: similar
 description: Detects scenarios where an attacker attempts to delete existing VSS backup.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery

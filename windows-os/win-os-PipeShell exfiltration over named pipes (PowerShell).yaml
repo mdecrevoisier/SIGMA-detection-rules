@@ -1,4 +1,6 @@
-title: PipeShell exfiltration over named pipes
+title: PipeShell exfiltration over named pipes - ps_module
+id: 389fc761-9a93-43d6-9c8d-951f5e86e14e
+name: win_os_pipeshell_exfiltration_over_named_pipes_powershell_ps_module
 description: Detects scenarios where an attacker establishes "PipeShell" connection(s) between a server and client(s) in order to move laterally or exfiltrate data. The server side will trigger "ServerStream" IOCs meanwhile the client side will trigger "ClientStream" IOCs. The rule works based on this condition, where at least 2 hosts need to trigger one of the condition.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
@@ -16,33 +18,137 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  SERVER_powershell_modern:
+    EventID: 4103
+    Payload|contains: 'System.IO.Pipes.NamedPipeServerStream'
+  CLIENT_spowershell_modern:
+    EventID: 4103
+    Payload|contains: 'System.IO.Pipes.NamedPipeClientStream'
+  condition: (1 of SERVER*) and (1 of CLIENT*)
+falsepositives:
+- packet manager
+level: medium
+
+---
+title: PipeShell exfiltration over named pipes - ps_module - count
+id: 46584e6a-f216-48a5-9862-2a997c2bf0ff
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_os_pipeshell_exfiltration_over_named_pipes_powershell_ps_module
+  group-by: [] # v1 count had no "by": aggregate over all events
+  timespan: 5m
+  condition:
+    gt: 2
+    field: Computer
+level: medium
+---
+title: PipeShell exfiltration over named pipes - ps_classic_script
+id: 068d439d-f802-4d80-8450-ebdef896b50c
+name: win_os_pipeshell_exfiltration_over_named_pipes_powershell_ps_classic_script
+related:
+  - id: 389fc761-9a93-43d6-9c8d-951f5e86e14e
+    type: similar
+description: Detects scenarios where an attacker establishes "PipeShell" connection(s) between a server and client(s) in order to move laterally or exfiltrate data. The server side will trigger "ServerStream" IOCs meanwhile the client side will trigger "ClientStream" IOCs. The rule works based on this condition, where at least 2 hosts need to trigger one of the condition.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
+- https://github.com/threatexpress/invoke-pipeshell
+- https://github.com/p3nt4/Invoke-Piper/blob/master/Invoke-Piper.psm1
+- https://sudonull.com/post/25207-Using-Pipes-for-Pivoting
+- https://codewhitesec.blogspot.com/2020/01/cve-2019-19470-rumble-in-pipe.html
+- https://decoder.cloud/2019/03/06/windows-named-pipes-impersonation/
+- https://www.powershellgallery.com/packages/PSNamedPipe/1.0.0.19/Content/Public%5CNew-PSNamedPipeServer.ps1
+tags:
+- attack.execution
+- attack.t1059.001
+- attack.exfiltration
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   SERVER_powershell_native:
     EventID: 800
     EventData|contains: 'System.IO.Pipes.NamedPipeServerStream'
-  SERVER_powershell_modern:
-    EventID: 4103
-    Payload|contains: 'System.IO.Pipes.NamedPipeServerStream'
+  CLIENT_powershell_native:
+    EventID: 800
+    EventData|contains: 'System.IO.Pipes.NamedPipeClientStream'
+  condition: (1 of SERVER*) and (1 of CLIENT*)
+falsepositives:
+- packet manager
+level: medium
+
+---
+title: PipeShell exfiltration over named pipes - ps_classic_script - count
+id: d2cc303e-fcfb-4335-90ea-01cf219e39a3
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_os_pipeshell_exfiltration_over_named_pipes_powershell_ps_classic_script
+  group-by: [] # v1 count had no "by": aggregate over all events
+  timespan: 5m
+  condition:
+    gt: 2
+    field: Computer
+level: medium
+---
+title: PipeShell exfiltration over named pipes - ps_script
+id: 083a6e4d-daba-489f-86d8-a623b0323f33
+name: win_os_pipeshell_exfiltration_over_named_pipes_powershell_ps_script
+related:
+  - id: 389fc761-9a93-43d6-9c8d-951f5e86e14e
+    type: similar
+description: Detects scenarios where an attacker establishes "PipeShell" connection(s) between a server and client(s) in order to move laterally or exfiltrate data. The server side will trigger "ServerStream" IOCs meanwhile the client side will trigger "ClientStream" IOCs. The rule works based on this condition, where at least 2 hosts need to trigger one of the condition.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
+- https://github.com/threatexpress/invoke-pipeshell
+- https://github.com/p3nt4/Invoke-Piper/blob/master/Invoke-Piper.psm1
+- https://sudonull.com/post/25207-Using-Pipes-for-Pivoting
+- https://codewhitesec.blogspot.com/2020/01/cve-2019-19470-rumble-in-pipe.html
+- https://decoder.cloud/2019/03/06/windows-named-pipes-impersonation/
+- https://www.powershellgallery.com/packages/PSNamedPipe/1.0.0.19/Content/Public%5CNew-PSNamedPipeServer.ps1
+tags:
+- attack.execution
+- attack.t1059.001
+- attack.exfiltration
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   SERVER_powershell_block:
     EventID: 4104
     ScriptBlockText|contains: 'System.IO.Pipes.NamedPipeServerStream'
 
-  CLIENT_powershell_native:
-    EventID: 800
-    EventData|contains: 'System.IO.Pipes.NamedPipeClientStream'
-  CLIENT_spowershell_modern:
-    EventID: 4103
-    Payload|contains: 'System.IO.Pipes.NamedPipeClientStream'
   CLIENT_powershell_block:
     EventID: 4104
     ScriptBlockText|contains: 'System.IO.Pipes.NamedPipeClientStream'
 
-  condition: (1 of SERVER*) AND (1 of CLIENT*) | count(Computer) > 2
-  timeframe: 5m
+  condition: (1 of SERVER*) and (1 of CLIENT*)
 falsepositives:
 - packet manager
+level: medium
+
+---
+title: PipeShell exfiltration over named pipes - ps_script - count
+id: 56d1830d-fe08-495f-aa78-d724021ff2d4
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_os_pipeshell_exfiltration_over_named_pipes_powershell_ps_script
+  group-by: [] # v1 count had no "by": aggregate over all events
+  timespan: 5m
+  condition:
+    gt: 2
+    field: Computer
 level: medium

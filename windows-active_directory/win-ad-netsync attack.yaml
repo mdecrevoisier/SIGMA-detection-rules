@@ -1,13 +1,15 @@
-title: NetSYnc attack
+title: NetSYnc attack - login
+id: 3c7621a0-f92a-44f0-9ff0-ccdf4caa3abb
+name: win_ad_netsync_attack_login
 description: NetSync allows an attacker to take the NTLM hash of a Domain Controller (DC) machine account ("usually" identified by ending in "$") and using it to obtain the NTLM machine account hash of another machine account through impersonation (similar to, but different from, DCSync). Where DCSync can obtain user account passwords, NetSync is limited to machine accounts. The other main differentiator between DCSync and NetSync is that DCSync will make use of Microsoft's Directory Replication Service (DRS) Remote Protocol, whereas NetSync uses the older Netlogon Remote Protocol (MS-NRPC)
-correlation: ID 5145 SubjectLogonId 0x1f4a6c852 AND ID 4624 TargetLogonId 0x1f4a6c852
+correlation_note: ID 5145 SubjectLogonId 0x1f4a6c852 AND ID 4624 TargetLogonId 0x1f4a6c852
 references:
 - https://github.com/Neo23x0/sigma/blob/c56cd2dfff6343f3694ef4fd606a305415599737/rules-unsupported/win_dumping_ntdsdit_via_netsync.yml
 - https://fr.slideshare.net/heirhabarov/hunting-for-credentials-dumping-in-windows-environment
 - https://www.trustedsec.com/blog/the-tale-of-the-lost-but-not-forgotten-undocumented-netsync-part-1/
 - https://www.trustedsec.com/blog/the-tale-of-the-lost-but-not-forgotten-undocumented-netsync-part-2/
 tags:
-- attack.credential_access
+- attack.credential-access
 - attack.t1003.006
 author: mdecrevoisier
 status: experimental
@@ -15,28 +17,78 @@ logsource:
   product: windows
   service: security
 detection: #  lsadump::netsync /dc:<dc_fqdn> /user:dc1$ /ntlm:<ntlmhash> /account:srv02$
-
   selection_login:
     EventID: 4624
     Computer: '%domain_controllers%'
     TargetUserSid: S-1-5-21-
     LogonType: 3
     AuthenticationPackageName: Kerberos
-
-  selection_share:
-    EventID: 5145
-    Computer: '%domain_controllers%'
-    ShareName: \\*\IPC$
-    RelativeTargetName: NETLOGON
-
   filter:
     - SubjectUserName|endswith: $
     - SubjectUserSid: S-1-5-7 #  ANONYMOUS LOGON
     - IpAddress:
       - '%domain_controllers%'
       - '%exchange_servers%'
-
-  condition: selection_login and selection_share and not filter
+  condition: selection_login and not filter
 falsepositives:
 - Exchange servers
+level: high
+
+---
+title: NetSYnc attack - netlogon access
+id: 3a0528e7-590c-48f9-a8bf-47ae4713739c
+name: win_ad_netsync_attack_netlogon_access
+related:
+  - id: 3c7621a0-f92a-44f0-9ff0-ccdf4caa3abb
+    type: similar
+description: NetSync allows an attacker to take the NTLM hash of a Domain Controller (DC) machine account ("usually" identified by ending in "$") and using it to obtain the NTLM machine account hash of another machine account through impersonation (similar to, but different from, DCSync). Where DCSync can obtain user account passwords, NetSync is limited to machine accounts. The other main differentiator between DCSync and NetSync is that DCSync will make use of Microsoft's Directory Replication Service (DRS) Remote Protocol, whereas NetSync uses the older Netlogon Remote Protocol (MS-NRPC)
+correlation_note: ID 5145 SubjectLogonId 0x1f4a6c852 AND ID 4624 TargetLogonId 0x1f4a6c852
+references:
+- https://github.com/Neo23x0/sigma/blob/c56cd2dfff6343f3694ef4fd606a305415599737/rules-unsupported/win_dumping_ntdsdit_via_netsync.yml
+- https://fr.slideshare.net/heirhabarov/hunting-for-credentials-dumping-in-windows-environment
+- https://www.trustedsec.com/blog/the-tale-of-the-lost-but-not-forgotten-undocumented-netsync-part-1/
+- https://www.trustedsec.com/blog/the-tale-of-the-lost-but-not-forgotten-undocumented-netsync-part-2/
+tags:
+- attack.credential-access
+- attack.t1003.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection: #  lsadump::netsync /dc:<dc_fqdn> /user:dc1$ /ntlm:<ntlmhash> /account:srv02$
+  selection_share:
+    EventID: 5145
+    Computer: '%domain_controllers%'
+    ShareName: \\*\IPC$
+    RelativeTargetName: NETLOGON
+  filter:
+    - SubjectUserName|endswith: $
+    - SubjectUserSid: S-1-5-7 #  ANONYMOUS LOGON
+    - IpAddress:
+      - '%domain_controllers%'
+      - '%exchange_servers%'
+  condition: selection_share and not filter
+falsepositives:
+- Exchange servers
+level: high
+
+---
+title: NetSYnc attack
+id: d6d7b873-bda9-4596-9d2f-70ca8e2e3522
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: temporal
+  rules:
+    - win_ad_netsync_attack_login
+    - win_ad_netsync_attack_netlogon_access
+  aliases:
+    logon_id:
+      win_ad_netsync_attack_login: TargetLogonId
+      win_ad_netsync_attack_netlogon_access: SubjectLogonId
+  group-by:
+    - Computer
+    - logon_id
+  timespan: 1m
 level: high

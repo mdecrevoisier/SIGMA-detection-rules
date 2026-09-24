@@ -1,7 +1,6 @@
-title: Domain group membership change
+title: Domain group membership change - ps_module
+id: 1bd5e226-5b75-422f-8e65-58534e48740b
 description: Detects if a member is added to a domain group via PowerShell.
-references:
-- 
 tags:
 - attack.persistence
 - attack.t1098 # account manipulation
@@ -9,10 +8,37 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - 'Add-ADGroupMember'
+      - '-Identity'
+      - '-Members'
+  
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+- Splunk UF agent installation
+level: high
+
+---
+title: Domain group membership change - ps_classic_script
+id: 3415b597-12e8-4ac9-996b-213e07efce2d
+related:
+  - id: 1bd5e226-5b75-422f-8e65-58534e48740b
+    type: similar
+description: Detects if a member is added to a domain group via PowerShell.
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
   selection1_powershell_native:
     EventID: 800
@@ -21,12 +47,29 @@ detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
       - '-Identity'
       - '-Members'
 
-  selection2_powershell_modern:
-    EventID: 4103
-      - 'Add-ADGroupMember'
-      - '-Identity'
-      - '-Members'
-  
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+- Splunk UF agent installation
+level: high
+
+---
+title: Domain group membership change - ps_script
+id: ffe88f41-45dc-402c-8b4c-ed423a0df269
+related:
+  - id: 1bd5e226-5b75-422f-8e65-58534e48740b
+    type: similar
+description: Detects if a member is added to a domain group via PowerShell.
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

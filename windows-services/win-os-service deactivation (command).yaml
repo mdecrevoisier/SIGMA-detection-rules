@@ -1,12 +1,18 @@
 title: Service deactivation (command)
+id: f96b49c0-8500-48a0-8569-9fce2f527aef
+related:
+  - id: 85c312b7-f44d-4a51-a024-d671c40b49fc
+    type: similar
+  - id: a17c42b1-39f2-4f98-963b-e5eb9dcae978
+    type: similar
 description: Detects scenarios where an attacker attempts to disable 
 references:
 - https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/
 tags:
 - attack.impact
 - attack.t1489 # Service Stop 
-- attack.defense_evasion
-- attack.1562.001 # Impair Defenses: Disable or Modify Tools 
+- attack.defense-impairment
+- attack.t1685 # Impair Defenses: Disable or Modify Tools 
 author: mdecrevoisier
 status: experimental
 logsource:

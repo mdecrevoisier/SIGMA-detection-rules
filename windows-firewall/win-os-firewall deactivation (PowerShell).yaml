@@ -1,20 +1,56 @@
-title: Firewall deactivation (PowerShell)
+title: Firewall deactivation (PowerShell) - ps_module
+id: feb808a9-02de-4f0f-b152-68960e529b55
+related:
+  - id: 12f6b752-042d-483e-bf9c-915a6d06ad75
+    type: similar
+  - id: 488b44e7-3781-4a71-888d-c95abfacf44d
+    type: similar
 description: Detects scenarios where an attacker disabled the Windows Firewall to evade defense.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
 - https://www.alitajran.com/disable-windows-firewall-with-powershell/
 - https://docs.microsoft.com/en-us/powershell/module/netsecurity/set-netfirewallprofile?view=windowsserver2019-ps
 tags:
-- attack.defense_evasion
-- attack.t1562.004
+- attack.defense-impairment
+- attack.t1686
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False"
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Set-NetFirewallProfile
+      - Profile
+      - Enabled
+      - 'False'
+
+  condition: selection_powershell_modern
+falsepositives:
+- None
+level: high
+
+---
+title: Firewall deactivation (PowerShell) - ps_classic_script
+id: 376fbf2b-23f1-47fb-be49-9c28bb7ff4d3
+related:
+  - id: feb808a9-02de-4f0f-b152-68960e529b55
+    type: similar
+description: Detects scenarios where an attacker disabled the Windows Firewall to evade defense.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
+- https://www.alitajran.com/disable-windows-firewall-with-powershell/
+- https://docs.microsoft.com/en-us/powershell/module/netsecurity/set-netfirewallprofile?view=windowsserver2019-ps
+tags:
+- attack.defense-impairment
+- attack.t1686
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False"
   selection_powershell_native:
     EventID: 800
@@ -24,14 +60,31 @@ detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Priv
       - Enabled
       - 'False'
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Set-NetFirewallProfile
-      - Profile
-      - Enabled
-      - 'False'
+  condition: selection_powershell_native
+falsepositives:
+- None
+level: high
 
+---
+title: Firewall deactivation (PowerShell) - ps_script
+id: 11278858-bbda-43a5-a07f-996cc34a85ed
+related:
+  - id: feb808a9-02de-4f0f-b152-68960e529b55
+    type: similar
+description: Detects scenarios where an attacker disabled the Windows Firewall to evade defense.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
+- https://www.alitajran.com/disable-windows-firewall-with-powershell/
+- https://docs.microsoft.com/en-us/powershell/module/netsecurity/set-netfirewallprofile?view=windowsserver2019-ps
+tags:
+- attack.defense-impairment
+- attack.t1686
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False"
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
@@ -40,7 +93,7 @@ detection: # full command: "Set-NetFirewallProfile -Profile Domain, Public, Priv
       - Enabled
       - 'False'
 
-  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+  condition: selection_powershell_block
 falsepositives:
 - None
 level: high

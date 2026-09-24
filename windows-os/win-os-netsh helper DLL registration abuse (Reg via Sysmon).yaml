@@ -1,4 +1,14 @@
 title: Netsh helper DLL abuse (Reg via Sysmon)
+id: bcbc8632-d67c-42a1-b660-0435feb7aaee
+related:
+  - id: c90362e0-2df3-4e61-94fe-b37615814cb1
+    type: similar
+  - id: e7b18879-676e-4a0e-ae18-27039185a8e7
+    type: similar
+  - id: 45d2ab13-1c6a-42a1-813f-40a1432fbad8
+    type: similar
+  - id: 56321594-9087-49d9-bf10-524fe8479452
+    type: similar
 description: Detects scenarios where an attacker abuses the Netsh DLL feature to perform some code execution.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution

@@ -1,13 +1,48 @@
-title: Privilege escalation via runas (command)
+title: Privilege escalation via runas (command) - runas command
+id: 1a02d950-3cda-47e6-ad4c-7afbbdd3ab9c
+name: win_os_runas_privilege_escalation_runas_command
 description: Detects scenarios where attack attempts to elevate privileges via the command runas.
-correlation: correlation between the 3 event IDs can be done over SubjectLogonId in order to get more context.
+correlation_note: correlation between the 3 event IDs can be done over SubjectLogonId in order to get more context.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
 - https://www.elastic.co/fr/blog/how-attackers-abuse-access-token-manipulation
 - http://www.pseale.com/pretend-youre-on-the-domain-with-runas-netonly
 - https://blog.palantir.com/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e
 tags:
-- attack.privilege_escalation
+- attack.privilege-escalation
+- attack.t1134.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  category: process_creation
+  product: windows
+detection: # Full command: 'runas /user:<domain>\<user> cmd.exe'
+  selection_command:
+    Image|endswith: '\runas.exe'
+    CommandLine|contains|all:
+      - runas
+      - '/user:'
+  condition: selection_command
+falsepositives:
+- Administrator activity
+level: medium
+
+---
+title: Privilege escalation via runas (command) - seclogo login
+id: 30b4bcab-1b5c-4542-be55-6357e124841b
+name: win_os_runas_privilege_escalation_seclogo_login
+related:
+  - id: 1a02d950-3cda-47e6-ad4c-7afbbdd3ab9c
+    type: similar
+description: Detects scenarios where attack attempts to elevate privileges via the command runas.
+correlation_note: correlation between the 3 event IDs can be done over SubjectLogonId in order to get more context.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
+- https://www.elastic.co/fr/blog/how-attackers-abuse-access-token-manipulation
+- http://www.pseale.com/pretend-youre-on-the-domain-with-runas-netonly
+- https://blog.palantir.com/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e
+tags:
+- attack.privilege-escalation
 - attack.t1134.002
 author: mdecrevoisier
 status: experimental
@@ -15,14 +50,6 @@ logsource:
   product: windows
   service: security
 detection: # Full command: 'runas /user:<domain>\<user> cmd.exe'
-
-  selection_command:
-    EventID: 4688
-    NewProcessName|endswith: '\runas.exe'
-    CommandLine|contains|all:
-      - runas
-      - '/user:'
-
   selection_login:
     EventID: 4624
     LogonType: 2
@@ -30,14 +57,56 @@ detection: # Full command: 'runas /user:<domain>\<user> cmd.exe'
     #AuthenticationPackageName: Negotiate
     ProcessName|endswith: '\svchost.exe'
     IpAddress: '::1'
+  condition: selection_login
+falsepositives:
+- Administrator activity
+level: medium
 
+---
+title: Privilege escalation via runas (command) - explicit credentials
+id: 798938b1-182f-4bb8-adb8-c80bdd02f2ad
+name: win_os_runas_privilege_escalation_explicit_credentials
+related:
+  - id: 1a02d950-3cda-47e6-ad4c-7afbbdd3ab9c
+    type: similar
+description: Detects scenarios where attack attempts to elevate privileges via the command runas.
+correlation_note: correlation between the 3 event IDs can be done over SubjectLogonId in order to get more context.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
+- https://www.elastic.co/fr/blog/how-attackers-abuse-access-token-manipulation
+- http://www.pseale.com/pretend-youre-on-the-domain-with-runas-netonly
+- https://blog.palantir.com/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e
+tags:
+- attack.privilege-escalation
+- attack.t1134.002
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection: # Full command: 'runas /user:<domain>\<user> cmd.exe'
   selection_swtich_cred:
     EventID: 4648
     TargetServerName: localhost
     ProcessName|endswith: '\svchost.exe'
-    IpAddress: '::1 '
-
-  condition: selection_login and selection_command and selection_swtich_cred
+    IpAddress: '::1'
+  condition: selection_swtich_cred
 falsepositives:
 - Administrator activity
+level: medium
+
+---
+title: Privilege escalation via runas (command)
+id: 04a881d1-dddd-412d-a850-8d873ea2d7a3
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: temporal
+  rules:
+    - win_os_runas_privilege_escalation_runas_command
+    - win_os_runas_privilege_escalation_seclogo_login
+    - win_os_runas_privilege_escalation_explicit_credentials
+  group-by:
+    - Computer
+  timespan: 1m
 level: medium
