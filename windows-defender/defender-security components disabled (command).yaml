@@ -1,4 +1,10 @@
 title: Microsoft Defender security components disabled (command)
+id: 1dfe6884-b54c-461a-b854-2f76ce82e25d
+related:
+  - id: ff910029-e624-455b-b443-2808a12d0774
+    type: similar
+  - id: 1ec65a5f-9473-4f12-97da-622044d6df21
+    type: similar
 description: Detects scenarios where an attacker attempts to disable Defender security features
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
@@ -9,8 +15,8 @@ references:
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
 - https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
-- attack.defense_evasion
-- attack.t1562.001
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -25,6 +31,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
     CommandLine|contains:
       - '1'
       - '$true'
+  and_selection_2:
     CommandLine|contains:
       # Scanning features
       - DisableArchiveScanning
@@ -47,7 +54,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
       - DisableCpuThrottleOnIdleScans
       - DisableDatagramProcessing
       - SignatureDisableUpdateOnStartupWithoutEngine
-  condition: selection
+  condition: (selection and all of and_selection_*)
 falsepositives:
 - None
 level: medium

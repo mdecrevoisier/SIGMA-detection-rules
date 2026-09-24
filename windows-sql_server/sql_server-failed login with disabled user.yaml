@@ -1,11 +1,11 @@
 title: SQL Server - Connection attempt using a disabled account
+id: 7181ff31-4bf6-4575-ac60-95d633fae4a2
 description: Detects scenarios where an attacker attempts authenticate to the database using a disabled user accont
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts
 - https://www.eraofdata.com/sql-server/connectivity/login-failures/
 - https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms366351(v=sql.105)
 tags:
-- attack.valid_account
 - attack.t1078
 author: mdecrevoisier
 status: experimental

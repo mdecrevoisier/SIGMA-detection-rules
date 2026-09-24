@@ -1,4 +1,12 @@
-title: Service permissions hijacked for privileges abuse (PowerShell)
+title: Service permissions hijacked for privileges abuse (PowerShell) - ps_module
+id: 99a68008-b142-4539-998b-daadb1bb5757
+related:
+  - id: 49bf78b6-80ea-4fbe-84d0-decca8063cfe
+    type: similar
+  - id: 953945c5-22fe-4a92-9f8a-a9edc1e522da
+    type: similar
+  - id: 514e4c3a-c77d-4cde-a00f-046425e2301e
+    type: similar
 description: Detects scenarios where an attacker modify the permissions of a service using native PowerShell commands in order to abuse its privileges. Note that it requires PowerShell 7 or higher.
 references:
 - http://woshub.com/set-permissions-on-windows-service/
@@ -15,10 +23,42 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Set-Service
+      - SecurityDescriptorSddl
+
+  condition: 1 of selection*
+falsepositives:
+- administrator reconfiguring service
+level: high
+
+---
+title: Service permissions hijacked for privileges abuse (PowerShell) - ps_classic_script
+id: 464f5eeb-5550-4ad8-8578-58e7b67c8981
+related:
+  - id: 99a68008-b142-4539-998b-daadb1bb5757
+    type: similar
+description: Detects scenarios where an attacker modify the permissions of a service using native PowerShell commands in order to abuse its privileges. Note that it requires PowerShell 7 or higher.
+references:
+- http://woshub.com/set-permissions-on-windows-service/
+- https://www.winhelponline.com/blog/view-edit-service-permissions-windows/
+- https://decoder.cloud/2019/02/07/demystifying-windows-service-permissions-configuration/
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-7.1
+- https://medium.com/r3d-buck3t/abuse-service-registry-acls-windows-privesc-f88079140509
+- https://github.com/rohnedwards/PowerShellAccessControl
+tags:
+- attack.persistence
+- attack.t1543.003
+- attack.t1574.010
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection_powershell_native:
     EventID: 800
@@ -26,12 +66,35 @@ detection:
       - Set-Service
       - SecurityDescriptorSddl
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Set-Service
-      - SecurityDescriptorSddl
+  condition: 1 of selection*
+falsepositives:
+- administrator reconfiguring service
+level: high
 
+---
+title: Service permissions hijacked for privileges abuse (PowerShell) - ps_script
+id: e484c597-8471-4516-8357-db4cc71d1c43
+related:
+  - id: 99a68008-b142-4539-998b-daadb1bb5757
+    type: similar
+description: Detects scenarios where an attacker modify the permissions of a service using native PowerShell commands in order to abuse its privileges. Note that it requires PowerShell 7 or higher.
+references:
+- http://woshub.com/set-permissions-on-windows-service/
+- https://www.winhelponline.com/blog/view-edit-service-permissions-windows/
+- https://decoder.cloud/2019/02/07/demystifying-windows-service-permissions-configuration/
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-7.1
+- https://medium.com/r3d-buck3t/abuse-service-registry-acls-windows-privesc-f88079140509
+- https://github.com/rohnedwards/PowerShellAccessControl
+tags:
+- attack.persistence
+- attack.t1543.003
+- attack.t1574.010
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

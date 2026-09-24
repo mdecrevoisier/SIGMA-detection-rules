@@ -1,11 +1,12 @@
 title: Firewall deactivation (firewall)
+id: 2fe988e8-b95e-4062-a6b1-c9687191d976
 description: Detects scenarios where an attacker disabled the Windows Firewall to evade defense.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
 - https://www.winhelponline.com/blog/enable-and-disable-windows-firewall-quickly-using-command-line/
 tags:
-- attack.defense_evasion
-- attack.t1562.004
+- attack.defense-impairment
+- attack.t1686
 author: mdecrevoisier
 status: experimental
 logsource:

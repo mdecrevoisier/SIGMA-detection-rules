@@ -1,4 +1,10 @@
 title: Kerberoast ticket request detected
+id: e11eaf0c-ab62-43bd-8e10-034bec0b1bf3
+related:
+  - id: d04ae2b8-ad54-4de0-bd87-4bc1da66aa59
+    type: similar
+  - id: 496a0e47-0a33-4dca-b009-9e6ca3591f39
+    type: similar
 name: kerberoast_ticket_request
 description: Detects scenarios where an attacker requests a Kerberoast ticket with low encryption to perform offline brutforce and forge a new ticket to get access to the targeted resource.
 references:
@@ -18,10 +24,9 @@ references:
   - https://m365internals.com/2021/11/08/kerberoast-with-opsec/
   - https://redcanary.com/blog/marshmallows-and-kerberoasting/
   - https://www.semperis.com/blog/new-attack-paths-as-requested-sts/
-  - https://www.trustedsec.com/blog/the-art-of-bypassing-kerberoast-detections-with-orpheus/
   - https://nored0x.github.io/red-teaming/Kerberos-Attacks-Kerbroasting/
 tags:
-  - attack.credential_access
+  - attack.credential-access
   - attack.t1558.003
 author: mdecrevoisier
 status: experimental
@@ -55,6 +60,7 @@ level: high
 
 ---
 title: Kerberoast ticket request detected Count
+id: 5299fdd6-b0dd-4ebf-88ec-3b320180e606
 status: experimental
 correlation:
   type: value_count

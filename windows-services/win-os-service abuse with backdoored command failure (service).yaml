@@ -1,4 +1,12 @@
 title: Service abuse with backdoored "command failure" (service)
+id: 65612965-c84e-4774-8df9-77c6aa427e9d
+related:
+  - id: 841a321b-564d-4692-86c7-a596f17a5ccf
+    type: similar
+  - id: 38879043-7e1e-47a9-8d46-6bec88e201df
+    type: similar
+  - id: d937b75f-a665-4480-88a5-2f20e9f9b22a
+    type: similar
 description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

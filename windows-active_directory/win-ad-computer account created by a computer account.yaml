@@ -1,4 +1,5 @@
 title: Suspicious computer account created by a computer account
+id: 11f01651-673a-4a3f-8e50-6d8d0387ee58
 description: Detects scenarios where an attacker abuse MachineAccountQuota privilege and pre-create a computer object for abusing RBCD delegation.
 references:
 - https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/

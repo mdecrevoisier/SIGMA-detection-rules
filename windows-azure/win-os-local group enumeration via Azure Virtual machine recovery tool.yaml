@@ -1,4 +1,5 @@
 title: Local group enumeration triggered by Azure Virtual machine recovery tool
+id: 9af3fe19-f5b2-4b6e-984a-a9e9daf78e51
 description: Detects scenarios where an attacker having compromised a virtual machine via serial cable attempts to enumerate local groups.
 references:
 - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial

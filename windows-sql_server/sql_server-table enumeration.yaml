@@ -1,4 +1,9 @@
 title: SQL Server database's table enumeration
+id: 90030eec-2c00-4afd-9e1e-8ef13cb2b71e
+name: sql_server_table_enumeration
+related:
+  - id: 696bfb54-227e-4602-ac5b-30d9d2053312
+    type: similar
 description: Detects scenarios where an attacker attempts to enumerate local SQL Server tables (specially Veeam Backup).
 references:
 - https://labs.withsecure.com/publications/fin7-target-veeam-servers
@@ -17,14 +22,30 @@ detection:
     CommandLine|contains: # specify the database\instance'
       - /S
       - -S
+  and_selection_2:
     CommandLine|contains:
       - select
       - use
       - top
       - from
-  condition: selection | count() by Computer > 20
-  timeframe: 5m
+  condition: (selection and all of and_selection_*)
 falsepositives:
 - maintenance script
 - backup process 
+level: medium
+
+---
+title: SQL Server database's table enumeration - count
+id: fe7e1a64-7f0d-4798-a127-47e61a97bf57
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: event_count
+  rules:
+    - sql_server_table_enumeration
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gt: 20
 level: medium

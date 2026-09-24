@@ -1,4 +1,10 @@
 title: VSS backup deletion or resize
+id: a4de359c-99fc-41ef-884c-f6f47e09ff02
+related:
+  - id: e40b79dc-c3e6-4f09-9b00-021bd73ae255
+    type: similar
+  - id: c947b146-0abc-4c87-9c64-b17e9d7274a2
+    type: similar
 description: Detects scenarios where an attacker attempts to delete or resize existing VSS backup.
 references:
 - https://www.picussecurity.com/resource/blog/how-to-beat-nefilim-ransomware-attacks
