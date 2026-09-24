@@ -1,7 +1,11 @@
-title: Local group membership change
+title: Local group membership change - ps_module
+id: 58b87bbc-aebf-4d88-9c74-f13ebf31a66d
+related:
+  - id: ad720b90-25ad-43ff-9b5e-5c841facc8e5
+    type: similar
+  - id: ffa28e60-bdb1-46e0-9f82-05f7a61cc06e
+    type: similar
 description: Detects if a member is added to a local group via PowerShell.
-references:
-- 
 tags:
 - attack.persistence
 - attack.t1098 # account manipulation
@@ -9,10 +13,37 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - 'Add-LocalGroupMember'
+      - '-Group'
+      - '-Member'
+  
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+- Splunk UF agent installation
+level: high
+
+---
+title: Local group membership change - ps_classic_script
+id: 8c1a4414-59b3-4677-b471-30362bf77356
+related:
+  - id: 58b87bbc-aebf-4d88-9c74-f13ebf31a66d
+    type: similar
+description: Detects if a member is added to a local group via PowerShell.
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
   selection1_powershell_native:
     EventID: 800
@@ -21,12 +52,29 @@ detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
       - '-Group'
       - '-Member'
 
-  selection2_powershell_modern:
-    EventID: 4103
-      - 'Add-LocalGroupMember'
-      - '-Group'
-      - '-Member'
-  
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+- Splunk UF agent installation
+level: high
+
+---
+title: Local group membership change - ps_script
+id: 5397c60c-c43c-4a08-a627-849d130ec134
+related:
+  - id: 58b87bbc-aebf-4d88-9c74-f13ebf31a66d
+    type: similar
+description: Detects if a member is added to a local group via PowerShell.
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Add-LocalGroupMember -Group "Administrators" -Member "Admin02",
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

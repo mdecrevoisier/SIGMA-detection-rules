@@ -1,4 +1,10 @@
 title: Microsoft Defender default action changed to allow any threat (command)
+id: abb0e120-6721-4d44-bf4d-c8392e317ddc
+related:
+  - id: 4cb61928-a362-4fa4-9425-c21a5ce3b443
+    type: similar
+  - id: 1e8a9b4d-3c2a-4f9b-8d1e-7c6a5b4f3d2e
+    type: similar
 description: Detects scenarios where an attacker attempts to change Defender default action to allow any threats
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
@@ -9,8 +15,8 @@ references:
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
 - https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
-- attack.defense_evasion
-- attack.t1562.001
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -22,9 +28,11 @@ detection:
     CommandLine|contains:
       - Add-MpPreference
       - Set-MpPreference
+  and_selection_2:
     CommandLine|contains:
       - '6' # MP_THREAT_ACTION_ALLOW
       - 'Allow'
+  and_selection_3:
     CommandLine|contains:
       - HighThreatDefaultAction
       - ModerateThreatDefaultAction
@@ -32,7 +40,7 @@ detection:
       - SevereThreatDefaultAction
       - UnknownThreatDefaultAction
       - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
-  condition: selection
+  condition: (selection and all of and_selection_*)
 falsepositives:
 - None
 level: high

@@ -1,4 +1,5 @@
 title: Serial console process spawning CMD shell (via command)
+id: 92220c02-4ab1-4abf-8e8f-912ef216b0da
 description: Detects if an attacker open a privileged CMD shell while accessing to an Azure virtual machine via serial cable.
 references:
 - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial

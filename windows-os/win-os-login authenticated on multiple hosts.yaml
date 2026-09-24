@@ -1,4 +1,6 @@
 title: Network login performed to multiple targets
+id: cce08b6d-5228-4d80-a708-f3d18f1f66bb
+name: win_os_login_authenticated_on_multiple_hosts
 description: Detects scenarios where an attacker would attempt to enumerate hosts resources and execute a payload with a compromised account. Vulnerability scanners, enumeration software or tool like SharepHound/CrackMapexec may generate such behavior.
 references:
 - https://medium.com/@Shorty420/enumerating-ad-98e0821c4c78
@@ -7,7 +9,7 @@ references:
 tags:
 - attack.discovery
 - attack.t1046 # network service scanning
-- attack.initial_access
+- attack.initial-access
 - attack.t1078 # valid accounts
 author: mdecrevoisier
 status: experimental
@@ -25,8 +27,24 @@ detection:
       - '%admin_jump_hosts%'
       - '127.0.0.1'
       - '::1'
-  condition: selection and not filter | count(Computer) by IpAddress > 20 # Count of many computer are reporting connection attemps from a single source IP
-  timeframe: 15m
+  condition: selection and not filter # Count of many computer are reporting connection attemps from a single source IP
 falsepositives:
 - VAS scanners, administrator jump host, backup solutions, monitoring solutions
+level: high
+
+---
+title: Network login performed to multiple targets - count
+id: bb7378e7-057e-4bd2-ac13-9b61aaf372a8
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_os_login_authenticated_on_multiple_hosts
+  group-by:
+    - IpAddress
+  timespan: 15m
+  condition:
+    gt: 20
+    field: Computer
 level: high

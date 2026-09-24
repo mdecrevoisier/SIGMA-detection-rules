@@ -1,4 +1,12 @@
 title: Network share discovery and/or connection via commandline
+id: 4e109f78-4337-4641-886c-20cda62bd8b9
+related:
+  - id: 62510e69-616b-4078-b371-847da438cc03
+    type: similar
+  - id: f117933c-980c-4f78-b384-e3d838111165
+    type: similar
+  - id: 1c67a717-32ba-409b-a45d-0fb704a73a81
+    type: similar
 description: Detects scenarios where an attacker attempts to enumerate or to establish a connection to a network share.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1135.xxx-Network%20Share%20Discovery

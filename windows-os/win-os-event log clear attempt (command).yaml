@@ -1,4 +1,8 @@
 title: Event log clear attempt (command)
+id: 52f49879-5208-4fc7-857e-12f23cf8a0a1
+related:
+  - id: cc36992a-4671-4f21-a91d-6c2b72a2edf5
+    type: similar
 description: Detects scenarios where an attacker attempts to clear the event logs.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
@@ -7,8 +11,8 @@ references:
 - https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
 - https://www.elastic.co/security-labs/invisible-miners-unveiling-ghostengine
 tags:
-- attack.defense_evasion
-- attack.t1070.001
+- attack.defense-impairment
+- attack.t1685.005
 author: mdecrevoisier
 status: experimental
 logsource:

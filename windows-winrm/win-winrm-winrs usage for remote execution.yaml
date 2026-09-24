@@ -1,4 +1,5 @@
 title: WinRS usage for remote execution
+id: 294fa69f-d923-4713-aa6e-002f124476fd
 description: Detects scenarios where an attacker abuses the WinRS capacities for remote execution.
 references:
 - https://www.ired.team/offensive-security/lateral-movement/winrs-for-lateral-movement
@@ -6,7 +7,7 @@ references:
 - https://4sysops.com/archives/powershell-remoting-without-administrator-rights/
 - https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.006
 author: mdecrevoisier
 logsource:
