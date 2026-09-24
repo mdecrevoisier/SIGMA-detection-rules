@@ -1,4 +1,8 @@
-title: Encoded PowerShell payload deployed (PowerShell)
+title: Encoded PowerShell payload deployed (PowerShell) - ps_module
+id: d06f779e-0b07-44d3-9532-7d3318cfe9d3
+related:
+  - id: 2e0e2237-4c06-43cf-8356-16bcc16a38ef
+    type: similar
 description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
@@ -12,16 +16,59 @@ references:
 tags:
 - attack.execution
 - attack.t1059.001
-- attack.defense_evasion
+- attack.stealth
 - attack.t1027
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - 'FromBase64String'
+      - 'IO.StreamReader'
+      - 'IO.Compression.'
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high
+
+#- 'FromBase64String'
+#- 'IO.StreamReader'
+#- 'IO.Compression.'
+#- '[System.Convert]::'
+#- '[Convert]'
+#- 'System.Diagnostics.Process'
+
+---
+title: Encoded PowerShell payload deployed (PowerShell) - ps_classic_script
+id: 3f6a1e2d-8f95-451a-9120-c10aff3a25e7
+related:
+  - id: d06f779e-0b07-44d3-9532-7d3318cfe9d3
+    type: similar
+description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
+- https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
+- https://www.huntress.com/blog/from-powershell-to-payload-an-analysis-of-weaponized-malware
+- https://www.huntress.com/blog/malware-deep-dive-examining-a-powershell-payload
+- https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
+- https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
+- https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
+- https://unit42.paloaltonetworks.com/threat-brief-OWASSRF/
+tags:
+- attack.execution
+- attack.t1059.001
+- attack.stealth
+- attack.t1027
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection_powershell_native:
     EventID: 800
@@ -30,13 +77,45 @@ detection:
       - 'IO.StreamReader'
       - 'IO.Compression.'
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - 'FromBase64String'
-      - 'IO.StreamReader'
-      - 'IO.Compression.'
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high
 
+#- 'FromBase64String'
+#- 'IO.StreamReader'
+#- 'IO.Compression.'
+#- '[System.Convert]::'
+#- '[Convert]'
+#- 'System.Diagnostics.Process'
+
+---
+title: Encoded PowerShell payload deployed (PowerShell) - ps_script
+id: 1fe8516e-86f7-4d7a-bcc1-5bbf7fa4a9b3
+related:
+  - id: d06f779e-0b07-44d3-9532-7d3318cfe9d3
+    type: similar
+description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell
+- https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
+- https://www.huntress.com/blog/from-powershell-to-payload-an-analysis-of-weaponized-malware
+- https://www.huntress.com/blog/malware-deep-dive-examining-a-powershell-payload
+- https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
+- https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
+- https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
+- https://unit42.paloaltonetworks.com/threat-brief-OWASSRF/
+tags:
+- attack.execution
+- attack.t1059.001
+- attack.stealth
+- attack.t1027
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

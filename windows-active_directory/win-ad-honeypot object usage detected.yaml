@@ -1,4 +1,5 @@
 title: Active Directory honeypot used for lateral movement
+id: fc374f3d-c0b0-4b3a-8271-563994522b34
 description: Detects scenarios where an attacker is using
 requirements: ensure that those accounts are "attractive", documented, do not create any breach and cannot be used against your organization.
 references:
@@ -6,7 +7,7 @@ references:
 - http://www.labofapenetrationtester.com/2018/10/deploy-deception.html
 - https://jblog.javelin-networks.com/blog/the-honeypot-buster/
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021
 author: mdecrevoisier
 status: experimental

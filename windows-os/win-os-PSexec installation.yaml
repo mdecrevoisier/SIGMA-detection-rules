@@ -1,4 +1,10 @@
 title: PSexec application execution
+id: b85f8332-28ec-48a6-8d2d-dd702a7663ae
+related:
+  - id: fdfcbd78-48f1-4a4b-90ac-d82241e368c5
+    type: similar
+  - id: 7c0dcd3d-acf8-4f71-9570-f448b0034f94
+    type: similar
 description: Detects scenarios where an attacker installs and executes PSexec.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

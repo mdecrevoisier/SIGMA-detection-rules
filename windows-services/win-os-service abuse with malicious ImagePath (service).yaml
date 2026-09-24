@@ -1,4 +1,12 @@
 title: Service abuse with malicious ImagePath (service)
+id: ba5273d4-33c5-4e46-96ce-6321dd3fc77c
+related:
+  - id: 138d3531-8793-4f50-a2cd-f291b2863d78
+    type: similar
+  - id: d937b75f-a665-4480-88a5-2f20e9f9b22a
+    type: similar
+  - id: f585200f-1f31-4393-a962-9a4f0bcdf155
+    type: similar
 description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -19,7 +27,7 @@ detection: # sc config <service_name> binPath="C:\windows\system32\pentestlab.ex
       - sc
       - config
       - binpath
-  condition: selection
+  condition: selection_process
 falsepositives:
 - administrator reconfiguring service
 level: high

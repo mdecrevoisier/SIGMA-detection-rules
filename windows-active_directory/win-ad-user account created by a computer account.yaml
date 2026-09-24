@@ -1,11 +1,12 @@
 title: User account created by a computer account
+id: dc141666-3a4e-40e9-9b33-6482dcacef84
 description: Detects scenarios where an attacker would abuse some privileges while realying host credentials to escalate privileges.
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4741
 tags:
 - attack.persistence
 - attack.t1136 # user creation
-- attack.defense_evesion
+- attack.stealth
 - attack.t1036 # masquerading
 author: mdecrevoisier
 status: experimental
@@ -19,7 +20,7 @@ detection:
     SubjectUserSid|startswith: 'S-1-5-21-' # SYSTEM account 'S-1-5-18' would trigger a false positive
   filter:
     TargetUserName|endswith: '$' # covered in another rule: User account creation disguised in a computer account
-  condition: selection
+  condition: selection and not filter
 falsepositives:
 - Exchange servers
 level: high

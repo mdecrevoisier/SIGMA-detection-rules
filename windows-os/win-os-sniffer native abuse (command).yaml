@@ -1,9 +1,13 @@
 title: Windows traffic capture abuse
+id: 2966ed4c-6109-4868-b689-adc49fc31bf2
+related:
+  - id: d3c3861d-c504-4c77-ba55-224ba82d0118
+    type: similar
 description: Detects scenarios where an attacker use the native Windows sniffer in order to capture sensitive information or credentials.
 references:
 - https://bakerstreetforensics.com/2022/01/07/quickpcap-capturing-a-pcap-with-powershell/
 tags:
-- attack.credential_access
+- attack.credential-access
 - attack.t1040 # Network Sniffing 
 author: mdecrevoisier
 status: experimental

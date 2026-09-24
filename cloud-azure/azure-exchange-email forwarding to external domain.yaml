@@ -1,4 +1,10 @@
 title: Office 365 email forwarding rule to external domain
+id: fbf5e6c7-bad8-4867-9d27-84e26b755f3c
+related:
+  - id: c726e007-2cd0-4a55-abfb-79730fbedee5
+    type: similar
+  - id: 0c7686d5-c74e-4292-b224-2a08e956ebc4
+    type: similar
 description: Detects scenarios where an attacker creates a forwarding rules to a non company email in order to collect information.
 references:
 - https://redcanary.com/blog/email-forwarding-rules/

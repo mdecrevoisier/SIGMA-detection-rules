@@ -1,9 +1,15 @@
 title: Suspicious dump file transfered via SMB share
+id: e875b0eb-7e9f-4f55-ab3e-b27442c29af4
+related:
+  - id: 91c945bc-2ad1-4799-a591-4d00198a1215
+    type: similar
+  - id: 044ba588-dff4-4918-9808-3f95e8160606
+    type: similar
 description: Detects scenarios where an attacker would access and/or transfer a dump file containing potential sensitive information (LSASS dump).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
 tags:
-- attack.credential_access
+- attack.credential-access
 - attack.t1003.001
 author: mdecrevoisier
 status: experimental
@@ -17,7 +23,7 @@ detection:
       - '.dmp'
       - '.dump'
   filter:
-  	RelativeTargetName|startswith: 'Windows' # already covered in LSASSY related rule
+    RelativeTargetName|startswith: 'Windows' # already covered in LSASSY related rule
   condition: selection and not filter
 falsepositives:
 - none

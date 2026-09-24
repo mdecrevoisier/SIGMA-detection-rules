@@ -1,11 +1,15 @@
 title: Firewall rule added using PowerShell or CMD
+id: de5c44f6-8bd8-4aae-91ee-27a0f49744ba
+related:
+  - id: eca81e8d-09e1-4d04-8614-c91f44fd0519
+    type: similar
 description: Detects scenarios where a firewall rule is added using PowerShell or CMD.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
 - https://kb.eventtracker.com/evtpass/evtPages/EventId_2004_Microsoft-Windows-WindowsFirewallwithAdvancedS_65673.asp
 tags:
-- attack.defense_evasion
-- attack.t1562.004
+- attack.defense-impairment
+- attack.t1686
 author: mdecrevoisier
 status: experimental
 logsource:
