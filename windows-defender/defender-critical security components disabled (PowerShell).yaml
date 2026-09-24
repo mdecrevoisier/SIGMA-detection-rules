@@ -1,4 +1,10 @@
-title: Microsoft Defender critical security components disabled (PowerShell)
+title: Microsoft Defender critical security components disabled (PowerShell) - ps_module
+id: ec9292aa-5cce-4ecc-b706-fb599e12d0ac
+related:
+  - id: 2a8f644c-b4e6-4e69-93bd-4dd5bbddf2fa
+    type: similar
+  - id: 1ec65a5f-9473-4f12-97da-622044d6df21
+    type: similar
 description: Detects scenarios where an attacker attempts to disable Defender security features in PowerShell
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
@@ -9,57 +15,113 @@ references:
 - https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
 - https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
-- attack.defense_evasion
-- attack.t1562.001
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
 detection: # Set-MpPreference -DisableRealtimeMonitoring $true
-  selection1_powershell_native:
-    EventID: 800
-    EventData|contains: Set-MpPreference
-    EventData|contains:
-      - '1'
-      - '$true'
-    EventData|contains:
-      - DisableRealtimeMonitoring
-      - DisableBehaviorMonitoring
-      - DisableIOAVProtection # scans downloaded files and attachment
-      - DisableIntrusionPreventionSystem # network protection against exploitation of known vulnerabilities
-      - DisableInboundConnectionFiltering
-
   selection2_powershell_modern:
     EventID: 4103
     EventData|contains: Set-MpPreference
     Payload|contains:
       - '1'
       - '$true'
+  and_selection2_powershell_modern_2:
     Payload|contains:
       - DisableRealtimeMonitoring
       - DisableBehaviorMonitoring
       - DisableIOAVProtection # scans downloaded files and attachment
       - DisableIntrusionPreventionSystem # network protection against exploitation of known vulnerabilities
       - DisableInboundConnectionFiltering
+  condition: (1 of selection*) and all of and_selection2_powershell_modern_*
+falsepositives:
+- None
+level: high
 
+---
+title: Microsoft Defender critical security components disabled (PowerShell) - ps_classic_script
+id: 2e4a19e2-0c23-4372-92a8-2d5155572dcc
+related:
+  - id: ec9292aa-5cce-4ecc-b706-fb599e12d0ac
+    type: similar
+description: Detects scenarios where an attacker attempts to disable Defender security features in PowerShell
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+tags:
+- attack.defense-impairment
+- attack.t1685
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
+detection: # Set-MpPreference -DisableRealtimeMonitoring $true
+  selection1_powershell_native:
+    EventID: 800
+    EventData|contains: Set-MpPreference
+  and_selection1_powershell_native_2:
+    EventData|contains:
+      - '1'
+      - '$true'
+  and_selection1_powershell_native_3:
+    EventData|contains:
+      - DisableRealtimeMonitoring
+      - DisableBehaviorMonitoring
+      - DisableIOAVProtection # scans downloaded files and attachment
+      - DisableIntrusionPreventionSystem # network protection against exploitation of known vulnerabilities
+      - DisableInboundConnectionFiltering
+  condition: (1 of selection*) and all of and_selection1_powershell_native_*
+falsepositives:
+- None
+level: high
+
+---
+title: Microsoft Defender critical security components disabled (PowerShell) - ps_script
+id: 578f1e7c-514f-4ea7-97cd-0ef0be568fec
+related:
+  - id: ec9292aa-5cce-4ecc-b706-fb599e12d0ac
+    type: similar
+description: Detects scenarios where an attacker attempts to disable Defender security features in PowerShell
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+tags:
+- attack.defense-impairment
+- attack.t1685
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Set-MpPreference -DisableRealtimeMonitoring $true
   selection3_powershell_block:
     EventID: 4104
     EventData|contains: Set-MpPreference
     ScriptBlockText|contains:
       - '1'
       - '$true'
+  and_selection3_powershell_block_2:
     ScriptBlockText|contains:
       - DisableRealtimeMonitoring
       - DisableBehaviorMonitoring
       - DisableIOAVProtection # scans downloaded files and attachment
       - DisableIntrusionPreventionSystem # network protection against exploitation of known vulnerabilities
       - DisableInboundConnectionFiltering
-
-  condition: 1 of selection*
+  condition: (1 of selection*) and all of and_selection3_powershell_block_*
 falsepositives:
 - None
 level: high

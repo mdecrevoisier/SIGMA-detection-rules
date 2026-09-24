@@ -1,4 +1,6 @@
-title: Scheduled task created and deleted fastly (ATexec.py)
+title: Scheduled task created and deleted fastly (ATexec.py) - create
+id: 1ab63d91-83a6-4329-a38c-3b55d03642f5
+name: win_os_scheduled_task_fastly_created_and_deleted_create
 description: Detects scenarios where an attacker abuse task scheduler capacities to execute commands or elevate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task
@@ -16,12 +18,53 @@ logsource:
 detection:
   selection_create:
     EventID: 4698
+  #filter:
+  #  SubjectUserSid: 'S-1-5-18'
+  condition: selection_create
+falsepositives:
+- Rare application activity
+level: high
+
+---
+title: Scheduled task created and deleted fastly (ATexec.py) - delete
+id: 11b7793f-a22c-45b6-97d1-829ffad0f6d4
+name: win_os_scheduled_task_fastly_created_and_deleted_delete
+description: Detects scenarios where an attacker abuse task scheduler capacities to execute commands or elevate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task
+- https://github.com/SecureAuthCorp/impacket/blob/master/examples/atexec.py
+- https://u0041.co/blog/post/1
+- https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
+tags:
+- attack.execution
+- attack.t1053.005 # Scheduled Task/Job: Scheduled Task 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
   selection_delete:
     EventID: 4699
   #filter:
   #  SubjectUserSid: 'S-1-5-18'
-  condition: selection_create > selection_delete | group(Computer, TaskName)
-  timeframe: 5m
+  condition: selection_delete
 falsepositives:
 - Rare application activity
+level: high
+
+---
+title: Scheduled task created and deleted fastly (ATexec.py)
+id: 945e8c76-99c0-4d42-8826-e53206d86d8f
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: temporal_ordered
+  rules:
+    - win_os_scheduled_task_fastly_created_and_deleted_create
+    - win_os_scheduled_task_fastly_created_and_deleted_delete
+  group-by:
+    - Computer
+    - TaskName
+  timespan: 5m
 level: high

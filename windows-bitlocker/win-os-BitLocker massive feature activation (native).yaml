@@ -1,4 +1,6 @@
 title: BitLocker feature activation on multiple hosts (native)
+id: 3291eb16-72af-48d0-844e-16066d091242
+name: win_os_bitlocker_massive_feature_activation_native
 description: Detects scenarios where an attacker enable or reconfigure BitLocker on multiple hosts for ransomware purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1486-Data%20Encrypted%20for%20Impact
@@ -18,7 +20,24 @@ detection:
     EventID: 
       - 768 # BitLocker encryption was started for volume [volume] using [encryption] algorithm.
       - 775 # A BitLocker key protector was created.
-  condition: selection | count(Hostname) by SecurityUserID > 10
+  condition: selection
 falsepositives:
 - Initial BitLocker configuration
+level: high
+
+---
+title: BitLocker feature activation on multiple hosts (native) - count
+id: f5451da7-f681-45a8-a194-b890a16905f1
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_os_bitlocker_massive_feature_activation_native
+  group-by:
+    - SecurityUserID
+  timespan: 1h # v1 rule had no timeframe: 1h assumed, please adjust
+  condition:
+    gt: 10
+    field: Hostname
 level: high

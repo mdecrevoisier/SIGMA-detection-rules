@@ -1,4 +1,9 @@
-title: Group discovery (PowerShell)
+title: Group discovery (PowerShell) - ps_module
+id: 787f3271-77c4-483f-8eb4-12ffd09b2ede
+name: win_os_group_discovery_powershell_ps_module
+related:
+  - id: fa6a5a45-3ee2-4529-aa14-ee5edc9e29cb
+    type: similar
 description: Detects scenarios where an attacker attempts to enumerate local or domain groups via PowerShell.
 references:
 - https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
@@ -12,10 +17,55 @@ tags:
 author: mdecrevoisier
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Get-LocalGroupMember
+      - Get-ADGroupMember
+
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+level: medium
+
+---
+title: Group discovery (PowerShell) - ps_module - count
+id: 485f7eab-8291-424b-84b5-bfc1a25d0060
+author: mdecrevoisier
+correlation:
+  type: event_count
+  rules:
+    - win_os_group_discovery_powershell_ps_module
+  group-by:
+    - Computer
+  timespan: 1h # v1 rule had no timeframe: 1h assumed, please adjust
+  condition:
+    gt: 4
+level: medium
+---
+title: Group discovery (PowerShell) - ps_classic_script
+id: 0204779f-64f3-4548-a0e0-c5d97ad68f08
+name: win_os_group_discovery_powershell_ps_classic_script
+related:
+  - id: 787f3271-77c4-483f-8eb4-12ffd09b2ede
+    type: similar
+description: Detects scenarios where an attacker attempts to enumerate local or domain groups via PowerShell.
+references:
+- https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+- https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-adgroup?view=windowsserver2019-ps
+- https://adamtheautomator.com/get-adgroupmember/
+tags:
+- attack.discovery
+- attack.t1069.001 # Permission Groups Discovery: Local Groups 
+- attack.t1069.002 # Permission Groups Discovery: Domain Groups 
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection_powershell_native:
     EventID: 800
@@ -23,20 +73,71 @@ detection:
       - Get-LocalGroupMember # Get-LocalGroupMember -Name Administrators
       - Get-ADGroupMember    # Get-ADGroupMember -Identity Administrators
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Get-LocalGroupMember
-      - Get-ADGroupMember
+  condition: 1 of selection*
+falsepositives:
+- Pentest
+- Administrator activity
+level: medium
 
+---
+title: Group discovery (PowerShell) - ps_classic_script - count
+id: 30d55ff0-9973-4399-9bd6-f0b26a32dca4
+author: mdecrevoisier
+correlation:
+  type: event_count
+  rules:
+    - win_os_group_discovery_powershell_ps_classic_script
+  group-by:
+    - Computer
+  timespan: 1h # v1 rule had no timeframe: 1h assumed, please adjust
+  condition:
+    gt: 4
+level: medium
+---
+title: Group discovery (PowerShell) - ps_script
+id: c6aaa593-3e79-406a-9760-c1e83ab4efc4
+name: win_os_group_discovery_powershell_ps_script
+related:
+  - id: 787f3271-77c4-483f-8eb4-12ffd09b2ede
+    type: similar
+description: Detects scenarios where an attacker attempts to enumerate local or domain groups via PowerShell.
+references:
+- https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+- https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-adgroup?view=windowsserver2019-ps
+- https://adamtheautomator.com/get-adgroupmember/
+tags:
+- attack.discovery
+- attack.t1069.001 # Permission Groups Discovery: Local Groups 
+- attack.t1069.002 # Permission Groups Discovery: Domain Groups 
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Get-LocalGroupMember
       - Get-ADGroupMember
 
-  condition: 1 of selection* | count(EventRecordID) by Computer > 4
+  condition: 1 of selection*
 falsepositives:
 - Pentest
 - Administrator activity
+level: medium
+
+---
+title: Group discovery (PowerShell) - ps_script - count
+id: b61d06ed-a1d3-424f-8341-156b953d418a
+author: mdecrevoisier
+correlation:
+  type: event_count
+  rules:
+    - win_os_group_discovery_powershell_ps_script
+  group-by:
+    - Computer
+  timespan: 1h # v1 rule had no timeframe: 1h assumed, please adjust
+  condition:
+    gt: 4
 level: medium

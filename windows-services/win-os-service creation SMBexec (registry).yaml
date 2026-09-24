@@ -1,13 +1,14 @@
 title: Impacket SMBexec service creation (registry)
+id: 13e4744b-c279-47a1-9e7d-27e5e3ff212d
 description: Detects scenarios where an attacker attempts to register the SMBexec service to estasblish persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1112-Modify%20registry
 - https://github.com/SecureAuthCorp/impacket/blob/master/examples/smbexec.py
 - https://nv2lt.github.io/windows/smb-psexec-smbexec-winexe-how-to/
 tags:
-- attack.defense_evasion
+- attack.defense-impairment
 - attack.t1112
-- attack.privilege_execution
+- attack.privilege-escalation
 - attack.t1543.003
 author: mdecrevoisier
 status: experimental

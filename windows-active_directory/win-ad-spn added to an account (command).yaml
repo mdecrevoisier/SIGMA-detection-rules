@@ -1,4 +1,5 @@
 title: SPN added to an account by command line
+id: 53334bb2-2f60-4e3f-9672-ffc74722bc3b
 description: Detects scenarios where an attacker adds a SPN to an account in order to perform different type of abuse (Kerberoast, delegation abuse, ...)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

@@ -1,4 +1,8 @@
 title: NTFS symbolic link creation
+id: 93f69fb5-c18c-46f7-8c41-7f987e4f9f57
+related:
+  - id: f4757701-b0d1-4a64-94ff-ad1127bf7316
+    type: similar
 description: Detects scenarios where an attacker attempts to create a symbolic link.
 references:
 - https://twitter.com/Alh4zr3d/status/1630912251560329224

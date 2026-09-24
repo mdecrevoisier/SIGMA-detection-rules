@@ -1,4 +1,5 @@
-title: Webserver IIS module installed (PowerShell)
+title: Webserver IIS module installed (PowerShell) - ps_module
+id: d04af20e-3b57-4b4f-9a0e-4fc4cdf5124d
 description: Detects scenarios where an attacker attempts to deploy an IIS module via PowerShell.
 references:
 - https://www.splunk.com/en_us/blog/security/fantastic-iis-modules-and-how-to-find-them.html
@@ -10,10 +11,38 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - 'New-WebGlobalModule'
+      - '-Image'
+      - '.dll'
+
+  condition: 1 of selection*
+falsepositives:
+- New modules deployed on IIS Web servers, but also Exchange and ADCS servers
+level: high
+
+---
+title: Webserver IIS module installed (PowerShell) - ps_classic_script
+id: 75e79249-b97f-42b5-856e-65bf53b0d0b4
+related:
+  - id: d04af20e-3b57-4b4f-9a0e-4fc4cdf5124d
+    type: similar
+description: Detects scenarios where an attacker attempts to deploy an IIS module via PowerShell.
+references:
+- https://www.splunk.com/en_us/blog/security/fantastic-iis-modules-and-how-to-find-them.html
+- https://learn.microsoft.com/en-us/powershell/module/webadministration/new-webglobalmodule?view=windowsserver2022-ps
+tags:
+- attack.persistence
+- attack.t1505.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection_powershell_native:
     EventID: 800
@@ -22,13 +51,30 @@ detection:
       - '-Image'
       - '.dll'
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - 'New-WebGlobalModule'
-      - '-Image'
-      - '.dll'
+  condition: 1 of selection*
+falsepositives:
+- New modules deployed on IIS Web servers, but also Exchange and ADCS servers
+level: high
 
+---
+title: Webserver IIS module installed (PowerShell) - ps_script
+id: b52d76e5-6542-4423-a762-2ec9b5fca030
+related:
+  - id: d04af20e-3b57-4b4f-9a0e-4fc4cdf5124d
+    type: similar
+description: Detects scenarios where an attacker attempts to deploy an IIS module via PowerShell.
+references:
+- https://www.splunk.com/en_us/blog/security/fantastic-iis-modules-and-how-to-find-them.html
+- https://learn.microsoft.com/en-us/powershell/module/webadministration/new-webglobalmodule?view=windowsserver2022-ps
+tags:
+- attack.persistence
+- attack.t1505.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

@@ -1,4 +1,12 @@
 title: Certutil payload obfuscation - Tchopper (command)
+id: bebd7bae-0674-422a-9eb5-7a89c0838071
+related:
+  - id: fa1e201e-8a97-4986-8c7c-089508ea090d
+    type: similar
+  - id: cc9cbe82-7bc0-4ef5-bc23-bbfb83947be7
+    type: similar
+  - id: 8a582fe2-0882-4b89-a82a-da6b2dc32937
+    type: similar
 description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload using the Tchopper tool.
 references:
 - https://github.com/lawrenceamer/TChopper
@@ -8,7 +16,7 @@ references:
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
 - https://www.sentinelone.com/blog/malware-living-off-land-with-certutil/
 tags:
-- attack.defense_evasion
+- attack.stealth
 - attack.t1140
 author: mdecrevoisier
 status: experimental

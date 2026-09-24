@@ -1,11 +1,15 @@
 title: Brutforce enumeration with unexisting users (Kerberos)
+id: 2bbb000d-84fc-4fcc-a19d-809f22c741b6
+related:
+  - id: 708770cb-71ef-4f9a-b8f1-5072543d3064
+    type: similar
 name: bruteforce_non_existing_users_kerberos
 description: Detects scenarios where an attacker attempts to enumerate potential existing users, resulting in failed Kerberos TGT requests with unexisting or invalid accounts.
 references:
   - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
   - https://github.com/ropnop/kerbrute
 tags:
-  - attack.credential_access
+  - attack.credential-access
   - attack.t1110
 author: mdecrevoisier
 status: experimental
@@ -28,6 +32,7 @@ level: high
 
 ---
 title: Brutforce enumeration with unexisting users (Kerberos) Count
+id: e5c4492d-6537-4474-a2b6-8a4403870d1f
 status: experimental
 correlation:
   type: value_count
