@@ -1,4 +1,5 @@
 title: Computer account manipulation for delegation (RBCD)
+id: b326b419-22f3-4256-8a4f-3f0afee1fdfc
 description: Detects scenarios where an attacker manipulate a computer object and updates its attribute 'msDS-AllowedToActOnBehalfOfOtherIdentity' to enable a resource to impersonate and authenticate any domain user.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

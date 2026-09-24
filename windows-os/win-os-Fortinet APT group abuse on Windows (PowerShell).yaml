@@ -1,6 +1,7 @@
-title: Vault credentials manager accessed
+title: Vault credentials manager accessed - ps_module
+id: 4be2b707-e2b6-4304-a4d8-379372b13273
 description: Detects scenarios where an attacker attempts to access vault credentials.
-correlation: correlate ClientProcessId from ID 5382 with Process PID from event ID 4688 to identify the origin of the access.
+correlation_note: correlate ClientProcessId from ID 5382 with Process PID from event ID 4688 to identify the origin of the access.
 references:
 - https://twitter.com/SBousseaden/status/1573380065714470912
 - https://sites.utexas.edu/glenmark/2019/10/21/using-passwordvault-with-powershell/
@@ -13,10 +14,40 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - 'Windows.Security.Credentials.PasswordVault'
+      - 'Retrieve' # can be "RetrievePassword" or "RetrieveAll"
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high
+
+---
+title: Vault credentials manager accessed - ps_classic_script
+id: 3b967a04-b17b-4f2d-b540-ccd483b47645
+related:
+  - id: 4be2b707-e2b6-4304-a4d8-379372b13273
+    type: similar
+description: Detects scenarios where an attacker attempts to access vault credentials.
+correlation_note: correlate ClientProcessId from ID 5382 with Process PID from event ID 4688 to identify the origin of the access.
+references:
+- https://twitter.com/SBousseaden/status/1573380065714470912
+- https://sites.utexas.edu/glenmark/2019/10/21/using-passwordvault-with-powershell/
+- https://vimalshekar.github.io/scriptsamples/Getting-Stored-Web-Credentials-using-PowerShell
+- https://gist.github.com/Samirbous/c3c4122493ea5076adea9c895d2340ea
+tags:
+- attack.credential_access
+- attack.t1555.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection_powershell_native:
     EventID: 800
@@ -24,12 +55,33 @@ detection:
       - 'Windows.Security.Credentials.PasswordVault'
       - 'Retrieve' # can be "RetrievePassword" or "RetrieveAll"
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - 'Windows.Security.Credentials.PasswordVault'
-      - 'Retrieve' # can be "RetrievePassword" or "RetrieveAll"
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high
 
+---
+title: Vault credentials manager accessed - ps_script
+id: 2f088946-6a19-443f-8912-686429a8b7e6
+related:
+  - id: 4be2b707-e2b6-4304-a4d8-379372b13273
+    type: similar
+description: Detects scenarios where an attacker attempts to access vault credentials.
+correlation_note: correlate ClientProcessId from ID 5382 with Process PID from event ID 4688 to identify the origin of the access.
+references:
+- https://twitter.com/SBousseaden/status/1573380065714470912
+- https://sites.utexas.edu/glenmark/2019/10/21/using-passwordvault-with-powershell/
+- https://vimalshekar.github.io/scriptsamples/Getting-Stored-Web-Credentials-using-PowerShell
+- https://gist.github.com/Samirbous/c3c4122493ea5076adea9c895d2340ea
+tags:
+- attack.credential_access
+- attack.t1555.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

@@ -1,4 +1,5 @@
-title: DSRM password changed (Reg via PowerShell)
+title: DSRM password changed (Reg via PowerShell) - ps_module
+id: 58fc5609-3c23-456a-8f8a-845fe16b5ed8
 description: Detects scenarios where an attacker reset or synchronize with another domain account the DSRM (Directory Services Restore Mode) password in order to escalate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
@@ -14,10 +15,43 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CONTROL\LSA" -name DsrmAdminLogonBehavior -value 2'
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
+      - '\SYSTEM\CurrentControlSet\Control\Lsa'
+      - DsrmAdminLogonBehavior
+      #- path # parameter is optional
+
+  condition: 1 of selection*
+falsepositives:
+- Disaster recovery situation
+level: high
+
+---
+title: DSRM password changed (Reg via PowerShell) - ps_classic_script
+id: 8804cf6b-f2ea-42f4-aa9f-a2ec5d5aaaa4
+related:
+  - id: 58fc5609-3c23-456a-8f8a-845fe16b5ed8
+    type: similar
+description: Detects scenarios where an attacker reset or synchronize with another domain account the DSRM (Directory Services Restore Mode) password in order to escalate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
+- https://adsecurity.org/?p=1714
+- https://adsecurity.org/?p=1785
+- https://book.hacktricks.xyz/windows/active-directory-methodology/dsrm-credentials
+- https://www.hackingarticles.in/domain-persistence-dsrm/
+- https://azurecloudai.blog/2020/06/19/how-to-reset-the-directory-service-restore-mode-dsrm-password/
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CONTROL\LSA" -name DsrmAdminLogonBehavior -value 2'
   selection_powershell_native:
     EventID: 800
@@ -27,14 +61,34 @@ detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CON
       - DsrmAdminLogonBehavior
       #- path # parameter is optional
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - '-ItemProperty' # Entry doesn't exist per default. Can be New-* or Set-*
-      - '\SYSTEM\CurrentControlSet\Control\Lsa'
-      - DsrmAdminLogonBehavior
-      #- path # parameter is optional
+  condition: 1 of selection*
+falsepositives:
+- Disaster recovery situation
+level: high
 
+---
+title: DSRM password changed (Reg via PowerShell) - ps_script
+id: 2b3011e1-685e-4bad-840a-feffccc709e8
+related:
+  - id: 58fc5609-3c23-456a-8f8a-845fe16b5ed8
+    type: similar
+description: Detects scenarios where an attacker reset or synchronize with another domain account the DSRM (Directory Services Restore Mode) password in order to escalate privileges.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
+- https://adsecurity.org/?p=1714
+- https://adsecurity.org/?p=1785
+- https://book.hacktricks.xyz/windows/active-directory-methodology/dsrm-credentials
+- https://www.hackingarticles.in/domain-persistence-dsrm/
+- https://azurecloudai.blog/2020/06/19/how-to-reset-the-directory-service-restore-mode-dsrm-password/
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # full command: 'Set-ItemProperty "HKLM:\SYSTEM\CURRENTCONTROLSET\CONTROL\LSA" -name DsrmAdminLogonBehavior -value 2'
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

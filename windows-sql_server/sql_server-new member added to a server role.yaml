@@ -1,4 +1,5 @@
 title: SQL Server - new member added to a server role
+id: 6fe83fd1-7af1-44f1-ae89-fb923054fe97
 description: Detects scenarios where an attacker adds his account to a server role (sysadmin, securityadmin, serveradmin, ...)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

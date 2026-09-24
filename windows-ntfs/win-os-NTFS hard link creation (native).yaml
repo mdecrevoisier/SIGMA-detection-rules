@@ -1,4 +1,5 @@
 title: NTFS hard link creation
+id: f4757701-b0d1-4a64-94ff-ad1127bf7316
 description: Detects scenarios where an attacker attempts to create a hard link.
 references:
 - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4664

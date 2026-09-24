@@ -1,4 +1,5 @@
 title: SystemNightmare by GentilKiwi - New external device added (CVE-2021-1675 / CVE-2021-34527)
+id: 952001c8-8293-4004-b43a-998f37ee945c
 description: Detects scenarios where an attacker exploit the PrintNightmare vulnerability by abusing the Windows print spooler using the service exposed by Gentilkiwi
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1574-DLL%20side-loading

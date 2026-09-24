@@ -1,4 +1,5 @@
 title: Windows Subsystem for Linux (WSL) package turned on (native)
+id: 5b72ae73-d9d4-4d42-b052-32d3c1a3d25d
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1564-Hide%20artifacts

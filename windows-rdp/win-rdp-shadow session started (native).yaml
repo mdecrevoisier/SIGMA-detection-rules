@@ -1,4 +1,5 @@
 title: RDP shadow session started (native)
+id: fb8d7d25-5c19-4d7b-ab0d-a97374cc68d5
 description: Detects scenarios where an attacker has initiated a RDP shadow session.
 references:
 - http://woshub.com/rds-shadow-how-to-connect-to-a-user-session-in-windows-server-2012-r2/

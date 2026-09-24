@@ -1,4 +1,5 @@
 title: Service abuse with backdoored "command failure" (Reg via command)
+id: 841a321b-564d-4692-86c7-a596f17a5ccf
 description: Detects scenarios where an attacker modify the configuration of a service to trigger an action when the service is crashed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

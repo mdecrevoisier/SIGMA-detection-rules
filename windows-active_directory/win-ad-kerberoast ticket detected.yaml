@@ -1,4 +1,5 @@
 title: Kerberoast ticket request detected
+id: e11eaf0c-ab62-43bd-8e10-034bec0b1bf3
 name: kerberoast_ticket_request
 description: Detects scenarios where an attacker requests a Kerberoast ticket with low encryption to perform offline brutforce and forge a new ticket to get access to the targeted resource.
 references:
@@ -55,6 +56,7 @@ level: high
 
 ---
 title: Kerberoast ticket request detected Count
+id: 5299fdd6-b0dd-4ebf-88ec-3b320180e606
 status: experimental
 correlation:
   type: value_count

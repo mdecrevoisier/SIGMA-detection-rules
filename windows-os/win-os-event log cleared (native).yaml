@@ -1,4 +1,5 @@
 title: Event log cleared (native)
+id: 8dcaf063-66a4-4af9-8bea-38a780153299
 description: Detects scenarios where an attacker cleared the event logs.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs

@@ -1,4 +1,5 @@
 title: SQL Server database auditing deactivated
+id: 5d938604-4982-48bd-b213-1686f61ee76a
 description: Detects scenarios where an attacker deactivates SQL Server database auditing capacities. SQL auditing requires previous configuration on each SQL instance.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.002-Disable%20Windows%20Event%20Logging

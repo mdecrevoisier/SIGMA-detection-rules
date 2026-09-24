@@ -1,4 +1,5 @@
 title: Host constrained delegation settings changed for potential abuse (Rubeus) - Kerberos only
+id: c621e2ae-0ee6-4fb0-8ddf-0332d1965367
 description: Detects scenarios where an attacker modifies host delegation settings for privilege escalation.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation
