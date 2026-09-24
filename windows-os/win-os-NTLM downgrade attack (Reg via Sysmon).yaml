@@ -1,4 +1,5 @@
 title: NTLM downgrade attack (Reg via SYSMON)
+id: 5391ed40-b8cf-4d79-83eb-d2c67903daf3
 description: Detects scenarios where an attacker modifies the registry configuration in order to enable or downgrade NTLM protocol version, to later on perform relay attacks.
 references:
 - https://www.trustedsec.com/blog/practical-attacks-against-ntlmv1/

@@ -1,4 +1,5 @@
 title: Rubeus Kerberos constrained delegation abuse (S4U2Proxy)
+id: 2470ef35-3cdb-4b8f-9f4e-5b8d4aff0e11
 description: Detects scenarios where an attacker abuse Kerberos constrained delegation in order to escalate privileges.
 references:
 - https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/

@@ -1,4 +1,5 @@
 title: High risk local/domain local group membership change
+id: 0b3b3d93-91d9-4177-a676-c7d88c76d9e1
 description: Detects scenarios where a suspicious group membership is changed. Having Microsoft LAPS installed may trigger false positive events for the builtin administrators group triggered by the system account (S-1-5-18).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

@@ -1,4 +1,5 @@
 title: RDP discovery performed on multiple hosts
+id: b696c29e-1216-4956-9981-96f36d3f0d7f
 name: rdp_discovery_multiple_host
 description: Detects scenarios where an attacker attempts to discover active RDP services via tools like Hydra. Note that this event doesn't provide any information about login outcome (success or failure) as well as user information. For further correlation, ID 4624/4625 (logon type 3, 7 or 10) as well as ID 1149 should be used.
 references:
@@ -44,6 +45,7 @@ level: high
 
 ---
 title: RDP discovery performed on multiple hosts Count
+id: cd6bbc9b-9376-4c2a-8c0f-3e3dd0b18cfd
 status: experimental
 correlation:
   type: value_count

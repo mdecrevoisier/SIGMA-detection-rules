@@ -1,4 +1,5 @@
 title: Account marked as sensitive and cannot be delegated had its protection removed (weakness introduction)
+id: 0bcfced8-0dc0-47ed-92ad-86e066e29c5d
 description: Detects scenarios where an attacker removes security protection from a sensitive account to escalate privileges
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

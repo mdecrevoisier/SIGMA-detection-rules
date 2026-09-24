@@ -1,4 +1,5 @@
 title: Suspicious Kerberos proxiable/S4U2self ticket (CVE-2021-42278/42287)
+id: b5bece57-bda1-4fb8-92c2-e1be5a7963a8
 description: Detects scenarios where an attacker attempts to request a proxiable ticket. This action may trigger while attempting to identify a vulnerable target or using some offsensive Kerberos tools like Kerbrute, Impacket...
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1558-Steal%20or%20Forge%20Kerberos%20Tickets

@@ -1,4 +1,5 @@
 title: Sticky key file created from CMD copy
+id: 005d7f94-916f-4d7f-8635-4fbcd2958ae9
 description: Detects scenarios where an attacker attempts to replace the original sethc.exe file by cmd.exe.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection

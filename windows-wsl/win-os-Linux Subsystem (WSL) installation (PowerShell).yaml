@@ -1,4 +1,5 @@
-title: Windows Subsystem for Linux (WSL) installation (PowerShell)
+title: Windows Subsystem for Linux (WSL) installation (PowerShell) - ps_module
+id: 3c27ef03-ec12-4ea3-871a-dff830def5b3
 description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
 references:
 - https://www.hackers-arise.com/post/linux-basics-for-hackers-part-13-the-windows-subsystem-for-linux-wsl
@@ -12,10 +13,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
 detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
   selection2_powershell_modern:
     EventID: 4103
@@ -23,6 +21,33 @@ detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Mi
       - 'Enable-windowsOptionalFeature'
       - 'Microsoft-Windows-Subsystem-Linux'
 
+  condition: 1 of selection*
+falsepositives:
+- developer computer (with Visual Studio Code)
+- administrator activity
+level: medium
+
+---
+title: Windows Subsystem for Linux (WSL) installation (PowerShell) - ps_script
+id: 078ca8e2-5da5-46a0-949a-4656a23c5d6f
+related:
+  - id: 3c27ef03-ec12-4ea3-871a-dff830def5b3
+    type: similar
+description: Detects scenarios where an attacker enables the WSL to cary out malicious activities in a virtual instance to avoid detection.
+references:
+- https://www.hackers-arise.com/post/linux-basics-for-hackers-part-13-the-windows-subsystem-for-linux-wsl
+- https://linuxhint.com/enable-wsl-optional-component/
+- https://blog.lumen.com/no-longer-just-theory-black-lotus-labs-uncovers-linux-executables-deployed-as-stealth-windows-loaders/
+- https://learn.microsoft.com/en-us/windows/wsl/
+tags:
+- attack.defense_evasion
+- attack.t1564.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # full command "Enable-windowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains:

@@ -1,4 +1,5 @@
-title: Microsoft Defender security components disabled (PowerShell)
+title: Microsoft Defender security components disabled (PowerShell) - ps_module
+id: ff910029-e624-455b-b443-2808a12d0774
 description: Detects scenarios where an attacker attempts to disable Defender security features in PowerShell
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
@@ -15,18 +16,75 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # Set-MpPreference -DisableArchiveScanning $true
+  selection2_powershell_modern:
+    EventID: 4103
+    EventData|contains: Set-MpPreference
+      - Add-MpPreference
+    Payload|contains:
+      - '1'
+      - '$true'
+  and_selection2_powershell_modern_2:
+    Payload|contains:
+      # Scanning features
+      - DisableArchiveScanning
+      - DisableRemovableDriveScanning
+      - DisableScanningMappedNetworkDrivesForFullScan
+      - DisableScanningNetworkFiles
+      - DisableRestorePoint
+      - DisableScriptScanning
+      - DisableEmailScanning
+      # Parsing features
+      - DisableDnsParsing
+      - DisableDnsOverTcpParsing
+      - DisableSshParsing
+      - DisableTlsParsing
+      - DisableHttpParsing
+      - DisableRdpParsing
+      # Misc features
+      - DisableAutoExclusions
+      - DisableBlockAtFirstSeen
+      - DisableCpuThrottleOnIdleScans
+      - DisableDatagramProcessing
+  condition: (1 of selection*) and all of and_selection2_powershell_modern_*
+falsepositives:
+- None
+level: medium
+
+---
+title: Microsoft Defender security components disabled (PowerShell) - ps_classic_script
+id: c582f4d9-83b4-47c8-8d47-c524b164858c
+related:
+  - id: ff910029-e624-455b-b443-2808a12d0774
+    type: similar
+description: Detects scenarios where an attacker attempts to disable Defender security features in PowerShell
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+tags:
+- attack.defense_evasion
+- attack.t1562.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # Set-MpPreference -DisableArchiveScanning $true
   selection1_powershell_native:
     EventID: 800
     EventData|contains: Set-MpPreference
       - Add-MpPreference
+  and_selection1_powershell_native_2:
     EventData|contains:
       - '1'
       - '$true'
+  and_selection1_powershell_native_3:
     EventData|contains:
       # Scanning features
       - DisableArchiveScanning
@@ -49,36 +107,35 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
       - DisableCpuThrottleOnIdleScans
       - DisableDatagramProcessing
       - SignatureDisableUpdateOnStartupWithoutEngine
+  condition: (1 of selection*) and all of and_selection1_powershell_native_*
+falsepositives:
+- None
+level: medium
 
-  selection2_powershell_modern:
-    EventID: 4103
-    EventData|contains: Set-MpPreference
-      - Add-MpPreference
-    Payload|contains:
-      - '1'
-      - '$true'
-    Payload|contains:
-      # Scanning features
-      - DisableArchiveScanning
-      - DisableRemovableDriveScanning
-      - DisableScanningMappedNetworkDrivesForFullScan
-      - DisableScanningNetworkFiles
-      - DisableRestorePoint
-      - DisableScriptScanning
-      - DisableEmailScanning
-      # Parsing features
-      - DisableDnsParsing
-      - DisableDnsOverTcpParsing
-      - DisableSshParsing
-      - DisableTlsParsing
-      - DisableHttpParsing
-      - DisableRdpParsing
-      # Misc features
-      - DisableAutoExclusions
-      - DisableBlockAtFirstSeen
-      - DisableCpuThrottleOnIdleScans
-      - DisableDatagramProcessing
-
+---
+title: Microsoft Defender security components disabled (PowerShell) - ps_script
+id: c402eeed-a47f-43fa-be51-013005f45c87
+related:
+  - id: ff910029-e624-455b-b443-2808a12d0774
+    type: similar
+description: Detects scenarios where an attacker attempts to disable Defender security features in PowerShell
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+tags:
+- attack.defense_evasion
+- attack.t1562.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Set-MpPreference -DisableArchiveScanning $true
   selection3_powershell_block:
     EventID: 4104
     EventData|contains: Set-MpPreference
@@ -86,6 +143,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
     ScriptBlockText|contains:
       - '1'
       - '$true'
+  and_selection3_powershell_block_2:
     ScriptBlockText|contains:
       # Scanning features
       - DisableArchiveScanning
@@ -107,8 +165,7 @@ detection: # Set-MpPreference -DisableArchiveScanning $true
       - DisableBlockAtFirstSeen
       - DisableCpuThrottleOnIdleScans
       - DisableDatagramProcessing
-
-  condition: 1 of selection*
+  condition: (1 of selection*) and all of and_selection3_powershell_block_*
 falsepositives:
 - None
 level: medium

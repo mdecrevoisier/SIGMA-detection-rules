@@ -1,4 +1,5 @@
-title: Webserver IIS module installed via GAC manipulation (PowerShell)
+title: Webserver IIS module installed via GAC manipulation (PowerShell) - ps_module
+id: bee98ab9-97bc-414c-a8cd-1231f3f6acb4
 description: Detects scenarios where an attacker attempts to deploy an IIS module via Global Assembly cache (GAC) manipulation.
 references:
 - https://www.microsoft.com/security/blog/2022/07/26/malicious-iis-extensions-quietly-open-persistent-backdoors-into-servers/
@@ -11,10 +12,39 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - 'System.Reflection.Assembly'
+      - 'GacInstall'
+      - '.dll'
+
+  condition: 1 of selection*
+falsepositives:
+- New modules deployed on IIS Web servers, but also Exchange and ADCS servers
+level: high
+
+---
+title: Webserver IIS module installed via GAC manipulation (PowerShell) - ps_classic_script
+id: 9ac950e4-3048-4051-98dc-81281ba5d314
+related:
+  - id: bee98ab9-97bc-414c-a8cd-1231f3f6acb4
+    type: similar
+description: Detects scenarios where an attacker attempts to deploy an IIS module via Global Assembly cache (GAC) manipulation.
+references:
+- https://www.microsoft.com/security/blog/2022/07/26/malicious-iis-extensions-quietly-open-persistent-backdoors-into-servers/
+- https://docs.microsoft.com/fr-fr/iis/get-started/introduction-to-iis/iis-modules-overview
+- https://github.com/LTruijens/powershell-gac
+tags:
+- attack.persistence
+- attack.t1505.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection_powershell_native:
     EventID: 800
@@ -23,13 +53,31 @@ detection:
       - 'GacInstall'
       - '.dll'
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - 'System.Reflection.Assembly'
-      - 'GacInstall'
-      - '.dll'
+  condition: 1 of selection*
+falsepositives:
+- New modules deployed on IIS Web servers, but also Exchange and ADCS servers
+level: high
 
+---
+title: Webserver IIS module installed via GAC manipulation (PowerShell) - ps_script
+id: 37cdffc9-9043-43a2-9bca-09cd6fd6d0cb
+related:
+  - id: bee98ab9-97bc-414c-a8cd-1231f3f6acb4
+    type: similar
+description: Detects scenarios where an attacker attempts to deploy an IIS module via Global Assembly cache (GAC) manipulation.
+references:
+- https://www.microsoft.com/security/blog/2022/07/26/malicious-iis-extensions-quietly-open-persistent-backdoors-into-servers/
+- https://docs.microsoft.com/fr-fr/iis/get-started/introduction-to-iis/iis-modules-overview
+- https://github.com/LTruijens/powershell-gac
+tags:
+- attack.persistence
+- attack.t1505.004
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

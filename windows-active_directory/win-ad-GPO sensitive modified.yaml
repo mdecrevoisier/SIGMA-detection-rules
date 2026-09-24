@@ -1,4 +1,5 @@
 title: Suspicious modification of a sensitive Group Policy (GPO)
+id: f2b50030-c65d-4b5b-ad5b-c0f4d21c5944
 description: Detects scenarios where an attacker will attempt to take control over a group policy.
 requirements: native and existing auditing SACL ("Write all properties") should already be present on "Policies" container.
 references:

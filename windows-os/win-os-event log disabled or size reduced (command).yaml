@@ -1,4 +1,5 @@
 title: Event log deactivation or size reduction (command)
+id: 0a0e73bc-9bed-438b-b4f1-06b511d69d23
 description: Detects scenarios where an attacker disable or reduce the size of an event log.
 references:
 - https://www.recordedfuture.com/five-common-ransomware-techniques
@@ -18,10 +19,11 @@ detection: # Full command: wevtutil.exe” sl Security /e:false
     CommandLine|contains:
       - 'set-log'
       - sl # reduced command
+  and_selection_2:
     CommandLine|contains:
       - '/e:false' # <Enabled> - Does not work with all channel
       - '/ms:'     # <MaxSize> - suspicious if low value (min is 64Kb)
-  condition: selection
+  condition: (selection and all of and_selection_*)
 falsepositives:
 - None
 level: high

@@ -1,4 +1,5 @@
-title: Event log clear attempt (PowerShell)
+title: Event log clear attempt (PowerShell) - ps_module
+id: aa93626f-b815-4e20-84f6-adaac362b623
 description: Detects scenarios where an attacker attempts to clear the event logs.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
@@ -10,10 +11,37 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # full command: "Clear-EventLog -LogName application, system"
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Clear-EventLog
+      - LogName
+
+  condition: selection_powershell_modern
+falsepositives:
+- None
+level: high
+
+---
+title: Event log clear attempt (PowerShell) - ps_classic_script
+id: 464b9a4f-92de-4809-a1e7-34bcf94573ec
+related:
+  - id: aa93626f-b815-4e20-84f6-adaac362b623
+    type: similar
+description: Detects scenarios where an attacker attempts to clear the event logs.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/clear-eventlog?view=powershell-5.1
+tags:
+- attack.defense_evasion
+- attack.t1070.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # full command: "Clear-EventLog -LogName application, system"
   selection_powershell_native:
     EventID: 800
@@ -21,19 +49,37 @@ detection: # full command: "Clear-EventLog -LogName application, system"
       - Clear-EventLog
       - LogName
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Clear-EventLog
-      - LogName
+  condition: selection_powershell_native
+falsepositives:
+- None
+level: high
 
+---
+title: Event log clear attempt (PowerShell) - ps_script
+id: 7d12571d-19de-4f0d-a222-d7f84e6a1b1c
+related:
+  - id: aa93626f-b815-4e20-84f6-adaac362b623
+    type: similar
+description: Detects scenarios where an attacker attempts to clear the event logs.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/clear-eventlog?view=powershell-5.1
+tags:
+- attack.defense_evasion
+- attack.t1070.001
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # full command: "Clear-EventLog -LogName application, system"
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - Clear-EventLog
       - LogName
 
-  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+  condition: selection_powershell_block
 falsepositives:
 - None
 level: high

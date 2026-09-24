@@ -1,4 +1,5 @@
 title: Azure Windows virtual machine login via serial console
+id: be793ef8-2473-416a-8a16-699039b669d7
 description: Detects if an attacker logs on using the serial console.
 references:
 - https://msrc.microsoft.com/blog/2023/08/azure-serial-console-attack-and-defense-part-1/

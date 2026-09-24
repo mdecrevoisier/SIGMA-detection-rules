@@ -1,4 +1,5 @@
 title: RDP shadow session configuration enabled (registry)
+id: 32ae281f-c581-4d0b-ba7e-f8fd29018a9c
 description: Detects scenarios where an attacker would enable shadow configuratin via registry. Note that this alert does not report the created Key and that further verification on hosts will be required to confirm the behavior.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0009-Collection/T1125-Video%20capture

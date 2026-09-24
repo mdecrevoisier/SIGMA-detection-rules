@@ -1,4 +1,5 @@
 title: Hidden account creation (with fast deletion)
+id: 5457e8d8-7822-4ee0-9405-cb10315109a8
 description: Detects scenarios where an attacker creates a hidden local account. See also rule "User account creation disguised in a computer account".
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
