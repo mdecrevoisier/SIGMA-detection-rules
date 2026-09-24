@@ -1,4 +1,5 @@
 title: Renamed Procdump tool used for dumping LSASS process
+id: 45c1177c-d465-4323-9200-26b7e4930f58
 description: Detects scenarios where an attacker attempts to dump the LSASS process content using a renamed version of the Procdump tool.
 references:
 - https://www.intrinsec.com/apt27-analysis/

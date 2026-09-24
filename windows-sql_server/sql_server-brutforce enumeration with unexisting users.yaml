@@ -1,11 +1,12 @@
 title: SQL Server - Brutforce enumeration with non existing users (login)
+id: 7ce9f5ab-6551-4b01-a59a-2609006e399a
 description: Detects scenarios where an attacker attempts to enumerate potential existing SQL users, resulting in failed logins with unexisting or invalid accounts.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
 - https://www.eraofdata.com/sql-server/connectivity/login-failures/
 - https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms366351(v=sql.105)
 tags:
-- attack.credential_access
+- attack.credential-access
 - attack.t1110
 author: mdecrevoisier
 status: experimental

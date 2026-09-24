@@ -1,4 +1,5 @@
 title: New member added to an Exchange administration group (high risk)
+id: b266d675-64fd-4fed-a1b7-1106910c3370
 description: Detects scenarios where a new member is added to a sensitive group related to Exchange server
 references:
 - https://msexchangeguru.com/2015/12/18/rbac-2016/

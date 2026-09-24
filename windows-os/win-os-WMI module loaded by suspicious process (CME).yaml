@@ -1,9 +1,9 @@
 title: WMI module loaded by suspicious process
+id: 2ca9bfeb-0f34-4dca-a05a-9de4da3a5a5d
 description: Detects scenarios where an attacker attempts to load WMI modules from a suspicious process (like PowerShell).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation
 - https://threathunterplaybook.com/notebooks/windows/02_execution/WIN-190811201010.html
-- https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
 - https://medium.com/threatpunter/detecting-adversary-tradecraft-with-image-load-event-logging-and-eql-8de93338c16
 - https://posts.specterops.io/real-time-sysmon-processing-via-ksql-and-helk-part-3-basic-use-case-8fbf383cb54f
 - https://github.com/OTRF/ThreatHunter-Playbook/blob/master/signatures/sigma/sysmon_wmi_module_load.yml

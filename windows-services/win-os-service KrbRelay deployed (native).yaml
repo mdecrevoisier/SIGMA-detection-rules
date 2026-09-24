@@ -1,4 +1,5 @@
 title: KrbRelayUp service installation (native)
+id: 2e1718a7-87a9-4d48-ae0d-5930178e02ed
 description: Detects scenarios where an attacker attempts to escalate privileges while abusing KrbRelayUp attack.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution

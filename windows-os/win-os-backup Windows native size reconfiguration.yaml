@@ -1,4 +1,5 @@
 title: Windows native backup size re-configuration
+id: e40b79dc-c3e6-4f09-9b00-021bd73ae255
 description: Detects scenarios where an attacker attempts to delete existing Windows native backup by reducing the allocated backup storage.
 references:
 - https://www.picussecurity.com/resource/blog/how-to-beat-nefilim-ransomware-attacks

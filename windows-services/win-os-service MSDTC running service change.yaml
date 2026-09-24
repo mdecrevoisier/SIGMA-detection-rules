@@ -4,9 +4,8 @@ description: This rule detects activity related to 'SMOKEDHAM backdoor' which ma
 references:
 - https://medium.com/trac-labs/who-ordered-the-smokedham-backdoor-delicacies-in-the-wild-87f51e2e5bd2
 tags:
-- attack.privilege_escalation
-- attack.t1574.002 # Hijack Execution Flow: DLL Side-Loading 
-- attack.privilege_escalation
+- attack.privilege-escalation
+- attack.t1574.001 # Hijack Execution Flow: DLL Side-Loading 
 - attack.t1543.003 # Create or Modify System Process: Windows Service 
 author: mdecrevoisier
 status: production

@@ -1,10 +1,11 @@
 title: System time changed
+id: b2514fae-2ae1-4b76-9642-d960f41d3e70
 description: Detects scenarios where an attacker attempts to change the system time to evade defense. Check also if NewTime is different from PreviousTime to reduce false positives.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.006-Timestomp
 - https://blog.menasec.net/2019/02/threat-hunting-19-suspicious-system.html
 tags:
-- attack.defense_evasion
+- attack.stealth
 - attack.t1070.006
 author: mdecrevoisier
 status: experimental

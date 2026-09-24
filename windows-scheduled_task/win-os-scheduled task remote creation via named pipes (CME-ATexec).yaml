@@ -1,4 +1,5 @@
 title: Massive remote schedule task creation via named pipes (CrackMapExec with ATexec)
+id: 76df8bef-672a-4ead-8687-6b83f984bc3c
 description: Detects scenarios where an attacker remotely creates a scheduled task on multiple hosts over named pipes to execute commands or elevate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task

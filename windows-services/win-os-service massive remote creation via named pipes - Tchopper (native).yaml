@@ -1,4 +1,5 @@
 title: Massive remote service creation via named pipes - Tchopper
+id: 1a0eb388-ac98-4ebc-8555-be233da404e7
 description: Detects scenarios where an attacker uses the Tchopper tool by remotely creating multiple services via named pipes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution

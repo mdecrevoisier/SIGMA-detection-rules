@@ -1,10 +1,11 @@
 title: Suspicious modification of a sensitive Group Policy (GPO)
+id: f2b50030-c65d-4b5b-ad5b-c0f4d21c5944
 description: Detects scenarios where an attacker will attempt to take control over a group policy.
 requirements: native and existing auditing SACL ("Write all properties") should already be present on "Policies" container.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1484.001-Domain%20Policy%20Modification-Group%20Policy%20Modification
 tags:
-- attack.privilege_escalation
+- attack.privilege-escalation
 - attack.t1484.001
 author: mdecrevoisier
 status: experimental

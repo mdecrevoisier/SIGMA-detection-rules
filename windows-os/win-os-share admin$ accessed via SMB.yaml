@@ -1,9 +1,10 @@
 title: SMB admin share accessed
+id: d393928a-a664-499f-a989-4bc680ee59fe
 description: Detects scenarios where an attacker attempts to connect to the administrative SMB share.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.002
 author: mdecrevoisier
 status: experimental

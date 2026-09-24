@@ -1,4 +1,5 @@
 title: Edge/Chrome headless feature abuse for payload download
+id: 6ec6792e-ec25-483f-babd-9334080d42e1
 description: Detects scenarios where an attacker executes Chrome in headless mode in order to download a payload. Document Object Model (DOM) may also be abused to download obfuscated data from attacker repositary.
 references:
 - https://twitter.com/mrd0x/status/1478234484881436672?t=oVqHbDQx9fsc6yWmNTV3eA&s=09

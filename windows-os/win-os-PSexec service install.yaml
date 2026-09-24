@@ -1,4 +1,5 @@
-title: PSexec service installation
+title: PSexec service installation - system
+id: 1c54a4b4-d1a3-4a9a-b5c6-a466c1bd850d
 description: Detects scenarios where an attacker installs PSexec service.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -7,15 +8,46 @@ references:
 - https://nv2lt.github.io/windows/smb-psexec-smbexec-winexe-how-to/
 - https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
 tags:
-- attack.privilege_execution
+- attack.privilege-escalation
 - attack.t1543.003
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: 
-    - system
-    - security
+  service: system
+detection:
+  selection_service_install:
+    EventID:
+      - 4697 # SECURITY logs: new service
+      - 7045 # SYSTEM logs: new service
+    ServiceName|contains: PSEXESVC
+
+  condition: selection_service_install
+falsepositives:
+- Administrator activity
+level: medium
+
+---
+title: PSexec service installation - security
+id: 486cd8b0-0930-417b-b48f-7824c5fd9ac2
+related:
+  - id: 1c54a4b4-d1a3-4a9a-b5c6-a466c1bd850d
+    type: similar
+description: Detects scenarios where an attacker installs PSexec service.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://attack.mitre.org/software/S0029/
+- https://pentera.io/blog/135-is-the-new-145/
+- https://nv2lt.github.io/windows/smb-psexec-smbexec-winexe-how-to/
+- https://www.synacktiv.com/publications/traces-of-windows-remote-command-execution.html
+tags:
+- attack.privilege-escalation
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
 detection:
   selection_service_install:
     EventID:

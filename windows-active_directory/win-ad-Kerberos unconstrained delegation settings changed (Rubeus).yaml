@@ -1,4 +1,5 @@
 title: Host unconstrained delegation settings changed for potential abuse (Rubeus)
+id: 43926c05-b2da-4f38-b141-430a5f9a6e43
 description: Detects scenarios where an attacker modifies host delegation settings for privilege escalation.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

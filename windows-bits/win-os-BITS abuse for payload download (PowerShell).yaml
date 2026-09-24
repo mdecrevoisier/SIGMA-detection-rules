@@ -1,4 +1,5 @@
-title: BITS payload downloaded via PowerShell
+title: BITS payload downloaded via PowerShell - ps_module
+id: b9dc502f-040b-404a-a1e6-51a9960e000c
 description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs
@@ -7,15 +8,14 @@ references:
 - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bitsadmin-examples
 - https://attack.mitre.org/software/S0190/
 - https://www.microsoft.com/security/blog/2019/12/12/multi-stage-downloader-trojan-sload-abuses-bits-almost-exclusively-for-malicious-activities/
-- https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
 - https://www.hackingarticles.in/windows-for-pentester-bitsadmin/
 - https://thedfirreport.com/2023/09/25/from-screenconnect-to-hive-ransomware-in-61-hours/
 tags:
 - attack.exfiltration
 - attack.t1048 # Exfiltration Over Alternative Protocol
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1570 # Lateral Tool Transfer
-- attack.Command_and_control
+- attack.command-and-control
 - attack.t1105 # Ingress Tool Transfer
 - attack.persistence
 - attack.t1197 # Bits jobs
@@ -23,10 +23,53 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # Full command: 'Start-BitsTransfer -Priority foreground -Source https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1197/T1197.md -Destination C:\Users\bits.ps1'
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Start-BitsTransfer
+      - '-Source'
+    Payload|contains:
+      - 'http://'
+      - 'https://'
+      - 'ftp://'
+
+  condition: 1 of selection*
+falsepositives:
+- None
+level: medium
+
+---
+title: BITS payload downloaded via PowerShell - ps_classic_script
+id: f27a41ad-88bb-43d2-8256-edbadfadc5e0
+related:
+  - id: b9dc502f-040b-404a-a1e6-51a9960e000c
+    type: similar
+description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs
+- https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
+- https://docs.microsoft.com/en-us/windows/win32/bits/bitsadmin-tool
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bitsadmin-examples
+- https://attack.mitre.org/software/S0190/
+- https://www.microsoft.com/security/blog/2019/12/12/multi-stage-downloader-trojan-sload-abuses-bits-almost-exclusively-for-malicious-activities/
+- https://www.hackingarticles.in/windows-for-pentester-bitsadmin/
+- https://thedfirreport.com/2023/09/25/from-screenconnect-to-hive-ransomware-in-61-hours/
+tags:
+- attack.exfiltration
+- attack.t1048 # Exfiltration Over Alternative Protocol
+- attack.lateral-movement
+- attack.t1570 # Lateral Tool Transfer
+- attack.command-and-control
+- attack.t1105 # Ingress Tool Transfer
+- attack.persistence
+- attack.t1197 # Bits jobs
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # Full command: 'Start-BitsTransfer -Priority foreground -Source https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1197/T1197.md -Destination C:\Users\bits.ps1'
   selection1_powershell_native:
     EventID: 800
@@ -38,16 +81,42 @@ detection: # Full command: 'Start-BitsTransfer -Priority foreground -Source http
       - 'https://'
       - 'ftp://'
 
-  selection2_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Start-BitsTransfer
-      - '-Source'
-    Payload|contains:
-      - 'http://'
-      - 'https://'
-      - 'ftp://'
+  condition: 1 of selection*
+falsepositives:
+- None
+level: medium
 
+---
+title: BITS payload downloaded via PowerShell - ps_script
+id: fb0ece0c-0a4d-4734-83d8-f84af3f97006
+related:
+  - id: b9dc502f-040b-404a-a1e6-51a9960e000c
+    type: similar
+description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs
+- https://medium.com/@threathuntingteam/background-intelligent-transfer-protocol-ab81cd900aa7
+- https://docs.microsoft.com/en-us/windows/win32/bits/bitsadmin-tool
+- https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bitsadmin-examples
+- https://attack.mitre.org/software/S0190/
+- https://www.microsoft.com/security/blog/2019/12/12/multi-stage-downloader-trojan-sload-abuses-bits-almost-exclusively-for-malicious-activities/
+- https://www.hackingarticles.in/windows-for-pentester-bitsadmin/
+- https://thedfirreport.com/2023/09/25/from-screenconnect-to-hive-ransomware-in-61-hours/
+tags:
+- attack.exfiltration
+- attack.t1048 # Exfiltration Over Alternative Protocol
+- attack.lateral-movement
+- attack.t1570 # Lateral Tool Transfer
+- attack.command-and-control
+- attack.t1105 # Ingress Tool Transfer
+- attack.persistence
+- attack.t1197 # Bits jobs
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Full command: 'Start-BitsTransfer -Priority foreground -Source https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1197/T1197.md -Destination C:\Users\bits.ps1'
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

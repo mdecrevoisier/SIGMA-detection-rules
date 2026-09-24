@@ -1,12 +1,13 @@
 title: Massive services deletion burst
+id: c980f63e-9258-4b76-9a78-5e0d1729344a
 description: Detects scenarios where an attacker attempts to delete multiples services on a host. Attacker may target services related to databases, security products or backups (Veeam, Symantec, Acronis ...).
 references:
 - https://unit42.paloaltonetworks.com/mallox-ransomware/
 tags:
 - attack.impact
 - attack.t1489 # Service Stop 
-- attack.defense_evasion
-- attack.1562.001 # Impair Defenses: Disable or Modify Tools 
+- attack.defense-impairment
+- attack.t1685 # Impair Defenses: Disable or Modify Tools 
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -1,11 +1,12 @@
 title: Network share manipulation via commandline
+id: d871148e-2ba2-47b4-b1db-4fb030338e32
 description: Detects scenarios where an attacker attempts to enumerate or to establish a connection to a network share.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
 - https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
 - https://attack.mitre.org/software/S0039/
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.002
 author: mdecrevoisier
 logsource:

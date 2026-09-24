@@ -1,11 +1,12 @@
 title: Brutforce enumeration with non existing users (login)
+id: 5e5cb6dd-1632-4a1f-bc9b-5d34c6769c05
 name: login_non_existing_user
 description: Detects scenarios where an attacker attempts to enumerate potential existing users, resulting in failed logins with unexisting or invalid accounts.
 references:
   - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
   - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4625
 tags:
-  - attack.credential_access
+  - attack.credential-access
   - attack.t1110
 author: mdecrevoisier
 status: experimental
@@ -25,6 +26,7 @@ level: high
 
 ---
 title: Brutforce enumeration with non existing users (login) Count
+id: 558fbe82-0410-41f2-baa0-3f6d4f7f0d45
 status: experimental
 correlation:
   type: value_count

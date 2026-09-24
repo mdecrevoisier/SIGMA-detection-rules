@@ -1,4 +1,5 @@
 title: New rights granted to an account for privilege escalation
+id: 417874b0-72fd-45e9-907a-4f543f82a09a
 description: Detects scenarios where an attacker grants new rights to an account in order to escalate privileges
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
@@ -7,7 +8,7 @@ references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment
 - https://medium.com/falconforce/falconfriday-detecting-lsass-dumping-with-debug-privileges-0xff1f-328fdb78f5be
 tags:
-- attack.privilege_escalation
+- attack.privilege-escalation
 - attack.t1134
 author: mdecrevoisier
 status: experimental

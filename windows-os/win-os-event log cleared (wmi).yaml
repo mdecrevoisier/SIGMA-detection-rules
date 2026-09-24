@@ -1,12 +1,13 @@
 title: Event log clear attempt (wmi)
+id: baad2c77-19c1-4231-8c91-3522cf5d4867
 description: Detects scenarios where an attacker attempts to clear the event logs.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs
 - https://www.windows-commandline.com/backup-delete-event-log-files/
 - https://lolbas-project.github.io/lolbas/Binaries/Wmic/
 tags:
-- attack.defense_evasion
-- attack.t1070.001
+- attack.defense-impairment
+- attack.t1685.005
 author: mdecrevoisier
 status: experimental
 logsource:

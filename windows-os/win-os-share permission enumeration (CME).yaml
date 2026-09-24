@@ -1,4 +1,5 @@
 title: CrackMaxpExec share permission enumeration
+id: 8e2a501f-5233-4ae8-afed-6b43e9acef24
 description: Detects scenarios where an attacker would perform share permission enumeration using CrackMaxExec SMBmodule.
 correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 5145 to identify the source of the enumeration.
 references:
@@ -7,8 +8,8 @@ references:
 - https://www.infosecmatter.com/crackmapexec-module-library/
 - https://mpgn.gitbook.io/crackmapexec/smb-protocol/enumeration/enumerate-shares-and-access
 tags:
-- attack.
-- attack.t
+- attack.discovery
+- attack.t1135 # Network Share Discovery
 author: mdecrevoisier
 status: experimental
 logsource:

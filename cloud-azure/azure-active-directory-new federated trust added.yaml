@@ -1,12 +1,13 @@
 title: Active Directory federated trust added
+id: 466def61-e6e0-4535-8279-844c92ef97e4
 description: Detects scenarios where an federated trust is added by an attacker.
 references:
 - https://www.inversecos.com/2021/11/how-to-detect-azure-active-directory.html
 - https://www.mandiant.com/resources/blog/remediation-and-hardening-strategies-for-microsoft-365-to-defend-against-unc2452
 - https://www.mandiant.com/sites/default/files/2022-08/remediation-hardening-strategies-for-m365-defend-against-apt29-white-paper.pdf 
 tags:
-  - attack.defense_evasion
-  - attack.privilege_escalation
+  - attack.defense-impairment
+  - attack.privilege-escalation
   - attack.t1484.002 # Domain Policy Modification: Domain Trust Modification
 author: mdecrevoisier
 status: experimental

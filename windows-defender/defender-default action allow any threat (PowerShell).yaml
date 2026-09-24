@@ -1,4 +1,5 @@
-title: Microsoft Defender default action changed to allow any threat (PowerShell)
+title: Microsoft Defender default action changed to allow any threat (PowerShell) - ps_module
+id: 4cb61928-a362-4fa4-9425-c21a5ce3b443
 description: Detects scenarios where an attacker attempts to change Defender default action to allow any threats
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
@@ -10,16 +11,59 @@ references:
 - https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
 - https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
-- attack.defense_evasion
-- attack.t1562.001
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # Set-MpPreference -UnknownThreatDefaultAction Allow -LowThreatDefaultAction Allow -HighThreatDefaultAction Allow  -ModerateThreatDefaultAction Allow   -SevereThreatDefaultAction Allow
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Set-MpPreference
+      - Add-MpPreference
+    Payload|contains:
+      - '6' # MP_THREAT_ACTION_ALLOW
+      - 'Allow'
+    Payload|contains:
+      - HighThreatDefaultAction
+      - ModerateThreatDefaultAction
+      - LowThreatDefaultAction
+      - SevereThreatDefaultAction
+      - UnknownThreatDefaultAction 
+      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
+
+  condition: 1 of selection*
+falsepositives:
+- None
+level: high
+
+---
+title: Microsoft Defender default action changed to allow any threat (PowerShell) - ps_classic_script
+id: 65c76f01-e720-4877-868d-56798600db54
+related:
+  - id: 4cb61928-a362-4fa4-9425-c21a5ce3b443
+    type: similar
+description: Detects scenarios where an attacker attempts to change Defender default action to allow any threats
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+tags:
+- attack.defense-impairment
+- attack.t1685
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # Set-MpPreference -UnknownThreatDefaultAction Allow -LowThreatDefaultAction Allow -HighThreatDefaultAction Allow  -ModerateThreatDefaultAction Allow   -SevereThreatDefaultAction Allow
   selection1_powershell_native:
     EventID: 800
@@ -37,22 +81,36 @@ detection: # Set-MpPreference -UnknownThreatDefaultAction Allow -LowThreatDefaul
       - UnknownThreatDefaultAction 
       - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
 
-  selection2_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Set-MpPreference
-      - Add-MpPreference
-    Payload|contains:
-      - '6' # MP_THREAT_ACTION_ALLOW
-      - 'Allow'
-    Payload|contains:
-      - HighThreatDefaultAction
-      - ModerateThreatDefaultAction
-      - LowThreatDefaultAction
-      - SevereThreatDefaultAction
-      - UnknownThreatDefaultAction 
-      - ThreatIDDefaultAction_Actions # used with "Add-MpPreference" for a specific identified threat
+  condition: 1 of selection*
+falsepositives:
+- None
+level: high
 
+---
+title: Microsoft Defender default action changed to allow any threat (PowerShell) - ps_script
+id: a3f1eb18-1bab-4a69-b659-30120980a0bf
+related:
+  - id: 4cb61928-a362-4fa4-9425-c21a5ce3b443
+    type: similar
+description: Detects scenarios where an attacker attempts to change Defender default action to allow any threats
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://github.com/swagkarna/Defeat-Defender-V1.2
+- https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2019-ps
+- https://docs.microsoft.com/en-us/windows/client-management/mdm/defender-csp
+- https://powershell.one/wmi/root/microsoft/windows/defender/msft_mppreference
+- https://gist.github.com/pe3zx/7c5e0080c3b0869ccba1f1dc2ea0c5e0
+- https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+tags:
+- attack.defense-impairment
+- attack.t1685
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # Set-MpPreference -UnknownThreatDefaultAction Allow -LowThreatDefaultAction Allow -HighThreatDefaultAction Allow  -ModerateThreatDefaultAction Allow   -SevereThreatDefaultAction Allow
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

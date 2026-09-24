@@ -1,4 +1,5 @@
 title: Suspicious SIP or trust provider registration
+id: 97feca04-7736-45bb-95ea-cff318b11f9f
 description: Detects scenarios where an attacker attempts to register a SIP or trust provider in order to mislead signature validation checks.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1553-%20Subvert%20Trust%20Controls
@@ -9,7 +10,7 @@ references:
 - https://www.ired.team/offensive-security/persistence/t1198-trust-provider-hijacking
 - https://dmcxblue.gitbook.io/red-team-notes-2-0/red-team-techniques/defense-evasion/t1553-subvert-trust-controls/sip-and-trust-provider-hijacking
 tags:
-- attack.defense_evasion
+- attack.defense-impairment
 - attack.t1553.003 # Subvert Trust Controls: SIP and Trust Provider Hijacking 
 author: mdecrevoisier (adapted from Nasreddine Bencherchali)
 status: experimental
