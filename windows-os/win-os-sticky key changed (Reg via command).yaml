@@ -1,4 +1,5 @@
 title: Stickey key IFEO (Reg via command)
+id: aaeb7e2f-e825-4de7-99a3-22e0f297958d
 description: Detects scenarios where an attacker attempts to enable the Image File Execution Options (IFEO) debugger for sethc.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection

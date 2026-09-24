@@ -1,4 +1,5 @@
 title: Event log clear attempt (PowerShell)
+id: aa93626f-b815-4e20-84f6-adaac362b623
 description: Detects scenarios where an attacker attempts to clear the event logs.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.001-Clear%20Windows%20event%20logs

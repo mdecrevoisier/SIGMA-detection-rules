@@ -1,4 +1,5 @@
 title: Audit policy disabled by command line
+id: 5e8db291-2ea0-4724-9263-033a79b5649d
 description: Detects scenarios where an attacker attempts disbaled the audit policy for defense evasion purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.002-Disable%20Windows%20Event%20Logging

@@ -1,4 +1,5 @@
 title: Account set with Kerberos DES encryption activated (weakness introduction)
+id: 8361ad5b-3069-47e0-a670-57846f8f06b2
 description: Detects scenarios where an attacker set an account with DES Kerberos encryption to perform ticket brutforce.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

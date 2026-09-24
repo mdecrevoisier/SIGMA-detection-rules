@@ -1,4 +1,5 @@
 title: Suspicious Active Directory DPAPI attributes accessed (Mimikatz, DCSync, RiskySPN)
+id: a48165c9-a32c-40c4-8de8-6a38f8f16fbc
 name: dpapi_access # Rule Reference
 description: Detects scenarios where an attacker attempts to extract sensitive DPAPI information from Active Directory (RiskySPN PowerShell tool, DCSync and Mimikatz may also trigger this rule).
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
@@ -37,6 +38,7 @@ level: informational
 
 ---
 title: Suspicious Active Directory DPAPI attributes accessed Count
+id: aec0765b-16d5-4f8b-bd43-b6ae13d0355b
 status: experimental
 correlation:
   type: value_count

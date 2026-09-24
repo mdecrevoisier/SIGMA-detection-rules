@@ -1,4 +1,5 @@
 title: Event log deactivation or size reduction (command)
+id: 0a0e73bc-9bed-438b-b4f1-06b511d69d23
 description: Detects scenarios where an attacker disable or reduce the size of an event log.
 references:
 - https://www.recordedfuture.com/five-common-ransomware-techniques

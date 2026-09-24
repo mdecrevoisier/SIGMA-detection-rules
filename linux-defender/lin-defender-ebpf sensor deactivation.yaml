@@ -1,5 +1,5 @@
 title: Defender for Endpoint eBPF sensor deactivation
-id:
+id: 3095eeaf-8e3b-4d7c-bcf5-dfcb7e9ec3c8
 description: Detects if the eBPF sensor of Defender for Endpoint (Linux) is deactivated to evade detections.
 references:
 - https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/linux-support-ebpf?view=o365-worldwide&WT.mc_id=AZ-MVP-5004810

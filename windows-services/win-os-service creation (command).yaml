@@ -1,4 +1,5 @@
 title: Service creation (command)
+id: a78c62ec-50d9-4122-b7ca-3e0c89155426
 description: Detects scenarios where an attacker attempts to create a service for persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

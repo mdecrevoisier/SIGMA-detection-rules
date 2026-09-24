@@ -1,4 +1,5 @@
 title: Microsoft Defender security components disabled (PowerShell)
+id: ff910029-e624-455b-b443-2808a12d0774
 description: Detects scenarios where an attacker attempts to disable Defender security features in PowerShell
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool

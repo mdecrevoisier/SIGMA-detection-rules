@@ -1,4 +1,5 @@
 title: Scheduled persistent task with SYSTEM privileges creation
+id: 8e852af3-8914-4d30-9409-7af5bef794a5
 description: Detects scenarios where an attacker creates a privileged task to establish persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task

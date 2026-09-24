@@ -1,4 +1,5 @@
 title: Encoded PowerShell payload deployed (PowerShell)
+id: d06f779e-0b07-44d3-9532-7d3318cfe9d3
 description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1059.001-PowerShell

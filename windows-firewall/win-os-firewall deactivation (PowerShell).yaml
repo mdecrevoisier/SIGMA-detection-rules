@@ -1,4 +1,5 @@
 title: Firewall deactivation (PowerShell)
+id: feb808a9-02de-4f0f-b152-68960e529b55
 description: Detects scenarios where an attacker disabled the Windows Firewall to evade defense.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.004-Impair%20Defenses-Disable%20or%20Modify%20System%20Firewall
