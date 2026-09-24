@@ -1,4 +1,5 @@
 title: Remote shell execution via SMB admin share
+id: 4f370c81-7e44-4098-9cb5-1c5fbb847c5f
 description: Detects scenarios where an attacker execute a remote shell via the admin share.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares

@@ -1,4 +1,5 @@
 title: Sticky key sethc file failed replacement
+id: 0d353d6d-be49-46cc-9df9-9f7c6fbb6331
 description: Detects scenarios where an attacker failed to replace the original sethc.exe file by cmd.exe.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1546-Image%20File%20Execution%20Options%20Injection

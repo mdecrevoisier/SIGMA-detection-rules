@@ -1,4 +1,5 @@
 title: Kerberos key list attack for credential dumping
+id: d956f2c8-587d-4140-90e9-025f697d6628
 description: Detects scenarios where an attacker attempts to forge a special Kerberos service ticket in order to extract credentials from Read Only Domain Controllers (RODC).
 references:
 - https://www.secureauth.com/blog/the-kerberos-key-list-attack-the-return-of-the-read-only-domain-controllers/

@@ -1,4 +1,5 @@
-title: System time changed (PowerShell)
+title: System time changed (PowerShell) - ps_module
+id: 79493c7a-df55-4e38-857a-22d1ed9f0cae
 description: Detects scenarios where an attacker attempts to change the system time to evade defense.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.006-Timestomp
@@ -11,10 +12,39 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection: # full command: Set-Date -Date (Get-Date).AddDays(3)
+  selection_powershell_modern:
+    EventID: 4103
+    Payload|contains: Set-Date
+    Payload|contains:
+      - -Date
+      - -Adjust
+
+  condition: selection_powershell_modern
+falsepositives:
+- None
+level: medium
+
+---
+title: System time changed (PowerShell) - ps_classic_script
+id: e975940b-4622-40f5-a75b-16445c846e28
+related:
+  - id: 79493c7a-df55-4e38-857a-22d1ed9f0cae
+    type: similar
+description: Detects scenarios where an attacker attempts to change the system time to evade defense.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.006-Timestomp
+- https://blog.menasec.net/2019/02/threat-hunting-19-suspicious-system.html
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-date
+tags:
+- attack.defense_evasion
+- attack.t1070.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection: # full command: Set-Date -Date (Get-Date).AddDays(3)
   selection_powershell_native:
     EventID: 800
@@ -23,13 +53,31 @@ detection: # full command: Set-Date -Date (Get-Date).AddDays(3)
       - -Date
       - -Adjust
 
-  selection_powershell_modern:
-    EventID: 4103
-    Payload|contains: Set-Date
-    Payload|contains:
-      - -Date
-      - -Adjust
+  condition: selection_powershell_native
+falsepositives:
+- None
+level: medium
 
+---
+title: System time changed (PowerShell) - ps_script
+id: c35c2302-69eb-404d-a8a0-d2dff25d6f1f
+related:
+  - id: 79493c7a-df55-4e38-857a-22d1ed9f0cae
+    type: similar
+description: Detects scenarios where an attacker attempts to change the system time to evade defense.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1070.006-Timestomp
+- https://blog.menasec.net/2019/02/threat-hunting-19-suspicious-system.html
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-date
+tags:
+- attack.defense_evasion
+- attack.t1070.006
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # full command: Set-Date -Date (Get-Date).AddDays(3)
   selection_powershell_block:
     EventID: 4104
     ScriptBlockText|contains: Set-Date
@@ -37,8 +85,7 @@ detection: # full command: Set-Date -Date (Get-Date).AddDays(3)
       - -Date
       - -Adjust
 
-  condition: selection_powershell_native or selection_powershell_modern or selection_powershell_block
+  condition: selection_powershell_block
 falsepositives:
 - None
 level: medium
-

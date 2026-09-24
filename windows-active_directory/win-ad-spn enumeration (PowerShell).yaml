@@ -1,4 +1,5 @@
-title: Suspicious SPN enumeration previous to Kerberoasting attack (PowerShell)
+title: Suspicious SPN enumeration previous to Kerberoasting attack (PowerShell) - ps_module
+id: a799b973-11d3-4bd5-aba3-f672b95351cd
 description: Detects scenarios where an attacker attempts to retrieve SPN using PowerShell and native tools.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
@@ -17,10 +18,44 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains:
+      - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
+      - 'Add-Type -AssemblyName System.IdentityModel'
+
+  condition: 1 of selection*
+falsepositives:
+- Administrators
+level: high
+
+---
+title: Suspicious SPN enumeration previous to Kerberoasting attack (PowerShell) - ps_classic_script
+id: bfa2259a-ba82-477d-bb97-64e6dbf8386d
+related:
+  - id: a799b973-11d3-4bd5-aba3-f672b95351cd
+    type: similar
+description: Detects scenarios where an attacker attempts to retrieve SPN using PowerShell and native tools.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
+- https://github.com/nidem/kerberoast
+- https://github.com/cyberark/RiskySPN
+- https://pentestlab.blog/2018/06/04/spn-discovery/
+- https://adsecurity.org/?p=3458
+- https://redcanary.com/blog/marshmallows-and-kerberoasting/
+- https://www.security.com/threat-intelligence/us-china-espionage
+tags:
+- attack.account_discovery
+- attack.t1087.002
+- attack.credential_access
+- attack.t1558.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection1_powershell_native:
     EventID: 800
@@ -28,12 +63,37 @@ detection:
       - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
       - 'Add-Type -AssemblyName System.IdentityModel'
 
-  selection2_powershell_modern:
-    EventID: 4103
-    Payload|contains:
-      - 'System.IdentityModel.Tokens.KerberosRequestorSecurityToken'
-      - 'Add-Type -AssemblyName System.IdentityModel'
+  condition: 1 of selection*
+falsepositives:
+- Administrators
+level: high
 
+---
+title: Suspicious SPN enumeration previous to Kerberoasting attack (PowerShell) - ps_script
+id: fe698d7b-8fd7-4d37-a332-cee76be8feea
+related:
+  - id: a799b973-11d3-4bd5-aba3-f672b95351cd
+    type: similar
+description: Detects scenarios where an attacker attempts to retrieve SPN using PowerShell and native tools.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery
+- https://github.com/nidem/kerberoast
+- https://github.com/cyberark/RiskySPN
+- https://pentestlab.blog/2018/06/04/spn-discovery/
+- https://adsecurity.org/?p=3458
+- https://redcanary.com/blog/marshmallows-and-kerberoasting/
+- https://www.security.com/threat-intelligence/us-china-espionage
+tags:
+- attack.account_discovery
+- attack.t1087.002
+- attack.credential_access
+- attack.t1558.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains:

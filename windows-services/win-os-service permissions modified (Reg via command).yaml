@@ -1,4 +1,5 @@
 title: Service permissions hijacked for privileges abuse (reg via command)
+id: 5b7692cb-0f53-45fe-b56b-43d6316457e9
 description: Detects scenarios where an attacker modify the permissions of a service in order to abuse its privileges
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

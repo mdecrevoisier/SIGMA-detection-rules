@@ -1,4 +1,5 @@
 title: Disabled guest or builtin account activated
+id: 12d7a85a-d686-42a3-8009-a0d2de75bc14
 description: Detects scenarios where an attacker enables a disabled builtin account.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account

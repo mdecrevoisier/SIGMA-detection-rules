@@ -1,4 +1,5 @@
 title: DLL ServerLevelPluginDll command installation
+id: 70a2596d-7f85-4950-856b-be92a6df6225
 description: Detects scenarios where a DLL is loaded by the DNS server in order to escalate privileges or initiate a remote shell.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1574-Hijack%20Execution%20Flow

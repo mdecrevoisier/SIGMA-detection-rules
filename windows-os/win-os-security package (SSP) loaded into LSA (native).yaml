@@ -1,4 +1,5 @@
 title: Security package (SSP) loaded into LSA (native)
+id: eba602e1-3c77-44d2-8b00-5a2b55caab63
 description: Detects scenarios where an attacker loads a malicious SSP (Security Support Provider) into the LSA process. Note that this rule will not work with "in memory" SSP injection (Mimikatz) as no event will be triggered.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1547-Boot%20or%20Logon%20Autostart%20Execution

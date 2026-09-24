@@ -1,4 +1,5 @@
 title: SQL Server - Member got new privileges added on a SQL instance level
+id: 6750985d-1ebd-4fe8-8d7f-4b2fce88c754
 description: Detects scenarios where an attacker grants new privileges on a SQL instance level
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

@@ -1,4 +1,5 @@
 title: Kerberos enumeration with existing/unexisting users (Kerbrute)
+id: 708770cb-71ef-4f9a-b8f1-5072543d3064
 name: kerbrute_enumeration
 description: Detects scenarios where an attacker attempts to enumerate existing or non existing users using "Kerbrute". This use case can also be related to spot vulnearbility "MS14-068".
 references:
@@ -30,6 +31,7 @@ level: high
 
 ---
 title: Kerberos enumeration with existing/unexisting users (Kerbrute) Count
+id: d2c96f38-c740-449b-88a6-f01c1193d86f
 status: experimental
 correlation:
   type: value_count

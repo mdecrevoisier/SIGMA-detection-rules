@@ -1,4 +1,5 @@
 title: Exchange group membership change to perform DCsync attack
+id: 44e20da2-0770-4dd9-8c08-00e097da460f
 description: Detects scenarios where an attacker adds its account into a sensitive Exchange group to obtain "Replicating Directory Changes /all" and perform DCsync attack.
 references:
 - https://adsecurity.org/?p=4119

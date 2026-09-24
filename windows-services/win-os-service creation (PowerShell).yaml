@@ -1,4 +1,5 @@
-title: Service creation (PowerShell)
+title: Service creation (PowerShell) - ps_module
+id: 0ea3c9e6-510f-4440-aecf-aedfe3f7b6e0
 description: Detects scenarios where an attacker attempts to create a service for persistence.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -10,10 +11,38 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - New-Service
+      - Name
+
+  condition: 1 of selection*
+falsepositives:
+- administrator deplying service
+- new application installation
+level: high
+
+---
+title: Service creation (PowerShell) - ps_classic_script
+id: cc72c98f-10ca-4155-bf3f-09ed6cab2bdd
+related:
+  - id: 0ea3c9e6-510f-4440-aecf-aedfe3f7b6e0
+    type: similar
+description: Detects scenarios where an attacker attempts to create a service for persistence.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-7.1
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection1_powershell_native:
     EventID: 800
@@ -21,12 +50,31 @@ detection:
       - New-Service
       - Name
 
-  selection2_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - New-Service
-      - Name
+  condition: 1 of selection*
+falsepositives:
+- administrator deplying service
+- new application installation
+level: high
 
+---
+title: Service creation (PowerShell) - ps_script
+id: 60f26df3-1b31-4737-9e00-36e653163bfc
+related:
+  - id: 0ea3c9e6-510f-4440-aecf-aedfe3f7b6e0
+    type: similar
+description: Detects scenarios where an attacker attempts to create a service for persistence.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-7.1
+tags:
+- attack.persistence
+- attack.t1543.003
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

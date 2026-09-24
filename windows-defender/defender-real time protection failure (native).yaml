@@ -1,4 +1,5 @@
 title: Microsoft Defender real time protection failure (native)
+id: 19c5263e-50b0-4afe-97be-50bf5ef452a0
 description: Detects scenarios where an attacker tamper Defender RTP protection and disable it.
 references:
 - https://www.microsoft.com/en-us/security/blog/2023/04/11/guidance-for-investigating-attacks-using-cve-2022-21894-the-blacklotus-campaign/

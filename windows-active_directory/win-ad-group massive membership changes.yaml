@@ -1,4 +1,5 @@
 title: Massive group membership changes detected
+id: adedc5ca-5cee-4107-bef5-d7b439f269b5
 name: massive_group_changes
 description: Detects scenarios where an attacker will add a compromised account into different domain groups in order to gain access to all the assets under the control of those concerned groups.
 references:
@@ -24,6 +25,7 @@ level: medium
 
 ---
 title: Massive group membership changes detected Count
+id: c36d9d6f-20cf-4fa1-9d4a-e548fbc3da98
 status: experimental
 correlation:
   type: value_count

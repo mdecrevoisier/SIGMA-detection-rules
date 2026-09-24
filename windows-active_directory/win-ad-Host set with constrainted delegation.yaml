@@ -1,4 +1,5 @@
 title: Host set with constrained delegation
+id: 7a9de37b-6310-4961-99b0-c71e91bf503b
 description: Detects scenarios where an attacker modifies host delegation settings for privilege escalation.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

@@ -1,4 +1,5 @@
 title: Windows native backup deletion
+id: f62c305e-56f5-4015-9152-46af892d9554
 description: Detects scenarios where an attacker attempts to delete existing Windows native backup (only available on Windows Server).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0040-Impact/T1490-Inhibit%20System%20Recovery

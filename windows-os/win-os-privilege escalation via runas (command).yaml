@@ -1,4 +1,5 @@
 title: Privilege escalation via runas (command)
+id: 1a02d950-3cda-47e6-ad4c-7afbbdd3ab9c
 description: Detects scenarios where attack attempts to elevate privileges via the command runas.
 correlation: correlation between the 3 event IDs can be done over SubjectLogonId in order to get more context.
 references:
