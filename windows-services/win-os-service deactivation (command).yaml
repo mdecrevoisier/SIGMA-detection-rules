@@ -1,4 +1,5 @@
 title: Service deactivation (command)
+id: f96b49c0-8500-48a0-8569-9fce2f527aef
 description: Detects scenarios where an attacker attempts to disable 
 references:
 - https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/

@@ -1,4 +1,5 @@
 title: DLL ServerLevelPluginDll registration (Reg via Sysmon)
+id: f6545160-9e57-4965-a9cd-7ac122e5d3a7
 description: Detects scenarios where a DLL is loaded by the DNS server in order to escalate privileges or initiate a remote shell.
 references:
 - https://medium.com/@esnesenon/feature-not-bug-dnsadmin-to-dc-compromise-in-one-line-a0f779b8dc83

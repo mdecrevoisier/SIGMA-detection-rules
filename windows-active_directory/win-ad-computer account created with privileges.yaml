@@ -1,6 +1,7 @@
 title: Computer account created with privileges
+id: 107bf857-5abc-4f13-9b78-e0955703865f
 description: Detects scenarios where an attacker creates a computer account with privileges for later exploitation.
-correlation: correlate with ID 4763 (privileges) using field SubjectLogonId. See rule "Privilege SeMachineAccountPrivilege abuse" for advance correlation.
+correlation_note: correlate with ID 4763 (privileges) using field SubjectLogonId. See rule "Privilege SeMachineAccountPrivilege abuse" for advance correlation.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
 - https://exploit.ph/cve-2021-42287-cve-2021-42278-weaponisation.html

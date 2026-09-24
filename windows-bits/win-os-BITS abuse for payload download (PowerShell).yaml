@@ -1,4 +1,5 @@
 title: BITS payload downloaded via PowerShell
+id: b9dc502f-040b-404a-a1e6-51a9960e000c
 description: Detects scenarios where an attacker downloads a payload by abusing BITS software. For more precise information, inspect "Bits-client" event log and search for ID 59 and 60.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1197-BITS%20jobs

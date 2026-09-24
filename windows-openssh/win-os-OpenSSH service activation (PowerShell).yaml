@@ -1,4 +1,5 @@
 title: OpenSSH service activation on Windows
+id: 11d8ce4b-f446-450c-a396-2f28b00cfe7d
 description: Detects scenarios where an attacker enables the OpenSSH server on Windows to perform stealthy lateral movement.
 references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH

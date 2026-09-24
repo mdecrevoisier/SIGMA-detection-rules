@@ -1,4 +1,5 @@
 title: Domain group membership change
+id: 1bd5e226-5b75-422f-8e65-58534e48740b
 description: Detects if a member is added to a domain group via PowerShell.
 references:
 - 

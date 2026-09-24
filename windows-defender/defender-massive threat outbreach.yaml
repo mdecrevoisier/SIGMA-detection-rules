@@ -1,4 +1,5 @@
 title: Microsoft Defender massive virus outbreach
+id: ea39a33b-72c3-4ce3-a541-2e66c1fe069f
 description: Detects scenarios where a same threat is detected on different hosts in a short period of time
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus

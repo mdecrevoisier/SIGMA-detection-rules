@@ -1,6 +1,7 @@
 title: Remote local admin group enumeration via SharpHound
+id: 6d403efe-2555-480c-8431-a6ee91430057
 description: Detects scenarios where an attacker enumerates local administratos group on multiple hosts via SharpHound.
-correlation: correlate SubjectLogonId from ID 4799 with TargetLogonId from ID 4624 to identify the source of the enumeration.
+correlation_note: correlate SubjectLogonId from ID 4799 with TargetLogonId from ID 4624 to identify the source of the enumeration.
 requirements: Windows 10 / Server 2016 and higher
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery

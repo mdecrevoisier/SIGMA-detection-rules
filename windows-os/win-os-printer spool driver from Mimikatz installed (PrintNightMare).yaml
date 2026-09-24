@@ -1,4 +1,5 @@
 title: Mimispool printer driver installation (PrintNightmare vulnerability - CVE-2021-36958)
+id: ed91d695-1dd0-49e6-b176-399e941ffb6a
 description: Help to detect scenarios where an attacker exploit the Mimispool print driver to escalate privileges.
 requirements: event logs 'PrintService\*' must be enabled.
 references:

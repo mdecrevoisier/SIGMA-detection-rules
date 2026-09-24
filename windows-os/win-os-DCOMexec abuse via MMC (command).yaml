@@ -1,4 +1,5 @@
 title: Impacket DCOMexec process abuse via MMC
+id: 2fd92aed-68e6-4210-a902-be29acf89719
 description: Detects scenarios where an attacker execute the Impacket DCOMexec tool in order to abuse DCOM services.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.003-Distributed%20Component%20Object%20Model%20(DCOM)

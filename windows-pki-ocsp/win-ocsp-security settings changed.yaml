@@ -1,4 +1,5 @@
 title: OCSP responder security settings changed
+id: 817349cd-dd5a-487c-9536-9ff6223c4090
 description: Detects scenarios where an attacker would attempt to escalate privileges by changing the security settings of the responder.
 requirements: requires to have the OCSP role installed and to have enabled auditing in the responder properties.
 references:

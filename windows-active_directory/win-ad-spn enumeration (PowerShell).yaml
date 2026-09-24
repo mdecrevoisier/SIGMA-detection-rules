@@ -1,4 +1,5 @@
 title: Suspicious SPN enumeration previous to Kerberoasting attack (PowerShell)
+id: a799b973-11d3-4bd5-aba3-f672b95351cd
 description: Detects scenarios where an attacker attempts to retrieve SPN using PowerShell and native tools.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1087-Account%20discovery

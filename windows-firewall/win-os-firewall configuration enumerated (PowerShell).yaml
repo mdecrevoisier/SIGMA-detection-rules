@@ -1,4 +1,5 @@
 title: Firewall configuration enumerated (PowerShell)
+id: aa10ae06-3ee2-4b24-8b4d-970775aa4842
 description: Detects scenarios where an attacker attempts to extract current Windows firewall configuration to prepare an attack.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1016-System%20Network%20Configuration%20Discovery

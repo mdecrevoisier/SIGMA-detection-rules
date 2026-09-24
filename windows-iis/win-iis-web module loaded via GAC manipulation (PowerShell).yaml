@@ -1,4 +1,5 @@
 title: Webserver IIS module installed via GAC manipulation (PowerShell)
+id: bee98ab9-97bc-414c-a8cd-1231f3f6acb4
 description: Detects scenarios where an attacker attempts to deploy an IIS module via Global Assembly cache (GAC) manipulation.
 references:
 - https://www.microsoft.com/security/blog/2022/07/26/malicious-iis-extensions-quietly-open-persistent-backdoors-into-servers/

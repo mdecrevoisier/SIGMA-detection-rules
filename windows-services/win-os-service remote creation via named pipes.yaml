@@ -1,4 +1,5 @@
 title: Remote service creation via named pipes
+id: cc4aac41-ab53-47d8-9f97-bbae8fb35f05
 description: Detects scenarios where an attacker remotely creates a service over named pipes. Tools like Tchopper or CrackMapExec can trigger this rule.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution

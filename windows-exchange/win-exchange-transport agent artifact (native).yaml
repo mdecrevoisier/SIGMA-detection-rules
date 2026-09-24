@@ -1,4 +1,5 @@
 title: Exchange transport agent installation artifacts (native)
+id: 9d7425c2-b39b-45a6-9015-728794a201a6
 description: Detects scenarios where an attacker attempts to load an artifact in the Exchange transport agent.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505-Server%20Software%20Component

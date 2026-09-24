@@ -1,4 +1,5 @@
 title: SharpHound enumeration via SMB named pipes
+id: 8a2e183c-206a-4afa-a05a-ac212c44c7a0
 description: Detects scenarios where an attacker enumerate different host via named pipes with SharpHound for discovery purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1135.xxx-Network%20Share%20Discovery

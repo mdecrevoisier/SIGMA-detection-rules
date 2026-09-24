@@ -1,4 +1,5 @@
 title: Certutil payload obfuscation (command)
+id: fa1e201e-8a97-4986-8c7c-089508ea090d
 description: Detects scenarios where an attacker attempts to abuse certutil command to download obfuscated malicious payload. Tools like Tchopper can trigger this rule.
 references:
 - https://www.elastic.co/guide/en/security/current/suspicious-certutil-commands.html

@@ -1,4 +1,5 @@
 title: Microsoft Defender critical security components disabled (command)
+id: 2a8f644c-b4e6-4e69-93bd-4dd5bbddf2fa
 description: Detects scenarios where an attacker attempts to disable Defender security features
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool

@@ -1,4 +1,5 @@
 title: Office 365 email rule breach (on behalf)
+id: da587260-a8ff-4f18-9018-5456e85b60b2
 description: Detects scenarios where an attacker attempt to hide emails in order to perform phishing attacks by replacing, for example, financial information from the original email with another email containing attacker's financial information. This technique may also be used to avoid specific email notification to be received by end users in case, for example, of an ongoing breach.
 references:
 - https://redcanary.com/blog/email-forwarding-rules/

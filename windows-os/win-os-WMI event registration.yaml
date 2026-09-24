@@ -1,4 +1,5 @@
 title: WMI registration
+id: e7909edb-aa90-4303-bbc9-09b91d7758b8
 description: Detects scenarios where an attacker createsan instance of a WMI class using tools like WMImplant or PowerLurk.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution

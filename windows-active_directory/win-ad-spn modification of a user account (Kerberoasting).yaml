@@ -1,4 +1,5 @@
 title: Suspicious modification of a user account SPN to enable Kerberoast attack
+id: adfae80b-64c5-4920-b465-2b3d675dc80a
 description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a user account in order to enable Kerberoast attack and crack its password.
 requirements: auditing SACL ("Write all properties") must be placed on the OU to monitor using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:

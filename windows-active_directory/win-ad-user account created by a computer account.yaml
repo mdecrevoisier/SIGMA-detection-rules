@@ -1,4 +1,5 @@
 title: User account created by a computer account
+id: dc141666-3a4e-40e9-9b33-6482dcacef84
 description: Detects scenarios where an attacker would abuse some privileges while realying host credentials to escalate privileges.
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4741

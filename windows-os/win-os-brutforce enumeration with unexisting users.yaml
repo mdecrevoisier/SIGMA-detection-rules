@@ -1,4 +1,5 @@
 title: Brutforce enumeration with non existing users (login)
+id: 5e5cb6dd-1632-4a1f-bc9b-5d34c6769c05
 name: login_non_existing_user
 description: Detects scenarios where an attacker attempts to enumerate potential existing users, resulting in failed logins with unexisting or invalid accounts.
 references:
@@ -25,6 +26,7 @@ level: high
 
 ---
 title: Brutforce enumeration with non existing users (login) Count
+id: 558fbe82-0410-41f2-baa0-3f6d4f7f0d45
 status: experimental
 correlation:
   type: value_count

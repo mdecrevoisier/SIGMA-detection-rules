@@ -1,6 +1,7 @@
 title: Potential SAM database user credentials dumped with DCshadow
+id: 3186d29e-1ac7-4125-94ec-4c97ea883980
 description: Detects scenarios where an attacker would dump user passwords using the DCshadow attack.
-correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
+correlation_note: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping

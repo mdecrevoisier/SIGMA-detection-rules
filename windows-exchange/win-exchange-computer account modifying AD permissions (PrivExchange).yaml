@@ -1,4 +1,5 @@
 title: Computer account modifying Active Directory permissions (PrivExchange)
+id: 542f82de-fa02-45c0-a02a-ade7a42b0d95
 description: Detects scenarios where an attacker compromise a server with high privileges to perform permissions changes. PrivExchange attack can be detected using this rule.
 requirements: auditing SACL "Modify permissions" must be placed on the AD root container using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:

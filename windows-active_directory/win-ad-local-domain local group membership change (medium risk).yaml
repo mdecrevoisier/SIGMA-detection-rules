@@ -1,4 +1,5 @@
 title: Medium risk local/domain local group membership change
+id: bf739748-2ec2-4712-90ef-7a8b58fadc6d
 description: Detects scenarios where a suspicious group membership is changed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

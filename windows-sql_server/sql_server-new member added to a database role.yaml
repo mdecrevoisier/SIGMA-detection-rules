@@ -1,4 +1,5 @@
 title: SQL Server - new member added to a database role
+id: 3a208398-51e2-4974-9e37-d9b00a9ca2b4
 description: Detects scenarios where an attacker adds his account to a database role (db_securityadmin, db_datawriter, db_securityadmin, ...)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

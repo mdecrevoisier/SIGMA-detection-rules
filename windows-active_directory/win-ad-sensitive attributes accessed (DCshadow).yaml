@@ -1,6 +1,7 @@
 title: Account accessed to attributes related to DCshadow
+id: c80745f1-57cb-4593-8f88-b8ac828cb062
 description: Detects scenarios where an attacker accessed attributes related to DCshadow attack in order to create a fake domain controller.
-correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
+correlation_note: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1207-Rogue%20domain%20controller

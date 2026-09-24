@@ -1,4 +1,5 @@
 title: BitLocker server feature activation (PowerShell)
+id: 25db8650-89c5-45d3-8805-d5684e043983
 description: Detects scenarios where an attacker enables BitLocker for ransomware purposes.
 references:
 - https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/

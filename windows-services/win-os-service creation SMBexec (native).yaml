@@ -1,4 +1,5 @@
 title: Impacket SMBexec service registration (native)
+id: ec523570-6bae-481f-a643-3421cd3ad762
 description: Detects scenarios where an attacker attempts to register the SMBexec service to estasblish persistence. Note that service registration is not always performed and that is recommended to use the related registry SYSMON rule to increase detection reliability.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

@@ -1,4 +1,5 @@
 title: Lateral movement by mounting a network share - net use (command)
+id: 64b7b092-587b-4ed8-a877-e29f01d32abf
 description: Detects scenarios where an attacker attempts to move laterally by mounting a network share using compromised user credentials.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
