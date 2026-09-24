@@ -1,11 +1,15 @@
 title: Microsoft Defender threat exclusion added (native)
+id: adb2bd5e-dc46-42d4-8a20-eb467bd6bb09
+related:
+  - id: 1321dc4e-a1fe-481d-a016-52c45f0c8b4f
+    type: similar
 description: Detects scenarios where a threat exclusion is added to the antivirus in order to bypass its detection capacities
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
 tags:
-- attack.defense_evasion
-- attack.t1562.001
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:

@@ -1,6 +1,8 @@
 title: Domain group enumeration
+id: 249a1ad8-40d5-465c-a045-3d57f5c3f1ed
+name: win_ad_group_domain_enumeration_cme
 description: Detects scenarios where an attacker enumerates domain group with tools like CME (--groups).
-correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
+correlation_note: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
@@ -24,8 +26,24 @@ detection:
     OperationType: Object Access
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection and not filter | count(ObjectName) by Computer > 30 # Count how many different ObjectName (GUID of the group) were enumerated.
-  timeframe: 15m
+  condition: selection and not filter # Count how many different ObjectName (GUID of the group) were enumerated.
 falsepositives:
 - Administrator activity
+level: high
+
+---
+title: Domain group enumeration - count
+id: 6ba513a4-6986-4955-b820-ecd5ce6df2a8
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_ad_group_domain_enumeration_cme
+  group-by:
+    - Computer
+  timespan: 15m
+  condition:
+    gt: 30
+    field: ObjectName
 level: high

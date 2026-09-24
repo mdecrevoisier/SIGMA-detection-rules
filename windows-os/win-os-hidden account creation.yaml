@@ -1,4 +1,6 @@
-title: Hidden account creation (with fast deletion)
+title: Hidden account creation (with fast deletion) - create
+id: 5457e8d8-7822-4ee0-9405-cb10315109a8
+name: win_os_hidden_account_creation_create
 description: Detects scenarios where an attacker creates a hidden local account. See also rule "User account creation disguised in a computer account".
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
@@ -7,8 +9,8 @@ tags:
 - attack.persistence
 - attack.t1098 # account manipulation
 - attack.t1136 # user creation
-- attack.defense_evesion
-- attack.t0136 # masquerading
+- attack.stealth
+- attack.t1036 # masquerading
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -17,12 +19,53 @@ logsource:
 detection:
   selection_create:
     EventID: 4720
+  filter:
+    Computer: '%domain_controllers%'
+  condition: selection_create and not filter
+falsepositives:
+- IAM account lifecycle software
+level: medium
+
+---
+title: Hidden account creation (with fast deletion) - delete
+id: ea1b03dc-39ae-492b-bdd1-15db2c16da00
+name: win_os_hidden_account_creation_delete
+description: Detects scenarios where an attacker creates a hidden local account. See also rule "User account creation disguised in a computer account".
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://github.com/wgpsec/CreateHiddenAccount
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+- attack.t1136 # user creation
+- attack.stealth
+- attack.t1036 # masquerading
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
   selection_delete:
     EventID: 4726
   filter:
     Computer: '%domain_controllers%'
-  condition: selection_create and selection_delete and not filter # requires grouping over 'TargetSid' to not mix different user accounts
-  timeframe: 1m
+  condition: selection_delete and not filter
 falsepositives:
 - IAM account lifecycle software
+level: medium
+
+---
+title: Hidden account creation (with fast deletion)
+id: efabfbd0-d7a9-4ccf-8653-48ea71660205
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: temporal
+  rules:
+    - win_os_hidden_account_creation_create
+    - win_os_hidden_account_creation_delete
+  group-by:
+    - TargetSid
+  timespan: 1m
 level: medium

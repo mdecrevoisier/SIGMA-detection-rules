@@ -1,4 +1,10 @@
 title: Remote schedule task creation via named pipes (ATexec)
+id: 6bb26fd4-8559-4e7d-9abc-2f4067c160d3
+related:
+  - id: 76df8bef-672a-4ead-8687-6b83f984bc3c
+    type: similar
+  - id: f6de6525-4509-495a-8a82-1f8b0ed73a00
+    type: similar
 description: Detects scenarios where an attacker remotely creates a scheduled task over named pipes to execute commands or elevate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1053.005-Scheduled%20Task

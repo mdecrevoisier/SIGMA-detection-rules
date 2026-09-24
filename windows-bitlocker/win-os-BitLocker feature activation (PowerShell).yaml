@@ -1,4 +1,5 @@
-title: BitLocker server feature activation (PowerShell)
+title: BitLocker server feature activation (PowerShell) - ps_module
+id: 25db8650-89c5-45d3-8805-d5684e043983
 description: Detects scenarios where an attacker enables BitLocker for ransomware purposes.
 references:
 - https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
@@ -12,10 +13,7 @@ author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
 detection: # command: powershell  -c "Import-Module ServerManager; Add-WindowsFeature BitLocker -Restart"
 
   selection_powershell_activation_modern:
@@ -24,21 +22,48 @@ detection: # command: powershell  -c "Import-Module ServerManager; Add-WindowsFe
       - WindowsFeature # Install-WindowsFeature / Add-WindowsFeature
       - BitLocker
 
+  selection_powershell_configuration_modern:
+    EventID: 4103
+    Payload|contains: Enable-BitLocker
+
+  condition: 1 of selection_powershell_activation_* or 1 of selection_powershell_configuration_*
+falsepositives:
+- Initial BitLocker installation
+level: high
+
+---
+title: BitLocker server feature activation (PowerShell) - ps_script
+id: e50127cd-ec79-4c0a-8b1e-37c13ec9ca06
+related:
+  - id: 25db8650-89c5-45d3-8805-d5684e043983
+    type: similar
+description: Detects scenarios where an attacker enables BitLocker for ransomware purposes.
+references:
+- https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
+- https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server
+- https://www.bleepingcomputer.com/news/microsoft/microsoft-iranian-hackers-encrypt-windows-systems-using-bitlocker/
+- https://securelist.com/ransomware-abuses-bitlocker/112643/
+tags:
+- attack.impact
+- attack.t1486
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection: # command: powershell  -c "Import-Module ServerManager; Add-WindowsFeature BitLocker -Restart"
+
   selection_powershell_activation_block:
     EventID: 4104
     ScriptBlockText|contains|all:
       - WindowsFeature # Install-WindowsFeature / Add-WindowsFeature
       - BitLocker
 
-  selection_powershell_configuration_modern:
-    EventID: 4103
-    Payload|contains: Enablee-BitLocker
-
   selection_powershell_configuration_block:
     EventID: 4104
-    ScriptBlockText|contains|contains: Enablee-BitLocker
+    ScriptBlockText|contains: Enable-BitLocker
 
-  condition: 1 of selection_powershell_activation_* OR selection_powershell_configuration_*
+  condition: 1 of selection_powershell_activation_* or 1 of selection_powershell_configuration_*
 falsepositives:
 - Initial BitLocker installation
 level: high

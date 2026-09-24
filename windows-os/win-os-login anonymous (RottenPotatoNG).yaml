@@ -1,4 +1,8 @@
 title: Anonymous login (RottenPotatoNG)
+id: 39a7fef0-a6ca-449c-aab6-c431b3a70a10
+related:
+  - id: 16f5d8ca-44bd-47c8-acbe-6fc95a16c12f
+    type: similar
 description: Detects scenarios where an attacker abuse RPC, NTLM relay and others components to escalate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1134-Access%20Token%20Manipulation
@@ -6,7 +10,7 @@ references:
 - https://jlajara.gitlab.io/others/2020/11/22/Potatoes_Windows_Privesc.html
 - https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/
 tags:
-- attack.privilege_escalation
+- attack.privilege-escalation
 - attack.t1134.001
 author: mdecrevoisier
 status: experimental
