@@ -1,4 +1,5 @@
 title: Network login performed to multiple targets
+id: cce08b6d-5228-4d80-a708-f3d18f1f66bb
 description: Detects scenarios where an attacker would attempt to enumerate hosts resources and execute a payload with a compromised account. Vulnerability scanners, enumeration software or tool like SharepHound/CrackMapexec may generate such behavior.
 references:
 - https://medium.com/@Shorty420/enumerating-ad-98e0821c4c78

@@ -1,4 +1,5 @@
 title: WMI registration (PowerShell)
+id: 171fd6fd-3680-45d8-bae1-842ae5c7b00b
 description: Detects scenarios where an attacker createsan instance of a WMI class using tools like WMImplant or PowerLurk.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1546-Event%20Triggered%20Execution

@@ -1,4 +1,5 @@
 title: DoT (DNS over TLS) activation (command)
+id: c1c8fb22-38ad-4f1a-8126-d71a3184245d
 description: Detects scenarios where an attacker attempts to enable DNS over TLS in order to evade detection for command and control purposes.
 references:
 - https://techcommunity.microsoft.com/t5/networking-blog/dns-over-tls-available-to-windows-insiders/ba-p/3565859

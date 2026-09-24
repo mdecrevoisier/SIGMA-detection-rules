@@ -1,4 +1,5 @@
 title: Domain group enumeration
+id: 249a1ad8-40d5-465c-a045-3d57f5c3f1ed
 description: Detects scenarios where an attacker enumerates domain group with tools like CME (--groups).
 correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)

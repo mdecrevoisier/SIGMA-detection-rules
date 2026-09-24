@@ -1,4 +1,5 @@
 title: AdminSDHolder permissions changed for persistence
+id: cbd3f8d9-bb4f-4879-9993-a4aa48cb5537
 description: Detects scenarios where an attacker changes permissions on the AdminSDHolder container to establish persistence.
 requirements: auditing SACL "Modify permissions" must be placed on the "AdminSDHolder" container using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:

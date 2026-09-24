@@ -1,4 +1,5 @@
 title: Vice Society directory crawling script for data exfiltration (via ps_script)
+id: c7eb4f3d-a043-47c6-8cf7-f67f22fb3e0d
 description: Detects data exfiltration performed by the Vice Society ransomware gang using a custom built PowerShell script. More precisely, the script enumerates the volumes mounted on the system, then starts crawling the different directories before initiating the data exfiltration over HTTP by creating multiple different jobs. As PowerShell script block logs the script execution into multiple events, the detection aggregates the different log chunks using the ScriptBlockId and then ensure that at least 3 of the 4 detection strings are found.
 references:
 - https://unit42.paloaltonetworks.com/vice-society-ransomware-powershell/

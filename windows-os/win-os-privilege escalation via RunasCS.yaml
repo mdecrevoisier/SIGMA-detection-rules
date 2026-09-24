@@ -1,4 +1,5 @@
 title: Privilege escalation via RunasCS
+id: 09a09b2a-7ff0-47a0-aafc-1be6bc7d1b6a
 description: Detects scenarios where attack attempts to elevate privileges via customize Runas tool.
 correlation: correlation with ID 4648 can be done over SubjectLogonId in order to get more context.
 references:

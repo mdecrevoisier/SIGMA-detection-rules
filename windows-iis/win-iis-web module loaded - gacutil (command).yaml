@@ -1,4 +1,5 @@
 title: Webserver IIS module installed (command)
+id: d8ea51dd-1310-423c-bf2a-10da4b0bec3d
 description: Detects scenarios where an attacker attempts to deploy an IIS module via the gacutil tool.
 references:
 - https://securelist.com/owowa-credential-stealer-and-remote-access/105219/

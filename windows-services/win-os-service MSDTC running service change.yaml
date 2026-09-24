@@ -6,7 +6,6 @@ references:
 tags:
 - attack.privilege_escalation
 - attack.t1574.002 # Hijack Execution Flow: DLL Side-Loading 
-- attack.privilege_escalation
 - attack.t1543.003 # Create or Modify System Process: Windows Service 
 author: mdecrevoisier
 status: production

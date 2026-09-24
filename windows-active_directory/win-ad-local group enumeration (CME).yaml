@@ -1,4 +1,5 @@
 title: Local domain group enumeration
+id: 1999458a-9db5-4b6b-873a-8b15affb026f
 description: Detects scenarios where an attacker attempts to enumerate domain local groups with tools like CME (--local-groups).
 correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)

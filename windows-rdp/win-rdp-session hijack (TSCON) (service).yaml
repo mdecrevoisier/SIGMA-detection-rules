@@ -1,4 +1,5 @@
 title: RDP session hijack via service creation abuse
+id: 7eb130d5-dd58-42c9-b3c3-99c959f0232f
 description: Detects scenarios where an attacker create a service that triggers TSCON in order to preform local RDP session hijack.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service

@@ -1,4 +1,5 @@
 title: Brutforce on Windows OpenSSH server with valid users
+id: 95d13c42-24f0-4717-844b-944b4646611a
 name: bruteforce_openssh_vaild_users
 description: Detects scenarios where an attacker attempts to SSH brutforce a Windows OpenSSH server with a valid user.
 remarks: This requires to have previously enabled the builtin OpenSSH server or to have installed the "OpenSSH-Win64" component. IpAddress or Workstation fields may be empty. In case Workstation field is not empty, be aware that it may wrongly report the source host. Also note that SSH logins are reported with logon type 8 (clear text). For reliable source IP information, use the logs from the OpenSSH channel, event ID 4.
@@ -29,6 +30,7 @@ level: high
 
 ---
 title: Brutforce on Windows OpenSSH server with valid users Count
+id: 74768737-f48d-4949-9fe0-130536ffff07
 status: experimental
 correlation:
   type: value_count

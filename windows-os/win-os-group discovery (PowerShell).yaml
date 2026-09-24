@@ -1,4 +1,5 @@
 title: Group discovery (PowerShell)
+id: 787f3271-77c4-483f-8eb4-12ffd09b2ede
 description: Detects scenarios where an attacker attempts to enumerate local or domain groups via PowerShell.
 references:
 - https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html

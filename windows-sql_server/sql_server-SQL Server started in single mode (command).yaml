@@ -1,4 +1,5 @@
 title: SQL Server started in single mode (command)
+id: ff8fa61f-8973-4547-bd34-81896d7285c7
 description: Detects scenarios where an attacker starts SQL Server service in single mode to perform password recovery actions using, for example, the native sqlcmd tool. Indeed, when the SQL Server is started in single user mode, all the users who are a member of the host’s local administrator group can connect to the SQL instance.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1505.001-SQL%20Stored%20Procedures

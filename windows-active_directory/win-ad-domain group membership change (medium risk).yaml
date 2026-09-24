@@ -1,4 +1,5 @@
 title: Medium risk Active Directory group membership change
+id: 44c74eeb-3350-4dc0-b1fd-8c661d5a9117
 description: Detects scenarios where a suspicious group membership is changed.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

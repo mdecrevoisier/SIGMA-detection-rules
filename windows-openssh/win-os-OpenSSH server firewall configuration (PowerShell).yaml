@@ -1,4 +1,5 @@
 title: OpenSSH server firewall configuration on Windows (PowerShell)
+id: c32f881c-d936-4de6-aeb5-0340e6350ed2
 description: Detects scenarios where an attacker configure the Windows firewall to allow incoming connections to perform stealthy lateral movement.
 references:
  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.004-Remote%20Service%20SSH

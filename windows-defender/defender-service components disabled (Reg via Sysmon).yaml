@@ -1,4 +1,5 @@
 title: Microsoft Defender service components status disabled (Registry via Sysmon)
+id: 0c190813-63d0-4e53-be39-703d9762c9c9
 description: Detects scenarios where an attacker attempts to disable Defender security features by modifying service configuration in registry.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
