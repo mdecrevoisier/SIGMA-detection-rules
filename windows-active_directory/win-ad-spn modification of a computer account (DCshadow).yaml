@@ -1,4 +1,10 @@
 title: Suspicious modification of a fake domain controller SPN (DCshadow)
+id: f2671d87-cdfc-4283-be4f-f12e9977df03
+related:
+  - id: 70b34fa0-5032-43a1-9295-12dc75481981
+    type: similar
+  - id: 32e19d25-4aed-4860-a55a-be99cb0bf7ed
+    type: similar
 description: Detects scenarios where an attacker updates the Service Principal Name (SPN) of a fake domain controller account in order to perform DCshadow attack.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1098.xxx-Account%20manipulation

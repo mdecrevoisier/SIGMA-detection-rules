@@ -1,4 +1,5 @@
-title: Webserver IIS module installed (command)
+title: Webserver IIS module installed via gacutil (command)
+id: d8ea51dd-1310-423c-bf2a-10da4b0bec3d
 description: Detects scenarios where an attacker attempts to deploy an IIS module via the gacutil tool.
 references:
 - https://securelist.com/owowa-credential-stealer-and-remote-access/105219/
@@ -17,11 +18,6 @@ tags:
 - attack.t1505.004
 author: mdecrevoisier
 status: experimental
-tags:
-- attack.persistence
-- attack.t1505.004
-author: mdecrevoisier
-status: experimental|
 logsource:
   product: windows
   category: process_creation
@@ -31,8 +27,9 @@ detection:
     CommandLine|contains:
       - '-i'
       - '/i'
+  and_selection_2:
     CommandLine|contains: '.dll'
-  condition: selection
+  condition: (selection and all of and_selection_*)
 falsepositives:
 - New modules deployed on IIS Web servers, but also Exchange and ADCS servers
 level: high

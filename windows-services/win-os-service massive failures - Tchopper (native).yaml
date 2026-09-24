@@ -1,4 +1,6 @@
 title: Massive service failures - Tchopper
+id: 35ed7fa7-b2b8-4c8a-8a42-1ab1f3d10c0b
+name: win_os_service_massive_failures_tchopper_native
 description: Detects scenarios where an attacker uses the Tchopper tool by abusing the display name of a service as a placeholder to upload an obfuscated payload. Service name may come with very high entropy.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution
@@ -16,8 +18,23 @@ detection:
     EventID:
       - 7000 # EVENT_SERVICE_START_FAILED
       - 7009 # EVENT_CONNECTION_TIMEOUT
-  condition: selection | count(EventRecordID) by Computer > 100 # Count how many services failures are reported on the host.
-  timeframe: 20m
+  condition: selection # Count how many services failures are reported on the host.
 falsepositives:
 - Missconfigured services
+level: high
+
+---
+title: Massive service failures - Tchopper - count
+id: 49e34700-1e8e-478a-a393-0e4da9c2fcc3
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: event_count
+  rules:
+    - win_os_service_massive_failures_tchopper_native
+  group-by:
+    - Computer
+  timespan: 20m
+  condition:
+    gt: 100
 level: high

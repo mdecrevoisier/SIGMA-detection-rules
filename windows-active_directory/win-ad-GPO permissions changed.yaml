@@ -1,10 +1,11 @@
 title: Permissions changed on a Group Policy (GPO)
+id: a7902cc8-3de9-4026-a2cc-28cd10b24267
 description: Detects scenarios where an attacker will attempt to take control over a group policy.
 requirements: auditing SACL "Modify permissions" must be placed on the "Policies" container using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1222.001-File%20and%20Directory%20Permissions%20Modification
 tags:
-- attack.privilege_escalation
+- attack.privilege-escalation
 - attack.t1484.001
 author: mdecrevoisier
 status: experimental

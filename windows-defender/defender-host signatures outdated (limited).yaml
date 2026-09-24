@@ -1,10 +1,9 @@
 title: Microsoft Defender signatures not up to date
+id: 45608097-66f3-4824-8750-df94f58e2b4b
 description: Detects scenarios where Defender signatures are outdated.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
-tags:
-- malware
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -13,12 +12,12 @@ logsource:
 detection:
   selection_event:
     EventID: 1151
-  selection_age : # Signature age in days
-    - Last AS signature age
-    - Last AV signature age
-    - Last AS security intelligence age
-    - Last AV security intelligence age
-  condition: selection_event and (selection_age > 7)
+  selection_age: # Signature age in days, older than 7 days
+    - Last AS signature age|gt: 7
+    - Last AV signature age|gt: 7
+    - Last AS security intelligence age|gt: 7
+    - Last AV security intelligence age|gt: 7
+  condition: selection_event and selection_age
 falsepositives:
 - Unconnected systems to internet
 - Missconfigured systems unable to reach their signature update server (SCCM/SCEP/WSUS)

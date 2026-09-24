@@ -1,4 +1,5 @@
 title: Exchange transport agent injection via configuration file
+id: 5198fff5-730e-4054-bda2-51bbe71e4c01
 description: Detects scenarios where an attacker attempts to load an artifact in the Exchange transport agent.
 requirements: |
  requires to update SYSMON configuration to include the transport agent path (eg: '<TargetFilename condition="begin with">C:\Exchange2016\TransportRoles\Shared</TargetFilename>')

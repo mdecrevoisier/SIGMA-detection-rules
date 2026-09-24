@@ -1,11 +1,17 @@
-title: Audit policy disabled by command line
+title: Audit policy disabled or cleared by command line
+id: 09d982af-6f65-489b-afb7-a377de4f91fc
+related:
+  - id: 5e8db291-2ea0-4724-9263-033a79b5649d
+    type: similar
+  - id: 0a13e132-651d-11eb-ae93-0242ac130002
+    type: similar
 description: Detects scenarios where an attacker attempts to disbale or clear the audit policy for defense evasion purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.002-Disable%20Windows%20Event%20Logging
 - https://searchitchannel.techtarget.com/feature/Using-AuditPol-to-audit-Windows-users-and-set-policies
 tags:
-- attack.defense_evasion
-- attack.t1562.002 # Impair Defenses: Disable Windows Event Logging 
+- attack.defense-impairment
+- attack.t1685.001 # Impair Defenses: Disable Windows Event Logging 
 author: mdecrevoisier
 status: experimental
 logsource:

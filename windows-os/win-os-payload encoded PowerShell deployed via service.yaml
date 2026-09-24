@@ -1,4 +1,5 @@
-title: Encoded PowerShell payload deployed via service
+title: Encoded PowerShell payload deployed via service - system
+id: 8711b0f0-cbc6-4ed8-94ef-7b30bd9a48b8
 description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload. Some parameters are commented in case you would like to reduce false positives or make the rule more precise.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
@@ -9,29 +10,61 @@ references:
 - https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
 - https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
 tags:
-- attack.privilege_execution
+- attack.privilege-escalation
 - attack.t1543.003
-- attack.defense_evasion
+- attack.stealth
 - attack.t1027
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  service: 
-    - system
-    - security
+  service: system
+detection:
+  selection2:
+    EventID: 7045 # system logs
+    ImagePath|contains: 
+      - 'FromBase64String'
+      - 'gnirtS46esaBmorF'
+  condition: selection2
+falsepositives:
+- None
+level: high
+
+#Payload sample:
+# %COMSPEC% /b /c start /b /min powershell.exe -nop -w hidden -noni -c "if([IntPtr]::Size -eq 4){$b='powershell.exe'}else{$b=$env:windir+'\syswow64\WindowsPowerShell\v1.0\powershell.exe'};$s=New-Object System.Diagnostics.ProcessStartInfo;$s.FileName=$b;$s.Arguments='-noni -nop -w hidden -c &([scriptblock]::create((New-Object System.IO.StreamReader(New-Object System.IO.Compression.GzipStream((New-Object System.IO.MemoryStream(,[System.Convert]::FromBase64String(''H4sIAJZw71PXRG8kmoFPBC8d+5QVRflxxxxxxxxxxxdCgAA''))),[System.IO.Compression.CompressionMode]::Decompress))).ReadToEnd()))';$s.UseShellExecute=$false;$s.RedirectStandardOutput=$true;$s.WindowStyle='Hidden';$s.CreateNoWindow=$true;$p=[System.Diagnostics.Process]::Start($s);
+
+---
+title: Encoded PowerShell payload deployed via service - security
+id: be300465-2f5b-40a3-ba0f-909072144e8b
+related:
+  - id: 8711b0f0-cbc6-4ed8-94ef-7b30bd9a48b8
+    type: similar
+description: Detects scenarios where an attacker deployed a service pointing to a hidden and encoded PowerShell payload. Some parameters are commented in case you would like to reduce false positives or make the rule more precise.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1543.003-Create%20or%20Modify%20System%20Process-Windows%20Service
+- https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/
+- https://www.fortinet.com/blog/threat-research/newly-discovered-function-in-darkside-ransomware-variant-targets-disk-partitions
+- https://www.huntress.com/blog/from-powershell-to-payload-an-analysis-of-weaponized-malware
+- https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1569.002/T1569.002.md
+- https://www.f5.com/labs/articles/threat-intelligence/vulnerabilities-exploits-and-malware-driving-attack-campaigns-in-october-2019
+- https://www.crowdstrike.com/blog/getting-the-bacon-from-cobalt-strike-beacon/
+tags:
+- attack.privilege-escalation
+- attack.t1543.003
+- attack.stealth
+- attack.t1027
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
 detection:
   selection1:
     EventID: 4697 # security logs
     ServiceFileName|contains:
       - 'FromBase64String'
       - 'gnirtS46esaBmorF'
-  selection2:
-    EventID: 7045 # system logs
-    ImagePath|contains: 
-      - 'FromBase64String'
-      - 'gnirtS46esaBmorF'
-  condition: selection1 or selection2
+  condition: selection1
 falsepositives:
 - None
 level: high

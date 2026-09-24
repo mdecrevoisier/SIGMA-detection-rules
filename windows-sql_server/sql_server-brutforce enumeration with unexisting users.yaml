@@ -1,11 +1,13 @@
 title: SQL Server - Brutforce enumeration with non existing users (login)
+id: 7ce9f5ab-6551-4b01-a59a-2609006e399a
+name: sql_server_brutforce_enumeration_with_unexisting_users
 description: Detects scenarios where an attacker attempts to enumerate potential existing SQL users, resulting in failed logins with unexisting or invalid accounts.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1110.xxx-Brut%20force
 - https://www.eraofdata.com/sql-server/connectivity/login-failures/
 - https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms366351(v=sql.105)
 tags:
-- attack.credential_access
+- attack.credential-access
 - attack.t1110
 author: mdecrevoisier
 status: experimental
@@ -22,8 +24,24 @@ detection:
     additional_information|contains:
       - "<state>2</state>" # User ID is not valid
       - "<state>5</state>" # Login not found
-  condition: selection | count(server_principal_name) by Computer > 20
-  timeframe: 30m
+  condition: selection
 falsepositives:
 - Missconfigured application
+level: high
+
+---
+title: SQL Server - Brutforce enumeration with non existing users (login) - count
+id: c36080cb-b26d-4daf-af0c-f68ebdf30876
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - sql_server_brutforce_enumeration_with_unexisting_users
+  group-by:
+    - Computer
+  timespan: 30m
+  condition:
+    gt: 20
+    field: server_principal_name
 level: high

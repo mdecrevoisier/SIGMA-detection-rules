@@ -1,4 +1,5 @@
 title: Scheduled task enumerated
+id: 8cdd4a6d-8c49-47c4-b6e7-4f5af1332fab
 description: Detects scenarios where an attacker enumerates scheduled task configuration.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1016-System%20Network%20Configuration%20Discovery

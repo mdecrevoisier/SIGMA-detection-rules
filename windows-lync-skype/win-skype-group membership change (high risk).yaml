@@ -1,4 +1,5 @@
 title: New member added to an "OCS/Lync/Skype for Business" administration group (high risk)
+id: e1f0b0a1-0dc8-47d7-bdec-ccf3abf93c22
 description: Detects scenarios where a new member is added to a sensitive administration group related to OCS/Lync/Skype for Business in order to scan topology, infiltrate servers and move laterally.
 references:
 - https://docs.microsoft.com/en-us/previous-versions/office/lync-server-2013/lync-server-2013-planning-for-role-based-access-control

@@ -1,4 +1,8 @@
 title: Massive SAM users/groups enumeration (native)
+id: 86b36dca-bfd0-4734-b348-827cc1ed5aac
+related:
+  - id: 35ba1d85-724d-42a3-889f-2e2362bcaf23
+    type: similar
 name: SAM_enumeration_user_group
 description: Detects scenarios where an attacker attempts to enumerate sensitive domain users/groups settings and membership. Correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
@@ -36,7 +40,8 @@ falsepositives:
 level: informational
 
 ---
-title: Massive SAM users/groups enumeration (native)
+title: Massive SAM users/groups enumeration (native) - count
+id: f76c7fe8-383a-49e2-abab-dac2259a2fbb
 status: experimental
 correlation:
   type: value_count

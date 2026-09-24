@@ -1,4 +1,10 @@
-title: Microsoft Defender threat exclusion added (PowerShell)
+title: Microsoft Defender threat exclusion added (PowerShell) - ps_module
+id: c0382aea-38eb-4a04-9182-13d6c95d9125
+related:
+  - id: c1344fa2-323b-4d2e-9176-84b4d4821c88
+    type: similar
+  - id: 17769c90-230e-488b-a463-e05c08e9d48f
+    type: similar
 description: Detects scenarios where a threat exclusion is added to the antivirus in order to bypass its detection capacities
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
@@ -9,16 +15,53 @@ references:
 - https://cybersecuritynews-com.cdn.ampproject.org/c/s/cybersecuritynews.com/u-s-federal-network-hacked/?amp
 - https://thedfirreport.com/2023/10/30/netsupport-intrusion-results-in-domain-compromise/
 tags:
-- attack.defense_evasion
-- attack.t1562.001
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:
   product: windows
-  category:
-    - ps_module
-    - ps_classic_script
-    - ps_script
+  category: ps_module
+detection:
+  selection2_powershell_modern:
+    EventID: 4103
+    Payload|contains|all:
+      - Add-MpPreference
+      - Set-MpPreference
+    Payload|contains:
+      - ExclusionPath
+      - ExclusionExtension
+      - ExclusionProcess
+      - ExclusionIpAddress 
+
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high
+
+---
+title: Microsoft Defender threat exclusion added (PowerShell) - ps_classic_script
+id: 8a5eff77-4b19-47b6-988f-90e369a934fb
+related:
+  - id: c0382aea-38eb-4a04-9182-13d6c95d9125
+    type: similar
+description: Detects scenarios where a threat exclusion is added to the antivirus in order to bypass its detection capacities
+references:
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+- https://www.intrinsec.com/apt27-analysis/
+- https://cybersecuritynews-com.cdn.ampproject.org/c/s/cybersecuritynews.com/u-s-federal-network-hacked/?amp
+- https://thedfirreport.com/2023/10/30/netsupport-intrusion-results-in-domain-compromise/
+tags:
+- attack.defense-impairment
+- attack.t1685
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_classic_script
 detection:
   selection1_powershell_native:
     EventID: 800
@@ -31,17 +74,35 @@ detection:
       - ExclusionProcess
       - ExclusionIpAddress 
 
-  selection2_powershell_modern:
-    EventID: 4103
-    Payload|contains|all:
-      - Add-MpPreference
-      - Set-MpPreference
-    Payload|contains:
-      - ExclusionPath
-      - ExclusionExtension
-      - ExclusionProcess
-      - ExclusionIpAddress 
+  condition: 1 of selection*
+falsepositives:
+- Unknown
+level: high
 
+---
+title: Microsoft Defender threat exclusion added (PowerShell) - ps_script
+id: 14b43a74-be20-404a-a535-e3b75492a2e0
+related:
+  - id: c0382aea-38eb-4a04-9182-13d6c95d9125
+    type: similar
+description: Detects scenarios where a threat exclusion is added to the antivirus in order to bypass its detection capacities
+references:
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
+- https://thedfirreport.com/2020/11/23/pysa-mespinoza-ransomware/
+- https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
+- https://www.intrinsec.com/apt27-analysis/
+- https://cybersecuritynews-com.cdn.ampproject.org/c/s/cybersecuritynews.com/u-s-federal-network-hacked/?amp
+- https://thedfirreport.com/2023/10/30/netsupport-intrusion-results-in-domain-compromise/
+tags:
+- attack.defense-impairment
+- attack.t1685
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: ps_script
+detection:
   selection3_powershell_block:
     EventID: 4104
     ScriptBlockText|contains|all:

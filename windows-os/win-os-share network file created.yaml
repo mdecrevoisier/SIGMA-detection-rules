@@ -1,10 +1,11 @@
 title: New network file share created
+id: 273ddcd6-7290-4996-8091-0ebd007034ca
 description: Detects scenarios when a new file share is created.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.002%20-SMB%20Windows%20Admin%20Shares
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-5142
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.002
 author: mdecrevoisier
 status: experimental
