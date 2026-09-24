@@ -1,4 +1,5 @@
 title: Impacket WMIexec process execution
+id: 416f3bcd-c734-4581-82f0-1fa002e93eda
 description: Detects scenarios where an attacker attempts to execute WMIexec in order to escalate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1047-Windows%20Management%20Instrumentation

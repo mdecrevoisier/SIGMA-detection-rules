@@ -1,6 +1,8 @@
 title: Local domain group enumeration
+id: 1999458a-9db5-4b6b-873a-8b15affb026f
+name: win_ad_local_group_enumeration_cme
 description: Detects scenarios where an attacker attempts to enumerate domain local groups with tools like CME (--local-groups).
-correlation: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
+correlation_note: correlate TargetLogonId from ID 4624 with SubjectLogonId from ID 4661 to identify the source of the enumeration.
 requirements: extended rights auditing enabled (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html)
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery
@@ -27,8 +29,24 @@ detection:
       - S-1-5-21- # refers to others domain local groups
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection and not filter | count(Computer) by IpAddress > 30
-  timeframe: 15m
+  condition: selection and not filter
 falsepositives:
 - Administrator activity
+level: high
+
+---
+title: Local domain group enumeration - count
+id: b740477a-3c04-4b85-8393-45690da06241
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_ad_local_group_enumeration_cme
+  group-by:
+    - IpAddress
+  timespan: 15m
+  condition:
+    gt: 30
+    field: Computer
 level: high

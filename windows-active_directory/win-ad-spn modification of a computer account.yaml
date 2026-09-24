@@ -1,4 +1,5 @@
 title: Suspicious modification of a computer account SPN
+id: 573229e6-0f8d-47f3-92bc-045bed5a8d37
 description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a computer account in order to perform "Kerberos redirection" and escalate privileges.
 references:
 - https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/

@@ -1,4 +1,10 @@
 title: Suspicious modification of a fake domain controller SPN (DCshadow) (Directory Services)
+id: 70b34fa0-5032-43a1-9295-12dc75481981
+related:
+  - id: 32e19d25-4aed-4860-a55a-be99cb0bf7ed
+    type: similar
+  - id: f2671d87-cdfc-4283-be4f-f12e9977df03
+    type: similar
 description: Detects scenarios where an attacker update the Service Principal Name (SPN) of a computer account in order to perform "Kerberos redirection" and escalate privileges.
 requirements: auditing SACL ("Write all properties") must be placed on the OU to monitor using the Active Directory console (https://www.manageengine.com/products/active-directory-audit/active-directory-auditing-configuration-guide-configure-object-level-auditing-manually.html).
 references:

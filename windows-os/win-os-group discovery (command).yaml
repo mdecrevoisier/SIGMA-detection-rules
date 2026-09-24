@@ -1,4 +1,8 @@
 title: Group discovery (command)
+id: f6901b20-b50f-413a-9272-e32d71c5838a
+related:
+  - id: d95de845-b83c-4a9a-8a6a-4fc802ebf6c0
+    type: similar
 description: Detects scenarios where an attacker attempts to enumerate local or domain groups via commandline.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1069-Permission%20Groups%20Discovery

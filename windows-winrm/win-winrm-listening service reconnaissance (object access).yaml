@@ -1,6 +1,8 @@
 title: WinRM listening service reconnaissance (WS-Management)
+id: cdc12a82-1d8c-47d7-b61b-e70bde075437
+name: win_winrm_listening_service_reconnaissance_object_access
 description: Detects scenarios where an attacker enumerates different remote WinRM listeners for lateral movement purposes.
-correlation: correlate SubjectLogonId from event ID 4656 with TargetLogonId from event ID 4624 to identify the source host.
+correlation_note: correlate SubjectLogonId from event ID 4656 with TargetLogonId from event ID 4624 to identify the source host.
 auditing: requires 'Object Access'> 'Other Object Access Events' to be enabled. Note that event is produced only if the login via WinRM is successful.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0008-Lateral%20Movement/T1021.006-Windows%20Remote%20Management
@@ -15,7 +17,7 @@ references:
 - https://github.com/mez-0/CSharpWinR
 - https://github.com/antonioCoco/RogueWinRM
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.006
 author: mdecrevoisier
 status: experimental
@@ -28,8 +30,23 @@ detection:
     ObjectServer: 'WS-Management Listener'
   filter:
     SubjectUserName|endswith: '$'
-  condition: selection and not filter | count(Computer) > 30
-  timeframe: 15m
+  condition: selection and not filter
 falsepositives:
 - Administrator activity, Windows Server Manager, applications using WinRM
+level: medium
+
+---
+title: WinRM listening service reconnaissance (WS-Management) - count
+id: f1638565-75e0-4b25-8e87-e9d38f9f4a85
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_winrm_listening_service_reconnaissance_object_access
+  group-by: [] # v1 count had no "by": aggregate over all events
+  timespan: 15m
+  condition:
+    gt: 30
+    field: Computer
 level: medium
