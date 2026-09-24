@@ -1,4 +1,5 @@
 title: Edge abuse for payload download via console
+id: d47f6675-5b18-474f-93c4-ed216177afeb
 description: Detects scenarios where an attacker attemptes to download a payload directly via console.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1204-User%20execution

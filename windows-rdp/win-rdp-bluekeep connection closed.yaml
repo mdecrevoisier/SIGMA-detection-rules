@@ -1,14 +1,14 @@
 title: RDP BlueeKeep connection closed (CVE-2019-0708)
+id: c3a2dd50-ee9e-435d-939d-5893dde52827
 description: Detects scenarios where an attacker attempts to exploit the BlueKeep vulnerability.
 references:
 - https://github.com/sbousseaden/Slides/blob/master/Windows%20DFIR%20Events.pdf
 - https://corelight.com/blog/2019/05/23/how-to-use-corelight-and-zeek-logs-to-mitigate-rds-rdp-vulnerabilities
 - https://www.cyberark.com/resources/threat-research-blog/explain-like-i-m-5-remote-desktop-protocol-rdp
 tags:
-- attack.lateral_movement
+- attack.lateral-movement
 - attack.t1021.001 # remote services: RDP
-- attack.privilege_escalation
-- attack.t1021.001 # exploit for privilege escalation
+- attack.privilege-escalation
 author: mdecrevoisier
 status: experimental
 logsource:

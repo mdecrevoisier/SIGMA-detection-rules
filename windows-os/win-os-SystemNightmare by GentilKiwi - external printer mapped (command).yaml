@@ -1,4 +1,5 @@
-title: SystemNightmare by GentilKiwi - External printer mapped (CVE-2021-1675 / CVE-2021-34527)
+title: SystemNightmare by GentilKiwi - External printer mapped (CVE-2021-1675 / CVE-2021-34527) - process creation
+id: 55e16aa8-f7cc-4a4e-901e-42a583c66629
 description: Detects scenarios where an attacker exploit the PrintNightmare vulnerability by abusing the Windows print spooler using the service exposed by Gentilkiwi
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1574-DLL%20side-loading
@@ -8,8 +9,45 @@ references:
 - https://www.theregister.com/2021/09/21/microsoft_printnightmare/
 - https://www.exabeam.com/information-security/detecting-the-printnightmare-cve-2021-1675-34527-vulnerability-using-exabeam/
 tags:
-- attack.privilege_escalation
-- attack.t1574.002
+- attack.privilege-escalation
+- attack.t1574.001
+- attack.t1547.010
+author: mdecrevoisier
+status: experimental
+logsource:
+  category: process_creation
+  product: windows
+detection: # net use \\printnightmare.gentilkiwi.com\ipc$ /user:gentilguest password
+
+  selection_process:
+    Image|endswith:
+      - \net1.exe
+      - \net.exe
+    CommandLine|contains|all:
+      - net use
+      - printnightmare.gentilkiwi.com
+  condition: selection_process
+falsepositives:
+- pentest
+level: high
+
+---
+title: SystemNightmare by GentilKiwi - External printer mapped (CVE-2021-1675 / CVE-2021-34527) - explicit credentials
+id: 8cf1fcea-1586-41f4-bafd-94796c5555a3
+related:
+  - id: 55e16aa8-f7cc-4a4e-901e-42a583c66629
+    type: similar
+description: Detects scenarios where an attacker exploit the PrintNightmare vulnerability by abusing the Windows print spooler using the service exposed by Gentilkiwi
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0004-Privilege%20Escalation/T1574-DLL%20side-loading
+- https://github.com/GossiTheDog/SystemNightmare
+- https://github.com/outflanknl/PrintNightmare
+- https://github.com/cube0x0/CVE-2021-1675
+- https://www.theregister.com/2021/09/21/microsoft_printnightmare/
+- https://www.exabeam.com/information-security/detecting-the-printnightmare-cve-2021-1675-34527-vulnerability-using-exabeam/
+tags:
+- attack.privilege-escalation
+- attack.t1574.001
 - attack.t1547.010
 author: mdecrevoisier
 status: experimental
@@ -17,16 +55,6 @@ logsource:
   product: windows
   service: security
 detection: # net use \\printnightmare.gentilkiwi.com\ipc$ /user:gentilguest password
-
-  selection_process:
-    EventID: 4688
-    NewProcessName|endswith:
-      - \net1.exe
-      - \net.exe
-    CommandLine|contains|all:
-      - net use
-      - printnightmare.gentilkiwi.com
-
   selection_cred_switch:
     EventID: 4648
 
@@ -34,8 +62,7 @@ detection: # net use \\printnightmare.gentilkiwi.com\ipc$ /user:gentilguest pass
     - TargetUserName: gentilguest
     - TargetServerName: printnightmare.gentilkiwi.com
     - TargetInfo: printnightmare.gentilkiwi.com
-
-  condition: selection_process or (selection_cred_switch and selection_cred_switch_opt)
+  condition: selection_cred_switch and selection_cred_switch_opt
 falsepositives:
 - pentest
 level: high

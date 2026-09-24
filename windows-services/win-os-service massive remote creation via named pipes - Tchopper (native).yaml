@@ -1,4 +1,13 @@
 title: Massive remote service creation via named pipes - Tchopper
+id: 1a0eb388-ac98-4ebc-8555-be233da404e7
+name: win_os_service_massive_remote_creation_via_named_pipes_tchopper_native
+related:
+  - id: 0daf2213-3a25-42e9-acac-c94ac48e4629
+    type: similar
+  - id: cc4aac41-ab53-47d8-9f97-bbae8fb35f05
+    type: similar
+  - id: 586a8d6b-6bfe-4ad9-9d78-888cd2fe50c3
+    type: similar
 description: Detects scenarios where an attacker uses the Tchopper tool by remotely creating multiple services via named pipes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0002-Execution/T1569.002-Service%20execution
@@ -17,8 +26,23 @@ detection:
     ShareName: '\\*\IPC$'
     RelativeTargetName: svcctl
     AccessList|contains: '%%4417' # WriteData
-  condition: selection | count(EventRecordID) by Computer > 100
-  timeframe: 20m
+  condition: selection
 falsepositives:
 - None
+level: high
+
+---
+title: Massive remote service creation via named pipes - Tchopper - count
+id: 789eb4a5-8948-4d86-9561-41d346e3cec4
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: event_count
+  rules:
+    - win_os_service_massive_remote_creation_via_named_pipes_tchopper_native
+  group-by:
+    - Computer
+  timespan: 20m
+  condition:
+    gt: 100
 level: high

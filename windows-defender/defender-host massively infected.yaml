@@ -1,10 +1,10 @@
 title: Microsoft Defender massive host infection
+id: 31e162e6-d79d-4929-a453-c0c02643e0aa
+name: defender_host_massively_infected
 description: Detects scenarios where multiple suspicious threats are detected on a single host
 references:
 - https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-antivirus/troubleshoot-microsoft-defender-antivirus
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/Antivirus
-tags:
-- malware
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -13,8 +13,24 @@ logsource:
 detection:
   selection:
     EventID: 1116 # Threat detected, no action taken
-  condition: selection | count(ThreatName) by Computer > 5
-  timeframe: 30m
+  condition: selection
 falsepositives:
 - EICAR test file
+level: high
+
+---
+title: Microsoft Defender massive host infection - count
+id: a56e63e6-68e5-4f91-806e-8b51e092646a
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - defender_host_massively_infected
+  group-by:
+    - Computer
+  timespan: 30m
+  condition:
+    gt: 5
+    field: ThreatName
 level: high

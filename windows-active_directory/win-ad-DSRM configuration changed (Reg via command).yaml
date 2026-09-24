@@ -1,4 +1,8 @@
 title: DSRM password changed (Reg via command)
+id: 7a20bc0d-e69d-4426-aa04-dc96e8c50a0b
+related:
+  - id: 58fc5609-3c23-456a-8f8a-845fe16b5ed8
+    type: similar
 description: Detects scenarios where an attacker reset or synchronize with another domain account the DSRM (Directory Services Restore Mode) password in order to escalate privileges.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0006-Credential%20Access/T1003-Credential%20dumping
@@ -13,12 +17,11 @@ tags:
 author: mdecrevoisier
 status: experimental
 logsource:
+  category: process_creation
   product: windows
-  service: security
 detection:
   selection:
-    EventID: 4688
-    NewProcessName|endswith: \reg.exe
+    Image|endswith: \reg.exe
     CommandLine|contains|all:
       - REG ADD
       - '\SYSTEM\CurrentControlSet\Control\Lsa'

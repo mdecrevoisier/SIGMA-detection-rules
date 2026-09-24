@@ -1,4 +1,6 @@
 title: SharpHound enumeration via SMB named pipes
+id: 8a2e183c-206a-4afa-a05a-ac212c44c7a0
+name: win_os_named_pipes_reconnaissance_via_smb_sharphound_pingcastle
 description: Detects scenarios where an attacker enumerate different host via named pipes with SharpHound for discovery purposes.
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1135.xxx-Network%20Share%20Discovery
@@ -24,8 +26,24 @@ detection:
      - srvsvc # May also be triggered by other tools like DonPapi, CrackMapExec
   filter:
     IpAddress: '%administration_hosts%' # List of IPs of your administration hosts to reduce false positive
-  condition: selection and not filter | count(Computer) by IpAddress > 30
-  timeframe: 15m
+  condition: selection and not filter
 falsepositives:
 - Administrator activity, backup solutions, Windows Server Manager
+level: medium
+
+---
+title: SharpHound enumeration via SMB named pipes - count
+id: fac53cc6-36b1-44e5-a44d-088716ac5758
+status: experimental
+author: mdecrevoisier
+correlation:
+  type: value_count
+  rules:
+    - win_os_named_pipes_reconnaissance_via_smb_sharphound_pingcastle
+  group-by:
+    - IpAddress
+  timespan: 15m
+  condition:
+    gt: 30
+    field: Computer
 level: medium

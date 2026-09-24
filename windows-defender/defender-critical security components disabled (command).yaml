@@ -1,4 +1,10 @@
 title: Microsoft Defender critical security components disabled (command)
+id: 2a8f644c-b4e6-4e69-93bd-4dd5bbddf2fa
+related:
+  - id: ec9292aa-5cce-4ecc-b706-fb599e12d0ac
+    type: similar
+  - id: 1ec65a5f-9473-4f12-97da-622044d6df21
+    type: similar
 description: Detects scenarios where an attacker attempts to disable Defender security features
 references:
 - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0005-Defense%20Evasion/T1562.001-Impair%20Defenses-Disable%20or%20Modify%20tool
@@ -10,8 +16,8 @@ references:
 - https://research.nccgroup.com/2022/08/19/back-in-black-unlocking-a-lockbit-3-0-ransomware-attack/
 - https://cloudbrothers.info/en/current-limits-defender-av-tamper-protection/
 tags:
-- attack.defense_evasion
-- attack.t1562.001
+- attack.defense-impairment
+- attack.t1685
 author: mdecrevoisier
 status: experimental
 logsource:
@@ -26,13 +32,14 @@ detection: # Set-MpPreference -DisableRealtimeMonitoring $true
     CommandLine|contains:
       - '1'
       - '$true'
+  and_selection_2:
     CommandLine|contains:
       - DisableRealtimeMonitoring
       - DisableBehaviorMonitoring
       - DisableIOAVProtection # scans downloaded files and attachment
       - DisableIntrusionPreventionSystem # network protection against exploitation of known vulnerabilities
       - DisableInboundConnectionFiltering
-  condition: selection
+  condition: (selection and all of and_selection_*)
 falsepositives:
 - None
 level: high
